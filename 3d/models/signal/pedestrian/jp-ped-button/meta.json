@@ -1,0 +1,73 @@
+{
+ "id": "jp-ped-button",
+ "group": "road-ped",
+ "name": "歩行者用押ボタン箱+音響装置",
+ "desc": "黄色の押ボタン箱と、視覚障がい者向けの音響用スピーカー箱。ボタンを押すと「おまちください」灯が点灯する。",
+ "dims": "押ボタン箱 約0.16×0.30×0.09m(推定)",
+ "focus": [
+  0,
+  1.25,
+  0.2
+ ],
+ "view": [
+  0.35,
+  0.15,
+  2.2
+ ],
+ "night": null,
+ "states": [
+  {
+   "id": "idle",
+   "label": "待機"
+  },
+  {
+   "id": "wait",
+   "label": "おまちください",
+   "on": [
+    "wait"
+   ]
+  },
+  {
+   "id": "ack",
+   "label": "受付(点滅)",
+   "flash": [
+    "wait"
+   ]
+  }
+ ],
+ "cycle": [
+  {
+   "s": "idle",
+   "d": 4
+  },
+  {
+   "s": "ack",
+   "d": 2
+  },
+  {
+   "s": "wait",
+   "d": 5
+  }
+ ],
+ "path": [
+  "signal",
+  "pedestrian"
+ ],
+ "lamps": [
+  {
+   "key": "wait",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  }
+ ],
+ "tris": 9002,
+ "size": [
+  0.22,
+  2.66,
+  0.28
+ ],
+ "dir": "signal/pedestrian/jp-ped-button",
+ "file": "signal/pedestrian/jp-ped-button/model.glb",
+ "thumb": "signal/pedestrian/jp-ped-button/thumb.jpg",
+ "bytes": 366596
+}

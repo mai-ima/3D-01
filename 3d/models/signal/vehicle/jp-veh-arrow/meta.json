@@ -1,0 +1,198 @@
+{
+ "id": "jp-veh-arrow",
+ "group": "road-vehicle",
+ "name": "車両用 横型3灯+矢印灯(左・直進・右)",
+ "desc": "主灯の下に青色矢印の補助灯(左折・直進・右折)を備える。右折専用現示や分離信号の交差点で使われる。",
+ "dims": "主灯φ250 + 矢印灯φ230(推定)",
+ "focus": [
+  1.5,
+  5.3,
+  0
+ ],
+ "view": [
+  0.8,
+  0.3,
+  6
+ ],
+ "night": "fy",
+ "states": [
+  {
+   "id": "g+s",
+   "label": "青+直進",
+   "on": [
+    "green",
+    "straight"
+   ]
+  },
+  {
+   "id": "g+l+s",
+   "label": "青+左+直進",
+   "on": [
+    "green",
+    "left",
+    "straight"
+   ]
+  },
+  {
+   "id": "g",
+   "label": "青",
+   "on": [
+    "green"
+   ]
+  },
+  {
+   "id": "y",
+   "label": "黄",
+   "on": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "r",
+   "label": "赤",
+   "on": [
+    "red"
+   ]
+  },
+  {
+   "id": "r+l",
+   "label": "赤+左矢印",
+   "on": [
+    "red",
+    "left"
+   ]
+  },
+  {
+   "id": "r+r",
+   "label": "赤+右矢印",
+   "on": [
+    "red",
+    "right"
+   ]
+  },
+  {
+   "id": "r+l+r",
+   "label": "赤+左右矢印",
+   "on": [
+    "red",
+    "left",
+    "right"
+   ]
+  },
+  {
+   "id": "fy",
+   "label": "黄点滅",
+   "flash": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "g+s",
+   "d": 6
+  },
+  {
+   "s": "g+l+s",
+   "d": 3
+  },
+  {
+   "s": "y",
+   "d": 3
+  },
+  {
+   "s": "r",
+   "d": 2
+  },
+  {
+   "s": "r+r",
+   "d": 5
+  },
+  {
+   "s": "r+l+r",
+   "d": 3
+  }
+ ],
+ "options": [
+  {
+   "id": "lens",
+   "label": "灯火方式",
+   "choices": [
+    {
+     "id": "led",
+     "label": "LED式"
+    },
+    {
+     "id": "bulb",
+     "label": "電球式"
+    }
+   ],
+   "default": "led"
+  },
+  {
+   "id": "backplate",
+   "label": "背面板",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
+  }
+ ],
+ "path": [
+  "signal",
+  "vehicle"
+ ],
+ "lamps": [
+  {
+   "key": "green",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  },
+  {
+   "key": "yellow",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "red",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "left",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  },
+  {
+   "key": "straight",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  },
+  {
+   "key": "right",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  }
+ ],
+ "tris": 57760,
+ "size": [
+  3.54,
+  6.38,
+  0.66
+ ],
+ "dir": "signal/vehicle/jp-veh-arrow",
+ "file": "signal/vehicle/jp-veh-arrow/model.glb",
+ "thumb": "signal/vehicle/jp-veh-arrow/thumb.jpg",
+ "bytes": 2311272
+}

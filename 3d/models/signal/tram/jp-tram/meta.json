@@ -1,0 +1,114 @@
+{
+ "id": "jp-tram",
+ "group": "tram",
+ "name": "路面電車用信号(赤×・黄矢印)",
+ "desc": "道路交通法の「電車用信号」。赤×は停止、黄色矢印は矢印の方向へ進行可。自動車は従わない。広島電鉄・都電荒川線・長崎・熊本などの軌道で見られる。",
+ "dims": "本体 約0.40×0.82×0.20m(推定)",
+ "focus": [
+  1.1,
+  4.6,
+  0
+ ],
+ "view": [
+  0.6,
+  0.25,
+  4.6
+ ],
+ "night": null,
+ "states": [
+  {
+   "id": "stop",
+   "label": "停止(赤×)",
+   "on": [
+    "stop"
+   ]
+  },
+  {
+   "id": "l",
+   "label": "左進行",
+   "on": [
+    "left"
+   ]
+  },
+  {
+   "id": "s",
+   "label": "直進",
+   "on": [
+    "straight"
+   ]
+  },
+  {
+   "id": "r",
+   "label": "右進行",
+   "on": [
+    "right"
+   ]
+  },
+  {
+   "id": "ls",
+   "label": "左+直進",
+   "on": [
+    "left",
+    "straight"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "stop",
+   "d": 6
+  },
+  {
+   "s": "s",
+   "d": 5
+  },
+  {
+   "s": "stop",
+   "d": 3
+  },
+  {
+   "s": "l",
+   "d": 4
+  }
+ ],
+ "path": [
+  "signal",
+  "tram"
+ ],
+ "lamps": [
+  {
+   "key": "stop",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "left",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "straight",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "right",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  }
+ ],
+ "tris": 28888,
+ "size": [
+  1.46,
+  5.47,
+  0.61
+ ],
+ "dir": "signal/tram/jp-tram",
+ "file": "signal/tram/jp-tram/model.glb",
+ "thumb": "signal/tram/jp-tram/thumb.jpg",
+ "bytes": 985044
+}

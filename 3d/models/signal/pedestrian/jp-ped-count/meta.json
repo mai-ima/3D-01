@@ -1,0 +1,259 @@
+{
+ "id": "jp-ped-count",
+ "group": "road-ped",
+ "name": "歩行者用 残り時間表示付き",
+ "desc": "青点滅の間、人型の横に並んだ表示灯が残り時間を示す灯器(待ち時間・残り時間表示)。渡り切れるかの判断を助ける。",
+ "dims": "本体 約0.58×0.80×0.17m(推定)",
+ "focus": [
+  0,
+  2.35,
+  0.2
+ ],
+ "view": [
+  0.5,
+  0.2,
+  4.2
+ ],
+ "night": null,
+ "states": [
+  {
+   "id": "r",
+   "label": "赤",
+   "on": [
+    "red"
+   ]
+  },
+  {
+   "id": "g",
+   "label": "青",
+   "on": [
+    "walk"
+   ]
+  },
+  {
+   "id": "gb8",
+   "label": "青点滅 残8",
+   "flash": [
+    "walk"
+   ],
+   "on": [
+    "b0",
+    "b1",
+    "b2",
+    "b3",
+    "b4",
+    "b5",
+    "b6",
+    "b7"
+   ]
+  },
+  {
+   "id": "gb7",
+   "label": "青点滅 残7",
+   "flash": [
+    "walk"
+   ],
+   "on": [
+    "b0",
+    "b1",
+    "b2",
+    "b3",
+    "b4",
+    "b5",
+    "b6"
+   ]
+  },
+  {
+   "id": "gb6",
+   "label": "青点滅 残6",
+   "flash": [
+    "walk"
+   ],
+   "on": [
+    "b0",
+    "b1",
+    "b2",
+    "b3",
+    "b4",
+    "b5"
+   ]
+  },
+  {
+   "id": "gb5",
+   "label": "青点滅 残5",
+   "flash": [
+    "walk"
+   ],
+   "on": [
+    "b0",
+    "b1",
+    "b2",
+    "b3",
+    "b4"
+   ]
+  },
+  {
+   "id": "gb4",
+   "label": "青点滅 残4",
+   "flash": [
+    "walk"
+   ],
+   "on": [
+    "b0",
+    "b1",
+    "b2",
+    "b3"
+   ]
+  },
+  {
+   "id": "gb3",
+   "label": "青点滅 残3",
+   "flash": [
+    "walk"
+   ],
+   "on": [
+    "b0",
+    "b1",
+    "b2"
+   ]
+  },
+  {
+   "id": "gb2",
+   "label": "青点滅 残2",
+   "flash": [
+    "walk"
+   ],
+   "on": [
+    "b0",
+    "b1"
+   ]
+  },
+  {
+   "id": "gb1",
+   "label": "青点滅 残1",
+   "flash": [
+    "walk"
+   ],
+   "on": [
+    "b0"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "r",
+   "d": 6
+  },
+  {
+   "s": "g",
+   "d": 6
+  },
+  {
+   "s": "gb8",
+   "d": 1
+  },
+  {
+   "s": "gb7",
+   "d": 1
+  },
+  {
+   "s": "gb6",
+   "d": 1
+  },
+  {
+   "s": "gb5",
+   "d": 1
+  },
+  {
+   "s": "gb4",
+   "d": 1
+  },
+  {
+   "s": "gb3",
+   "d": 1
+  },
+  {
+   "s": "gb2",
+   "d": 1
+  },
+  {
+   "s": "gb1",
+   "d": 1
+  }
+ ],
+ "path": [
+  "signal",
+  "pedestrian"
+ ],
+ "lamps": [
+  {
+   "key": "red",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "walk",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  },
+  {
+   "key": "wait",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "b0",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "b1",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "b2",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "b3",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "b4",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "b5",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "b6",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "b7",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  }
+ ],
+ "tris": 32520,
+ "size": [
+  0.58,
+  3.06,
+  0.49
+ ],
+ "dir": "signal/pedestrian/jp-ped-count",
+ "file": "signal/pedestrian/jp-ped-count/model.glb",
+ "thumb": "signal/pedestrian/jp-ped-count/thumb.jpg",
+ "bytes": 1237388
+}

@@ -1,0 +1,22 @@
+{
+ "id": "jp-track-tram",
+ "name": "併用軌道(路面電車・溝付きレール・敷石舗装)",
+ "desc": "道路に埋め込まれた路面電車の軌道。フランジウェイ(溝)付きのガーダーレールと御影石の敷石舗装、両側はアスファルト。広島電鉄などの標準軌1435mm。",
+ "dims": "軌間1435mm / 長さ10m / 幅5.0m",
+ "options": [],
+ "path": [
+  "track",
+  "tram"
+ ],
+ "lamps": [],
+ "tris": 3282,
+ "size": [
+  5,
+  0.3,
+  10
+ ],
+ "dir": "track/tram/jp-track-tram",
+ "file": "track/tram/jp-track-tram/model.glb",
+ "thumb": "track/tram/jp-track-tram/thumb.jpg",
+ "bytes": 531620
+}

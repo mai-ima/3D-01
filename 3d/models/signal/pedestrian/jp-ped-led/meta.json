@@ -1,0 +1,122 @@
+{
+ "id": "jp-ped-led",
+ "group": "road-ped",
+ "name": "歩行者用 角形LED灯器(人型)",
+ "desc": "国内標準の歩行者用灯器。上が赤の立ち姿、下が青(青緑)の歩行姿。青は渡り終えるまで点灯し、終わりが近づくと点滅する。",
+ "dims": "本体 約0.40×0.80×0.17m(推定)",
+ "focus": [
+  0,
+  2.35,
+  0.2
+ ],
+ "view": [
+  0.5,
+  0.2,
+  4
+ ],
+ "night": null,
+ "states": [
+  {
+   "id": "r",
+   "label": "赤(止まれ)",
+   "on": [
+    "red"
+   ]
+  },
+  {
+   "id": "g",
+   "label": "青(渡れる)",
+   "on": [
+    "walk"
+   ]
+  },
+  {
+   "id": "gb",
+   "label": "青点滅(渡り終えて)",
+   "flash": [
+    "walk"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "r",
+   "d": 7
+  },
+  {
+   "s": "g",
+   "d": 6
+  },
+  {
+   "s": "gb",
+   "d": 4
+  }
+ ],
+ "options": [
+  {
+   "id": "button",
+   "label": "押ボタン箱",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
+  },
+  {
+   "id": "sound",
+   "label": "音響装置",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
+  }
+ ],
+ "path": [
+  "signal",
+  "pedestrian"
+ ],
+ "lamps": [
+  {
+   "key": "red",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "walk",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  },
+  {
+   "key": "wait",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  }
+ ],
+ "tris": 17160,
+ "size": [
+  0.4,
+  3.06,
+  0.49
+ ],
+ "dir": "signal/pedestrian/jp-ped-led",
+ "file": "signal/pedestrian/jp-ped-led/model.glb",
+ "thumb": "signal/pedestrian/jp-ped-led/thumb.jpg",
+ "bytes": 823480
+}

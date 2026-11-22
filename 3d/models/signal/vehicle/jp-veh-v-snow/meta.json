@@ -1,0 +1,151 @@
+{
+ "id": "jp-veh-v-snow",
+ "group": "road-vehicle",
+ "name": "車両用 縦型3灯(積雪寒冷地・着雪防止)",
+ "desc": "北海道・東北・北陸など積雪寒冷地で使われる縦型。上から赤・黄・青。庇付きフードと20°の前傾で着雪を防ぐ。",
+ "dims": "前傾20°(公表情報)。本体寸法は推定",
+ "focus": [
+  1,
+  5,
+  0
+ ],
+ "view": [
+  0.9,
+  0.3,
+  5.8
+ ],
+ "night": "fy",
+ "states": [
+  {
+   "id": "g",
+   "label": "青",
+   "on": [
+    "green"
+   ]
+  },
+  {
+   "id": "y",
+   "label": "黄",
+   "on": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "r",
+   "label": "赤",
+   "on": [
+    "red"
+   ]
+  },
+  {
+   "id": "fy",
+   "label": "黄点滅",
+   "flash": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "fr",
+   "label": "赤点滅",
+   "flash": [
+    "red"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "g",
+   "d": 8
+  },
+  {
+   "s": "y",
+   "d": 3
+  },
+  {
+   "s": "r",
+   "d": 8
+  }
+ ],
+ "options": [
+  {
+   "id": "lens",
+   "label": "灯火方式",
+   "choices": [
+    {
+     "id": "led",
+     "label": "LED式"
+    },
+    {
+     "id": "bulb",
+     "label": "電球式"
+    }
+   ],
+   "default": "led"
+  },
+  {
+   "id": "snow",
+   "label": "着雪防止の庇",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  },
+  {
+   "id": "backplate",
+   "label": "背面板",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
+  }
+ ],
+ "path": [
+  "signal",
+  "vehicle"
+ ],
+ "lamps": [
+  {
+   "key": "red",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "yellow",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "green",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  }
+ ],
+ "tris": 33648,
+ "size": [
+  1.62,
+  6.08,
+  1.16
+ ],
+ "dir": "signal/vehicle/jp-veh-v-snow",
+ "file": "signal/vehicle/jp-veh-v-snow/model.glb",
+ "thumb": "signal/vehicle/jp-veh-v-snow/thumb.jpg",
+ "bytes": 1565044
+}

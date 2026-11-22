@@ -1,0 +1,136 @@
+{
+ "id": "jp-crossing-alarm",
+ "group": "rail",
+ "name": "踏切警報機(全方向形警報灯・方向指示器・特殊信号発光機)",
+ "desc": "黄黒の警報柱に×字標識、全方向形の赤色警報灯(左右交互に点滅)、列車進行方向指示器、頂部の特殊信号発光機を備える現行の踏切警報機。",
+ "dims": "全方向形警報灯 約0.33×0.27×0.30m、発光面φ170〜190mm(メーカー公表値)",
+ "focus": [
+  0,
+  2.7,
+  0.2
+ ],
+ "view": [
+  0.8,
+  0.3,
+  6
+ ],
+ "night": null,
+ "states": [
+  {
+   "id": "idle",
+   "label": "平常"
+  },
+  {
+   "id": "alarm",
+   "label": "警報(交互点滅)",
+   "flash": [
+    "l1"
+   ],
+   "flash2": [
+    "l2"
+   ]
+  },
+  {
+   "id": "alarm+dir",
+   "label": "警報+方向指示",
+   "flash": [
+    "l1"
+   ],
+   "flash2": [
+    "l2"
+   ],
+   "on": [
+    "dir"
+   ]
+  },
+  {
+   "id": "sp",
+   "label": "特殊信号発光機",
+   "flash": [
+    "sp"
+   ]
+  }
+ ],
+ "cycle": [
+  {
+   "s": "idle",
+   "d": 6
+  },
+  {
+   "s": "alarm",
+   "d": 3
+  },
+  {
+   "s": "alarm+dir",
+   "d": 8
+  }
+ ],
+ "options": [
+  {
+   "id": "dir",
+   "label": "列車進行方向指示器",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  },
+  {
+   "id": "sp",
+   "label": "特殊信号発光機",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  }
+ ],
+ "path": [
+  "signal",
+  "crossing"
+ ],
+ "lamps": [
+  {
+   "key": "l1",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "l2",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "dir",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "sp",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  }
+ ],
+ "tris": 13624,
+ "size": [
+  1.21,
+  4.27,
+  0.45
+ ],
+ "dir": "signal/crossing/jp-crossing-alarm",
+ "file": "signal/crossing/jp-crossing-alarm/model.glb",
+ "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
+ "bytes": 645192
+}

@@ -1,0 +1,107 @@
+{
+ "id": "jp-rail-3",
+ "group": "rail",
+ "name": "鉄道信号機 色灯式3灯(閉塞・場内・出発)",
+ "desc": "上から黄・赤・青の3灯式。赤=停止、黄=注意(25km/h以下などの速度制限)、青=進行。黒い背景板と長い円筒フードで遠くから視認させる。",
+ "dims": "レンズ約φ190(推定)。灯器配列は事業者で異なる場合あり",
+ "focus": [
+  0,
+  3.9,
+  0.4
+ ],
+ "view": [
+  0.7,
+  0.3,
+  5.5
+ ],
+ "night": null,
+ "states": [
+  {
+   "id": "stop",
+   "label": "停止(赤)",
+   "on": [
+    "red"
+   ]
+  },
+  {
+   "id": "caution",
+   "label": "注意(黄)",
+   "on": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "go",
+   "label": "進行(青)",
+   "on": [
+    "green"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "go",
+   "d": 6
+  },
+  {
+   "s": "caution",
+   "d": 4
+  },
+  {
+   "s": "stop",
+   "d": 6
+  }
+ ],
+ "options": [
+  {
+   "id": "lens",
+   "label": "灯火方式",
+   "choices": [
+    {
+     "id": "led",
+     "label": "LED式"
+    },
+    {
+     "id": "bulb",
+     "label": "電球式"
+    }
+   ],
+   "default": "led"
+  }
+ ],
+ "path": [
+  "signal",
+  "rail"
+ ],
+ "lamps": [
+  {
+   "key": "yellow",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "red",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "green",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  }
+ ],
+ "tris": 26604,
+ "size": [
+  0.5,
+  4.45,
+  0.99
+ ],
+ "dir": "signal/rail/jp-rail-3",
+ "file": "signal/rail/jp-rail-3/model.glb",
+ "thumb": "signal/rail/jp-rail-3/thumb.jpg",
+ "bytes": 1222076
+}

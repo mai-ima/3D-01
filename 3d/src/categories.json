@@ -1,0 +1,12 @@
+{
+  "signal": "信号",
+  "signal/vehicle": "車両用信号",
+  "signal/pedestrian": "歩行者用信号",
+  "signal/combined": "車両・歩行者一体信号",
+  "signal/tram": "路面電車用信号",
+  "signal/rail": "鉄道信号",
+  "signal/crossing": "踏切",
+  "track": "軌道",
+  "track/railway": "鉄道軌道",
+  "track/tram": "路面電車軌道"
+}

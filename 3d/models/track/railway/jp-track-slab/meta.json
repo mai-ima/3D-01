@@ -1,0 +1,22 @@
+{
+ "id": "jp-track-slab",
+ "name": "スラブ軌道(標準軌1435mm・60kgレール)",
+ "desc": "新幹線・高架橋・地下鉄で使われるコンクリート軌道スラブ。軌道スラブ(約2.34×4.93m)2枚分を1単位とし、締結装置を0.625m間隔で配置。",
+ "dims": "軌間1435mm / 長さ9.86m / スラブ幅2.34m",
+ "options": [],
+ "path": [
+  "track",
+  "railway"
+ ],
+ "lamps": [],
+ "tris": 23548,
+ "size": [
+  3.4,
+  0.7,
+  9.86
+ ],
+ "dir": "track/railway/jp-track-slab",
+ "file": "track/railway/jp-track-slab/model.glb",
+ "thumb": "track/railway/jp-track-slab/thumb.jpg",
+ "bytes": 1266408
+}

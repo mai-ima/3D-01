@@ -1,0 +1,135 @@
+{
+ "id": "jp-veh-v250",
+ "name": "車両用 縦型3灯 φ250(標準)",
+ "desc": "縦に3灯を並べた標準的な縦型。上から赤・黄・青。信号柱の側面にブラケットで取り付け、前傾15°で太陽光の直接反射を抑える。",
+ "dims": "レンズφ250mm / 前傾15°。本体寸法は推定",
+ "focus": [
+  1,
+  5,
+  0
+ ],
+ "view": [
+  0.9,
+  0.3,
+  5.6
+ ],
+ "night": "fy",
+ "states": [
+  {
+   "id": "g",
+   "label": "青",
+   "on": [
+    "green"
+   ]
+  },
+  {
+   "id": "y",
+   "label": "黄",
+   "on": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "r",
+   "label": "赤",
+   "on": [
+    "red"
+   ]
+  },
+  {
+   "id": "fy",
+   "label": "黄点滅",
+   "flash": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "fr",
+   "label": "赤点滅",
+   "flash": [
+    "red"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "g",
+   "d": 8
+  },
+  {
+   "s": "y",
+   "d": 3
+  },
+  {
+   "s": "r",
+   "d": 8
+  }
+ ],
+ "options": [
+  {
+   "id": "lens",
+   "label": "灯火方式",
+   "choices": [
+    {
+     "id": "led",
+     "label": "LED式"
+    },
+    {
+     "id": "bulb",
+     "label": "電球式"
+    }
+   ],
+   "default": "led"
+  },
+  {
+   "id": "backplate",
+   "label": "背面板",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
+  }
+ ],
+ "path": [
+  "signal",
+  "vehicle"
+ ],
+ "lamps": [
+  {
+   "key": "red",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "yellow",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "green",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  }
+ ],
+ "tris": 33432,
+ "size": [
+  1.49,
+  5.78,
+  0.85
+ ],
+ "dir": "signal/vehicle/jp-veh-v250",
+ "file": "signal/vehicle/jp-veh-v250/model.glb",
+ "thumb": "signal/vehicle/jp-veh-v250/thumb.jpg",
+ "bytes": 1546504
+}

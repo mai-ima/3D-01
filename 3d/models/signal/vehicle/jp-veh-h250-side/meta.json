@@ -1,0 +1,136 @@
+{
+ "id": "jp-veh-h250-side",
+ "group": "road-vehicle",
+ "name": "車両用 横型3灯 φ250(側柱式・前傾15°)",
+ "desc": "2017年の警察庁仕様変更で小型化されたφ250mm。太陽光の直接反射を抑えるため本体を前へ15°傾けて取り付ける。淡灰色の灯器。",
+ "dims": "レンズφ250mm / 取付前傾15°(公表情報)。本体寸法は推定",
+ "focus": [
+  1.2,
+  5.2,
+  0
+ ],
+ "view": [
+  0.7,
+  0.35,
+  5.6
+ ],
+ "night": "fy",
+ "states": [
+  {
+   "id": "g",
+   "label": "青",
+   "on": [
+    "green"
+   ]
+  },
+  {
+   "id": "y",
+   "label": "黄",
+   "on": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "r",
+   "label": "赤",
+   "on": [
+    "red"
+   ]
+  },
+  {
+   "id": "fy",
+   "label": "黄点滅",
+   "flash": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "fr",
+   "label": "赤点滅",
+   "flash": [
+    "red"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "g",
+   "d": 8
+  },
+  {
+   "s": "y",
+   "d": 3
+  },
+  {
+   "s": "r",
+   "d": 8
+  }
+ ],
+ "options": [
+  {
+   "id": "lens",
+   "label": "灯火方式",
+   "choices": [
+    {
+     "id": "led",
+     "label": "LED式"
+    },
+    {
+     "id": "bulb",
+     "label": "電球式"
+    }
+   ],
+   "default": "led"
+  },
+  {
+   "id": "backplate",
+   "label": "背面板",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
+  }
+ ],
+ "path": [
+  "signal",
+  "vehicle"
+ ],
+ "lamps": [
+  {
+   "key": "green",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  },
+  {
+   "key": "yellow",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "red",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  }
+ ],
+ "tris": 33942,
+ "size": [
+  2.05,
+  5.98,
+  0.68
+ ],
+ "dir": "signal/vehicle/jp-veh-h250-side",
+ "file": "signal/vehicle/jp-veh-h250-side/model.glb",
+ "thumb": "signal/vehicle/jp-veh-h250-side/thumb.jpg",
+ "bytes": 1584172
+}

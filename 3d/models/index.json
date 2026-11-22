@@ -1,0 +1,2918 @@
+{
+ "categories": {
+  "signal": "信号",
+  "signal/vehicle": "車両用信号",
+  "signal/pedestrian": "歩行者用信号",
+  "signal/combined": "車両・歩行者一体信号",
+  "signal/tram": "路面電車用信号",
+  "signal/rail": "鉄道信号",
+  "signal/crossing": "踏切",
+  "track": "軌道",
+  "track/railway": "鉄道軌道",
+  "track/tram": "路面電車軌道"
+ },
+ "models": [
+  {
+   "id": "jp-combo-arm-ped",
+   "name": "車両用(アーム式)+歩行者用 一体柱",
+   "desc": "交差点で最も一般的な組み合わせ。アームに車両用横型灯器を吊り、同じ柱の低い位置に歩行者用灯器・押ボタン箱・音響装置を備える。",
+   "dims": "柱高 約6.3m / 歩行者灯器高 約2.35m(推定)",
+   "focus": [
+    1.5,
+    3.8,
+    0.2
+   ],
+   "view": [
+    1.4,
+    0.4,
+    9
+   ],
+   "night": "night",
+   "states": [
+    {
+     "id": "s1",
+     "label": "車 青 / 歩 赤",
+     "on": [
+      "v_green",
+      "p_red"
+     ]
+    },
+    {
+     "id": "s2",
+     "label": "車 黄 / 歩 赤",
+     "on": [
+      "v_yellow",
+      "p_red"
+     ]
+    },
+    {
+     "id": "s3",
+     "label": "全赤",
+     "on": [
+      "v_red",
+      "p_red"
+     ]
+    },
+    {
+     "id": "s4",
+     "label": "車 赤 / 歩 青",
+     "on": [
+      "v_red",
+      "p_walk"
+     ]
+    },
+    {
+     "id": "s5",
+     "label": "車 赤 / 歩 青点滅",
+     "on": [
+      "v_red"
+     ],
+     "flash": [
+      "p_walk"
+     ]
+    },
+    {
+     "id": "night",
+     "label": "夜間(車 黄点滅)",
+     "flash": [
+      "v_yellow"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "s1",
+     "d": 7
+    },
+    {
+     "s": "s2",
+     "d": 3
+    },
+    {
+     "s": "s3",
+     "d": 1.5
+    },
+    {
+     "s": "s4",
+     "d": 6
+    },
+    {
+     "s": "s5",
+     "d": 4
+    },
+    {
+     "s": "s3",
+     "d": 1.5
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    },
+    {
+     "id": "backplate",
+     "label": "背面板",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    },
+    {
+     "id": "button",
+     "label": "押ボタン箱",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "sound",
+     "label": "音響装置",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    }
+   ],
+   "path": [
+    "signal",
+    "combined"
+   ],
+   "lamps": [
+    {
+     "key": "v_green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "v_yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "v_red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "p_red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "p_walk",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "wait",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 52182,
+   "size": [
+    3.74,
+    6.38,
+    0.66
+   ],
+   "dir": "signal/combined/jp-combo-arm-ped",
+   "file": "signal/combined/jp-combo-arm-ped/model.glb",
+   "thumb": "signal/combined/jp-combo-arm-ped/thumb.jpg",
+   "bytes": 2347424
+  },
+  {
+   "id": "jp-combo-vert-ped",
+   "name": "車両用(縦型・積雪地)+歩行者用 一体柱",
+   "desc": "積雪寒冷地の側柱式。縦型の車両用灯器(着雪防止庇付き)と歩行者用灯器・押ボタン箱を同じ柱にまとめた構成。",
+   "dims": "柱高 約6.0m(推定)",
+   "focus": [
+    1,
+    3.6,
+    0.2
+   ],
+   "view": [
+    1.4,
+    0.4,
+    9
+   ],
+   "night": "night",
+   "states": [
+    {
+     "id": "s1",
+     "label": "車 青 / 歩 赤",
+     "on": [
+      "v_green",
+      "p_red"
+     ]
+    },
+    {
+     "id": "s2",
+     "label": "車 黄 / 歩 赤",
+     "on": [
+      "v_yellow",
+      "p_red"
+     ]
+    },
+    {
+     "id": "s3",
+     "label": "全赤",
+     "on": [
+      "v_red",
+      "p_red"
+     ]
+    },
+    {
+     "id": "s4",
+     "label": "車 赤 / 歩 青",
+     "on": [
+      "v_red",
+      "p_walk"
+     ]
+    },
+    {
+     "id": "s5",
+     "label": "車 赤 / 歩 青点滅",
+     "on": [
+      "v_red"
+     ],
+     "flash": [
+      "p_walk"
+     ]
+    },
+    {
+     "id": "night",
+     "label": "夜間(車 黄点滅)",
+     "flash": [
+      "v_yellow"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "s1",
+     "d": 7
+    },
+    {
+     "s": "s2",
+     "d": 3
+    },
+    {
+     "s": "s3",
+     "d": 1.5
+    },
+    {
+     "s": "s4",
+     "d": 6
+    },
+    {
+     "s": "s5",
+     "d": 4
+    },
+    {
+     "s": "s3",
+     "d": 1.5
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    },
+    {
+     "id": "snow",
+     "label": "着雪防止の庇",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "button",
+     "label": "押ボタン箱",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "sound",
+     "label": "音響装置",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    }
+   ],
+   "path": [
+    "signal",
+    "combined"
+   ],
+   "lamps": [
+    {
+     "key": "v_red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "v_yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "v_green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "p_red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "p_walk",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "wait",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 44840,
+   "size": [
+    1.57,
+    6.08,
+    1.1
+   ],
+   "dir": "signal/combined/jp-combo-vert-ped",
+   "file": "signal/combined/jp-combo-vert-ped/model.glb",
+   "thumb": "signal/combined/jp-combo-vert-ped/thumb.jpg",
+   "bytes": 2104480
+  },
+  {
+   "id": "jp-crossing-alarm",
+   "group": "rail",
+   "name": "踏切警報機(全方向形警報灯・方向指示器・特殊信号発光機)",
+   "desc": "黄黒の警報柱に×字標識、全方向形の赤色警報灯(左右交互に点滅)、列車進行方向指示器、頂部の特殊信号発光機を備える現行の踏切警報機。",
+   "dims": "全方向形警報灯 約0.33×0.27×0.30m、発光面φ170〜190mm(メーカー公表値)",
+   "focus": [
+    0,
+    2.7,
+    0.2
+   ],
+   "view": [
+    0.8,
+    0.3,
+    6
+   ],
+   "night": null,
+   "states": [
+    {
+     "id": "idle",
+     "label": "平常"
+    },
+    {
+     "id": "alarm",
+     "label": "警報(交互点滅)",
+     "flash": [
+      "l1"
+     ],
+     "flash2": [
+      "l2"
+     ]
+    },
+    {
+     "id": "alarm+dir",
+     "label": "警報+方向指示",
+     "flash": [
+      "l1"
+     ],
+     "flash2": [
+      "l2"
+     ],
+     "on": [
+      "dir"
+     ]
+    },
+    {
+     "id": "sp",
+     "label": "特殊信号発光機",
+     "flash": [
+      "sp"
+     ]
+    }
+   ],
+   "cycle": [
+    {
+     "s": "idle",
+     "d": 6
+    },
+    {
+     "s": "alarm",
+     "d": 3
+    },
+    {
+     "s": "alarm+dir",
+     "d": 8
+    }
+   ],
+   "options": [
+    {
+     "id": "dir",
+     "label": "列車進行方向指示器",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "sp",
+     "label": "特殊信号発光機",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    }
+   ],
+   "path": [
+    "signal",
+    "crossing"
+   ],
+   "lamps": [
+    {
+     "key": "l1",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "l2",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "dir",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "sp",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 13624,
+   "size": [
+    1.21,
+    4.27,
+    0.45
+   ],
+   "dir": "signal/crossing/jp-crossing-alarm",
+   "file": "signal/crossing/jp-crossing-alarm/model.glb",
+   "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
+   "bytes": 645192
+  },
+  {
+   "id": "jp-crossing-gate",
+   "group": "rail",
+   "name": "踏切遮断機(遮断かん)",
+   "desc": "赤白の遮断かんが降下して道路を遮断する。かんに赤色灯2灯を備え、警報中に点滅。かんの昇降はビューアでも動作を確認できる。",
+   "dims": "遮断かん長 約4.4m(推定)",
+   "focus": [
+    2,
+    0.9,
+    0.2
+   ],
+   "view": [
+    1.2,
+    0.6,
+    8.5
+   ],
+   "night": null,
+   "anim": {
+    "node": "gate_arm",
+    "axis": "z"
+   },
+   "states": [
+    {
+     "id": "open",
+     "label": "上昇(開)",
+     "arm": 1.45
+    },
+    {
+     "id": "closing",
+     "label": "降下中",
+     "arm": 0.7,
+     "flash": [
+      "a1",
+      "a2"
+     ]
+    },
+    {
+     "id": "closed",
+     "label": "降下(閉)",
+     "arm": 0,
+     "flash": [
+      "a1",
+      "a2"
+     ]
+    }
+   ],
+   "cycle": [
+    {
+     "s": "open",
+     "d": 6
+    },
+    {
+     "s": "closing",
+     "d": 1.5
+    },
+    {
+     "s": "closed",
+     "d": 6
+    }
+   ],
+   "path": [
+    "signal",
+    "crossing"
+   ],
+   "lamps": [
+    {
+     "key": "a1",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "a2",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 5640,
+   "size": [
+    4.95,
+    1.5,
+    0.55
+   ],
+   "dir": "signal/crossing/jp-crossing-gate",
+   "file": "signal/crossing/jp-crossing-gate/model.glb",
+   "thumb": "signal/crossing/jp-crossing-gate/thumb.jpg",
+   "bytes": 260684
+  },
+  {
+   "id": "jp-bike-ped",
+   "group": "road-ped",
+   "name": "自転車・歩行者用灯器",
+   "desc": "自転車横断帯のある横断歩道などで使う灯器。自転車の図柄が赤(止まれ)と青(進め)で点灯する。",
+   "dims": "本体 約0.40×0.80×0.17m(推定)",
+   "focus": [
+    0,
+    2.35,
+    0.2
+   ],
+   "view": [
+    0.5,
+    0.2,
+    4
+   ],
+   "night": null,
+   "states": [
+    {
+     "id": "r",
+     "label": "赤(止まれ)",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "g",
+     "label": "青(渡れる)",
+     "on": [
+      "walk"
+     ]
+    },
+    {
+     "id": "gb",
+     "label": "青点滅(渡り終えて)",
+     "flash": [
+      "walk"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "r",
+     "d": 7
+    },
+    {
+     "s": "g",
+     "d": 6
+    },
+    {
+     "s": "gb",
+     "d": 4
+    }
+   ],
+   "path": [
+    "signal",
+    "pedestrian"
+   ],
+   "lamps": [
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "walk",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    }
+   ],
+   "tris": 12594,
+   "size": [
+    0.4,
+    3.06,
+    0.49
+   ],
+   "dir": "signal/pedestrian/jp-bike-ped",
+   "file": "signal/pedestrian/jp-bike-ped/model.glb",
+   "thumb": "signal/pedestrian/jp-bike-ped/thumb.jpg",
+   "bytes": 653840
+  },
+  {
+   "id": "jp-ped-button",
+   "group": "road-ped",
+   "name": "歩行者用押ボタン箱+音響装置",
+   "desc": "黄色の押ボタン箱と、視覚障がい者向けの音響用スピーカー箱。ボタンを押すと「おまちください」灯が点灯する。",
+   "dims": "押ボタン箱 約0.16×0.30×0.09m(推定)",
+   "focus": [
+    0,
+    1.25,
+    0.2
+   ],
+   "view": [
+    0.35,
+    0.15,
+    2.2
+   ],
+   "night": null,
+   "states": [
+    {
+     "id": "idle",
+     "label": "待機"
+    },
+    {
+     "id": "wait",
+     "label": "おまちください",
+     "on": [
+      "wait"
+     ]
+    },
+    {
+     "id": "ack",
+     "label": "受付(点滅)",
+     "flash": [
+      "wait"
+     ]
+    }
+   ],
+   "cycle": [
+    {
+     "s": "idle",
+     "d": 4
+    },
+    {
+     "s": "ack",
+     "d": 2
+    },
+    {
+     "s": "wait",
+     "d": 5
+    }
+   ],
+   "path": [
+    "signal",
+    "pedestrian"
+   ],
+   "lamps": [
+    {
+     "key": "wait",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 9002,
+   "size": [
+    0.22,
+    2.66,
+    0.28
+   ],
+   "dir": "signal/pedestrian/jp-ped-button",
+   "file": "signal/pedestrian/jp-ped-button/model.glb",
+   "thumb": "signal/pedestrian/jp-ped-button/thumb.jpg",
+   "bytes": 366596
+  },
+  {
+   "id": "jp-ped-count",
+   "group": "road-ped",
+   "name": "歩行者用 残り時間表示付き",
+   "desc": "青点滅の間、人型の横に並んだ表示灯が残り時間を示す灯器(待ち時間・残り時間表示)。渡り切れるかの判断を助ける。",
+   "dims": "本体 約0.58×0.80×0.17m(推定)",
+   "focus": [
+    0,
+    2.35,
+    0.2
+   ],
+   "view": [
+    0.5,
+    0.2,
+    4.2
+   ],
+   "night": null,
+   "states": [
+    {
+     "id": "r",
+     "label": "赤",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "g",
+     "label": "青",
+     "on": [
+      "walk"
+     ]
+    },
+    {
+     "id": "gb8",
+     "label": "青点滅 残8",
+     "flash": [
+      "walk"
+     ],
+     "on": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "b4",
+      "b5",
+      "b6",
+      "b7"
+     ]
+    },
+    {
+     "id": "gb7",
+     "label": "青点滅 残7",
+     "flash": [
+      "walk"
+     ],
+     "on": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "b4",
+      "b5",
+      "b6"
+     ]
+    },
+    {
+     "id": "gb6",
+     "label": "青点滅 残6",
+     "flash": [
+      "walk"
+     ],
+     "on": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "b4",
+      "b5"
+     ]
+    },
+    {
+     "id": "gb5",
+     "label": "青点滅 残5",
+     "flash": [
+      "walk"
+     ],
+     "on": [
+      "b0",
+      "b1",
+      "b2",
+      "b3",
+      "b4"
+     ]
+    },
+    {
+     "id": "gb4",
+     "label": "青点滅 残4",
+     "flash": [
+      "walk"
+     ],
+     "on": [
+      "b0",
+      "b1",
+      "b2",
+      "b3"
+     ]
+    },
+    {
+     "id": "gb3",
+     "label": "青点滅 残3",
+     "flash": [
+      "walk"
+     ],
+     "on": [
+      "b0",
+      "b1",
+      "b2"
+     ]
+    },
+    {
+     "id": "gb2",
+     "label": "青点滅 残2",
+     "flash": [
+      "walk"
+     ],
+     "on": [
+      "b0",
+      "b1"
+     ]
+    },
+    {
+     "id": "gb1",
+     "label": "青点滅 残1",
+     "flash": [
+      "walk"
+     ],
+     "on": [
+      "b0"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "r",
+     "d": 6
+    },
+    {
+     "s": "g",
+     "d": 6
+    },
+    {
+     "s": "gb8",
+     "d": 1
+    },
+    {
+     "s": "gb7",
+     "d": 1
+    },
+    {
+     "s": "gb6",
+     "d": 1
+    },
+    {
+     "s": "gb5",
+     "d": 1
+    },
+    {
+     "s": "gb4",
+     "d": 1
+    },
+    {
+     "s": "gb3",
+     "d": 1
+    },
+    {
+     "s": "gb2",
+     "d": 1
+    },
+    {
+     "s": "gb1",
+     "d": 1
+    }
+   ],
+   "path": [
+    "signal",
+    "pedestrian"
+   ],
+   "lamps": [
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "walk",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "wait",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "b0",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "b1",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "b2",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "b3",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "b4",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "b5",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "b6",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "b7",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    }
+   ],
+   "tris": 32520,
+   "size": [
+    0.58,
+    3.06,
+    0.49
+   ],
+   "dir": "signal/pedestrian/jp-ped-count",
+   "file": "signal/pedestrian/jp-ped-count/model.glb",
+   "thumb": "signal/pedestrian/jp-ped-count/thumb.jpg",
+   "bytes": 1237388
+  },
+  {
+   "id": "jp-ped-led",
+   "group": "road-ped",
+   "name": "歩行者用 角形LED灯器(人型)",
+   "desc": "国内標準の歩行者用灯器。上が赤の立ち姿、下が青(青緑)の歩行姿。青は渡り終えるまで点灯し、終わりが近づくと点滅する。",
+   "dims": "本体 約0.40×0.80×0.17m(推定)",
+   "focus": [
+    0,
+    2.35,
+    0.2
+   ],
+   "view": [
+    0.5,
+    0.2,
+    4
+   ],
+   "night": null,
+   "states": [
+    {
+     "id": "r",
+     "label": "赤(止まれ)",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "g",
+     "label": "青(渡れる)",
+     "on": [
+      "walk"
+     ]
+    },
+    {
+     "id": "gb",
+     "label": "青点滅(渡り終えて)",
+     "flash": [
+      "walk"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "r",
+     "d": 7
+    },
+    {
+     "s": "g",
+     "d": 6
+    },
+    {
+     "s": "gb",
+     "d": 4
+    }
+   ],
+   "options": [
+    {
+     "id": "button",
+     "label": "押ボタン箱",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    },
+    {
+     "id": "sound",
+     "label": "音響装置",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    }
+   ],
+   "path": [
+    "signal",
+    "pedestrian"
+   ],
+   "lamps": [
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "walk",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "wait",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 17160,
+   "size": [
+    0.4,
+    3.06,
+    0.49
+   ],
+   "dir": "signal/pedestrian/jp-ped-led",
+   "file": "signal/pedestrian/jp-ped-led/model.glb",
+   "thumb": "signal/pedestrian/jp-ped-led/thumb.jpg",
+   "bytes": 823480
+  },
+  {
+   "id": "jp-rail-3",
+   "group": "rail",
+   "name": "鉄道信号機 色灯式3灯(閉塞・場内・出発)",
+   "desc": "上から黄・赤・青の3灯式。赤=停止、黄=注意(25km/h以下などの速度制限)、青=進行。黒い背景板と長い円筒フードで遠くから視認させる。",
+   "dims": "レンズ約φ190(推定)。灯器配列は事業者で異なる場合あり",
+   "focus": [
+    0,
+    3.9,
+    0.4
+   ],
+   "view": [
+    0.7,
+    0.3,
+    5.5
+   ],
+   "night": null,
+   "states": [
+    {
+     "id": "stop",
+     "label": "停止(赤)",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "caution",
+     "label": "注意(黄)",
+     "on": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "go",
+     "label": "進行(青)",
+     "on": [
+      "green"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "go",
+     "d": 6
+    },
+    {
+     "s": "caution",
+     "d": 4
+    },
+    {
+     "s": "stop",
+     "d": 6
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    }
+   ],
+   "path": [
+    "signal",
+    "rail"
+   ],
+   "lamps": [
+    {
+     "key": "yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    }
+   ],
+   "tris": 26604,
+   "size": [
+    0.5,
+    4.45,
+    0.99
+   ],
+   "dir": "signal/rail/jp-rail-3",
+   "file": "signal/rail/jp-rail-3/model.glb",
+   "thumb": "signal/rail/jp-rail-3/thumb.jpg",
+   "bytes": 1222076
+  },
+  {
+   "id": "jp-rail-4",
+   "name": "鉄道信号機 色灯式4灯(減速現示)",
+   "desc": "上から黄・赤・黄・青の4灯式。進行(青)・減速(青+黄)・注意(黄)・停止(赤)を示す。減速現示が必要な区間で使われる。",
+   "dims": "レンズ約φ190(推定)。配列は一般的な形式の一例",
+   "focus": [
+    0,
+    3.9,
+    0.4
+   ],
+   "view": [
+    0.8,
+    0.3,
+    5.8
+   ],
+   "night": null,
+   "states": [
+    {
+     "id": "stop",
+     "label": "停止",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "caution",
+     "label": "注意",
+     "on": [
+      "y1"
+     ]
+    },
+    {
+     "id": "slow",
+     "label": "減速",
+     "on": [
+      "y2",
+      "green"
+     ]
+    },
+    {
+     "id": "go",
+     "label": "進行",
+     "on": [
+      "green"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "go",
+     "d": 5
+    },
+    {
+     "s": "slow",
+     "d": 3
+    },
+    {
+     "s": "caution",
+     "d": 3
+    },
+    {
+     "s": "stop",
+     "d": 5
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    }
+   ],
+   "path": [
+    "signal",
+    "rail"
+   ],
+   "lamps": [
+    {
+     "key": "y1",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "y2",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    }
+   ],
+   "tris": 34700,
+   "size": [
+    0.5,
+    4.72,
+    0.99
+   ],
+   "dir": "signal/rail/jp-rail-4",
+   "file": "signal/rail/jp-rail-4/model.glb",
+   "thumb": "signal/rail/jp-rail-4/thumb.jpg",
+   "bytes": 1429412
+  },
+  {
+   "id": "jp-rail-5",
+   "group": "rail",
+   "name": "鉄道信号機 色灯式5灯(速度段階現示)",
+   "desc": "上から黄・黄・赤・黄・青の5灯式。進行(青)・減速(青+黄)・注意(黄)・警戒(黄2灯)・停止(赤)の5現示で列車の許容速度を指示する。",
+   "dims": "レンズ約φ190(推定)。配列は一般的な形式の一例",
+   "focus": [
+    0,
+    4.15,
+    0.4
+   ],
+   "view": [
+    0.8,
+    0.3,
+    6
+   ],
+   "night": null,
+   "states": [
+    {
+     "id": "stop",
+     "label": "停止",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "warn",
+     "label": "警戒",
+     "on": [
+      "y1",
+      "y2"
+     ]
+    },
+    {
+     "id": "caution",
+     "label": "注意",
+     "on": [
+      "y3"
+     ]
+    },
+    {
+     "id": "slow",
+     "label": "減速",
+     "on": [
+      "y3",
+      "green"
+     ]
+    },
+    {
+     "id": "go",
+     "label": "進行",
+     "on": [
+      "green"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "go",
+     "d": 5
+    },
+    {
+     "s": "slow",
+     "d": 3
+    },
+    {
+     "s": "caution",
+     "d": 3
+    },
+    {
+     "s": "warn",
+     "d": 3
+    },
+    {
+     "s": "stop",
+     "d": 5
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    }
+   ],
+   "path": [
+    "signal",
+    "rail"
+   ],
+   "lamps": [
+    {
+     "key": "y1",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "y2",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "y3",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    }
+   ],
+   "tris": 42796,
+   "size": [
+    0.5,
+    4.99,
+    0.99
+   ],
+   "dir": "signal/rail/jp-rail-5",
+   "file": "signal/rail/jp-rail-5/model.glb",
+   "thumb": "signal/rail/jp-rail-5/thumb.jpg",
+   "bytes": 1635760
+  },
+  {
+   "id": "jp-rail-relay",
+   "group": "rail",
+   "name": "中継信号機(白色灯の縦・横・斜め)",
+   "desc": "見通しの悪い場所で、主信号機の現示を中継する白色灯式。一般的な方式では縦=進行、横=停止、斜め=注意(減速)を示す。",
+   "dims": "マスク約0.78×0.78m(推定)。現示の割当は一般例",
+   "focus": [
+    0,
+    3.9,
+    0.4
+   ],
+   "view": [
+    0.6,
+    0.2,
+    4.6
+   ],
+   "night": null,
+   "states": [
+    {
+     "id": "go",
+     "label": "縦(進行)",
+     "on": [
+      "t",
+      "c",
+      "b"
+     ]
+    },
+    {
+     "id": "stop",
+     "label": "横(停止)",
+     "on": [
+      "l",
+      "c",
+      "r"
+     ]
+    },
+    {
+     "id": "slow",
+     "label": "斜め(注意)",
+     "on": [
+      "bl",
+      "c",
+      "tr"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "go",
+     "d": 5
+    },
+    {
+     "s": "slow",
+     "d": 4
+    },
+    {
+     "s": "stop",
+     "d": 5
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    }
+   ],
+   "path": [
+    "signal",
+    "rail"
+   ],
+   "lamps": [
+    {
+     "key": "t",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "b",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "l",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "r",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "c",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "tr",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "bl",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    }
+   ],
+   "tris": 59148,
+   "size": [
+    0.8,
+    4.15,
+    0.89
+   ],
+   "dir": "signal/rail/jp-rail-relay",
+   "file": "signal/rail/jp-rail-relay/model.glb",
+   "thumb": "signal/rail/jp-rail-relay/thumb.jpg",
+   "bytes": 2045024
+  },
+  {
+   "id": "jp-tram",
+   "group": "tram",
+   "name": "路面電車用信号(赤×・黄矢印)",
+   "desc": "道路交通法の「電車用信号」。赤×は停止、黄色矢印は矢印の方向へ進行可。自動車は従わない。広島電鉄・都電荒川線・長崎・熊本などの軌道で見られる。",
+   "dims": "本体 約0.40×0.82×0.20m(推定)",
+   "focus": [
+    1.1,
+    4.6,
+    0
+   ],
+   "view": [
+    0.6,
+    0.25,
+    4.6
+   ],
+   "night": null,
+   "states": [
+    {
+     "id": "stop",
+     "label": "停止(赤×)",
+     "on": [
+      "stop"
+     ]
+    },
+    {
+     "id": "l",
+     "label": "左進行",
+     "on": [
+      "left"
+     ]
+    },
+    {
+     "id": "s",
+     "label": "直進",
+     "on": [
+      "straight"
+     ]
+    },
+    {
+     "id": "r",
+     "label": "右進行",
+     "on": [
+      "right"
+     ]
+    },
+    {
+     "id": "ls",
+     "label": "左+直進",
+     "on": [
+      "left",
+      "straight"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "stop",
+     "d": 6
+    },
+    {
+     "s": "s",
+     "d": 5
+    },
+    {
+     "s": "stop",
+     "d": 3
+    },
+    {
+     "s": "l",
+     "d": 4
+    }
+   ],
+   "path": [
+    "signal",
+    "tram"
+   ],
+   "lamps": [
+    {
+     "key": "stop",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "left",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "straight",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "right",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    }
+   ],
+   "tris": 28888,
+   "size": [
+    1.46,
+    5.47,
+    0.61
+   ],
+   "dir": "signal/tram/jp-tram",
+   "file": "signal/tram/jp-tram/model.glb",
+   "thumb": "signal/tram/jp-tram/thumb.jpg",
+   "bytes": 985044
+  },
+  {
+   "id": "jp-tram-with-vehicle",
+   "name": "路面電車用+車両用 一体(アーム式)",
+   "desc": "軌道が道路と交差・併用する交差点で、路面電車用信号(赤×・黄矢印)と車両用灯器を同じアームに並べた構成。電車は車両用の現示とは別に矢印で進行する。",
+   "dims": "アーム長 約4.0m(推定)",
+   "focus": [
+    2.4,
+    5.3,
+    0
+   ],
+   "view": [
+    1.2,
+    0.4,
+    7.5
+   ],
+   "night": "night",
+   "states": [
+    {
+     "id": "t1",
+     "label": "車 青 / 電車 停止",
+     "on": [
+      "v_green",
+      "stop"
+     ]
+    },
+    {
+     "id": "t2",
+     "label": "車 黄 / 電車 停止",
+     "on": [
+      "v_yellow",
+      "stop"
+     ]
+    },
+    {
+     "id": "t3",
+     "label": "全赤(電車 停止)",
+     "on": [
+      "v_red",
+      "stop"
+     ]
+    },
+    {
+     "id": "t4",
+     "label": "車 赤 / 電車 直進",
+     "on": [
+      "v_red",
+      "straight"
+     ]
+    },
+    {
+     "id": "t5",
+     "label": "車 赤 / 電車 左+直進",
+     "on": [
+      "v_red",
+      "left",
+      "straight"
+     ]
+    },
+    {
+     "id": "night",
+     "label": "夜間(車 黄点滅)",
+     "flash": [
+      "v_yellow"
+     ],
+     "on": [
+      "stop"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "t1",
+     "d": 7
+    },
+    {
+     "s": "t2",
+     "d": 3
+    },
+    {
+     "s": "t3",
+     "d": 1.5
+    },
+    {
+     "s": "t4",
+     "d": 6
+    },
+    {
+     "s": "t5",
+     "d": 3
+    },
+    {
+     "s": "t3",
+     "d": 1.5
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    },
+    {
+     "id": "backplate",
+     "label": "背面板",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    }
+   ],
+   "path": [
+    "signal",
+    "tram"
+   ],
+   "lamps": [
+    {
+     "key": "stop",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "left",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "straight",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "right",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "v_green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "v_yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "v_red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 63590,
+   "size": [
+    4.39,
+    6.48,
+    0.66
+   ],
+   "dir": "signal/tram/jp-tram-with-vehicle",
+   "file": "signal/tram/jp-tram-with-vehicle/model.glb",
+   "thumb": "signal/tram/jp-tram-with-vehicle/thumb.jpg",
+   "bytes": 2489472
+  },
+  {
+   "id": "jp-veh-arrow",
+   "group": "road-vehicle",
+   "name": "車両用 横型3灯+矢印灯(左・直進・右)",
+   "desc": "主灯の下に青色矢印の補助灯(左折・直進・右折)を備える。右折専用現示や分離信号の交差点で使われる。",
+   "dims": "主灯φ250 + 矢印灯φ230(推定)",
+   "focus": [
+    1.5,
+    5.3,
+    0
+   ],
+   "view": [
+    0.8,
+    0.3,
+    6
+   ],
+   "night": "fy",
+   "states": [
+    {
+     "id": "g+s",
+     "label": "青+直進",
+     "on": [
+      "green",
+      "straight"
+     ]
+    },
+    {
+     "id": "g+l+s",
+     "label": "青+左+直進",
+     "on": [
+      "green",
+      "left",
+      "straight"
+     ]
+    },
+    {
+     "id": "g",
+     "label": "青",
+     "on": [
+      "green"
+     ]
+    },
+    {
+     "id": "y",
+     "label": "黄",
+     "on": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "r",
+     "label": "赤",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "r+l",
+     "label": "赤+左矢印",
+     "on": [
+      "red",
+      "left"
+     ]
+    },
+    {
+     "id": "r+r",
+     "label": "赤+右矢印",
+     "on": [
+      "red",
+      "right"
+     ]
+    },
+    {
+     "id": "r+l+r",
+     "label": "赤+左右矢印",
+     "on": [
+      "red",
+      "left",
+      "right"
+     ]
+    },
+    {
+     "id": "fy",
+     "label": "黄点滅",
+     "flash": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "g+s",
+     "d": 6
+    },
+    {
+     "s": "g+l+s",
+     "d": 3
+    },
+    {
+     "s": "y",
+     "d": 3
+    },
+    {
+     "s": "r",
+     "d": 2
+    },
+    {
+     "s": "r+r",
+     "d": 5
+    },
+    {
+     "s": "r+l+r",
+     "d": 3
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    },
+    {
+     "id": "backplate",
+     "label": "背面板",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    }
+   ],
+   "path": [
+    "signal",
+    "vehicle"
+   ],
+   "lamps": [
+    {
+     "key": "green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "left",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "straight",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "right",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    }
+   ],
+   "tris": 57760,
+   "size": [
+    3.54,
+    6.38,
+    0.66
+   ],
+   "dir": "signal/vehicle/jp-veh-arrow",
+   "file": "signal/vehicle/jp-veh-arrow/model.glb",
+   "thumb": "signal/vehicle/jp-veh-arrow/thumb.jpg",
+   "bytes": 2311272
+  },
+  {
+   "id": "jp-veh-flash",
+   "group": "road-vehicle",
+   "name": "点滅専用灯器(黄・赤 2灯式)",
+   "desc": "押ボタン式や警戒交差点で使う、黄色点滅(注意)・赤色点滅(一時停止)の2灯式。通常は黄と赤を交互または単独で点滅させる。",
+   "dims": "φ250・2灯(推定寸法)",
+   "focus": [
+    0.9,
+    5,
+    0
+   ],
+   "view": [
+    0.6,
+    0.3,
+    4.6
+   ],
+   "night": "fy",
+   "states": [
+    {
+     "id": "fy",
+     "label": "黄点滅",
+     "flash": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "fr",
+     "label": "赤点滅",
+     "flash": [
+      "red"
+     ]
+    },
+    {
+     "id": "alt",
+     "label": "黄赤交互",
+     "flash": [
+      "yellow"
+     ],
+     "flash2": [
+      "red"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "fy",
+     "d": 6
+    },
+    {
+     "s": "alt",
+     "d": 6
+    },
+    {
+     "s": "fr",
+     "d": 6
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    }
+   ],
+   "path": [
+    "signal",
+    "vehicle"
+   ],
+   "lamps": [
+    {
+     "key": "yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 23846,
+   "size": [
+    1.74,
+    5.67,
+    0.66
+   ],
+   "dir": "signal/vehicle/jp-veh-flash",
+   "file": "signal/vehicle/jp-veh-flash/model.glb",
+   "thumb": "signal/vehicle/jp-veh-flash/thumb.jpg",
+   "bytes": 1251320
+  },
+  {
+   "id": "jp-veh-h250-side",
+   "group": "road-vehicle",
+   "name": "車両用 横型3灯 φ250(側柱式・前傾15°)",
+   "desc": "2017年の警察庁仕様変更で小型化されたφ250mm。太陽光の直接反射を抑えるため本体を前へ15°傾けて取り付ける。淡灰色の灯器。",
+   "dims": "レンズφ250mm / 取付前傾15°(公表情報)。本体寸法は推定",
+   "focus": [
+    1.2,
+    5.2,
+    0
+   ],
+   "view": [
+    0.7,
+    0.35,
+    5.6
+   ],
+   "night": "fy",
+   "states": [
+    {
+     "id": "g",
+     "label": "青",
+     "on": [
+      "green"
+     ]
+    },
+    {
+     "id": "y",
+     "label": "黄",
+     "on": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "r",
+     "label": "赤",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "fy",
+     "label": "黄点滅",
+     "flash": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "fr",
+     "label": "赤点滅",
+     "flash": [
+      "red"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "g",
+     "d": 8
+    },
+    {
+     "s": "y",
+     "d": 3
+    },
+    {
+     "s": "r",
+     "d": 8
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    },
+    {
+     "id": "backplate",
+     "label": "背面板",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    }
+   ],
+   "path": [
+    "signal",
+    "vehicle"
+   ],
+   "lamps": [
+    {
+     "key": "green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 33942,
+   "size": [
+    2.05,
+    5.98,
+    0.68
+   ],
+   "dir": "signal/vehicle/jp-veh-h250-side",
+   "file": "signal/vehicle/jp-veh-h250-side/model.glb",
+   "thumb": "signal/vehicle/jp-veh-h250-side/thumb.jpg",
+   "bytes": 1584172
+  },
+  {
+   "id": "jp-veh-h300-arm",
+   "group": "road-vehicle",
+   "name": "車両用 横型3灯 φ300(アーム式)",
+   "desc": "国内で最も多い標準形。レンズ径φ300mm、左から青・黄・赤。ダークグリーン塗装の灯器を、門型・アーム式の支柱から吊り下げる。",
+   "dims": "本体 約1.15×0.41×0.26m(φ300標準値による推定)",
+   "focus": [
+    3.1,
+    5.3,
+    0
+   ],
+   "view": [
+    0.9,
+    0.4,
+    6.4
+   ],
+   "night": "fy",
+   "states": [
+    {
+     "id": "g",
+     "label": "青",
+     "on": [
+      "green"
+     ]
+    },
+    {
+     "id": "y",
+     "label": "黄",
+     "on": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "r",
+     "label": "赤",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "fy",
+     "label": "黄点滅",
+     "flash": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "fr",
+     "label": "赤点滅",
+     "flash": [
+      "red"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "g",
+     "d": 8
+    },
+    {
+     "s": "y",
+     "d": 3
+    },
+    {
+     "s": "r",
+     "d": 8
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    },
+    {
+     "id": "backplate",
+     "label": "背面板",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    }
+   ],
+   "path": [
+    "signal",
+    "vehicle"
+   ],
+   "lamps": [
+    {
+     "key": "green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 39458,
+   "size": [
+    4.02,
+    6.28,
+    0.71
+   ],
+   "dir": "signal/vehicle/jp-veh-h300-arm",
+   "file": "signal/vehicle/jp-veh-h300-arm/model.glb",
+   "thumb": "signal/vehicle/jp-veh-h300-arm/thumb.jpg",
+   "bytes": 1719200
+  },
+  {
+   "id": "jp-veh-v-snow",
+   "group": "road-vehicle",
+   "name": "車両用 縦型3灯(積雪寒冷地・着雪防止)",
+   "desc": "北海道・東北・北陸など積雪寒冷地で使われる縦型。上から赤・黄・青。庇付きフードと20°の前傾で着雪を防ぐ。",
+   "dims": "前傾20°(公表情報)。本体寸法は推定",
+   "focus": [
+    1,
+    5,
+    0
+   ],
+   "view": [
+    0.9,
+    0.3,
+    5.8
+   ],
+   "night": "fy",
+   "states": [
+    {
+     "id": "g",
+     "label": "青",
+     "on": [
+      "green"
+     ]
+    },
+    {
+     "id": "y",
+     "label": "黄",
+     "on": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "r",
+     "label": "赤",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "fy",
+     "label": "黄点滅",
+     "flash": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "fr",
+     "label": "赤点滅",
+     "flash": [
+      "red"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "g",
+     "d": 8
+    },
+    {
+     "s": "y",
+     "d": 3
+    },
+    {
+     "s": "r",
+     "d": 8
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    },
+    {
+     "id": "snow",
+     "label": "着雪防止の庇",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "backplate",
+     "label": "背面板",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    }
+   ],
+   "path": [
+    "signal",
+    "vehicle"
+   ],
+   "lamps": [
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    }
+   ],
+   "tris": 33648,
+   "size": [
+    1.62,
+    6.08,
+    1.16
+   ],
+   "dir": "signal/vehicle/jp-veh-v-snow",
+   "file": "signal/vehicle/jp-veh-v-snow/model.glb",
+   "thumb": "signal/vehicle/jp-veh-v-snow/thumb.jpg",
+   "bytes": 1565044
+  },
+  {
+   "id": "jp-veh-v250",
+   "name": "車両用 縦型3灯 φ250(標準)",
+   "desc": "縦に3灯を並べた標準的な縦型。上から赤・黄・青。信号柱の側面にブラケットで取り付け、前傾15°で太陽光の直接反射を抑える。",
+   "dims": "レンズφ250mm / 前傾15°。本体寸法は推定",
+   "focus": [
+    1,
+    5,
+    0
+   ],
+   "view": [
+    0.9,
+    0.3,
+    5.6
+   ],
+   "night": "fy",
+   "states": [
+    {
+     "id": "g",
+     "label": "青",
+     "on": [
+      "green"
+     ]
+    },
+    {
+     "id": "y",
+     "label": "黄",
+     "on": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "r",
+     "label": "赤",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "fy",
+     "label": "黄点滅",
+     "flash": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "fr",
+     "label": "赤点滅",
+     "flash": [
+      "red"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "g",
+     "d": 8
+    },
+    {
+     "s": "y",
+     "d": 3
+    },
+    {
+     "s": "r",
+     "d": 8
+    }
+   ],
+   "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    },
+    {
+     "id": "backplate",
+     "label": "背面板",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    }
+   ],
+   "path": [
+    "signal",
+    "vehicle"
+   ],
+   "lamps": [
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    }
+   ],
+   "tris": 33432,
+   "size": [
+    1.49,
+    5.78,
+    0.85
+   ],
+   "dir": "signal/vehicle/jp-veh-v250",
+   "file": "signal/vehicle/jp-veh-v250/model.glb",
+   "thumb": "signal/vehicle/jp-veh-v250/thumb.jpg",
+   "bytes": 1546504
+  },
+  {
+   "id": "jp-track-ballast",
+   "name": "砂利道床 軌道(狭軌1067mm・50Nレール・PCまくらぎ)",
+   "desc": "JR在来線・私鉄で最も一般的な有道床軌道。50Nレール、PCまくらぎ(間隔0.6m)、板ばねクリップ、バラスト道床。12mごとに連結して使う。",
+   "dims": "軌間1067mm / 長さ12m / 道床幅 約4.8m",
+   "options": [],
+   "path": [
+    "track",
+    "railway"
+   ],
+   "lamps": [],
+   "tris": 128720,
+   "size": [
+    4.8,
+    0.57,
+    12.14
+   ],
+   "dir": "track/railway/jp-track-ballast",
+   "file": "track/railway/jp-track-ballast/model.glb",
+   "thumb": "track/railway/jp-track-ballast/thumb.jpg",
+   "bytes": 2597844
+  },
+  {
+   "id": "jp-track-slab",
+   "name": "スラブ軌道(標準軌1435mm・60kgレール)",
+   "desc": "新幹線・高架橋・地下鉄で使われるコンクリート軌道スラブ。軌道スラブ(約2.34×4.93m)2枚分を1単位とし、締結装置を0.625m間隔で配置。",
+   "dims": "軌間1435mm / 長さ9.86m / スラブ幅2.34m",
+   "options": [],
+   "path": [
+    "track",
+    "railway"
+   ],
+   "lamps": [],
+   "tris": 23548,
+   "size": [
+    3.4,
+    0.7,
+    9.86
+   ],
+   "dir": "track/railway/jp-track-slab",
+   "file": "track/railway/jp-track-slab/model.glb",
+   "thumb": "track/railway/jp-track-slab/thumb.jpg",
+   "bytes": 1266408
+  },
+  {
+   "id": "jp-track-tram",
+   "name": "併用軌道(路面電車・溝付きレール・敷石舗装)",
+   "desc": "道路に埋め込まれた路面電車の軌道。フランジウェイ(溝)付きのガーダーレールと御影石の敷石舗装、両側はアスファルト。広島電鉄などの標準軌1435mm。",
+   "dims": "軌間1435mm / 長さ10m / 幅5.0m",
+   "options": [],
+   "path": [
+    "track",
+    "tram"
+   ],
+   "lamps": [],
+   "tris": 3282,
+   "size": [
+    5,
+    0.3,
+    10
+   ],
+   "dir": "track/tram/jp-track-tram",
+   "file": "track/tram/jp-track-tram/model.glb",
+   "thumb": "track/tram/jp-track-tram/thumb.jpg",
+   "bytes": 531620
+  }
+ ]
+}

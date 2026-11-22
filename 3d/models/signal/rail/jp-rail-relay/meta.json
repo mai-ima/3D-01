@@ -1,0 +1,133 @@
+{
+ "id": "jp-rail-relay",
+ "group": "rail",
+ "name": "中継信号機(白色灯の縦・横・斜め)",
+ "desc": "見通しの悪い場所で、主信号機の現示を中継する白色灯式。一般的な方式では縦=進行、横=停止、斜め=注意(減速)を示す。",
+ "dims": "マスク約0.78×0.78m(推定)。現示の割当は一般例",
+ "focus": [
+  0,
+  3.9,
+  0.4
+ ],
+ "view": [
+  0.6,
+  0.2,
+  4.6
+ ],
+ "night": null,
+ "states": [
+  {
+   "id": "go",
+   "label": "縦(進行)",
+   "on": [
+    "t",
+    "c",
+    "b"
+   ]
+  },
+  {
+   "id": "stop",
+   "label": "横(停止)",
+   "on": [
+    "l",
+    "c",
+    "r"
+   ]
+  },
+  {
+   "id": "slow",
+   "label": "斜め(注意)",
+   "on": [
+    "bl",
+    "c",
+    "tr"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "go",
+   "d": 5
+  },
+  {
+   "s": "slow",
+   "d": 4
+  },
+  {
+   "s": "stop",
+   "d": 5
+  }
+ ],
+ "options": [
+  {
+   "id": "lens",
+   "label": "灯火方式",
+   "choices": [
+    {
+     "id": "led",
+     "label": "LED式"
+    },
+    {
+     "id": "bulb",
+     "label": "電球式"
+    }
+   ],
+   "default": "led"
+  }
+ ],
+ "path": [
+  "signal",
+  "rail"
+ ],
+ "lamps": [
+  {
+   "key": "t",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "b",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "l",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "r",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "c",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "tr",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "bl",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  }
+ ],
+ "tris": 59148,
+ "size": [
+  0.8,
+  4.15,
+  0.89
+ ],
+ "dir": "signal/rail/jp-rail-relay",
+ "file": "signal/rail/jp-rail-relay/model.glb",
+ "thumb": "signal/rail/jp-rail-relay/thumb.jpg",
+ "bytes": 2045024
+}

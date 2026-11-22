@@ -1,0 +1,87 @@
+{
+ "id": "jp-crossing-gate",
+ "group": "rail",
+ "name": "踏切遮断機(遮断かん)",
+ "desc": "赤白の遮断かんが降下して道路を遮断する。かんに赤色灯2灯を備え、警報中に点滅。かんの昇降はビューアでも動作を確認できる。",
+ "dims": "遮断かん長 約4.4m(推定)",
+ "focus": [
+  2,
+  0.9,
+  0.2
+ ],
+ "view": [
+  1.2,
+  0.6,
+  8.5
+ ],
+ "night": null,
+ "anim": {
+  "node": "gate_arm",
+  "axis": "z"
+ },
+ "states": [
+  {
+   "id": "open",
+   "label": "上昇(開)",
+   "arm": 1.45
+  },
+  {
+   "id": "closing",
+   "label": "降下中",
+   "arm": 0.7,
+   "flash": [
+    "a1",
+    "a2"
+   ]
+  },
+  {
+   "id": "closed",
+   "label": "降下(閉)",
+   "arm": 0,
+   "flash": [
+    "a1",
+    "a2"
+   ]
+  }
+ ],
+ "cycle": [
+  {
+   "s": "open",
+   "d": 6
+  },
+  {
+   "s": "closing",
+   "d": 1.5
+  },
+  {
+   "s": "closed",
+   "d": 6
+  }
+ ],
+ "path": [
+  "signal",
+  "crossing"
+ ],
+ "lamps": [
+  {
+   "key": "a1",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "a2",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  }
+ ],
+ "tris": 5640,
+ "size": [
+  4.95,
+  1.5,
+  0.55
+ ],
+ "dir": "signal/crossing/jp-crossing-gate",
+ "file": "signal/crossing/jp-crossing-gate/model.glb",
+ "thumb": "signal/crossing/jp-crossing-gate/thumb.jpg",
+ "bytes": 260684
+}
