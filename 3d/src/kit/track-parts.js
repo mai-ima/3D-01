@@ -41,7 +41,7 @@ export function ballastStones(len,count,{w=4.4,crest=1.75,y0=-.025,sleeperZ=[],m
     const r=.03+Math.random()*.035;sc.set(r*(.9+Math.random()*.6),r*(.55+Math.random()*.35),r*(.9+Math.random()*.6));e.set(Math.random()*6,Math.random()*6,Math.random()*6);q.setFromEuler(e);pos.set(x,y,z);m.compose(pos,q,sc);im.setMatrixAt(n++,m);}
   im.count=n;im.instanceMatrix.needsUpdate=true;return im;}
 /** PCまくらぎ(上面 y=top, 下面 top-0.2, 長さ 2.4m) */
-export function sleeperGeo(len=2.4){const s=new THREE.Shape();[[-.14,-.2],[.14,-.2],[.1,0],[-.1,0]].forEach(([z,y],i)=>i?s.lineTo(z,y):s.moveTo(z,y));s.closePath();
+export function sleeperGeo(len=2.0){const s=new THREE.Shape();[[-.135,-.185],[.135,-.185],[.11,0],[-.11,0]].forEach(([z,y],i)=>i?s.lineTo(z,y):s.moveTo(z,y));s.closePath();
   const g=new THREE.ExtrudeGeometry(s,{depth:len,bevelEnabled:true,bevelThickness:.012,bevelSize:.012,bevelSegments:2,curveSegments:4});g.translate(0,0,-len/2);g.rotateY(Math.PI/2);return g;}
 export function seatDetail(parent,x,y,z,sign){ // レール座面: パッド・肩・クリップ
   add(parent,new THREE.BoxGeometry(.15,.008,.2),TM.pad,x,y+.004,z);

@@ -6,4 +6,4 @@ export default {id:'jp-tram-with-vehicle',name:'路面電車用+車両用 一体
   dims:'アーム長 約4.0m(推定)',focus:[2.4,5.3,0],view:[1.2,.4,7.5],night:'night',states:st,
   cycle:[{s:'t1',d:7},{s:'t2',d:3},{s:'t3',d:1.5},{s:'t4',d:6},{s:'t5',d:3},{s:'t3',d:1.5}],options:[OPT_LENS,optToggle('backplate','背面板')],
   build(){const root=new THREE.Group(),L={};mastArm(root,6.4,6.0,4.1);tramHead(root,L,{x:1.7,y:5.36});for(const o of[-.14,.14]){rod(root,[1.7+o,5.8,0],[1.7+o,6.0,0],.016,MAT.steel);}
-    horizHead(root,L,{x:3.2,y:5.5,R:.125,pitch:.31,H:.36,D:.23,mat:HG,hood:.3,prefix:'v_',backplate:true});hanger(root,3.2,5.68,6.0,.4);return {root,lamps:L};}};
+    horizHead(root,L,{x:3.2,y:5.5,R:.125,pitch:.31,H:.37,D:.125,mat:HG,hood:.3,prefix:'v_',backplate:true});hanger(root,3.2,5.68,6.0,.4);return {root,lamps:L};}};

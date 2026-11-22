@@ -47,7 +47,7 @@ const SPED=[{id:'r',label:'赤(止まれ)',on:['red']},{id:'g',label:'青(渡れ
 function xTexture(){const c=cv(256,256),g=c.getContext('2d');g.fillStyle='#000';g.fillRect(0,0,256,256);g.strokeStyle='#fff';g.lineWidth=34;g.lineCap='butt';g.beginPath();g.moveTo(52,52);g.lineTo(204,204);g.moveTo(204,52);g.lineTo(52,204);g.stroke();return tex(c);}
 function pedHousing(root,L,{y,pr=.065,yaw=0,prefix='',withBar=false,mat=MAT.hous,pictoWalk=pedTexture('walk'),pictoStand=pedTexture('stand'),color='green'}){
   if(yaw){const wr=new THREE.Group();wr.rotation.y=yaw;root.add(wr);root=wr;}   // 歩行者灯は横断方向へ向ける
-  const W=withBar?.58:.4,H=.8,D=.17;const g=new THREE.Group();g.position.set(0,y,pr+.105);root.add(g);
+  const W=withBar?.58:.4,H=.8,D=.13;const g=new THREE.Group();g.position.set(0,y,pr+.105);root.add(g);
   housing(g,W,H,D,.07,mat);hw(g,W,H,D);const ox=withBar?-.08:0;
   const mk=(key,col,pt,ly)=>{const c=COL[col];const geo=new THREE.ShapeGeometry(rrShape(.28,.28,.045),24);const p=geo.attributes.position,uv=geo.attributes.uv;for(let i=0;i<p.count;i++)uv.setXY(i,p.getX(i)/.28+.5,p.getY(i)/.28+.5);
     const lg=new THREE.Group();lg.position.set(ox,ly,D/2);g.add(lg);
@@ -84,8 +84,8 @@ function addButton(parent,L,y,pr=.06){const bx=new THREE.Group();bx.position.set
   const btn=add(bx,new THREE.CylinderGeometry(.05,.054,.025,48),new THREE.MeshPhysicalMaterial({color:0xd62828,roughness:.25,clearcoat:1}),0,.03,.055);btn.rotation.x=Math.PI/2;
   reg(L,'wait',dotLamp(bx,0,-.085,.0445,.016,'red'));for(const yy of[.12,-.12])strap(parent,y+yy,pr-.004);return bx;}
 function tramHead(parent,L,{x=0,y=0,z=0,prefix=''}={}){const g=new THREE.Group();g.position.set(x,y,z);parent.add(g);
-  housing(g,.46,.84,.22,.07,HK);hw(g,.46,.84,.22);reg(L,prefix+'stop',makeLamp(g,0,.22,.11,.15,'red',xTexture(),{hood:.3,gap:1.5}));
-  [['left',-.13],['straight',0],['right',.13]].forEach(([k,lx])=>reg(L,prefix+k,makeLamp(g,lx,-.22,.11,.062,'yellow',arrowTexture(k),{hood:.045,gap:1.9})));
+  housing(g,.46,.84,.16,.07,HK);hw(g,.46,.84,.16);reg(L,prefix+'stop',makeLamp(g,0,.22,.08,.15,'red',xTexture(),{hood:.3,gap:1.5}));
+  [['left',-.13],['straight',0],['right',.13]].forEach(([k,lx])=>reg(L,prefix+k,makeLamp(g,lx,-.22,.08,.062,'yellow',arrowTexture(k),{hood:.045,gap:1.9})));
   for(const sx of[-.14,.14])add(g,roundBox(.08,.05,.1,.015,.004),MAT.galv,sx,.445,0);return g;}
 export const OPT_LENS={id:"lens",label:"灯火方式",choices:[{id:"led",label:"LED式"},{id:"bulb",label:"電球式"}],default:"led"};
 export const optToggle=(id,label,def="off")=>({id,label,choices:[{id:"off",label:"なし"},{id:"on",label:"あり"}],default:def});

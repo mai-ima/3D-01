@@ -7,5 +7,5 @@ const bars=[];for(let i=0;i<8;i++)bars.push('b'+i);
 export default {id:'jp-ped-count',group:'road-ped',name:'歩行者用 残り時間表示付き',
     desc:'青点滅の間、人型の横に並んだ表示灯が残り時間を示す灯器(待ち時間・残り時間表示)。渡り切れるかの判断を助ける。',
     dims:'本体 約0.58×0.80×0.17m(推定)',focus:[0,2.35,.2],view:[.5,.2,4.2],night:null,states:st,cycle:cyc,
-    build(){const root=new THREE.Group(),L={};POLE_H(root,3.0,.065,.052);const h=pedHousing(root,L,{y:2.3,withBar:true,mat:HG});const bo=opt(root,'button','on');addButton(bo,L,1.15,.058);const so=opt(root,'sound','on');addSpeaker(so,2.78,.055);
+    build(){const root=new THREE.Group(),L={};POLE_H(root,3.0,.0572,.0572);const h=pedHousing(root,L,{y:2.3,pr:.0572,withBar:true,mat:HG});const bo=opt(root,'button','on');addButton(bo,L,1.15,.0605);const so=opt(root,'sound','on');addSpeaker(so,2.78,.058);
       for(let i=0;i<8;i++)reg(L,'b'+i,dotLamp(h.g,.2,.31-i*.088,h.D/2,.021,'yellow'));return {root,lamps:L};}};

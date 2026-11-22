@@ -250,10 +250,10 @@
  "size": [
   0.58,
   3.06,
-  0.49
+  0.45
  ],
  "dir": "signal/pedestrian/jp-ped-count",
  "file": "signal/pedestrian/jp-ped-count/model.glb",
  "thumb": "signal/pedestrian/jp-ped-count/thumb.jpg",
- "bytes": 436912
+ "bytes": 438324
 }

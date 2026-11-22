@@ -94,12 +94,12 @@
  ],
  "tris": 23846,
  "size": [
-  1.74,
-  5.67,
-  0.66
+  1.7,
+  5.69,
+  0.57
  ],
  "dir": "signal/vehicle/jp-veh-flash",
  "file": "signal/vehicle/jp-veh-flash/model.glb",
  "thumb": "signal/vehicle/jp-veh-flash/thumb.jpg",
- "bytes": 783856
+ "bytes": 785128
 }

@@ -5,5 +5,5 @@ export default {id:'jp-veh-flash',group:'road-vehicle',name:'点滅専用灯器(
   states:[{id:'fy',label:'黄点滅',flash:['yellow']},{id:'fr',label:'赤点滅',flash:['red']},{id:'alt',label:'黄赤交互',flash:['yellow'],flash2:['red']},{id:'off',label:'消灯'}],
   cycle:[{s:'fy',d:6},{s:'alt',d:6},{s:'fr',d:6}],
   options:[OPT_LENS],
-  build(){const root=new THREE.Group(),L={};POLE_H(root,5.6,.1,.065);horizHead(root,L,{x:1.15,y:5.0,R:.125,pitch:.33,H:.36,D:.23,mat:MAT.hous,keys:['yellow','red'],hood:.3,tilt:15});
+  build(){const root=new THREE.Group(),L={};POLE_H(root,5.6,.0826,.0826);horizHead(root,L,{x:1.15,y:5.0,R:.125,pitch:.33,H:.37,D:.125,mat:MAT.hous,keys:['yellow','red'],hood:.3,tilt:15});
     for(const y of[5.18,4.82]){rod(root,[0,y,0],[.78,y,0],.024);add(root,new THREE.CylinderGeometry(.095,.095,.09,40),MAT.galv,0,y,0);}return {root,lamps:L};}};

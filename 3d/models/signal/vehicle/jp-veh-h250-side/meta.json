@@ -3,7 +3,7 @@
  "group": "road-vehicle",
  "name": "車両用 横型3灯 φ250(側柱式・前傾15°)",
  "desc": "2017年の警察庁仕様変更で小型化されたφ250mm。太陽光の直接反射を抑えるため本体を前へ15°傾けて取り付ける。淡灰色の灯器。",
- "dims": "レンズφ250mm / 取付前傾15°(公表情報)。本体寸法は推定",
+ "dims": "レンズφ250mm / 取付前傾15°(公表情報)。本体 1.05×0.37×0.125m(メーカー公表値)",
  "focus": [
   1.2,
   5.2,
@@ -125,12 +125,12 @@
  ],
  "tris": 33942,
  "size": [
-  2.05,
-  5.98,
-  0.68
+  2.01,
+  5.99,
+  0.58
  ],
  "dir": "signal/vehicle/jp-veh-h250-side",
  "file": "signal/vehicle/jp-veh-h250-side/model.glb",
  "thumb": "signal/vehicle/jp-veh-h250-side/thumb.jpg",
- "bytes": 872792
+ "bytes": 873288
 }

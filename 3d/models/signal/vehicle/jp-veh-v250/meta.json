@@ -124,12 +124,12 @@
  ],
  "tris": 33432,
  "size": [
-  1.49,
-  5.78,
-  0.85
+  1.45,
+  5.79,
+  0.75
  ],
  "dir": "signal/vehicle/jp-veh-v250",
  "file": "signal/vehicle/jp-veh-v250/model.glb",
  "thumb": "signal/vehicle/jp-veh-v250/thumb.jpg",
- "bytes": 859340
+ "bytes": 860336
 }

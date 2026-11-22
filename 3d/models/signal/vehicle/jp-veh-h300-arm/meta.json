@@ -3,7 +3,7 @@
  "group": "road-vehicle",
  "name": "車両用 横型3灯 φ300(アーム式)",
  "desc": "国内で最も多い標準形。レンズ径φ300mm、左から青・黄・赤。ダークグリーン塗装の灯器を、門型・アーム式の支柱から吊り下げる。",
- "dims": "本体 約1.15×0.41×0.26m(φ300標準値による推定)",
+ "dims": "本体 約1.25×0.42×0.16m(φ300薄型LED・メーカー公表値)",
  "focus": [
   3.1,
   5.3,
@@ -125,12 +125,12 @@
  ],
  "tris": 39458,
  "size": [
-  4.02,
+  4.05,
   6.28,
-  0.71
+  0.66
  ],
  "dir": "signal/vehicle/jp-veh-h300-arm",
  "file": "signal/vehicle/jp-veh-h300-arm/model.glb",
  "thumb": "signal/vehicle/jp-veh-h300-arm/thumb.jpg",
- "bytes": 963104
+ "bytes": 962640
 }

@@ -1,7 +1,7 @@
 {
  "id": "jp-track-ballast",
  "name": "砂利道床 軌道(狭軌1067mm・50Nレール・PCまくらぎ)",
- "desc": "JR在来線・私鉄で最も一般的な有道床軌道。50Nレール、PCまくらぎ(間隔0.6m)、板ばねクリップ、バラスト道床。12mごとに連結して使う。",
+ "desc": "JR在来線・私鉄で最も一般的な有道床軌道。50Nレール、3号PCまくらぎ(長さ2.0m・間隔0.6m)、板ばねクリップ、バラスト道床。12mごとに連結して使う。",
  "dims": "軌間1067mm / 長さ12m / 道床幅 約4.8m",
  "options": [],
  "path": [
@@ -12,11 +12,11 @@
  "tris": 412720,
  "size": [
   4.8,
-  0.6,
-  12.21
+  0.58,
+  12.23
  ],
  "dir": "track/railway/jp-track-ballast",
  "file": "track/railway/jp-track-ballast/model.glb",
  "thumb": "track/railway/jp-track-ballast/thumb.jpg",
- "bytes": 1652868
+ "bytes": 1651888
 }

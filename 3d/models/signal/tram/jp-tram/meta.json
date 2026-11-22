@@ -103,12 +103,12 @@
  ],
  "tris": 28888,
  "size": [
-  1.46,
-  5.47,
-  0.61
+  1.43,
+  5.49,
+  0.54
  ],
  "dir": "signal/tram/jp-tram",
  "file": "signal/tram/jp-tram/model.glb",
  "thumb": "signal/tram/jp-tram/thumb.jpg",
- "bytes": 411076
+ "bytes": 412652
 }

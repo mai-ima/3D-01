@@ -53,19 +53,21 @@ export function createEnvironment({scene,renderer,bloom,sun}){
   function makeRoad(cwx){const g=new THREE.Group();
     mesh(g,new THREE.BoxGeometry(120,.15,10),walkMat,0,-.075,-2.7);mesh(g,new THREE.BoxGeometry(120,.17,.26),concrete,0,-.065,2.33);
     plane(g,120,.3,tenMat,0,.004,1.9);const rd=plane(g,120,60,new THREE.MeshPhysicalMaterial({map:roadMat.map,bumpMap:roadMat.bumpMap,bumpScale:1.6,roughness:.92,color:0xd2d2d2}),0,-.15,32.4);G.roadMat=rd.material;
-    for(let i=0;i<10;i++)plane(g,3.6,.45,paint,cwx,-.146,3.4+i*.9);          // 横断歩道(車道を横切る向き)
-    plane(g,120,.15,paint,0,-.146,2.9);plane(g,120,.15,paint,0,-.146,9.9);   // 外側線
-    for(let i=-12;i<12;i++)plane(g,3,.15,paint,i*5+1,-.146,6.4);              // 中央線(破線)
+    const mk=new THREE.Group();g.add(mk);g.userData.mk=mk;   // 軌道を敷くときは隠す路面標示
+    for(let i=0;i<10;i++)plane(mk,3.6,.45,paint,cwx,-.146,3.4+i*.9);          // 横断歩道(車道を横切る向き)
+    plane(g,120,.15,paint,0,-.146,2.9);plane(mk,120,.15,paint,0,-.146,9.9);   // 外側線
+    for(let i=-12;i<12;i++)plane(mk,3,.15,paint,i*5+1,-.146,6.4);              // 中央線(破線)
     return g;}
   G.road=makeRoad(8);                       // 車道がX方向(歩行者用の確認用: 灯器は車道側=+Zを向く)
   G.roadZ=makeRoad(-8);G.roadZ.rotation.y=Math.PI/2;   // 車道がZ方向(車両用: 車は+Zから来て灯器は+Zを向く。アームは+X=車道上へ伸びる)
-  G.rail=new THREE.Group();{const g=G.rail;plane(g,240,240,grassMat,0,-.42,0);plane(g,2.4,160,ballastMat,-3.9,-.4,0);plane(g,2.4,160,ballastMat,3.9,-.4,0);}
-  G.crossing=new THREE.Group();{const g=G.crossing;plane(g,240,240,grassMat,0,-.42,0);
+  G.rail=new THREE.Group();{const g=G.rail;plane(g,1400,1400,grassMat,0,-.42,0);plane(g,2.4,160,ballastMat,-3.9,-.4,0);plane(g,2.4,160,ballastMat,3.9,-.4,0);}
+  G.crossing=new THREE.Group();{const g=G.crossing;plane(g,1400,1400,grassMat,0,-.42,0);
     const rm=new THREE.MeshPhysicalMaterial({map:roadMat.map,bumpMap:roadMat.bumpMap,bumpScale:1.6,roughness:.92,color:0xd2d2d2});G.crossMat=rm;
     plane(g,7.2,153,rm,0,0,8.5);
     plane(g,.14,100,paint,-3.35,.003,35);plane(g,.14,100,paint,3.35,.003,35);for(let i=0;i<14;i++)plane(g,.14,2.2,paint,0,.003,i*5+1);
     G.deck=new THREE.Group();g.add(G.deck);mesh(G.deck,new THREE.BoxGeometry(7.2,.195,5.4),new THREE.MeshStandardMaterial({color:0x8d8f90,roughness:.92}),0,.0975-.2,-6.2).position.y=.0975;
     G.deck.visible=false;}
+  G.base=new THREE.Group();{plane(G.base,1400,1400,new THREE.MeshStandardMaterial({color:0x5a5f64,roughness:1}),0,-.165,0);}   // 遠景ビルの足元(地面の端が見えないように)
   // 遠景(スカイライン)
   G.skyline=new THREE.Group();{const fc=cv(512,512),g=fc.getContext('2d'),ec=cv(512,512),ge=ec.getContext('2d');g.fillStyle='#5d6872';g.fillRect(0,0,512,512);ge.fillStyle='#000';ge.fillRect(0,0,512,512);
     for(let y=0;y<14;y++)for(let x=0;x<16;x++){const px=x*32,py=y*36,v=Math.random();g.fillStyle=`hsl(${205+Math.random()*16},${12+Math.random()*10}%,${30+v*22}%)`;g.fillRect(px+2,py+3,28,26);g.fillStyle='rgba(255,255,255,.16)';g.fillRect(px+2,py+3,28,3);
@@ -76,7 +78,7 @@ export function createEnvironment({scene,renderer,bloom,sun}){
       const m=new THREE.MeshStandardMaterial({map:fm,emissiveMap:em,emissive:0xffffff,emissiveIntensity:0,roughness:.4,metalness:.3,color:new THREE.Color().setHSL(.58,.05,.55+rnd()*.3)});G.winMats.push(m);
       const b=mesh(G.skyline,geo,m,x,h/2,zz);b.receiveShadow=false;}
     for(let x=-260;x<260;x+=70)mesh(G.skyline,new THREE.CylinderGeometry(.01,.01,.01),steel,x,0,0).visible=false;}
-  for(const k of['studio','road','roadZ','rail','crossing','skyline']){G[k].visible=false;root.add(G[k]);}
+  for(const k of['studio','road','roadZ','rail','crossing','skyline','base']){G[k].visible=false;root.add(G[k]);}
 
   /* --- state --- */
   const cur={mode:'studio',group:'road',wet:false,track:false,deck:false};
@@ -87,14 +89,14 @@ export function createEnvironment({scene,renderer,bloom,sun}){
     envRT=pmrem.fromScene(skyScene);return (skyCache[key]={ld,tex:envRT.texture});}
   function groundFor(group){return group==='rail'?'rail':group==='crossing'?'crossing':group==='roadZ'?'roadZ':'road';}
   function apply(){const {mode,group,wet}=cur,p=PRESET[mode];
-    for(const k of['studio','road','roadZ','rail','crossing','skyline'])G[k].visible=false;
+    for(const k of['studio','road','roadZ','rail','crossing','skyline','base'])G[k].visible=false;
     const out=mode!=='studio';
     if(!out){G.studio.visible=true;G.studio.position.y=cur.track?-.42:0;scene.environment=roomEnv;scene.background=studioBg;scene.fog=null;scene.environmentIntensity=p.env;scene.backgroundIntensity=1;
       sun.position.set(5,9,7);sun.color.set(0xfff4e6);sun.intensity=2.2;hemi.intensity=0;}
     else{const e=skyEnv(p,mode);scene.environment=e.tex;scene.background=e.tex;scene.environmentIntensity=p.env;scene.backgroundIntensity=mode==='night'?.8:1;
       scene.fog=new THREE.Fog(p.fog,70,420);
       sun.position.copy(e.ld).multiplyScalar(40);sun.color.set(p.sunC);sun.intensity=p.sunI;hemi.intensity=p.hemi;
-      G[groundFor(group)].visible=true;G.skyline.visible=true;for(const m of G.winMats)m.emissiveIntensity=p.win;
+      G[groundFor(group)].visible=true;G.skyline.visible=true;G.base.visible=true;G.roadZ.userData.mk.visible=!(cur.track&&group==='roadZ');for(const m of G.winMats)m.emissiveIntensity=p.win;
       G.deck.visible=cur.deck&&group==='crossing';const w=wet;
       for(const m of[G.roadMat,G.crossMat]){if(!m)continue;m.roughness=w?.3:.92;m.envMapIntensity=w?1.4:.6;m.color.set(w?0x8a8a90:0xd2d2d2);m.bumpScale=w?.5:1.6;}}
     renderer.toneMappingExposure=p.exp;bloom.strength=p.bloomS;bloom.threshold=p.bloomT;}

@@ -195,12 +195,12 @@
  ],
  "tris": 44840,
  "size": [
-  1.57,
-  6.08,
-  1.1
+  1.52,
+  6.09,
+  1
  ],
  "dir": "signal/combined/jp-combo-vert-ped",
  "file": "signal/combined/jp-combo-vert-ped/model.glb",
  "thumb": "signal/combined/jp-combo-vert-ped/thumb.jpg",
- "bytes": 1094736
+ "bytes": 1095640
 }
