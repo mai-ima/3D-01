@@ -9,5 +9,5 @@ export default {id:'jp-rail-relay',group:'rail',name:'中継信号機(白色灯�
     const g=new THREE.Group();g.position.set(0,post+.25,.3);root.add(g);housing(g,.7,.7,.26,.05,HK);add(g,roundBox(.8,.8,.03,.05,.006),MAT.black,0,0,.17);
     const fs=rrShape(.78,.78,.04);fs.holes.push(rrShape(.75,.75,.036));add(g,new THREE.ExtrudeGeometry(fs,{depth:.004,bevelEnabled:false,curveSegments:16}),MAT.white,0,0,.186);
     const P=.2;const pos={t:[0,P],b:[0,-P],l:[-P,0],r:[P,0],c:[0,0],tr:[P,P],bl:[-P,-P]};
-    for(const k in pos)reg(L,k,makeLamp(g,pos[k][0],pos[k][1],.185,.07,'white',LED,{hood:.2,gap:1.0}));
+    for(const k in pos)reg(L,k,makeLamp(g,pos[k][0],pos[k][1],.185,.062,'white',LED,{hood:.09,gap:1.7}));
     rod(root,[0,post-.4,0],[0,post-.1,.2],.03);return {root,lamps:L};}};

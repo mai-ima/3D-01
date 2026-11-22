@@ -85,7 +85,7 @@ function addButton(parent,L,y,pr=.06){const bx=new THREE.Group();bx.position.set
   reg(L,'wait',dotLamp(bx,0,-.085,.0445,.016,'red'));for(const yy of[.12,-.12])strap(parent,y+yy,pr-.004);return bx;}
 function tramHead(parent,L,{x=0,y=0,z=0,prefix=''}={}){const g=new THREE.Group();g.position.set(x,y,z);parent.add(g);
   housing(g,.46,.84,.22,.07,HK);hw(g,.46,.84,.22);reg(L,prefix+'stop',makeLamp(g,0,.22,.11,.15,'red',xTexture(),{hood:.3,gap:1.5}));
-  [['left',-.13],['straight',0],['right',.13]].forEach(([k,lx])=>reg(L,prefix+k,makeLamp(g,lx,-.22,.11,.062,'yellow',arrowTexture(k),{hood:.1,gap:1.6})));
+  [['left',-.13],['straight',0],['right',.13]].forEach(([k,lx])=>reg(L,prefix+k,makeLamp(g,lx,-.22,.11,.062,'yellow',arrowTexture(k),{hood:.045,gap:1.9})));
   for(const sx of[-.14,.14])add(g,roundBox(.08,.05,.1,.015,.004),MAT.galv,sx,.445,0);return g;}
 export const OPT_LENS={id:"lens",label:"灯火方式",choices:[{id:"led",label:"LED式"},{id:"bulb",label:"電球式"}],default:"led"};
 export const optToggle=(id,label,def="off")=>({id,label,choices:[{id:"off",label:"なし"},{id:"on",label:"あり"}],default:def});

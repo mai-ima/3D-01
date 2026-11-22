@@ -124,10 +124,10 @@
  "size": [
   0.8,
   4.15,
-  0.89
+  0.78
  ],
  "dir": "signal/rail/jp-rail-relay",
  "file": "signal/rail/jp-rail-relay/model.glb",
  "thumb": "signal/rail/jp-rail-relay/thumb.jpg",
- "bytes": 710504
+ "bytes": 703408
 }

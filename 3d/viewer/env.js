@@ -11,10 +11,10 @@ const mesh=(p,geo,mat,x=0,y=0,z=0)=>{const m=new THREE.Mesh(geo,mat);m.position.
 const plane=(p,w,d,mat,x,y,z,ry=0)=>{const m=mesh(p,new THREE.PlaneGeometry(w,d),mat,x,y,z);m.rotation.x=-Math.PI/2;m.rotation.z=ry;return m;};
 
 export const PRESET={
-  day:{elev:42,az:.55,turb:3,ray:1.1,mie:.004,exp:.5,sunI:3.2,sunC:0xfff1dc,env:.8,fog:0xc4d3e2,win:0,bloomS:.28,bloomT:1.5,glow:.3,hemi:0},
-  dusk:{elev:3,az:.9,turb:9,ray:2.4,mie:.012,exp:.5,sunI:1.8,sunC:0xff9a58,env:.7,fog:0x8d7f98,win:.4,bloomS:.5,bloomT:1.0,glow:.55,hemi:.18},
-  night:{elev:-9,az:.9,turb:6,ray:1,mie:.003,exp:1.0,sunI:.7,sunC:0x86a0e0,env:.8,fog:0x0b1020,win:.45,bloomS:.7,bloomT:.85,glow:.8,hemi:.55},
-  studio:{exp:.72,env:.7,bloomS:.22,bloomT:1.3,glow:.35,hemi:0},
+  day:{elev:42,az:.55,turb:3,ray:1.1,mie:.004,exp:.5,sunI:3.2,sunC:0xfff1dc,env:.8,fog:0xc4d3e2,win:0,bloomS:.28,bloomT:1.5,glow:.2,hemi:0},
+  dusk:{elev:3,az:.9,turb:9,ray:2.4,mie:.012,exp:.5,sunI:1.8,sunC:0xff9a58,env:.7,fog:0x8d7f98,win:.4,bloomS:.5,bloomT:1.0,glow:.4,hemi:.18},
+  night:{elev:-9,az:.9,turb:6,ray:1,mie:.003,exp:1.0,sunI:.7,sunC:0x86a0e0,env:.8,fog:0x0b1020,win:.45,bloomS:.7,bloomT:.85,glow:.55,hemi:.55},
+  studio:{exp:.72,env:.7,bloomS:.22,bloomT:1.3,glow:.16,hemi:0},
 };
 
 export function createEnvironment({scene,renderer,bloom,sun}){
@@ -24,7 +24,7 @@ export function createEnvironment({scene,renderer,bloom,sun}){
   const sky=new Sky();sky.scale.setScalar(1000);const skyScene=new THREE.Scene();skyScene.add(sky);
   const roomEnv=pmrem.fromScene(new RoomEnvironment(),.04).texture;
   // studio background gradient
-  const gc=cv(4,256),gg=gc.getContext('2d'),gr=gg.createLinearGradient(0,0,0,256);gr.addColorStop(0,'#b4bac0');gr.addColorStop(.55,'#848b92');gr.addColorStop(1,'#70777e');gg.fillStyle=gr;gg.fillRect(0,0,4,256);
+  const gc=cv(4,256),gg=gc.getContext('2d'),gr=gg.createLinearGradient(0,0,0,256);gr.addColorStop(0,'#aab0b6');gr.addColorStop(1,'#80878e');gg.fillStyle=gr;gg.fillRect(0,0,4,256);
   const studioBg=new THREE.CanvasTexture(gc);studioBg.colorSpace=THREE.SRGBColorSpace;
 
   /* --- materials --- */
@@ -47,7 +47,8 @@ export function createEnvironment({scene,renderer,bloom,sun}){
 
   /* --- grounds --- */
   const G={};
-  G.studio=new THREE.Group();{const f=mesh(G.studio,new THREE.CircleGeometry(60,96),new THREE.MeshStandardMaterial({color:0x737a81,roughness:.75}),0,0,0);f.rotation.x=-Math.PI/2;}
+  G.studio=new THREE.Group();{const rc=cv(256,256),rg=rc.getContext('2d'),gr2=rg.createRadialGradient(128,128,20,128,128,128);gr2.addColorStop(0,'#fff');gr2.addColorStop(.45,'#fff');gr2.addColorStop(1,'#000');rg.fillStyle=gr2;rg.fillRect(0,0,256,256);
+    const am=new THREE.CanvasTexture(rc);const f=mesh(G.studio,new THREE.CircleGeometry(16,96),new THREE.MeshStandardMaterial({color:0x8a9097,roughness:.8,transparent:true,alphaMap:am,depthWrite:false}),0,0,0);f.rotation.x=-Math.PI/2;f.renderOrder=-1;}
   // 道路: 歩道(縁石・点字ブロック)+車道+横断歩道+車線。cwx=横断歩道の位置
   function makeRoad(cwx){const g=new THREE.Group();
     mesh(g,new THREE.BoxGeometry(120,.15,10),walkMat,0,-.075,-2.7);mesh(g,new THREE.BoxGeometry(120,.17,.26),concrete,0,-.065,2.33);
@@ -88,7 +89,7 @@ export function createEnvironment({scene,renderer,bloom,sun}){
   function apply(){const {mode,group,wet}=cur,p=PRESET[mode];
     for(const k of['studio','road','roadZ','rail','crossing','skyline'])G[k].visible=false;
     const out=mode!=='studio';
-    if(!out){G.studio.visible=true;G.studio.position.y=cur.track?-.42:0;scene.environment=roomEnv;scene.background=studioBg;scene.fog=new THREE.Fog(0x848b92,16,52);scene.environmentIntensity=p.env;scene.backgroundIntensity=1;
+    if(!out){G.studio.visible=true;G.studio.position.y=cur.track?-.42:0;scene.environment=roomEnv;scene.background=studioBg;scene.fog=null;scene.environmentIntensity=p.env;scene.backgroundIntensity=1;
       sun.position.set(5,9,7);sun.color.set(0xfff4e6);sun.intensity=2.2;hemi.intensity=0;}
     else{const e=skyEnv(p,mode);scene.environment=e.tex;scene.background=e.tex;scene.environmentIntensity=p.env;scene.backgroundIntensity=mode==='night'?.8:1;
       scene.fog=new THREE.Fog(p.fog,70,420);

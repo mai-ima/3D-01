@@ -10,5 +10,5 @@ export default {id:'jp-track-ballast',name:'砂利道床 軌道(狭軌1067mm・5
     const sg=sleeperGeo(2.4),cm=concreteMat();for(const z of zs){const s=add(root,sg,cm,0,SEAT,z);}
     for(const sx of[-1,1]){const rx=sx*(GAUGE/2+HEAD/2);const r=railMesh(LEN);r.position.set(rx,SEAT+.008,0);r.rotation.z=sx*.025;root.add(r);   // 1/40 の内傾
       for(const z of zs)seatDetail(root,rx,SEAT,z,sx);}
-    root.add(ballastStones(LEN,2600,{sleeperZ:zs,mat:ballastMat()}));
+    root.add(ballastStones(LEN,4200,{sleeperZ:zs,mat:ballastMat()}));
     return {root,lamps:L};}};

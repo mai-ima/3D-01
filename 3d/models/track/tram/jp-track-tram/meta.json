@@ -12,11 +12,11 @@
  "tris": 3282,
  "size": [
   5,
-  0.3,
+  0.32,
   10
  ],
  "dir": "track/tram/jp-track-tram",
  "file": "track/tram/jp-track-tram/model.glb",
  "thumb": "track/tram/jp-track-tram/thumb.jpg",
- "bytes": 305128
+ "bytes": 305376
 }

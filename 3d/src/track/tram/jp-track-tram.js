@@ -9,10 +9,10 @@ export default {id:'jp-track-tram',name:'併用軌道(路面電車・溝付き�
   build(){const root=new THREE.Group(),L={};
     const setts=settsTexture();const sm=(rx,rz)=>{const t=setts.clone();t.needsUpdate=true;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,rz);t.userData.mimeType='image/jpeg';return new THREE.MeshStandardMaterial({map:t,roughness:.85});};
     const asp=new THREE.MeshStandardMaterial({map:asphaltTex([1,4]),roughness:.95});
-    const strip=(x0,x1,m,rep)=>{const w=x1-x0;const g=new THREE.PlaneGeometry(w,LEN);g.rotateX(-Math.PI/2);const uv=g.attributes.uv;for(let i=0;i<uv.count;i++)uv.setXY(i,uv.getX(i)*w/1.0,uv.getY(i)*LEN/1.0);add(root,g,m,(x0+x1)/2,-.003,0);};
+    const strip=(x0,x1,m,rep)=>{const w=x1-x0;const g=new THREE.PlaneGeometry(w,LEN);g.rotateX(-Math.PI/2);const uv=g.attributes.uv;for(let i=0;i<uv.count;i++)uv.setXY(i,uv.getX(i)*w/1.6,uv.getY(i)*LEN/1.6);add(root,g,m,(x0+x1)/2,-.004,0);};
     const half=GAUGE/2,rw=.055;
     strip(-1.9,-half-rw,sm(1,1),0);strip(-half+rw,half-rw,sm(1,1),0);strip(half+rw,1.9,sm(1,1),0);strip(-2.5,-1.9,asp);strip(1.9,2.5,asp);
-    add(root,new THREE.BoxGeometry(5.0,.3,LEN),new THREE.MeshStandardMaterial({color:0x8a8a86,roughness:.95}),0,-.153,0);       // 路盤
+    add(root,new THREE.BoxGeometry(5.0,.3,LEN),new THREE.MeshStandardMaterial({color:0x8a8a86,roughness:.95}),0,-.165,0);       // 路盤
     for(const sx of[-1,1]){const g=new THREE.ExtrudeGeometry(girder(-sx),{depth:LEN,bevelEnabled:false});g.translate(0,0,-LEN/2);add(root,g,TM.rail,sx*half,0,0);
       add(root,new THREE.BoxGeometry(.028,.0025,LEN),TM.railTop,sx*half+sx*.026,.0005,0);}
     for(let i=0;i<LEN/1.5;i++)for(const sx of[-1,1])add(root,roundBox(.17,.012,.05,.004,.002),TM.fastener,sx*half,-.17,-LEN/2+.75+i*1.5);   // 軌間保持

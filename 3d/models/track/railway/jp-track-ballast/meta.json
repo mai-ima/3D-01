@@ -9,14 +9,14 @@
   "railway"
  ],
  "lamps": [],
- "tris": 128720,
+ "tris": 412720,
  "size": [
   4.8,
-  0.57,
-  12.15
+  0.6,
+  12.21
  ],
  "dir": "track/railway/jp-track-ballast",
  "file": "track/railway/jp-track-ballast/model.glb",
  "thumb": "track/railway/jp-track-ballast/thumb.jpg",
- "bytes": 1489056
+ "bytes": 1652868
 }

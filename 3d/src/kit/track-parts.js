@@ -12,7 +12,7 @@ function noiseTex(size,base,n,{rep=[1,1],jpeg=true,tone=230}={}){const c=cv(size
   for(let i=0;i<n;i++){const v=Math.random()*tone|0;g.fillStyle=`rgba(${v},${v},${v},${Math.random()*.5+.08})`;g.beginPath();g.arc(Math.random()*size,Math.random()*size,Math.random()*1.8+.4,0,7);g.fill();}
   const t=tex(c,{rep});if(jpeg)t.userData.mimeType='image/jpeg';return t;}
 export const concreteMat=()=>new THREE.MeshStandardMaterial({color:0xa3a29d,roughness:.93,map:noiseTex(256,'#b8b6b0',9000,{rep:[1,1]})});
-export const ballastMat=()=>new THREE.MeshStandardMaterial({color:0x8d8a85,roughness:1,map:noiseTex(512,'#7d7a76',40000,{rep:[4,16]})});
+export const ballastMat=()=>new THREE.MeshStandardMaterial({color:0xb4b1ab,roughness:1,map:noiseTex(512,'#8f8c87',60000,{rep:[4,16],tone:255})});
 
 /** レール断面(x=幅方向, y=高さ方向。y=0が底面) */
 export function railShape(h,headW,baseW,webT){const hw=headW/2,bw=baseW/2,wt=webT/2;
@@ -35,7 +35,7 @@ export function ballastBed(len,{w=4.8,crest=1.75,y0=-.025}={}){const sx=120,sz=M
   g.computeVertexNormals();return g;}
 /** 砂利(インスタンス) */
 export function ballastStones(len,count,{w=4.4,crest=1.75,y0=-.025,sleeperZ=[],mat}={}){
-  const geo=new THREE.IcosahedronGeometry(1,0);const im=new THREE.InstancedMesh(geo,mat,count);const m=new THREE.Matrix4(),q=new THREE.Quaternion(),e=new THREE.Euler(),sc=new THREE.Vector3(),pos=new THREE.Vector3();let n=0;
+  const geo=new THREE.IcosahedronGeometry(1,1);{const p=geo.attributes.position;for(let i=0;i<p.count;i++){const j=1+(hash(i,7)-.5)*.35;p.setXYZ(i,p.getX(i)*j,p.getY(i)*j,p.getZ(i)*j);}geo.computeVertexNormals();}const im=new THREE.InstancedMesh(geo,mat,count);const m=new THREE.Matrix4(),q=new THREE.Quaternion(),e=new THREE.Euler(),sc=new THREE.Vector3(),pos=new THREE.Vector3();let n=0;
   for(let i=0;i<count*3&&n<count;i++){const x=(Math.random()-.5)*w,z=(Math.random()-.5)*len;
     if(Math.abs(x)<1.3&&sleeperZ.some(sz=>Math.abs(z-sz)<.16))continue;const y=y0-Math.max(0,Math.abs(x)-crest)*.5+.004;
     const r=.03+Math.random()*.035;sc.set(r*(.9+Math.random()*.6),r*(.55+Math.random()*.35),r*(.9+Math.random()*.6));e.set(Math.random()*6,Math.random()*6,Math.random()*6);q.setFromEuler(e);pos.set(x,y,z);m.compose(pos,q,sc);im.setMatrixAt(n++,m);}
@@ -48,9 +48,9 @@ export function seatDetail(parent,x,y,z,sign){ // レール座面: パッド・�
   for(const s of[-1,1]){add(parent,new THREE.BoxGeometry(.05,.04,.12),TM.fastener,x+s*.105,y+.02,z);
     for(const dz of[-.04,.04]){const c=new THREE.Mesh(clipMesh(s),TM.clip);c.position.set(x,y+.008,z+dz);parent.add(c);}}}
 /** 御影石の敷石(石畳)テクスチャ */
-export function settsTexture(){const c=cv(1024,1024),g=c.getContext('2d');g.fillStyle='#4a4a4c';g.fillRect(0,0,1024,1024);const w=64,h=40;
-  for(let r=0;r<1024/h;r++)for(let q=-1;q<1024/w+1;q++){const x=q*w+(r%2?w/2:0),y=r*h,v=95+Math.random()*60|0,t=Math.random()*14|0;
-    g.fillStyle=`rgb(${v+t},${v+t*.4},${v-t*.5})`;g.beginPath();g.roundRect(x+2.5,y+2.5,w-5,h-5,7);g.fill();
+export function settsTexture(){const c=cv(1024,1024),g=c.getContext('2d');g.fillStyle='#2c2c2e';g.fillRect(0,0,1024,1024);const w=64,h=64;
+  for(let r=0;r<1024/h;r++)for(let q=-1;q<1024/w+1;q++){const x=q*w+(r%2?w/2:0),y=r*h,v=105+Math.random()*70|0,t=Math.random()*14|0;
+    g.fillStyle=`rgb(${v+t},${v+t*.4},${v-t*.5})`;g.beginPath();g.roundRect(x+3.5,y+3.5,w-7,h-7,9);g.fill();
     for(let k=0;k<26;k++){const u=100+Math.random()*100|0;g.fillStyle=`rgba(${u},${u},${u},.18)`;g.fillRect(x+4+Math.random()*(w-10),y+4+Math.random()*(h-10),2,2);}}
   const t=tex(c,{rep:[1,1]});t.userData.mimeType='image/jpeg';return t;}
 export function asphaltTex(rep=[2,4]){const t=noiseTex(512,'#3d3f42',30000,{rep,tone:210});return t;}

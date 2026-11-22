@@ -104,7 +104,7 @@ async function select(id,instant=false){const e=catalog.find(x=>x.id===id)||cata
 /* ---------- camera ---------- */
 function measure(){const b=new THREE.Box3().setFromObject(sig.root);boxInfo={box:b,center:b.getCenter(new THREE.Vector3()),size:b.getSize(new THREE.Vector3())};}
 function viewPose(name){const {center:c,size:s}=boxInfo,d=Math.max(s.x,s.y,s.z);const fov=THREE.MathUtils.degToRad(camera.fov/2);
-  let dist=(d*.62)/Math.tan(fov)*1.12;dist*=Math.max(1,1.15/camera.aspect);
+  let dist=(d*.62)/Math.tan(fov)*.92;dist*=Math.max(1,1.0/camera.aspect);
   const dirs={all:[.55,.22,1],front:[0,.04,1],side:[1,.04,0],back:[0,.04,-1],top:[0,1,.001]};
   if(name==='lamp'&&entry.focus){const f=entry.focus,v=entry.view,r=sig.root.position;const tgt=new THREE.Vector3(r.x+f[0],f[1]+.1,r.z+f[2]);const k=camera.aspect<1?1.9:1;return {pos:tgt.clone().add(new THREE.Vector3(v[0]*k,v[1]*k,v[2]*k)),tgt};}
   const dir=new THREE.Vector3(...(dirs[name]||dirs.all)).normalize();const tgt=c.clone();if(name==='all')tgt.y=Math.min(c.y,s.y*.5);
