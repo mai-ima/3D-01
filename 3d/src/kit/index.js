@@ -31,7 +31,7 @@ const grain=tex(noiseCanvas(256,'#808080',255,6000),{rep:[4,4],srgb:false});
 const MAT={
   hous:new THREE.MeshPhysicalMaterial({color:0x28342e,roughness:.42,metalness:.15,clearcoat:.7,clearcoatRoughness:.3,bumpMap:grain,bumpScale:.15}),
   housD:new THREE.MeshPhysicalMaterial({color:0x15181a,roughness:.4,metalness:.2,clearcoat:.8,clearcoatRoughness:.25,bumpMap:grain,bumpScale:.12}),
-  hood:new THREE.MeshPhysicalMaterial({color:0x0e1210,roughness:.55,metalness:.1,side:THREE.DoubleSide,clearcoat:.4}),
+  hood:new THREE.MeshStandardMaterial({color:0x151a17,roughness:.78,metalness:.05,side:THREE.DoubleSide}),
   rubber:new THREE.MeshStandardMaterial({color:0x0b0c0d,roughness:.9,side:THREE.DoubleSide}),
   galv:new THREE.MeshStandardMaterial({color:0xb9bdbb,roughness:.55,metalness:.3}),
   steel:new THREE.MeshStandardMaterial({color:0x8c9296,roughness:.3,metalness:1}),

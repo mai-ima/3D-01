@@ -45,7 +45,8 @@ const CY3=[{s:'g',d:8},{s:'y',d:3},{s:'r',d:8}];
 const SPED=[{id:'r',label:'赤(止まれ)',on:['red']},{id:'g',label:'青(渡れる)',on:['walk']},{id:'gb',label:'青点滅(渡り終えて)',flash:['walk']},{id:'off',label:'消灯'}];
 
 function xTexture(){const c=cv(256,256),g=c.getContext('2d');g.fillStyle='#000';g.fillRect(0,0,256,256);g.strokeStyle='#fff';g.lineWidth=34;g.lineCap='butt';g.beginPath();g.moveTo(52,52);g.lineTo(204,204);g.moveTo(204,52);g.lineTo(52,204);g.stroke();return tex(c);}
-function pedHousing(root,L,{y,pr=.065,prefix='',withBar=false,mat=MAT.hous,pictoWalk=pedTexture('walk'),pictoStand=pedTexture('stand'),color='green'}){
+function pedHousing(root,L,{y,pr=.065,yaw=0,prefix='',withBar=false,mat=MAT.hous,pictoWalk=pedTexture('walk'),pictoStand=pedTexture('stand'),color='green'}){
+  if(yaw){const wr=new THREE.Group();wr.rotation.y=yaw;root.add(wr);root=wr;}   // 歩行者灯は横断方向へ向ける
   const W=withBar?.58:.4,H=.8,D=.17;const g=new THREE.Group();g.position.set(0,y,pr+.105);root.add(g);
   housing(g,W,H,D,.07,mat);hw(g,W,H,D);const ox=withBar?-.08:0;
   const mk=(key,col,pt,ly)=>{const c=COL[col];const geo=new THREE.ShapeGeometry(rrShape(.28,.28,.045),24);const p=geo.attributes.position,uv=geo.attributes.uv;for(let i=0;i<p.count;i++)uv.setXY(i,p.getX(i)/.28+.5,p.getY(i)/.28+.5);
@@ -66,7 +67,7 @@ function railBody(keys,colors,{post=3.6,mastW=.14}={}){
   const cy=post+H/2-.1;const g=new THREE.Group();g.position.set(0,cy,mastW/2+.16);root.add(g);
   housing(g,W-.04,H-.04,.3,.04,HK);add(g,roundBox(W+.14,H+.14,.03,.03,.006),MAT.black,0,0,.2).scale.z=1;                      // 背景板(マスク)
   const fs=rrShape(W+.12,H+.12,.028);fs.holes.push(rrShape(W+.09,H+.09,.024));add(g,new THREE.ExtrudeGeometry(fs,{depth:.004,bevelEnabled:false,curveSegments:16}),MAT.white,0,0,.216);
-  keys.forEach((k,i)=>reg(L,k,makeLamp(g,0,(n-1)/2*pitch-i*pitch,.215,R,colors[i],LED,{hood:.34,gap:.9})));
+  keys.forEach((k,i)=>reg(L,k,makeLamp(g,0,(n-1)/2*pitch-i*pitch,.215,R,colors[i],LED,{hood:.27,gap:.9})));
   rod(root,[0,post-.3,0],[0,cy-H/2+.1,mastW/2+.02],.03);rod(root,[0,cy-H/2-.05,mastW/2],[0,cy-H/2-.05,mastW/2+.15],.03);
   return {root,lamps:L,cy};}
 function stripePole(root,h,r){for(let i=0;i<Math.floor(h/.2);i++)add(root,new THREE.CylinderGeometry(r+.0015,r+.0015,.2,56,1,true),i%2?MAT.black:MAT.yel,0,.1+i*.2,0).scale.set(1.03,1,1.03);

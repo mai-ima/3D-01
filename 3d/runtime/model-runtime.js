@@ -42,8 +42,8 @@ export class Model{
         L.meshes.push(o);L.mats.push(o.material);
         if(glow&&!L.glow&&o.name.startsWith('lamp_')){o.geometry.computeBoundingSphere();const r=o.geometry.boundingSphere.radius;
           const s=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTexture(),color:L.lit,blending:THREE.AdditiveBlending,transparent:true,depthWrite:false,opacity:0}));
-          s.scale.setScalar(Math.max(r*8,.25));s.position.set(0,0,.06);s.userData.noShadow=true;o.parent.parent.add(s);L.glow=s;}}
-      const m=/^opt_([^_]+)_(.+)$/.exec(o.name);if(m){(this._optNodes[m[1]]||(this._optNodes[m[1]]=[])).push({node:o,choice:m[2]});}
+          s.scale.setScalar(Math.max(r*8,.25));s.position.set(0,0,.06);s.userData.noShadow=true;(o.parent.name.startsWith('opt_')?o.parent.parent:o.parent).add(s);L.glow=s;}}
+      const m=/^opt_([^_]+)_([^_]+?)(?:_\d+)?$/.exec(o.name);if(m){(this._optNodes[m[1]]||(this._optNodes[m[1]]=[])).push({node:o,choice:m[2]});}   // 同名ノードは GLTFLoader が _1,_2… を付けるので除去
     });
     if(entry.anim){this.armNode=root.getObjectByName(entry.anim.node);this.axis=entry.anim.axis||'z';}
     root.traverse(o=>{if(o.isMesh&&!o.userData.noShadow){o.castShadow=true;o.receiveShadow=true;}});

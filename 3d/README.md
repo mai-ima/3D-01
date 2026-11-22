@@ -48,6 +48,7 @@
 - **ランプ**: メッシュ名 `lamp_<key>`(LED式レンズ)/ `lampB_<key>`(電球式レンズ)。マテリアル名 `lens_<key>` / `lensB_<key>`。
   GLB は**消灯状態**で出力され、点灯色は `material.userData.litColor`、輝度係数は `litIntensity` に入っている。
 - **任意部品・方式**: ノード名 `opt_<オプション>_<選択肢>`(例 `opt_lens_led` / `opt_lens_bulb` / `opt_backplate_on`)。
+  (同名ノードは読み込み時に `_1`, `_2` が付くが、ランタイムが吸収する)
   GLB には**全バリエーションが入っている**ため、`runtime` の `setOption()` で選択中のものだけを表示する。
   (素の glTF ビューアで開くと全バリエーションが重なって見える)
 - **アニメーション**: 遮断機など可動部は `index.json` の `anim.node`(例 `gate_arm`)を回転させる。

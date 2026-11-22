@@ -7,4 +7,4 @@ export default {id:'jp-combo-vert-ped',name:'車両用(縦型・積雪地)+歩�
   cycle:[{s:'s1',d:7},{s:'s2',d:3},{s:'s3',d:1.5},{s:'s4',d:6},{s:'s5',d:4},{s:'s3',d:1.5}],options:[OPT_LENS,optToggle('snow','着雪防止の庇','on'),optToggle('button','押ボタン箱','on'),optToggle('sound','音響装置','on')],
   build(){const root=new THREE.Group(),L={};POLE_H(root,6,.11,.07);vertHead(root,L,{x:1.1,y:5.0,R:.15,pitch:.37,D:.26,mat:HK,tilt:20,hood:.4,snow:true,prefix:'v_'});
     for(const y of[5.55,4.45]){rod(root,[0,y,0],[.86,y,0],.026);add(root,new THREE.CylinderGeometry(.105,.105,.09,40),MAT.galv,0,y,0);}
-    pedHousing(root,L,{y:2.3,pr:.098,prefix:'p_',mat:HK});const bo=opt(root,'button','on');addButton(bo,L,1.15,.102);const so=opt(root,'sound','on');addSpeaker(so,2.85,.09);return {root,lamps:L};}};
+    pedHousing(root,L,{y:2.3,pr:.098,yaw:Math.PI/2,prefix:'p_',mat:HK});const bo=opt(root,'button','on');bo.rotation.y=Math.PI/2;addButton(bo,L,1.15,.102);const so=opt(root,'sound','on');so.rotation.y=Math.PI/2;addSpeaker(so,2.85,.09);return {root,lamps:L};}};

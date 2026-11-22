@@ -37,9 +37,9 @@ const storeGet=k=>{try{return localStorage.getItem(k);}catch{return null;}};cons
 
 /* ---------- classification ---------- */
 const isTrack=e=>e.path[0]==='track';
-function sceneGroup(e){const [a,b]=e.path;if(a==='track')return b==='tram'?'road':'rail';if(b==='rail')return 'rail';if(b==='crossing')return 'crossing';return 'road';}
+function sceneGroup(e){const [a,b]=e.path;if(a==='track')return b==='tram'?'roadZ':'rail';if(b==='rail')return 'rail';if(b==='crossing')return 'crossing';if(b==='pedestrian')return 'road';return 'roadZ';}
 function defaultTrack(e){const [a,b]=e.path;if(a==='track')return 'none';if(b==='tram')return 'tram';if(b==='rail'||b==='crossing')return 'ballast';return 'none';}
-const trackFrame=g=>g==='rail'?{rot:0,x:0,z:0}:g==='crossing'?{rot:Math.PI/2,x:0,z:-6.2}:{rot:Math.PI/2,x:0,z:9};
+const trackFrame=g=>g==='rail'?{rot:0,x:0,y:0,z:0}:g==='crossing'?{rot:Math.PI/2,x:0,y:trackType==='tram'?.006:0,z:-6.2}:g==='roadZ'?{rot:0,x:8.5,y:-.14,z:0}:{rot:Math.PI/2,x:0,y:-.14,z:19.5};   // 道路上の軌道は路面(-0.15)に合わせる
 const pathKey=e=>e.path.join('/');
 const catName=k=>CATS[k]||k.split('/').pop();
 
@@ -72,12 +72,12 @@ async function getTrackModel(id){const e=catalog.find(x=>x.id===id)||ALL.find(x=
 async function buildTrack(){if(trackGroup){scene.remove(trackGroup);trackGroup=null;}const g=sceneGroup(entry);const fr=trackFrame(g);
   const self=isTrack(entry);let src=null;
   if(self){src={m:sig,e:entry};}else if(trackType!=='none'){src=await getTrackModel(TRACK_IDS[trackType]);}
-  if(!src)return;const len=src.e.size[2];const n=Math.ceil(70/len/2);trackGroup=new THREE.Group();trackGroup.position.set(fr.x,0,fr.z);trackGroup.rotation.y=fr.rot;scene.add(trackGroup);
+  if(!src)return;const len=src.e.size[2];const n=Math.ceil(70/len/2);trackGroup=new THREE.Group();trackGroup.position.set(fr.x,fr.y,fr.z);trackGroup.rotation.y=fr.rot;scene.add(trackGroup);
   for(let i=-n;i<=n;i++){if(self&&i===0)continue;const c=src.m.root.clone(true);c.position.z=i*len;c.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});trackGroup.add(c);}}
 function placeModel(){const g=sceneGroup(entry),fr=trackFrame(g);const r=sig.root;
-  if(isTrack(entry)){r.rotation.y=fr.rot;r.position.set(fr.x,0,fr.z);}
+  if(isTrack(entry)){r.rotation.y=fr.rot;r.position.set(fr.x,fr.y,fr.z);}
   else{r.rotation.y=0;const has=trackType!=='none';
-    if(onTrack&&has){r.position.set(fr.x,0,fr.rot?fr.z:0);}
+    if(onTrack&&has){r.position.set(fr.x,fr.y,g==='rail'?0:fr.z);}
     else r.position.set(g==='rail'&&has?-2.9:g==='crossing'?-3.7:0,0,0);}
   r.updateMatrixWorld(true);}
 async function refreshTrack(){const tracked=isTrack(entry)||trackType!=='none';env.set({track:tracked,deck:trackType==='ballast'&&!isTrack(entry),group:sceneGroup(entry)});placeModel();await buildTrack();measure();if(showDims)buildDims();}
