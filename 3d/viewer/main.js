@@ -68,7 +68,7 @@ function buildOptions(){const box=$('opts');box.innerHTML='';const ops=entry.opt
 function setMode(m){if(!entry.states||!entry.states.length)return;if(m==='night'&&!entry.night)return;mode=m;if(m==='night')sig.setState(entry.night);uiSig='';}
 
 /* ---------- track (線路) ---------- */
-async function getTrackModel(id){const e=catalog.find(x=>x.id===id)||ALL.find(x=>x.id===id);if(!e)return null;let m=cache.get(id);if(!m){m=await loadModel(`models/${e.file}`,e,{glow:false});cache.set(id,m);}return {m,e};}
+async function getTrackModel(id){const e=catalog.find(x=>x.id===id)||ALL.find(x=>x.id===id);if(!e)return null;let m=cache.get(id);if(!m){m=await loadModel(`models/${e.file}`,e,{glow:false,b64:V.b64});cache.set(id,m);}return {m,e};}
 async function buildTrack(){if(trackGroup){scene.remove(trackGroup);trackGroup=null;}const g=sceneGroup(entry);const fr=trackFrame(g);
   const self=isTrack(entry);let src=null;
   if(self){src={m:sig,e:entry};}else if(trackType!=='none'){src=await getTrackModel(TRACK_IDS[trackType]);}
@@ -85,7 +85,7 @@ async function refreshTrack(){const tracked=isTrack(entry)||trackType!=='none';e
 /* ---------- loading / selecting ---------- */
 async function select(id,instant=false){const e=catalog.find(x=>x.id===id)||catalog[0];if(!e)return;const token=++loadToken;
   $('loading').style.display='grid';$('loading').textContent='LOADING…';
-  try{let s=cache.get(e.id);if(!s||s.root.parent&&s!==sig&&false){s=await loadModel(`models/${e.file}`,e);cache.set(e.id,s);}
+  try{let s=cache.get(e.id);if(!s||s.root.parent&&s!==sig&&false){s=await loadModel(`models/${e.file}`,e,{b64:V.b64});cache.set(e.id,s);}
     if(token!==loadToken)return;
     if(sig)scene.remove(sig.root);
     entry=e;sig=s;sig.glowK=env.glow;scene.add(sig.root);

@@ -21,7 +21,11 @@ function glowTexture(){if(_glowTex)return _glowTex;const c=document.createElemen
   const gr=g.createRadialGradient(64,64,0,64,64,64);gr.addColorStop(0,'rgba(255,255,255,1)');gr.addColorStop(.25,'rgba(255,255,255,.45)');gr.addColorStop(.6,'rgba(255,255,255,.1)');gr.addColorStop(1,'rgba(255,255,255,0)');
   g.fillStyle=gr;g.fillRect(0,0,128,128);_glowTex=new THREE.CanvasTexture(c);_glowTex.colorSpace=THREE.SRGBColorSpace;return _glowTex;}
 
-export async function loadModel(url,entry,opts){const gltf=await new GLTFLoader().loadAsync(url);return new Model(gltf.scene,entry,opts);}
+/** opts.b64: true → `<url>.b64.txt`(base64テキスト)から読む。.glb を配信できない環境(アーティファクト等)向け */
+export async function loadModel(url,entry,opts={}){let gltf;
+  if(opts.b64){const txt=await (await fetch(url+'.b64.txt')).text();const bin=Uint8Array.from(atob(txt),c=>c.charCodeAt(0));gltf=await new GLTFLoader().parseAsync(bin.buffer,'');}
+  else gltf=await new GLTFLoader().loadAsync(url);
+  return new Model(gltf.scene,entry,opts);}
 export const loadSignal=loadModel;
 
 /** 時刻 t(秒) に対するサイクル上の状態を返す */

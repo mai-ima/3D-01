@@ -4,6 +4,6 @@ const r=esbuild.buildSync({entryPoints:[path.join(V,'main.js')],bundle:true,form
 const js=r.outputFiles[0].text.replace(/<\/script>/g,'<\\/script>');
 const tpl=fs.readFileSync(path.join(V,'index.html'),'utf8');
 const builds=[{out:'signals',root:'signal',title:'信号灯器ライブラリ',h1:'日本の信号 3Dライブラリ'},{out:'all',root:null,title:'3Dモデルライブラリ',h1:'3Dモデルライブラリ'}];
-fs.mkdirSync(path.join(ROOT,'dist'),{recursive:true});
-for(const b of builds){const html=tpl.replace('__TITLE__',b.title).replace('__H1__',b.h1).replace('/*__BUNDLE__*/',()=>`window.__VIEWER__=${JSON.stringify({root:b.root})};\n`+js);
-  fs.writeFileSync(path.join(ROOT,'dist',b.out+'.html'),html);console.log('dist/'+b.out+'.html',(html.length/1024|0)+'KB');}
+const B64=!!process.env.B64,OUTDIR=B64?path.join(ROOT,'3d/dist'):path.join(ROOT,'dist');fs.mkdirSync(OUTDIR,{recursive:true});
+for(const b of builds){const html=tpl.replace('__TITLE__',b.title).replace('__H1__',b.h1).replace('/*__BUNDLE__*/',()=>`window.__VIEWER__=${JSON.stringify({root:b.root,b64:B64})};\n`+js);
+  fs.writeFileSync(path.join(OUTDIR,b.out+'.html'),html);console.log(path.relative(ROOT,OUTDIR)+'/'+b.out+'.html',(html.length/1024|0)+'KB');}
