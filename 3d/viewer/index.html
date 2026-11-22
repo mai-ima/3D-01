@@ -93,56 +93,55 @@ kbd{font:500 10px var(--f-mono);border:1px solid #39424b;border-bottom-width:2px
 .seg.sm button{padding:6px 6px;font-size:12px}
 .gh0{padding:14px 14px 8px;font:700 12px var(--f-body);letter-spacing:.08em;color:var(--fg);background:#0e1216;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:2}
 .gh{top:38px}.nostate{color:var(--dim);font-size:12px}
-#tabs{display:none}
+/* ---- Layout shell ---- */
+html,body{-webkit-text-size-adjust:100%;overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
+button,label,input,summary{touch-action:manipulation}
+#app{position:relative}
+header{grid-column:1/-1;grid-row:1}
+#sheet{display:contents}
+#rail{grid-column:1;grid-row:2}
+#stage{grid-column:2;grid-row:2}
+#ctl{grid-column:3;grid-row:2}
+#grab,#tabs{display:none}
+#spin{position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border:3px solid #ffffff33;border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;pointer-events:none}
+@keyframes sp{to{transform:rotate(360deg)}}
+#loading{display:none}
+#fps{position:absolute;left:12px;bottom:calc(var(--sh,0px) + 62px);font:500 10px var(--f-mono);color:#ffffffaa;display:none}
+/* ---- Phone / tablet (portrait): full-screen 3D + draggable bottom sheet ---- */
 @media (max-width:980px){
-  #app{grid-template-columns:1fr;grid-template-rows:46px 50% 44px minmax(0,1fr)}
-  header .sub,header .kbd{display:none}
-  #tabs{display:flex;background:var(--surf);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  #tabs button{flex:1;background:none;border:0;color:var(--mute);font-weight:500;cursor:pointer}
+  #app{grid-template-columns:1fr;grid-template-rows:44px minmax(0,1fr)}
+  header{padding:0 12px}header h1{font-size:14px}header .sub,header .kbd{display:none}
+  #stage{grid-column:1;grid-row:2}
+  #sheet{display:flex;flex-direction:column;position:absolute;left:0;right:0;bottom:0;z-index:5;height:var(--sh,46%);background:var(--surf);border-top:1px solid #ffffff22;border-radius:18px 18px 0 0;box-shadow:0 -10px 34px #000a;overflow:hidden}
+  #grab{display:grid;place-items:center;height:22px;flex:none;cursor:grab;touch-action:none}
+  #grab i{display:block;width:42px;height:5px;border-radius:3px;background:#ffffff40}
+  #tabs{display:flex;flex:none;border-bottom:1px solid var(--line)}
+  #tabs button{flex:1;background:none;border:0;color:var(--mute);font-weight:500;cursor:pointer;min-height:44px;font-size:14px}
   #tabs button.on{color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent)}
-  #rail,#ctl{grid-column:1;grid-row:4;border:0}
+  #rail,#ctl{grid-column:auto;grid-row:auto;flex:1;min-height:0;border:0;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
   #app[data-tab="models"] #ctl,#app[data-tab="ctl"] #rail{display:none}
-  #title h2{font-size:17px}
-  #nav{display:none}
-}
-
-/* ---- Phone / touch optimisation ---- */
-html,body{-webkit-text-size-adjust:100%;overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
-button,label,input{touch-action:manipulation}
-@media (max-width:980px){
-  #app{grid-template-rows:44px minmax(0,45%) 46px minmax(0,1fr)}
-  header{padding:0 12px}header h1{font-size:14px}
-  #nav{display:flex;top:10px;right:10px}
-  .round{width:40px;height:40px}
-  #title{left:12px;top:10px;right:104px}
-  #title h2{font-size:16px;max-width:none;margin-top:4px}
-  #title .g{font-size:9px}
-  #bar{bottom:8px;gap:6px;justify-content:flex-start;left:8px;right:8px;transform:none;max-width:none;scrollbar-width:none}
+  #title{left:12px;top:10px;right:104px}#title h2{font-size:16px;max-width:none;margin-top:4px}#title .g{font-size:9px}
+  #nav{display:flex;top:10px;right:10px}.round{width:42px;height:42px}
+  #bar{bottom:calc(var(--sh,46%) + 10px);left:8px;right:8px;transform:none;max-width:none;justify-content:flex-start;scrollbar-width:none;transition:bottom .12s}
   #bar::-webkit-scrollbar{display:none}
-  .pill button{padding:10px 13px;min-height:40px}
-  #tabs button{min-height:46px;font-size:14px}
-  /* モデル一覧: 2列のカード */
+  .pill button{padding:10px 13px;min-height:42px}
+  /* モデル一覧: 2列カード */
   #rail{display:grid;grid-template-columns:1fr 1fr;align-content:start}
-  #rail .gh,#rail .gh0{grid-column:1/-1}
+  #rail .gh,#rail .gh0{grid-column:1/-1;top:0}
   .item{grid-template-columns:1fr;gap:8px;padding:10px 12px 12px;border-right:1px solid #161b20;align-content:start}
-  .item .th{width:100%;height:auto;aspect-ratio:216/272;max-height:230px}
-  .item b{font-size:12.5px}
-  .modes button,.states button,.seg button{min-height:46px}
-  .states button{padding:8px 12px}
-  .sw{min-height:40px}.sw i{width:40px;height:24px}.sw i::after{width:20px;height:20px}.sw input:checked+i::after{transform:translateX(16px)}
-  input[type=range]{height:34px}
-  .facts .fact b{font-size:15px}
-  #ctl .sec,.gh{padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
+  .item .th{width:100%;height:auto;aspect-ratio:216/272;max-height:240px}
+  .modes button,.states button,.seg button{min-height:46px}.states button{padding:8px 12px}
+  .sw{min-height:42px}.sw i{width:42px;height:24px}.sw i::after{width:20px;height:20px}.sw input:checked+i::after{transform:translateX(18px)}
+  input[type=range]{height:36px}.facts .fact b{font-size:15px}
+  #ctl .sec{padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
 }
+/* ---- Phone landscape: side panel (3D is not covered) ---- */
 @media (max-width:980px) and (orientation:landscape) and (max-height:560px){
-  #app{grid-template-columns:minmax(0,1fr) 330px;grid-template-rows:40px 42px minmax(0,1fr)}
-  header{grid-column:1/-1}
-  #stage{grid-column:1;grid-row:2/4}
-  #tabs{grid-column:2;grid-row:2}
-  #rail,#ctl{grid-column:2;grid-row:3}
-  #tabs button{min-height:42px}
-  #nav{top:8px}
-  #title h2{font-size:15px}
+  #app{grid-template-columns:minmax(0,1fr) 340px;grid-template-rows:40px minmax(0,1fr)}
+  #stage{grid-column:1;grid-row:2}
+  #sheet{grid-column:2;grid-row:2;position:static;height:auto;border-radius:0;box-shadow:none;border-top:0;border-left:1px solid var(--line)}
+  #grab{display:none}#tabs button{min-height:40px}
+  #bar{bottom:10px}#title h2{font-size:15px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -153,22 +152,10 @@ button,label,input{touch-action:manipulation}
     <h1 id="vtitle">__H1__</h1><span class="sub" id="count"></span><span class="sp"></span>
     <span class="kbd"><kbd>←</kbd><kbd>→</kbd> モデル切替 &nbsp; <kbd>A</kbd><kbd>M</kbd><kbd>N</kbd> モード &nbsp; <kbd>1</kbd>–<kbd>4</kbd> 背景 &nbsp; <kbd>W</kbd> ワイヤー</span>
   </header>
+  <div id="sheet">
+    <div id="grab" role="separator" aria-label="パネルの高さを変える"><i></i></div>
+    <div id="tabs"><button data-t="models" class="on">モデル</button><button data-t="ctl">操作・情報</button></div>
   <nav id="rail" aria-label="モデル一覧"></nav>
-  <main id="stage">
-    <canvas id="gl" tabindex="0" aria-label="3Dビュー"></canvas>
-    <div class="ov" id="title"><span class="g" id="grp"></span><h2 id="mname"></h2></div>
-    <div class="ov" id="nav">
-      <button class="round" id="prev" aria-label="前のモデル"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <button class="round" id="next" aria-label="次のモデル"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
-    </div>
-    <div class="ov" id="bar">
-      <div class="pill" id="views"><button data-v="all">全体</button><button data-v="lamp">灯器</button><button data-v="front">正面</button><button data-v="side">側面</button><button data-v="back">背面</button><button data-v="top">上面</button></div>
-      <div class="pill" id="disp"><button data-d="shade" class="on">シェード</button><button data-d="clay">クレイ</button><button data-d="wire">ワイヤー</button></div>
-      <div class="pill sep"><button id="tDims">寸法</button><button id="tSpin">回転</button></div>
-    </div>
-    <div class="ov" id="loading">LOADING…</div>
-  </main>
-  <div id="tabs"><button data-t="models" class="on">モデル</button><button data-t="ctl">操作・情報</button></div>
   <aside id="ctl">
     <div class="sec">
       <div class="lab"><span>概要</span><span id="fid"></span></div>
@@ -208,6 +195,21 @@ button,label,input{touch-action:manipulation}
       <label class="sw" id="onTrackSw"><input type="checkbox" id="onTrack"><i></i>軌道上に設置</label>
     </div>
   </aside>
+  </div>
+  <main id="stage">
+    <canvas id="gl" tabindex="0" aria-label="3Dビュー"></canvas>
+    <div class="ov" id="title"><span class="g" id="grp"></span><h2 id="mname"></h2></div>
+    <div class="ov" id="nav">
+      <button class="round" id="prev" aria-label="前のモデル"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="round" id="next" aria-label="次のモデル"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="ov" id="bar">
+      <div class="pill" id="views"><button data-v="all">全体</button><button data-v="lamp">灯器</button><button data-v="front">正面</button><button data-v="side">側面</button><button data-v="back">背面</button><button data-v="top">上面</button></div>
+      <div class="pill" id="disp"><button data-d="shade" class="on">シェード</button><button data-d="clay">クレイ</button><button data-d="wire">ワイヤー</button></div>
+      <div class="pill sep"><button id="tDims">寸法</button><button id="tSpin">回転</button></div>
+    </div>
+    <div class="ov" id="loading">LOADING…</div><div id="spin" hidden></div><div id="fps"></div>
+  </main>
 </div>
 
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.170.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.170.0/examples/jsm/"}}</script>

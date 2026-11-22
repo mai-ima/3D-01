@@ -61,5 +61,5 @@ export class Model{
     if(this.armNode&&this.state.arm!=null){const a=this.armNode.rotation[this.axis];this.armNode.rotation[this.axis]=a+(this.state.arm-a)*(1-Math.exp(-dt*2.6));}}
   /** 最も明るく点灯しているランプ(点光源の位置決め用) */
   brightest(){let b=null;for(const L of Object.values(this.lamps))if(L.v>.05&&(!b||L.v>b.v))b=L;return b;}
-  dispose(){this.root.traverse(o=>{if(o.isMesh)o.geometry.dispose();});}
+  dispose(){this.root.traverse(o=>{if(!o.isMesh)return;o.geometry.dispose();for(const m of[].concat(o.material)){for(const k of['map','emissiveMap','normalMap','roughnessMap','metalnessMap','aoMap'])if(m[k])m[k].dispose();m.dispose();}});}
 }
