@@ -110,14 +110,14 @@
    "lit": "#00e6a2"
   }
  ],
- "tris": 34700,
+ "tris": 41524,
  "size": [
-  0.5,
-  4.72,
-  0.92
+  0.47,
+  5.18,
+  0.67
  ],
  "dir": "signal/rail/jp-rail-4",
  "file": "signal/rail/jp-rail-4/model.glb",
  "thumb": "signal/rail/jp-rail-4/thumb.jpg",
- "bytes": 680036
+ "bytes": 925284
 }

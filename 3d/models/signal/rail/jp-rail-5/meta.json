@@ -128,14 +128,14 @@
    "lit": "#00e6a2"
   }
  ],
- "tris": 42796,
+ "tris": 49610,
  "size": [
-  0.5,
-  4.99,
-  0.92
+  0.47,
+  5.45,
+  0.67
  ],
  "dir": "signal/rail/jp-rail-5",
  "file": "signal/rail/jp-rail-5/model.glb",
  "thumb": "signal/rail/jp-rail-5/thumb.jpg",
- "bytes": 683312
+ "bytes": 924136
 }

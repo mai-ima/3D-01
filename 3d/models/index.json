@@ -111,6 +111,30 @@
    ],
    "options": [
     {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
      "id": "lens",
      "label": "灯火方式",
      "choices": [
@@ -207,7 +231,7 @@
      "lit": "#ff2a18"
     }
    ],
-   "tris": 52182,
+   "tris": 55406,
    "size": [
     3.74,
     6.38,
@@ -216,7 +240,7 @@
    "dir": "signal/combined/jp-combo-arm-ped",
    "file": "signal/combined/jp-combo-arm-ped/model.glb",
    "thumb": "signal/combined/jp-combo-arm-ped/thumb.jpg",
-   "bytes": 1241252
+   "bytes": 1275780
   },
   {
    "id": "jp-combo-vert-ped",
@@ -317,6 +341,30 @@
    ],
    "options": [
     {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
      "id": "lens",
      "label": "灯火方式",
      "choices": [
@@ -413,7 +461,7 @@
      "lit": "#ff2a18"
     }
    ],
-   "tris": 44840,
+   "tris": 48064,
    "size": [
     1.52,
     6.09,
@@ -422,23 +470,22 @@
    "dir": "signal/combined/jp-combo-vert-ped",
    "file": "signal/combined/jp-combo-vert-ped/model.glb",
    "thumb": "signal/combined/jp-combo-vert-ped/thumb.jpg",
-   "bytes": 1095640
+   "bytes": 1128696
   },
   {
    "id": "jp-crossing-alarm",
-   "group": "rail",
-   "name": "踏切警報機(全方向形警報灯・方向指示器・特殊信号発光機)",
-   "desc": "黄黒の警報柱に×字標識、全方向形の赤色警報灯(左右交互に点滅)、列車進行方向指示器、頂部の特殊信号発光機を備える現行の踏切警報機。",
-   "dims": "全方向形警報灯 約0.33×0.27×0.30m、発光面φ170〜190mm(メーカー公表値)",
+   "name": "踏切警報機(丸形警報灯・方向指示器・×字標識)",
+   "desc": "実物写真に合わせた現行形。黄黒縞の警報柱に、黄黒の×字標識、黒い丸形の赤色警報灯(左右交互に点滅)、矢印2つの列車進行方向指示器、「踏切注意」標識、ホーン、非常ボタン箱を備える。",
+   "dims": "柱高 約3.9m / 警報灯の発光面 約φ300mm(推定)",
    "focus": [
     0,
     2.7,
     0.2
    ],
    "view": [
-    0.8,
+    0.9,
     0.3,
-    6
+    6.6
    ],
    "night": null,
    "states": [
@@ -450,23 +497,47 @@
      "id": "alarm",
      "label": "警報(交互点滅)",
      "flash": [
-      "l1"
+      "l1",
+      "l3"
      ],
      "flash2": [
-      "l2"
+      "l2",
+      "l4"
+     ],
+     "on": [
+      "em"
      ]
     },
     {
-     "id": "alarm+dir",
-     "label": "警報+方向指示",
+     "id": "alarmL",
+     "label": "警報+左矢印",
      "flash": [
-      "l1"
+      "l1",
+      "l3"
      ],
      "flash2": [
-      "l2"
+      "l2",
+      "l4"
      ],
      "on": [
-      "dir"
+      "dirL",
+      "em"
+     ]
+    },
+    {
+     "id": "alarmR",
+     "label": "警報+右矢印",
+     "flash": [
+      "l1",
+      "l3"
+     ],
+     "flash2": [
+      "l2",
+      "l4"
+     ],
+     "on": [
+      "dirR",
+      "em"
      ]
     },
     {
@@ -487,14 +558,74 @@
      "d": 3
     },
     {
-     "s": "alarm+dir",
+     "s": "alarmL",
      "d": 8
     }
    ],
    "options": [
     {
+     "id": "lamps2",
+     "label": "警報灯 2段(上段を追加)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    },
+    {
      "id": "dir",
      "label": "列車進行方向指示器",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "signs",
+     "label": "標識(踏切注意・カメラ監視中)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "horn",
+     "label": "警報音ホーン",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "emergency",
+     "label": "非常ボタン箱",
      "choices": [
       {
        "id": "off",
@@ -520,7 +651,7 @@
        "label": "あり"
       }
      ],
-     "default": "on"
+     "default": "off"
     }
    ],
    "path": [
@@ -539,7 +670,27 @@
      "lit": "#ff2a18"
     },
     {
-     "key": "dir",
+     "key": "l3",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "l4",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "dirR",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "dirL",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "em",
      "color": "#ff4332",
      "lit": "#ff2a18"
     },
@@ -549,16 +700,16 @@
      "lit": "#ff2a18"
     }
    ],
-   "tris": 13624,
+   "tris": 41550,
    "size": [
-    1.21,
-    4.27,
-    0.45
+    1.51,
+    4.5,
+    0.44
    ],
    "dir": "signal/crossing/jp-crossing-alarm",
    "file": "signal/crossing/jp-crossing-alarm/model.glb",
    "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
-   "bytes": 292272
+   "bytes": 767868
   },
   {
    "id": "jp-crossing-gate",
@@ -645,7 +796,7 @@
    "dir": "signal/crossing/jp-crossing-gate",
    "file": "signal/crossing/jp-crossing-gate/model.glb",
    "thumb": "signal/crossing/jp-crossing-gate/thumb.jpg",
-   "bytes": 134528
+   "bytes": 133324
   },
   {
    "id": "jp-bike-ped",
@@ -705,6 +856,32 @@
      "d": 4
     }
    ],
+   "options": [
+    {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    }
+   ],
    "path": [
     "signal",
     "pedestrian"
@@ -721,16 +898,16 @@
      "lit": "#00e6a2"
     }
    ],
-   "tris": 12594,
+   "tris": 15818,
    "size": [
     0.4,
     3.06,
-    0.45
+    0.58
    ],
    "dir": "signal/pedestrian/jp-bike-ped",
    "file": "signal/pedestrian/jp-bike-ped/model.glb",
    "thumb": "signal/pedestrian/jp-bike-ped/thumb.jpg",
-   "bytes": 339124
+   "bytes": 378376
   },
   {
    "id": "jp-ped-button",
@@ -803,7 +980,7 @@
    "dir": "signal/pedestrian/jp-ped-button",
    "file": "signal/pedestrian/jp-ped-button/model.glb",
    "thumb": "signal/pedestrian/jp-ped-button/thumb.jpg",
-   "bytes": 231776
+   "bytes": 230560
   },
   {
    "id": "jp-ped-count",
@@ -1053,16 +1230,16 @@
      "lit": "#ffa800"
     }
    ],
-   "tris": 32520,
+   "tris": 35728,
    "size": [
-    0.58,
+    0.6,
     3.06,
-    0.45
+    0.58
    ],
    "dir": "signal/pedestrian/jp-ped-count",
    "file": "signal/pedestrian/jp-ped-count/model.glb",
    "thumb": "signal/pedestrian/jp-ped-count/thumb.jpg",
-   "bytes": 438324
+   "bytes": 470632
   },
   {
    "id": "jp-ped-led",
@@ -1124,6 +1301,30 @@
    ],
    "options": [
     {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
      "id": "button",
      "label": "押ボタン箱",
      "choices": [
@@ -1175,22 +1376,22 @@
      "lit": "#ff2a18"
     }
    ],
-   "tris": 17160,
+   "tris": 20384,
    "size": [
     0.4,
     3.06,
-    0.45
+    0.58
    ],
    "dir": "signal/pedestrian/jp-ped-led",
    "file": "signal/pedestrian/jp-ped-led/model.glb",
    "thumb": "signal/pedestrian/jp-ped-led/thumb.jpg",
-   "bytes": 424916
+   "bytes": 458176
   },
   {
    "id": "jp-rail-3",
    "group": "rail",
    "name": "鉄道信号機 色灯式3灯(閉塞・場内・出発)",
-   "desc": "上から黄・赤・青の3灯式。赤=停止、黄=注意(25km/h以下などの速度制限)、青=進行。黒い背景板と長い円筒フードで遠くから視認させる。",
+   "desc": "上から黄・緑・赤の3灯式(実物写真で赤が最下段)。赤=停止、黄=注意(25km/h以下などの速度制限)、青=進行。黒い背景板と長い円筒フードで遠くから視認させる。",
    "dims": "レンズ約φ190(推定)。灯器配列は事業者で異なる場合あり",
    "focus": [
     0,
@@ -1272,26 +1473,26 @@
      "lit": "#ffa800"
     },
     {
-     "key": "red",
-     "color": "#ff4332",
-     "lit": "#ff2a18"
-    },
-    {
      "key": "green",
      "color": "#18d9a0",
      "lit": "#00e6a2"
+    },
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
     }
    ],
-   "tris": 26604,
+   "tris": 33428,
    "size": [
-    0.5,
-    4.45,
-    0.92
+    0.47,
+    4.91,
+    0.67
    ],
    "dir": "signal/rail/jp-rail-3",
    "file": "signal/rail/jp-rail-3/model.glb",
    "thumb": "signal/rail/jp-rail-3/thumb.jpg",
-   "bytes": 676000
+   "bytes": 915908
   },
   {
    "id": "jp-rail-4",
@@ -1405,16 +1606,16 @@
      "lit": "#00e6a2"
     }
    ],
-   "tris": 34700,
+   "tris": 41524,
    "size": [
-    0.5,
-    4.72,
-    0.92
+    0.47,
+    5.18,
+    0.67
    ],
    "dir": "signal/rail/jp-rail-4",
    "file": "signal/rail/jp-rail-4/model.glb",
    "thumb": "signal/rail/jp-rail-4/thumb.jpg",
-   "bytes": 680036
+   "bytes": 925284
   },
   {
    "id": "jp-rail-5",
@@ -1546,16 +1747,16 @@
      "lit": "#00e6a2"
     }
    ],
-   "tris": 42796,
+   "tris": 49610,
    "size": [
-    0.5,
-    4.99,
-    0.92
+    0.47,
+    5.45,
+    0.67
    ],
    "dir": "signal/rail/jp-rail-5",
    "file": "signal/rail/jp-rail-5/model.glb",
    "thumb": "signal/rail/jp-rail-5/thumb.jpg",
-   "bytes": 683312
+   "bytes": 924136
   },
   {
    "id": "jp-rail-relay",
@@ -1688,7 +1889,7 @@
    "dir": "signal/rail/jp-rail-relay",
    "file": "signal/rail/jp-rail-relay/model.glb",
    "thumb": "signal/rail/jp-rail-relay/thumb.jpg",
-   "bytes": 704896
+   "bytes": 703692
   },
   {
    "id": "jp-tram",
@@ -1767,6 +1968,32 @@
      "d": 4
     }
    ],
+   "options": [
+    {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    }
+   ],
    "path": [
     "signal",
     "tram"
@@ -1802,7 +2029,138 @@
    "dir": "signal/tram/jp-tram",
    "file": "signal/tram/jp-tram/model.glb",
    "thumb": "signal/tram/jp-tram/thumb.jpg",
-   "bytes": 412652
+   "bytes": 411448
+  },
+  {
+   "id": "jp-tram-symbol",
+   "name": "軌道信号(記号灯 ×・+・T・I)",
+   "desc": "路面電車・LRTの軌道信号。黒い灯器に、×(赤)・+(橙)・T(橙)・I(青緑)の記号灯が並ぶ。×は停止。他の記号の意味は事業者ごとに定められる(実物写真を参考にした形状)。",
+   "dims": "本体 約0.42×1.45m(推定)",
+   "focus": [
+    1,
+    4.6,
+    0
+   ],
+   "view": [
+    0.7,
+    0.3,
+    5
+   ],
+   "night": null,
+   "states": [
+    {
+     "id": "x",
+     "label": "× 停止",
+     "on": [
+      "x"
+     ]
+    },
+    {
+     "id": "plus",
+     "label": "+",
+     "on": [
+      "plus"
+     ]
+    },
+    {
+     "id": "t",
+     "label": "T",
+     "on": [
+      "t"
+     ]
+    },
+    {
+     "id": "i",
+     "label": "I 進行",
+     "on": [
+      "i"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "x",
+     "d": 5
+    },
+    {
+     "s": "i",
+     "d": 5
+    },
+    {
+     "s": "t",
+     "d": 3
+    },
+    {
+     "s": "plus",
+     "d": 3
+    }
+   ],
+   "options": [
+    {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "black"
+    }
+   ],
+   "path": [
+    "signal",
+    "tram"
+   ],
+   "lamps": [
+    {
+     "key": "x",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "plus",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "t",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "i",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    }
+   ],
+   "tris": 28292,
+   "size": [
+    1.39,
+    5.49,
+    0.48
+   ],
+   "dir": "signal/tram/jp-tram-symbol",
+   "file": "signal/tram/jp-tram-symbol/model.glb",
+   "thumb": "signal/tram/jp-tram-symbol/thumb.jpg",
+   "bytes": 330460
   },
   {
    "id": "jp-tram-with-vehicle",
@@ -1905,6 +2263,30 @@
    ],
    "options": [
     {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
      "id": "lens",
      "label": "灯火方式",
      "choices": [
@@ -1985,7 +2367,7 @@
    "dir": "signal/tram/jp-tram-with-vehicle",
    "file": "signal/tram/jp-tram-with-vehicle/model.glb",
    "thumb": "signal/tram/jp-tram-with-vehicle/thumb.jpg",
-   "bytes": 1176960
+   "bytes": 1175476
   },
   {
    "id": "jp-veh-arrow",
@@ -2108,6 +2490,30 @@
    ],
    "options": [
     {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
      "id": "lens",
      "label": "灯火方式",
      "choices": [
@@ -2183,7 +2589,7 @@
    "dir": "signal/vehicle/jp-veh-arrow",
    "file": "signal/vehicle/jp-veh-arrow/model.glb",
    "thumb": "signal/vehicle/jp-veh-arrow/thumb.jpg",
-   "bytes": 1100536
+   "bytes": 1099344
   },
   {
    "id": "jp-veh-flash",
@@ -2248,6 +2654,30 @@
    ],
    "options": [
     {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
      "id": "lens",
      "label": "灯火方式",
      "choices": [
@@ -2288,7 +2718,7 @@
    "dir": "signal/vehicle/jp-veh-flash",
    "file": "signal/vehicle/jp-veh-flash/model.glb",
    "thumb": "signal/vehicle/jp-veh-flash/thumb.jpg",
-   "bytes": 785128
+   "bytes": 783724
   },
   {
    "id": "jp-veh-h250-side",
@@ -2364,6 +2794,30 @@
    ],
    "options": [
     {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
      "id": "lens",
      "label": "灯火方式",
      "choices": [
@@ -2424,7 +2878,7 @@
    "dir": "signal/vehicle/jp-veh-h250-side",
    "file": "signal/vehicle/jp-veh-h250-side/model.glb",
    "thumb": "signal/vehicle/jp-veh-h250-side/thumb.jpg",
-   "bytes": 873288
+   "bytes": 871880
   },
   {
    "id": "jp-veh-h300-arm",
@@ -2500,6 +2954,30 @@
    ],
    "options": [
     {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
      "id": "lens",
      "label": "灯火方式",
      "choices": [
@@ -2560,7 +3038,7 @@
    "dir": "signal/vehicle/jp-veh-h300-arm",
    "file": "signal/vehicle/jp-veh-h300-arm/model.glb",
    "thumb": "signal/vehicle/jp-veh-h300-arm/thumb.jpg",
-   "bytes": 962640
+   "bytes": 961228
   },
   {
    "id": "jp-veh-v-snow",
@@ -2635,6 +3113,30 @@
     }
    ],
    "options": [
+    {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "black"
+    },
     {
      "id": "lens",
      "label": "灯火方式",
@@ -2711,7 +3213,7 @@
    "dir": "signal/vehicle/jp-veh-v-snow",
    "file": "signal/vehicle/jp-veh-v-snow/model.glb",
    "thumb": "signal/vehicle/jp-veh-v-snow/thumb.jpg",
-   "bytes": 879828
+   "bytes": 878424
   },
   {
    "id": "jp-veh-v250",
@@ -2786,6 +3288,30 @@
    ],
    "options": [
     {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
      "id": "lens",
      "label": "灯火方式",
      "choices": [
@@ -2846,7 +3372,7 @@
    "dir": "signal/vehicle/jp-veh-v250",
    "file": "signal/vehicle/jp-veh-v250/model.glb",
    "thumb": "signal/vehicle/jp-veh-v250/thumb.jpg",
-   "bytes": 860336
+   "bytes": 858936
   },
   {
    "id": "jp-track-ballast",
@@ -2868,7 +3394,7 @@
    "dir": "track/railway/jp-track-ballast",
    "file": "track/railway/jp-track-ballast/model.glb",
    "thumb": "track/railway/jp-track-ballast/thumb.jpg",
-   "bytes": 1651888
+   "bytes": 1652016
   },
   {
    "id": "jp-track-slab",
@@ -2890,7 +3416,7 @@
    "dir": "track/railway/jp-track-slab",
    "file": "track/railway/jp-track-slab/model.glb",
    "thumb": "track/railway/jp-track-slab/thumb.jpg",
-   "bytes": 162076
+   "bytes": 162292
   },
   {
    "id": "jp-track-tram",
@@ -2912,7 +3438,7 @@
    "dir": "track/tram/jp-track-tram",
    "file": "track/tram/jp-track-tram/model.glb",
    "thumb": "track/tram/jp-track-tram/thumb.jpg",
-   "bytes": 303656
+   "bytes": 303920
   }
  ]
 }

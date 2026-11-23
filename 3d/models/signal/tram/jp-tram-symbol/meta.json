@@ -1,0 +1,131 @@
+{
+ "id": "jp-tram-symbol",
+ "name": "軌道信号(記号灯 ×・+・T・I)",
+ "desc": "路面電車・LRTの軌道信号。黒い灯器に、×(赤)・+(橙)・T(橙)・I(青緑)の記号灯が並ぶ。×は停止。他の記号の意味は事業者ごとに定められる(実物写真を参考にした形状)。",
+ "dims": "本体 約0.42×1.45m(推定)",
+ "focus": [
+  1,
+  4.6,
+  0
+ ],
+ "view": [
+  0.7,
+  0.3,
+  5
+ ],
+ "night": null,
+ "states": [
+  {
+   "id": "x",
+   "label": "× 停止",
+   "on": [
+    "x"
+   ]
+  },
+  {
+   "id": "plus",
+   "label": "+",
+   "on": [
+    "plus"
+   ]
+  },
+  {
+   "id": "t",
+   "label": "T",
+   "on": [
+    "t"
+   ]
+  },
+  {
+   "id": "i",
+   "label": "I 進行",
+   "on": [
+    "i"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "x",
+   "d": 5
+  },
+  {
+   "s": "i",
+   "d": 5
+  },
+  {
+   "s": "t",
+   "d": 3
+  },
+  {
+   "s": "plus",
+   "d": 3
+  }
+ ],
+ "options": [
+  {
+   "id": "body",
+   "label": "本体色",
+   "type": "color",
+   "target": "body_main",
+   "choices": [
+    {
+     "id": "gray",
+     "label": "灰色",
+     "color": "#b7bcbe"
+    },
+    {
+     "id": "green",
+     "label": "深緑",
+     "color": "#34443b"
+    },
+    {
+     "id": "black",
+     "label": "黒",
+     "color": "#1b1e20"
+    }
+   ],
+   "default": "black"
+  }
+ ],
+ "path": [
+  "signal",
+  "tram"
+ ],
+ "lamps": [
+  {
+   "key": "x",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "plus",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "t",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "i",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  }
+ ],
+ "tris": 28292,
+ "size": [
+  1.39,
+  5.49,
+  0.48
+ ],
+ "dir": "signal/tram/jp-tram-symbol",
+ "file": "signal/tram/jp-tram-symbol/model.glb",
+ "thumb": "signal/tram/jp-tram-symbol/thumb.jpg",
+ "bytes": 330460
+}

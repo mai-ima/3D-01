@@ -11,17 +11,18 @@ import m8 from './signal/rail/jp-rail-3.js';
 import m9 from './signal/rail/jp-rail-4.js';
 import m10 from './signal/rail/jp-rail-5.js';
 import m11 from './signal/rail/jp-rail-relay.js';
-import m12 from './signal/tram/jp-tram-with-vehicle.js';
-import m13 from './signal/tram/jp-tram.js';
-import m14 from './signal/vehicle/jp-veh-arrow.js';
-import m15 from './signal/vehicle/jp-veh-flash.js';
-import m16 from './signal/vehicle/jp-veh-h250-side.js';
-import m17 from './signal/vehicle/jp-veh-h300-arm.js';
-import m18 from './signal/vehicle/jp-veh-v-snow.js';
-import m19 from './signal/vehicle/jp-veh-v250.js';
-import m20 from './track/railway/jp-track-ballast.js';
-import m21 from './track/railway/jp-track-slab.js';
-import m22 from './track/tram/jp-track-tram.js';
+import m12 from './signal/tram/jp-tram-symbol.js';
+import m13 from './signal/tram/jp-tram-with-vehicle.js';
+import m14 from './signal/tram/jp-tram.js';
+import m15 from './signal/vehicle/jp-veh-arrow.js';
+import m16 from './signal/vehicle/jp-veh-flash.js';
+import m17 from './signal/vehicle/jp-veh-h250-side.js';
+import m18 from './signal/vehicle/jp-veh-h300-arm.js';
+import m19 from './signal/vehicle/jp-veh-v-snow.js';
+import m20 from './signal/vehicle/jp-veh-v250.js';
+import m21 from './track/railway/jp-track-ballast.js';
+import m22 from './track/railway/jp-track-slab.js';
+import m23 from './track/tram/jp-track-tram.js';
 export const MODELS=[
   {path:["signal","combined"],def:m0},
   {path:["signal","combined"],def:m1},
@@ -37,13 +38,14 @@ export const MODELS=[
   {path:["signal","rail"],def:m11},
   {path:["signal","tram"],def:m12},
   {path:["signal","tram"],def:m13},
-  {path:["signal","vehicle"],def:m14},
+  {path:["signal","tram"],def:m14},
   {path:["signal","vehicle"],def:m15},
   {path:["signal","vehicle"],def:m16},
   {path:["signal","vehicle"],def:m17},
   {path:["signal","vehicle"],def:m18},
   {path:["signal","vehicle"],def:m19},
-  {path:["track","railway"],def:m20},
+  {path:["signal","vehicle"],def:m20},
   {path:["track","railway"],def:m21},
-  {path:["track","tram"],def:m22},
+  {path:["track","railway"],def:m22},
+  {path:["track","tram"],def:m23},
 ];

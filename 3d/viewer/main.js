@@ -12,20 +12,26 @@ const V=window.__VIEWER__||{root:null};
 let CATS={};
 const TRACK_IDS={ballast:'jp-track-ballast',slab:'jp-track-slab',tram:'jp-track-tram'};
 
+/* ---------- 画質設定(低/高) ---------- */
+const _sg=k=>{try{return localStorage.getItem(k);}catch{return null;}};
+const QUAL={low:{dpr:1.25,shadow:1024,samples:0,bloom:false,gap:32,minDpr:.6,label:'低'},high:{dpr:2,shadow:4096,samples:4,bloom:true,gap:0,minDpr:.75,label:'高'}};
+let quality=_sg('quality')||(((navigator.hardwareConcurrency||4)<6&&matchMedia('(pointer:coarse)').matches)?'low':'high');if(!QUAL[quality])quality='high';
+const Q=()=>QUAL[quality];
 /* ---------- renderer ---------- */
 const canvas=$('gl'),stage=$('stage');
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
 const COARSE=matchMedia('(pointer:coarse)').matches||Math.min(innerWidth,innerHeight)<700;   // スマホ・タブレット: 描画負荷を下げる
-renderer.setPixelRatio(Math.min(devicePixelRatio,COARSE?1.75:2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.setPixelRatio(Math.min(devicePixelRatio,Q().dpr));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;
 const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(34,1,.05,800);camera.position.set(5,3,9);
 const controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.07;controls.minDistance=.35;controls.maxDistance=60;controls.maxPolarAngle=Math.PI/2-.01;controls.autoRotateSpeed=1.4;
-const composer=new EffectComposer(renderer,new THREE.WebGLRenderTarget(4,4,{type:THREE.HalfFloatType,samples:COARSE?2:4}));
+const composer=new EffectComposer(renderer,new THREE.WebGLRenderTarget(4,4,{type:THREE.HalfFloatType,samples:Q().samples}));
 composer.addPass(new RenderPass(scene,camera));const bloom=new UnrealBloomPass(new THREE.Vector2(256,256),.25,.55,1.3);composer.addPass(bloom);composer.addPass(new OutputPass());
-const sun=new THREE.DirectionalLight(0xffffff,2);sun.castShadow=true;sun.shadow.mapSize.set(COARSE?2048:4096,COARSE?2048:4096);Object.assign(sun.shadow.camera,{left:-14,right:14,top:14,bottom:-7,near:1,far:140});sun.shadow.bias=-.0003;sun.shadow.normalBias=.02;sun.shadow.radius=3;
+const sun=new THREE.DirectionalLight(0xffffff,2);sun.castShadow=true;sun.shadow.mapSize.set(Q().shadow,Q().shadow);Object.assign(sun.shadow.camera,{left:-14,right:14,top:14,bottom:-7,near:1,far:140});sun.shadow.bias=-.0003;sun.shadow.normalBias=.02;sun.shadow.radius=3;
 scene.add(sun,sun.target);
 const plight=new THREE.PointLight(0xffffff,0,9,2);scene.add(plight);
 const env=createEnvironment({scene,renderer,bloom,sun});
-let dprMax=Math.min(devicePixelRatio,COARSE?1.75:2),dprNow=dprMax,ema=16.7,tAdapt=0,lastTs=0;
+let dprMax=Math.min(devicePixelRatio,Q().dpr),dprNow=dprMax,ema=16.7,tAdapt=0,lastTs=0;
+bloom.enabled=Q().bloom;
 let SH=0;const mqPhone=matchMedia('(max-width:980px)'),mqLand=matchMedia('(max-width:980px) and (orientation:landscape) and (max-height:560px)');
 const sheetOn=()=>mqPhone.matches&&!mqLand.matches;
 function applyView(){const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;
@@ -121,6 +127,12 @@ function viewPose(name){const {center:c,size:s}=boxInfo;const tf=Math.tan(THREE.
   const dir=new THREE.Vector3(...(dirs[name]||dirs.all)).normalize();const tgt=c.clone();if(name==='all')tgt.y=Math.min(c.y,s.y*.5);
   if(isTrack(entry)){dist=Math.max(s.y*3,3.2)*1.4*Math.max(1,1.2/camera.aspect);tgt.copy(c);tgt.x=entry.path[1]==='tram'?c.x:c.x;}
   return {pos:tgt.clone().add(dir.multiplyScalar(dist)),tgt};}
+function applyQuality(q,save=true){if(!QUAL[q])return;quality=q;const c=Q();if(save)storeSet('quality',q);
+  dprMax=Math.min(devicePixelRatio,c.dpr);dprNow=dprMax;renderer.setPixelRatio(dprNow);
+  sun.shadow.mapSize.set(c.shadow,c.shadow);if(sun.shadow.map){sun.shadow.map.dispose();sun.shadow.map=null;}
+  for(const rt of[composer.renderTarget1,composer.renderTarget2]){rt.samples=c.samples;rt.dispose();}
+  bloom.enabled=c.bloom;resize();document.querySelectorAll('#qSeg button').forEach(b=>b.classList.toggle('on',b.dataset.q===q));}
+document.querySelectorAll('#qSeg button').forEach(b=>b.addEventListener('click',()=>applyQuality(b.dataset.q)));
 let curView='all';
 function flyTo(name,instant){curView=name;const p=viewPose(name);document.querySelectorAll('#views button').forEach(b=>b.classList.toggle('on',b.dataset.v===name));
   if(instant){camera.position.copy(p.pos);controls.target.copy(p.tgt);tween=null;return;}
@@ -183,15 +195,16 @@ addEventListener('keydown',e=>{if(e.target.matches('input,textarea')||e.metaKey|
   if(k==='arrowright')step(1);else if(k==='arrowleft')step(-1);else if(k==='a')setMode('auto');else if(k==='m')setMode('manual');else if(k==='n')setMode('night');
   else if(k==='w')setDisp(disp==='wire'?'shade':'wire');else if(k==='c')setDisp(disp==='clay'?'shade':'clay');
   else if('1234'.includes(k)&&k.length===1)setEnv(['studio','day','dusk','night'][+k-1]);});
+addEventListener('keydown',e=>{if(e.target.matches('input,textarea')||e.metaKey||e.ctrlKey)return;if(e.key.toLowerCase()==='q')applyQuality(quality==='high'?'low':'high');});
 addEventListener('hashchange',()=>{const id=location.hash.slice(1);if(entry&&id&&id!==entry.id&&catalog.some(e=>e.id===id))select(id);});
 
 /* ---------- loop ---------- */
 const clk=new THREE.Clock(),tmp=new THREE.Vector3(),LK={studio:.7,day:.5,dusk:4,night:7};
 function frame(ts){requestAnimationFrame(frame);if(document.hidden)return;
-  if(COARSE&&ts-lastTs<20)return;lastTs=ts;                       // スマホは最大約50fpsに抑えて発熱・電池を節約
+  if(ts-lastTs<Math.max(Q().gap,COARSE?14:0))return;lastTs=ts;                       // スマホは最大約50fpsに抑えて発熱・電池を節約
   const raw=clk.getDelta();const dt=Math.min(raw,.1),t=clk.elapsedTime;
   ema=ema*.94+Math.min(raw*1000,100)*.06;tAdapt+=raw;
-  if(tAdapt>1.2){tAdapt=0;if(ema>30&&dprNow>.75){dprNow=Math.max(.75,dprNow-.25);renderer.setPixelRatio(dprNow);resize();}   // 重いときは解像度を自動で下げる
+  if(tAdapt>1.2){tAdapt=0;if(ema>30&&dprNow>Q().minDpr){dprNow=Math.max(Q().minDpr,dprNow-.25);renderer.setPixelRatio(dprNow);resize();}   // 重いときは解像度を自動で下げる
     else if(ema<18&&dprNow<dprMax){dprNow=Math.min(dprMax,dprNow+.25);renderer.setPixelRatio(dprNow);resize();}
     if(q.has('fps')){$('fps').style.display='block';$('fps').textContent=`${(1000/ema).toFixed(0)}fps · dpr ${dprNow}`;}}
   if(sig&&entry){let info=null;const has=entry.states&&entry.states.length;
@@ -211,7 +224,7 @@ let ALL=[];
 (async()=>{
   let idxJson;try{idxJson=await (await fetch('models/index.json')).json();}catch(e){$('loading').textContent='models/index.json を読み込めません';return;}
   CATS=idxJson.categories;ALL=idxJson.models;catalog=V.root?ALL.filter(e=>e.path[0]===V.root):ALL;
-  buildRail();setEnv(q.get('env')||storeGet('env')||'studio');
+  document.querySelectorAll('#qSeg button').forEach(b=>b.classList.toggle('on',b.dataset.q===quality));buildRail();setEnv(q.get('env')||storeGet('env')||'studio');
   if(THUMB){for(const id of['rail','ctl','tabs'])$(id)&&($(id).style.display='none');document.querySelector('header').style.display='none';$('bar').style.display='none';$('nav').style.display='none';$('title').style.display='none';
     $('app').style.gridTemplateColumns='1fr';$('app').style.gridTemplateRows='1fr';}
   const start=location.hash.slice(1)||q.get('model')||storeGet('last')||catalog[0].id;

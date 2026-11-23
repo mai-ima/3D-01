@@ -56,6 +56,32 @@
    "d": 4
   }
  ],
+ "options": [
+  {
+   "id": "body",
+   "label": "本体色",
+   "type": "color",
+   "target": "body_main",
+   "choices": [
+    {
+     "id": "gray",
+     "label": "灰色",
+     "color": "#b7bcbe"
+    },
+    {
+     "id": "green",
+     "label": "深緑",
+     "color": "#34443b"
+    },
+    {
+     "id": "black",
+     "label": "黒",
+     "color": "#1b1e20"
+    }
+   ],
+   "default": "gray"
+  }
+ ],
  "path": [
   "signal",
   "pedestrian"
@@ -72,14 +98,14 @@
    "lit": "#00e6a2"
   }
  ],
- "tris": 12594,
+ "tris": 15818,
  "size": [
   0.4,
   3.06,
-  0.45
+  0.58
  ],
  "dir": "signal/pedestrian/jp-bike-ped",
  "file": "signal/pedestrian/jp-bike-ped/model.glb",
  "thumb": "signal/pedestrian/jp-bike-ped/thumb.jpg",
- "bytes": 339124
+ "bytes": 378376
 }

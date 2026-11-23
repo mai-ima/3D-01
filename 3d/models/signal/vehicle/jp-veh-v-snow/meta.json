@@ -72,6 +72,30 @@
  ],
  "options": [
   {
+   "id": "body",
+   "label": "本体色",
+   "type": "color",
+   "target": "body_main",
+   "choices": [
+    {
+     "id": "gray",
+     "label": "灰色",
+     "color": "#b7bcbe"
+    },
+    {
+     "id": "green",
+     "label": "深緑",
+     "color": "#34443b"
+    },
+    {
+     "id": "black",
+     "label": "黒",
+     "color": "#1b1e20"
+    }
+   ],
+   "default": "black"
+  },
+  {
    "id": "lens",
    "label": "灯火方式",
    "choices": [
@@ -147,5 +171,5 @@
  "dir": "signal/vehicle/jp-veh-v-snow",
  "file": "signal/vehicle/jp-veh-v-snow/model.glb",
  "thumb": "signal/vehicle/jp-veh-v-snow/thumb.jpg",
- "bytes": 879828
+ "bytes": 878424
 }

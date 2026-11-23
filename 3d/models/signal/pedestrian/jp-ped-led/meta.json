@@ -58,6 +58,30 @@
  ],
  "options": [
   {
+   "id": "body",
+   "label": "本体色",
+   "type": "color",
+   "target": "body_main",
+   "choices": [
+    {
+     "id": "gray",
+     "label": "灰色",
+     "color": "#b7bcbe"
+    },
+    {
+     "id": "green",
+     "label": "深緑",
+     "color": "#34443b"
+    },
+    {
+     "id": "black",
+     "label": "黒",
+     "color": "#1b1e20"
+    }
+   ],
+   "default": "gray"
+  },
+  {
    "id": "button",
    "label": "押ボタン箱",
    "choices": [
@@ -109,14 +133,14 @@
    "lit": "#ff2a18"
   }
  ],
- "tris": 17160,
+ "tris": 20384,
  "size": [
   0.4,
   3.06,
-  0.45
+  0.58
  ],
  "dir": "signal/pedestrian/jp-ped-led",
  "file": "signal/pedestrian/jp-ped-led/model.glb",
  "thumb": "signal/pedestrian/jp-ped-led/thumb.jpg",
- "bytes": 424916
+ "bytes": 458176
 }

@@ -47,11 +47,14 @@ export class Model{
     });
     if(entry.anim){this.armNode=root.getObjectByName(entry.anim.node);this.axis=entry.anim.axis||'z';}
     root.traverse(o=>{if(o.isMesh&&!o.userData.noShadow){o.castShadow=true;o.receiveShadow=true;}});
+    this._colorMats={};root.traverse(o=>{if(o.isMesh)for(const m of[].concat(o.material))for(const op of entry.options||[])if(op.type==='color'&&m.name===op.target)((this._colorMats[op.id]||(this._colorMats[op.id]=new Set())).add(m));});
     for(const op of entry.options||[])this.setOption(op.id,op.default);
     if(entry.states&&entry.states.length)this.setState(entry.states[0].id,true);
   }
   /** 任意部品・方式の切替。choice に一致する opt_<id>_<choice> だけを表示 */
-  setOption(id,choice){this.options[id]=choice;for(const {node,choice:c} of this._optNodes[id]||[])node.visible=(c===choice);}
+  setOption(id,choice){this.options[id]=choice;const op=(this.entry.options||[]).find(o=>o.id===id);
+    if(op&&op.type==='color'){const c=op.choices.find(x=>x.id===choice);if(c)for(const m of this._colorMats[id]||[])m.color.set(c.color);return;}
+    for(const {node,choice:c} of this._optNodes[id]||[])node.visible=(c===choice);}
   setState(id,snap=false){const st=(this.entry.states||[]).find(s=>s.id===id);if(!st)return;this.stateId=id;this.state=st;
     if(snap){for(const L of Object.values(this.lamps))L.v=L.t=this._target(L.key,true);if(this.armNode&&st.arm!=null)this.armNode.rotation[this.axis]=st.arm;}}
   _target(key,bl){const s=this.state;if(!s)return 0;return (s.on&&s.on.includes(key))||(s.flash&&s.flash.includes(key)&&bl)||(s.flash2&&s.flash2.includes(key)&&!bl)?1:0;}

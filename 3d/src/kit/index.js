@@ -78,7 +78,7 @@ function fresnelTexture(){const c=cv(512,512),g=c.getContext('2d');g.fillStyle='
   for(let i=0;i<22;i++){const r=250-i*11;const gr=g.createRadialGradient(256,256,r-9,256,256,r);gr.addColorStop(0,'rgba(255,255,255,.35)');gr.addColorStop(.6,'rgba(255,255,255,.95)');gr.addColorStop(1,'rgba(255,255,255,.15)');g.strokeStyle=gr;g.lineWidth=9;g.beginPath();g.arc(256,256,r-4.5,0,7);g.stroke();}
   const cg=g.createRadialGradient(256,256,0,256,256,52);cg.addColorStop(0,'rgba(255,255,255,1)');cg.addColorStop(1,'rgba(255,255,255,.3)');g.fillStyle=cg;g.beginPath();g.arc(256,256,52,0,7);g.fill();return tex(c);}
 const FRES=fresnelTexture();
-function makeLamp(parent,x,y,z,R,color,map,{hood=.28,gap=1.5,round=true}={}){
+function makeLamp(parent,x,y,z,R,color,map,{hood=.28,gap=1.5,round=true,hoodMat=MAT.hood}={}){
   const g=new THREE.Group();g.position.set(x,y,z);parent.add(g);
   const bez=new THREE.LatheGeometry([[R+.004,-.012],[R+.027,-.012],[R+.027,.008],[R+.014,.022],[R+.004,.022]].map(p=>new THREE.Vector2(...p)),96);bez.rotateX(Math.PI/2);add(g,bez,MAT.rubber);
   add(g,new THREE.CircleGeometry(R+.01,64),MAT.black,0,0,-.006);
@@ -88,8 +88,8 @@ function makeLamp(parent,x,y,z,R,color,map,{hood=.28,gap=1.5,round=true}={}){
   let lensB=null,matB=null;
   if(map===LED&&config.bulb){const bg=new THREE.Group();bg.name='opt_lens_bulb';g.add(bg);       // 電球式(フレネルレンズ)
     matB=lensMaterial(c.dark,c.e,FRES);matB.roughness=.28;lensB=add(bg,domeLens(R,.032,96),matB);}
-  if(hood>0){const hg=new THREE.CylinderGeometry(R+.034,R+.034,hood,80,1,true,gap/2,Math.PI*2-gap);hg.rotateX(Math.PI/2);hg.translate(0,0,hood/2);add(g,hg,MAT.hood);
-    const tor=add(g,new THREE.TorusGeometry(R+.034,.0055,10,80,Math.PI*2-gap),MAT.hood,0,0,hood);tor.rotation.z=gap/2-Math.PI/2;
+  if(hood>0){const hg=new THREE.CylinderGeometry(R+.034,R+.034,hood,80,1,true,gap/2,Math.PI*2-gap);hg.rotateX(Math.PI/2);hg.translate(0,0,hood/2);add(g,hg,hoodMat);
+    const tor=add(g,new THREE.TorusGeometry(R+.034,.0055,10,80,Math.PI*2-gap),hoodMat,0,0,hood);tor.rotation.z=gap/2-Math.PI/2;
     const ig=new THREE.CylinderGeometry(R+.029,R+.029,hood-.01,64,1,true,gap/2,Math.PI*2-gap);ig.rotateX(Math.PI/2);ig.translate(0,0,hood/2);add(g,ig,new THREE.MeshStandardMaterial({color:0x020202,roughness:1,side:THREE.DoubleSide}));}
   let glow=null;if(config.sprites){glow=new THREE.Sprite(new THREE.SpriteMaterial({map:GLOW,color:c.e,blending:THREE.AdditiveBlending,transparent:true,depthWrite:false,opacity:0}));
   glow.scale.setScalar(R*9);glow.position.z=.07;glow.userData.noShadow=true;g.add(glow);}
