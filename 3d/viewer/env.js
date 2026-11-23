@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 import {Sky} from 'three/addons/objects/Sky.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {RGBELoader} from 'three/addons/loaders/RGBELoader.js';
 
 const cv=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;};
 const tex=(c,rep,srgb=true)=>{const t=new THREE.CanvasTexture(c);t.anisotropy=16;if(srgb)t.colorSpace=THREE.SRGBColorSpace;if(rep){t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rep[0],rep[1]);}return t;};
@@ -27,9 +28,11 @@ export function applyPBR(mat,dir,rep,{normal=1,rough=true,ao=true,color=true}={}
 export function createEnvironment({scene,renderer,bloom,sun}){
   const root=new THREE.Group();scene.add(root);
   const hemi=new THREE.HemisphereLight(0x6f86c4,0x2a2622,0);scene.add(hemi);
+  const cur={mode:'studio',group:'road',wet:false,track:false,deck:false};
   const pmrem=new THREE.PMREMGenerator(renderer);let envRT=null;
   const sky=new Sky();sky.scale.setScalar(1000);const skyScene=new THREE.Scene();skyScene.add(sky);
   const roomEnv=pmrem.fromScene(new RoomEnvironment(),.04).texture;
+  let hdriDay=null;new RGBELoader().load('assets/hdri/sky_day.hdr',t=>{t.mapping=THREE.EquirectangularReflectionMapping;hdriDay=pmrem.fromEquirectangular(t).texture;t.dispose();if(cur&&cur.mode==='day')apply();},undefined,()=>{});   // 実写の空(Poly Haven・CC0)
   // studio background gradient
   const gc=cv(4,256),gg=gc.getContext('2d'),gr=gg.createLinearGradient(0,0,0,256);gr.addColorStop(0,'#aab0b6');gr.addColorStop(1,'#80878e');gg.fillStyle=gr;gg.fillRect(0,0,4,256);
   const studioBg=new THREE.CanvasTexture(gc);studioBg.colorSpace=THREE.SRGBColorSpace;
@@ -93,7 +96,6 @@ export function createEnvironment({scene,renderer,bloom,sun}){
   for(const k of SCENES){G[k].visible=false;root.add(G[k]);}
 
   /* --- state --- */
-  const cur={mode:'studio',group:'road',wet:false,track:false,deck:false};
   const skyCache={};
   function skyEnv(p,key){if(skyCache[key])return skyCache[key];const u=sky.material.uniforms;u.turbidity.value=p.turb;u.rayleigh.value=p.ray;u.mieCoefficient.value=p.mie;u.mieDirectionalG.value=.8;
     const sd=new THREE.Vector3().setFromSphericalCoords(1,Math.PI/2-THREE.MathUtils.degToRad(p.elev),p.az);u.sunPosition.value.copy(sd);
@@ -105,7 +107,7 @@ export function createEnvironment({scene,renderer,bloom,sun}){
     const out=mode!=='studio';
     if(!out){G.studio.visible=true;G.studio.position.y=cur.track?-.42:0;scene.environment=roomEnv;scene.background=studioBg;scene.fog=null;scene.environmentIntensity=p.env;scene.backgroundIntensity=1;
       sun.position.set(5,9,7);sun.color.set(0xfff4e6);sun.intensity=2.2;hemi.intensity=0;}
-    else{const e=skyEnv(p,mode);scene.environment=e.tex;scene.background=e.tex;scene.environmentIntensity=p.env;scene.backgroundIntensity=mode==='night'?.8:1;
+    else{const e=skyEnv(p,mode);scene.environment=(mode==='day'&&hdriDay)?hdriDay:e.tex;scene.background=e.tex;scene.environmentIntensity=p.env;scene.backgroundIntensity=mode==='night'?.8:1;
       scene.fog=new THREE.Fog(p.fog,70,420);
       sun.position.copy(e.ld).multiplyScalar(40);sun.color.set(p.sunC);sun.intensity=p.sunI;hemi.intensity=p.hemi;
       G[groundFor(group)].visible=true;G.skyline.visible=true;G.base.visible=true;G.roadZ.userData.mk.visible=!(cur.track&&group==='roadZ');for(const m of G.winMats)m.emissiveIntensity=p.win;
