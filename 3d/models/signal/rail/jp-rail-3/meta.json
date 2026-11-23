@@ -2,7 +2,7 @@
  "id": "jp-rail-3",
  "group": "rail",
  "name": "鉄道信号機 色灯式3灯(閉塞・場内・出発)",
- "desc": "上から黄・緑・赤の3灯式(実物写真で赤が最下段)。赤=停止、黄=注意(25km/h以下などの速度制限)、青=進行。黒い背景板と長い円筒フードで遠くから視認させる。",
+ "desc": "上から緑・黄・赤の3灯式(実物写真で最上段が緑、最下段が赤)。赤=停止、黄=注意(25km/h以下などの速度制限)、青=進行。黒い背景板と長い円筒フードで遠くから視認させる。",
  "dims": "レンズ約φ190(推定)。灯器配列は事業者で異なる場合あり",
  "focus": [
   0,
@@ -79,14 +79,14 @@
  ],
  "lamps": [
   {
-   "key": "yellow",
-   "color": "#ffbd14",
-   "lit": "#ffa800"
-  },
-  {
    "key": "green",
    "color": "#18d9a0",
    "lit": "#00e6a2"
+  },
+  {
+   "key": "yellow",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
   },
   {
    "key": "red",
@@ -94,14 +94,14 @@
    "lit": "#ff2a18"
   }
  ],
- "tris": 27984,
+ "tris": 33648,
  "size": [
   0.47,
   4.91,
-  0.59
+  0.64
  ],
  "dir": "signal/rail/jp-rail-3",
  "file": "signal/rail/jp-rail-3/model.glb",
  "thumb": "signal/rail/jp-rail-3/thumb.jpg",
- "bytes": 883732
+ "bytes": 923228
 }

@@ -240,7 +240,7 @@
    "dir": "signal/combined/jp-combo-arm-ped",
    "file": "signal/combined/jp-combo-arm-ped/model.glb",
    "thumb": "signal/combined/jp-combo-arm-ped/thumb.jpg",
-   "bytes": 1275732
+   "bytes": 1275172
   },
   {
    "id": "jp-combo-vert-ped",
@@ -470,7 +470,7 @@
    "dir": "signal/combined/jp-combo-vert-ped",
    "file": "signal/combined/jp-combo-vert-ped/model.glb",
    "thumb": "signal/combined/jp-combo-vert-ped/thumb.jpg",
-   "bytes": 1128648
+   "bytes": 1133800
   },
   {
    "id": "jp-crossing-alarm",
@@ -709,7 +709,7 @@
    "dir": "signal/crossing/jp-crossing-alarm",
    "file": "signal/crossing/jp-crossing-alarm/model.glb",
    "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
-   "bytes": 787968
+   "bytes": 806776
   },
   {
    "id": "jp-crossing-gate",
@@ -796,7 +796,7 @@
    "dir": "signal/crossing/jp-crossing-gate",
    "file": "signal/crossing/jp-crossing-gate/model.glb",
    "thumb": "signal/crossing/jp-crossing-gate/thumb.jpg",
-   "bytes": 133276
+   "bytes": 131588
   },
   {
    "id": "jp-bike-ped",
@@ -907,7 +907,7 @@
    "dir": "signal/pedestrian/jp-bike-ped",
    "file": "signal/pedestrian/jp-bike-ped/model.glb",
    "thumb": "signal/pedestrian/jp-bike-ped/thumb.jpg",
-   "bytes": 378328
+   "bytes": 368088
   },
   {
    "id": "jp-ped-button",
@@ -980,7 +980,7 @@
    "dir": "signal/pedestrian/jp-ped-button",
    "file": "signal/pedestrian/jp-ped-button/model.glb",
    "thumb": "signal/pedestrian/jp-ped-button/thumb.jpg",
-   "bytes": 230512
+   "bytes": 224572
   },
   {
    "id": "jp-ped-count",
@@ -1239,7 +1239,7 @@
    "dir": "signal/pedestrian/jp-ped-count",
    "file": "signal/pedestrian/jp-ped-count/model.glb",
    "thumb": "signal/pedestrian/jp-ped-count/thumb.jpg",
-   "bytes": 470584
+   "bytes": 458772
   },
   {
    "id": "jp-ped-led",
@@ -1385,13 +1385,13 @@
    "dir": "signal/pedestrian/jp-ped-led",
    "file": "signal/pedestrian/jp-ped-led/model.glb",
    "thumb": "signal/pedestrian/jp-ped-led/thumb.jpg",
-   "bytes": 458128
+   "bytes": 447064
   },
   {
    "id": "jp-rail-3",
    "group": "rail",
    "name": "鉄道信号機 色灯式3灯(閉塞・場内・出発)",
-   "desc": "上から黄・緑・赤の3灯式(実物写真で赤が最下段)。赤=停止、黄=注意(25km/h以下などの速度制限)、青=進行。黒い背景板と長い円筒フードで遠くから視認させる。",
+   "desc": "上から緑・黄・赤の3灯式(実物写真で最上段が緑、最下段が赤)。赤=停止、黄=注意(25km/h以下などの速度制限)、青=進行。黒い背景板と長い円筒フードで遠くから視認させる。",
    "dims": "レンズ約φ190(推定)。灯器配列は事業者で異なる場合あり",
    "focus": [
     0,
@@ -1468,14 +1468,14 @@
    ],
    "lamps": [
     {
-     "key": "yellow",
-     "color": "#ffbd14",
-     "lit": "#ffa800"
-    },
-    {
      "key": "green",
      "color": "#18d9a0",
      "lit": "#00e6a2"
+    },
+    {
+     "key": "yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
     },
     {
      "key": "red",
@@ -1483,16 +1483,16 @@
      "lit": "#ff2a18"
     }
    ],
-   "tris": 27984,
+   "tris": 33648,
    "size": [
     0.47,
     4.91,
-    0.59
+    0.64
    ],
    "dir": "signal/rail/jp-rail-3",
    "file": "signal/rail/jp-rail-3/model.glb",
    "thumb": "signal/rail/jp-rail-3/thumb.jpg",
-   "bytes": 883732
+   "bytes": 923228
   },
   {
    "id": "jp-rail-4",
@@ -1606,16 +1606,16 @@
      "lit": "#00e6a2"
     }
    ],
-   "tris": 34192,
+   "tris": 41744,
    "size": [
     0.47,
     5.18,
-    0.59
+    0.64
    ],
    "dir": "signal/rail/jp-rail-4",
    "file": "signal/rail/jp-rail-4/model.glb",
    "thumb": "signal/rail/jp-rail-4/thumb.jpg",
-   "bytes": 898200
+   "bytes": 938524
   },
   {
    "id": "jp-rail-5",
@@ -1747,16 +1747,16 @@
      "lit": "#00e6a2"
     }
    ],
-   "tris": 40390,
+   "tris": 49830,
    "size": [
     0.47,
     5.45,
-    0.59
+    0.64
    ],
    "dir": "signal/rail/jp-rail-5",
    "file": "signal/rail/jp-rail-5/model.glb",
    "thumb": "signal/rail/jp-rail-5/thumb.jpg",
-   "bytes": 896228
+   "bytes": 937384
   },
   {
    "id": "jp-rail-relay",
@@ -1889,7 +1889,7 @@
    "dir": "signal/rail/jp-rail-relay",
    "file": "signal/rail/jp-rail-relay/model.glb",
    "thumb": "signal/rail/jp-rail-relay/thumb.jpg",
-   "bytes": 703644
+   "bytes": 720872
   },
   {
    "id": "jp-tram",
@@ -2029,7 +2029,7 @@
    "dir": "signal/tram/jp-tram",
    "file": "signal/tram/jp-tram/model.glb",
    "thumb": "signal/tram/jp-tram/thumb.jpg",
-   "bytes": 411400
+   "bytes": 416672
   },
   {
    "id": "jp-tram-symbol",
@@ -2160,7 +2160,7 @@
    "dir": "signal/tram/jp-tram-symbol",
    "file": "signal/tram/jp-tram-symbol/model.glb",
    "thumb": "signal/tram/jp-tram-symbol/thumb.jpg",
-   "bytes": 330412
+   "bytes": 318872
   },
   {
    "id": "jp-tram-with-vehicle",
@@ -2367,7 +2367,7 @@
    "dir": "signal/tram/jp-tram-with-vehicle",
    "file": "signal/tram/jp-tram-with-vehicle/model.glb",
    "thumb": "signal/tram/jp-tram-with-vehicle/thumb.jpg",
-   "bytes": 1175428
+   "bytes": 1208964
   },
   {
    "id": "jp-veh-arrow",
@@ -2589,7 +2589,7 @@
    "dir": "signal/vehicle/jp-veh-arrow",
    "file": "signal/vehicle/jp-veh-arrow/model.glb",
    "thumb": "signal/vehicle/jp-veh-arrow/thumb.jpg",
-   "bytes": 1099296
+   "bytes": 1114316
   },
   {
    "id": "jp-veh-center-pole",
@@ -2778,7 +2778,7 @@
    "dir": "signal/vehicle/jp-veh-center-pole",
    "file": "signal/vehicle/jp-veh-center-pole/model.glb",
    "thumb": "signal/vehicle/jp-veh-center-pole/thumb.jpg",
-   "bytes": 846400
+   "bytes": 854344
   },
   {
    "id": "jp-veh-flash",
@@ -2907,7 +2907,7 @@
    "dir": "signal/vehicle/jp-veh-flash",
    "file": "signal/vehicle/jp-veh-flash/model.glb",
    "thumb": "signal/vehicle/jp-veh-flash/thumb.jpg",
-   "bytes": 783676
+   "bytes": 794392
   },
   {
    "id": "jp-veh-h250-side",
@@ -3067,7 +3067,7 @@
    "dir": "signal/vehicle/jp-veh-h250-side",
    "file": "signal/vehicle/jp-veh-h250-side/model.glb",
    "thumb": "signal/vehicle/jp-veh-h250-side/thumb.jpg",
-   "bytes": 871832
+   "bytes": 878708
   },
   {
    "id": "jp-veh-h300-arm",
@@ -3242,7 +3242,7 @@
    "dir": "signal/vehicle/jp-veh-h300-arm",
    "file": "signal/vehicle/jp-veh-h300-arm/model.glb",
    "thumb": "signal/vehicle/jp-veh-h300-arm/thumb.jpg",
-   "bytes": 974952
+   "bytes": 986072
   },
   {
    "id": "jp-veh-hoodless",
@@ -3401,7 +3401,7 @@
    "dir": "signal/vehicle/jp-veh-hoodless",
    "file": "signal/vehicle/jp-veh-hoodless/model.glb",
    "thumb": "signal/vehicle/jp-veh-hoodless/thumb.jpg",
-   "bytes": 700952
+   "bytes": 716180
   },
   {
    "id": "jp-veh-v-snow",
@@ -3576,7 +3576,7 @@
    "dir": "signal/vehicle/jp-veh-v-snow",
    "file": "signal/vehicle/jp-veh-v-snow/model.glb",
    "thumb": "signal/vehicle/jp-veh-v-snow/thumb.jpg",
-   "bytes": 878376
+   "bytes": 887528
   },
   {
    "id": "jp-veh-v250",
@@ -3735,7 +3735,7 @@
    "dir": "signal/vehicle/jp-veh-v250",
    "file": "signal/vehicle/jp-veh-v250/model.glb",
    "thumb": "signal/vehicle/jp-veh-v250/thumb.jpg",
-   "bytes": 858888
+   "bytes": 864992
   },
   {
    "id": "jp-track-ballast",
@@ -3779,7 +3779,7 @@
    "dir": "track/railway/jp-track-slab",
    "file": "track/railway/jp-track-slab/model.glb",
    "thumb": "track/railway/jp-track-slab/thumb.jpg",
-   "bytes": 162172
+   "bytes": 161320
   },
   {
    "id": "jp-track-tram",
@@ -3801,7 +3801,7 @@
    "dir": "track/tram/jp-track-tram",
    "file": "track/tram/jp-track-tram/model.glb",
    "thumb": "track/tram/jp-track-tram/thumb.jpg",
-   "bytes": 303864
+   "bytes": 303480
   }
  ]
 }

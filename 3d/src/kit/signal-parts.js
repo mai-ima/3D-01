@@ -87,7 +87,7 @@ function railBody(keys,colors,{post=3.6,plate='2出'}={}){
   housing(g,W-.06,H-.1,.26,.04,HG);                                                                                                  // 灯器ケース
   add(g,roundBox(W-.02,H-.02,.05,.012,.004),MAT.black,0,0,.16);   // レンズを収める角ケース
   const sp=rrShape(W+.12,H+.12,(W+.12)/2);add(g,new THREE.ExtrudeGeometry(sp,{depth:.03,bevelEnabled:true,bevelThickness:.004,bevelSize:.004,bevelSegments:2,curveSegments:32}),MAT.black,0,0,.13);   // 長円形の背面板
-  keys.forEach((k,i)=>reg(L,k,makeLamp(g,0,(n-1)/2*pitch-i*pitch,.172,R,colors[i],LED,{hood:0})));
+  keys.forEach((k,i)=>reg(L,k,makeLamp(g,0,(n-1)/2*pitch-i*pitch,.172,R,colors[i],LED,{hood:.07,gap:1.5,hoodMat:MAT.black})));
   rod(root,[0,post-.45,.09],[0,post-.45,.22],.03);rod(root,[0,post-.45,.09],[0,post-.45+.0,.0],.03);
   if(plate){const po=opt(root,'plate','on');const pm=new THREE.MeshStandardMaterial({map:plateTexture([plate],{bg:'#101010',fg:'#fff',w:200,h:260,size:92}),roughness:.5});
     add(po,roundBox(.26,.34,.02,.01,.004),MAT.black,0,cy+H/2+.28,.12);add(po,new THREE.PlaneGeometry(.24,.32),pm,0,cy+H/2+.28,.132);}
