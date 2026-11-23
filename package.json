@@ -7,12 +7,15 @@
     "export": "node 3d/tools/export.cjs",
     "optimize": "node 3d/tools/optimize.cjs",
     "thumbs": "node 3d/tools/thumbs.cjs",
-    "check": "node 3d/tools/check.cjs && node 3d/tools/check-deps.cjs",
+    "check": "node 3d/tools/check.cjs && node 3d/tools/check-deps.cjs && node 3d/tools/check-gltf.cjs",
     "viewer": "node 3d/tools/build-viewer.cjs",
     "pack": "B64=1 node 3d/tools/build-viewer.cjs && node 3d/tools/pack-artifact.cjs",
     "build": "npm run export && npm run optimize && npm run check && npm run viewer && npm run smoke",
     "audit": "node 3d/tools/audit.cjs",
-    "smoke": "node 3d/tools/smoke.cjs"
+    "smoke": "node 3d/tools/smoke.cjs",
+    "assets": "node 3d/tools/fetch-assets.cjs",
+    "lint": "eslint .",
+    "validate": "node 3d/tools/check-gltf.cjs"
   },
   "repository": {
     "type": "git",
@@ -23,8 +26,14 @@
     "three": "^0.170.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@gltf-transform/cli": "^4.5.1",
-    "esbuild": "^0.28.2"
+    "esbuild": "^0.28.2",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0",
+    "gltf-validator": "^2.0.0-dev.3.10",
+    "pixelmatch": "^8.0.0",
+    "pngjs": "^7.0.0"
   },
   "private": true
 }

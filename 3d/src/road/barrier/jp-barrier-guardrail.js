@@ -15,7 +15,6 @@ export default {id:'jp-barrier-guardrail',name:'ガードレール(Gr-C型・波
       const br=add(root,roundBox(.1,.17,.06,.012,.004),RM.zinc,x,cy,.09);                                                             // ブラケット(ビームの受け)
       for(const dy of[-.045,.045])bolt(root,x,cy+dy,.125,.012);}
     for(let k=0;k<2;k++){const len=4.0,x=-LEN/2+2+k*4;const b=add(root,beamGeo(len),RM.zinc,x,cy,.115);b.position.z=.115;}
-    for(const x of[-LEN/2+4,-LEN/2+8]){} /* ビームの継ぎ目(ラップ部) */
     for(const x of[0]){add(root,roundBox(.34,.34,.006,.01,.002),RM.zincDull,x,cy,.185);for(const dx of[-.1,.1])for(const dy of[-.1,.1])bolt(root,x+dx,cy+dy,.19,.01);}
     const ro=opt(root,'reflector','on');for(let i=0;i<=N;i++){const x=-LEN/2+i*SP;add(ro,new THREE.CylinderGeometry(.034,.034,.008,32),RM.reflOrange,x,cy,.195).rotation.x=Math.PI/2;}
     return {root,lamps:{}};}};

@@ -4,6 +4,7 @@ import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
 import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
 import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
 import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
+import {GTAOPass} from 'three/addons/postprocessing/GTAOPass.js';
 import {loadModel,cycleAt} from '../runtime/model-runtime.js';
 import {createEnvironment} from './env.js';
 
@@ -16,7 +17,7 @@ const TRACK_IDS={ballast:'jp-track-ballast',slab:'jp-track-slab',tram:'jp-track-
 
 /* ---------- 画質設定(低/高) ---------- */
 const _sg=k=>{try{return localStorage.getItem(k);}catch{return null;}};
-const QUAL={low:{dpr:1.25,shadow:1024,samples:0,bloom:false,gap:32,minDpr:.6,label:'低'},high:{dpr:2,shadow:4096,samples:4,bloom:true,gap:0,minDpr:.75,label:'高'}};
+const QUAL={low:{dpr:1.25,shadow:1024,samples:0,bloom:false,ao:false,gap:32,minDpr:.6,label:'低'},high:{dpr:2,shadow:4096,samples:4,bloom:true,ao:true,gap:0,minDpr:.75,label:'高'}};
 let quality=_sg('quality')||(((navigator.hardwareConcurrency||4)<6&&matchMedia('(pointer:coarse)').matches)?'low':'high');if(!QUAL[quality])quality='high';
 const Q=()=>QUAL[quality];
 /* ---------- renderer ---------- */
@@ -27,13 +28,16 @@ renderer.setPixelRatio(Math.min(devicePixelRatio,Q().dpr));renderer.shadowMap.en
 const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(34,1,.05,800);camera.position.set(5,3,9);
 const controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.07;controls.minDistance=.35;controls.maxDistance=60;controls.maxPolarAngle=Math.PI/2-.01;controls.autoRotateSpeed=1.4;
 const composer=new EffectComposer(renderer,new THREE.WebGLRenderTarget(4,4,{type:THREE.HalfFloatType,samples:Q().samples}));
-composer.addPass(new RenderPass(scene,camera));const bloom=new UnrealBloomPass(new THREE.Vector2(256,256),.25,.55,1.3);composer.addPass(bloom);composer.addPass(new OutputPass());
+composer.addPass(new RenderPass(scene,camera));
+const gtao=new GTAOPass(scene,camera,256,256);gtao.output=GTAOPass.OUTPUT.Default;gtao.updateGtaoMaterial({radius:.9,distanceExponent:1.2,thickness:2.5,scale:2.2,samples:16,distanceFallOff:1,screenSpaceRadius:false});gtao.updatePdMaterial({lumaPhi:10,depthPhi:2,normalPhi:3,radius:6,rings:2,samples:12});
+composer.addPass(gtao);                                         // 接触の陰影(アンビエントオクルージョン): 接合部・地面との接地・くぼみに自然な影を出す
+const bloom=new UnrealBloomPass(new THREE.Vector2(256,256),.25,.55,1.3);composer.addPass(bloom);composer.addPass(new OutputPass());
 const sun=new THREE.DirectionalLight(0xffffff,2);sun.castShadow=true;sun.shadow.mapSize.set(Q().shadow,Q().shadow);Object.assign(sun.shadow.camera,{left:-14,right:14,top:14,bottom:-7,near:1,far:140});sun.shadow.bias=-.0003;sun.shadow.normalBias=.02;sun.shadow.radius=3;
 scene.add(sun,sun.target);
 const plight=new THREE.PointLight(0xffffff,0,9,2);scene.add(plight);
 const env=createEnvironment({scene,renderer,bloom,sun});
 let dprMax=Math.min(devicePixelRatio,Q().dpr),dprNow=dprMax,ema=16.7,tAdapt=0,lastTs=0;
-bloom.enabled=Q().bloom;
+bloom.enabled=Q().bloom;gtao.enabled=Q().ao&&(!THUMB||q.has('ao'));
 let SH=0;const mqPhone=matchMedia('(max-width:980px)'),mqLand=matchMedia('(max-width:980px) and (orientation:landscape) and (max-height:560px)');
 const sheetOn=()=>!THUMB&&mqPhone.matches&&!mqLand.matches;
 function coverH(){if(!sheetOn())return 0;const sh=$('sheet'),st=stage.getBoundingClientRect(),r=sh.getBoundingClientRect();return Math.max(0,Math.min(st.height,st.bottom-r.top));}   // ステージの下に重なっているシートの実高さ
@@ -163,7 +167,7 @@ function applyQuality(q,save=true){if(!QUAL[q])return;quality=q;const c=Q();if(s
   dprMax=Math.min(devicePixelRatio,c.dpr);dprNow=dprMax;renderer.setPixelRatio(dprNow);
   sun.shadow.mapSize.set(c.shadow,c.shadow);if(sun.shadow.map){sun.shadow.map.dispose();sun.shadow.map=null;}
   for(const rt of[composer.renderTarget1,composer.renderTarget2]){rt.samples=c.samples;rt.dispose();}
-  bloom.enabled=c.bloom;resize();document.querySelectorAll('#qSeg button').forEach(b=>b.classList.toggle('on',b.dataset.q===q));}
+  bloom.enabled=c.bloom;gtao.enabled=c.ao;resize();document.querySelectorAll('#qSeg button').forEach(b=>b.classList.toggle('on',b.dataset.q===q));}
 document.querySelectorAll('#qSeg button').forEach(b=>b.addEventListener('click',()=>applyQuality(b.dataset.q)));
 let curView='all';
 function flyTo(name,instant){curView=name;const p=viewPose(name);document.querySelectorAll('#views button').forEach(b=>b.classList.toggle('on',b.dataset.v===name));

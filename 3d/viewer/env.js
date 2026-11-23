@@ -17,6 +17,13 @@ export const PRESET={
   studio:{exp:.72,env:.7,bloomS:.22,bloomT:1.3,glow:.16,hemi:0},
 };
 
+/** 実写のPBR素材(Poly Haven・CC0)を、拡散・法線・粗さ・AOとして材質へ割り当てる。読み込めなければ何もしない(手描きの素材のまま) */
+const _tl=new THREE.TextureLoader();
+export function applyPBR(mat,dir,rep,{normal=1,rough=true,ao=true,color=true}={}){
+  const ld=(f,srgb)=>new Promise(res=>_tl.load(dir+'/'+f,t=>{t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rep[0],rep[1]);t.anisotropy=16;if(srgb)t.colorSpace=THREE.SRGBColorSpace;res(t);},undefined,()=>res(null)));
+  return Promise.all([ld('diff.jpg',true),ld('nor.jpg',false),ld('rough.jpg',false),ld('ao.jpg',false)]).then(([d,n,r,a])=>{
+    if(d&&color){mat.map=d;mat.color.set(0xffffff);}if(n){mat.normalMap=n;mat.normalScale=new THREE.Vector2(normal,normal);mat.bumpMap=null;}
+    if(r&&rough){mat.roughnessMap=r;mat.roughness=1;}if(a&&ao){mat.aoMap=a;mat.aoMapIntensity=.8;}mat.needsUpdate=true;return !!d;});}
 export function createEnvironment({scene,renderer,bloom,sun}){
   const root=new THREE.Group();scene.add(root);
   const hemi=new THREE.HemisphereLight(0x6f86c4,0x2a2622,0);scene.add(hemi);
@@ -34,6 +41,11 @@ export function createEnvironment({scene,renderer,bloom,sun}){
   pg.strokeStyle='#4d4f53';pg.lineWidth=4;for(const p of[0,256,512]){pg.beginPath();pg.moveTo(p,0);pg.lineTo(p,512);pg.stroke();pg.beginPath();pg.moveTo(0,p);pg.lineTo(512,p);pg.stroke();}
   const walkMat=new THREE.MeshStandardMaterial({map:tex(pc,[40,6]),bumpMap:tex(pc,[40,6],false),bumpScale:2,roughness:.85});
   const concrete=new THREE.MeshStandardMaterial({color:0xa4a5a8,roughness:.8});
+  /* 実写のPBR素材(3d/assets/textures)。素材1枚が約2〜3m四方に見える繰り返し回数にする */
+  const AS='assets/textures';                       // ビューアと同じ階層の assets/ から読む(ビルドが 3d/assets をコピーする)
+  applyPBR(roadMat,AS+'/asphalt',[26,26],{normal:.9,ao:false});
+  applyPBR(walkMat,AS+'/pavers',[34,5],{normal:1.0,ao:false}).then(()=>{walkMat.color.set(0xd6d6d6);});   // 実写の素材は暗めなので、明るさを補正
+  applyPBR(concrete,AS+'/concrete',[30,.5],{normal:.7,ao:false});
   const paint=new THREE.MeshStandardMaterial({color:0xe9e9e4,roughness:.7,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
   const paintY=paint.clone();paintY.color.set(0xe3b81a);
   const steel=new THREE.MeshStandardMaterial({color:0x8a8f93,roughness:.35,metalness:.9});
@@ -52,7 +64,7 @@ export function createEnvironment({scene,renderer,bloom,sun}){
   // 道路: 歩道(縁石・点字ブロック)+車道+横断歩道+車線。cwx=横断歩道の位置
   function makeRoad(cwx){const g=new THREE.Group();
     mesh(g,new THREE.BoxGeometry(120,.15,10),walkMat,0,-.075,-2.7);mesh(g,new THREE.BoxGeometry(120,.17,.26),concrete,0,-.065,2.33);
-    plane(g,120,.3,tenMat,0,.004,1.9);const rd=plane(g,120,60,new THREE.MeshPhysicalMaterial({map:roadMat.map,bumpMap:roadMat.bumpMap,bumpScale:1.6,roughness:.92,color:0xd2d2d2}),0,-.15,32.4);G.roadMat=rd.material;
+    plane(g,120,.3,tenMat,0,.004,1.9);const rd=plane(g,120,60,roadMat,0,-.15,32.4);G.roadMat=roadMat;
     const mk=new THREE.Group();g.add(mk);g.userData.mk=mk;   // 軌道を敷くときは隠す路面標示
     for(let i=0;i<10;i++)plane(mk,3.6,.45,paint,cwx,-.146,3.4+i*.9);          // 横断歩道(車道を横切る向き)
     plane(g,120,.15,paint,0,-.146,2.9);plane(mk,120,.15,paint,0,-.146,9.9);   // 外側線
@@ -62,7 +74,7 @@ export function createEnvironment({scene,renderer,bloom,sun}){
   G.roadZ=makeRoad(-8);G.roadZ.rotation.y=Math.PI/2;   // 車道がZ方向(車両用: 車は+Zから来て灯器は+Zを向く。アームは+X=車道上へ伸びる)
   G.rail=new THREE.Group();{const g=G.rail;plane(g,1400,1400,grassMat,0,-.42,0);plane(g,2.4,160,ballastMat,-3.9,-.4,0);plane(g,2.4,160,ballastMat,3.9,-.4,0);}
   G.crossing=new THREE.Group();{const g=G.crossing;plane(g,1400,1400,grassMat,0,-.42,0);
-    const rm=new THREE.MeshPhysicalMaterial({map:roadMat.map,bumpMap:roadMat.bumpMap,bumpScale:1.6,roughness:.92,color:0xd2d2d2});G.crossMat=rm;
+    const rm=roadMat;G.crossMat=rm;
     plane(g,7.2,153,rm,0,0,8.5);
     plane(g,.14,100,paint,-3.35,.003,35);plane(g,.14,100,paint,3.35,.003,35);for(let i=0;i<14;i++)plane(g,.14,2.2,paint,0,.003,i*5+1);
     G.deck=new THREE.Group();g.add(G.deck);mesh(G.deck,new THREE.BoxGeometry(7.2,.195,5.4),new THREE.MeshStandardMaterial({color:0x8d8f90,roughness:.92}),0,.0975-.2,-6.2).position.y=.0975;
@@ -98,7 +110,10 @@ export function createEnvironment({scene,renderer,bloom,sun}){
       sun.position.copy(e.ld).multiplyScalar(40);sun.color.set(p.sunC);sun.intensity=p.sunI;hemi.intensity=p.hemi;
       G[groundFor(group)].visible=true;G.skyline.visible=true;G.base.visible=true;G.roadZ.userData.mk.visible=!(cur.track&&group==='roadZ');for(const m of G.winMats)m.emissiveIntensity=p.win;
       G.deck.visible=cur.deck&&group==='crossing';const w=wet;
-      for(const m of[G.roadMat,G.crossMat]){if(!m)continue;m.roughness=w?.3:.92;m.envMapIntensity=w?1.4:.6;m.color.set(w?0x8a8a90:0xd2d2d2);m.bumpScale=w?.5:1.6;}}
+      for(const m of[G.roadMat,G.crossMat]){if(!m)continue;
+        if(m.roughnessMap){m.roughness=w?.35:1;m.color.set(w?0x9a9aa0:0xffffff);}                   // 実写の粗さマップに倍率をかける(濡れると小さく)
+        else{m.roughness=w?.3:.92;m.color.set(w?0x8a8a90:0xd2d2d2);}
+        m.envMapIntensity=w?1.5:.6;if(m.normalMap)m.normalScale.setScalar(w?.45:.9);else m.bumpScale=w?.5:1.6;}}
     renderer.toneMappingExposure=p.exp;bloom.strength=p.bloomS;bloom.threshold=p.bloomT;}
   return {
     set(o){Object.assign(cur,o);apply();},

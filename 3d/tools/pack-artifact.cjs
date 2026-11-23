@@ -6,4 +6,8 @@ const copy=(rel,fn)=>{const d=path.join(PUB,rel);fs.mkdirSync(path.dirname(d),{r
 const idx=JSON.parse(fs.readFileSync(path.join(SRC,'index.json')));
 copy('index.json',(s,d)=>fs.copyFileSync(s,d));
 for(const m of idx.models){copy(m.file,(s,d)=>fs.writeFileSync(d+'.b64.txt',fs.readFileSync(s).toString('base64')));copy(m.thumb,(s,d)=>fs.copyFileSync(s,d));}
+// 実写の素材(PBR テクスチャ・HDRI)も同梱する
+const AS=path.join(ROOT,'3d/assets'),PA=path.join(ROOT,'3d/dist/pub/assets');
+(function cp(d,rel){for(const e of fs.readdirSync(d,{withFileTypes:true})){const s=path.join(d,e.name),r=rel?rel+'/'+e.name:e.name;
+  if(e.isDirectory())cp(s,r);else if(/\.(jpg|jpeg|png|json)$/.test(e.name)&&!/SOURCES/.test(e.name)){fs.mkdirSync(path.dirname(path.join(PA,r)),{recursive:true});fs.copyFileSync(s,path.join(PA,r));files.push({path:'assets/'+r});}}})(AS,'');
 console.log(JSON.stringify(files));
