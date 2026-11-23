@@ -1,0 +1,153 @@
+/* 標識ブルーと黄黒の縞を使った、白地・平面・直線的なUI。信号ビューアとライブラリで共通 */
+:root{
+  --paper:#eef0ec; --panel:#ffffff; --ink:#13181d; --mute:#58636d; --line:#c6ccc7; --line2:#dde1dc;
+  --r:12px;--r2:8px;--blue:#0b4f9e; --blue-d:#083a77; --blue-l:#e4edf8; --yellow:#f6c500; --stage:#9aa1a7;
+  --red:#d7261e; --amber:#f0a500; --green:#0f9a6b;
+  --f-body:'Noto Sans JP',system-ui,-apple-system,sans-serif; --f-num:'Barlow Condensed','Noto Sans JP',sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+#app,.hdr,#gallery,#detail,#gmain,#stage{min-width:0}
+html,body{height:100%;margin:0;background:var(--paper);color:var(--ink);font:14px/1.6 var(--f-body);overflow:hidden;
+  -webkit-text-size-adjust:100%;overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
+button,input,label,summary{font:inherit;color:inherit;touch-action:manipulation}
+button{cursor:pointer}
+svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:1px}
+
+/* ---------- ヘッダー(案内標識の帯) ---------- */
+.hdr{grid-column:1/-1;grid-row:1;display:flex;align-items:center;gap:14px;padding:0 16px;background:var(--blue);color:#fff;border-bottom:4px solid var(--yellow)}
+.mk{width:28px;height:28px;flex:none;border:2px solid #fff;border-radius:9px;background:repeating-linear-gradient(135deg,var(--yellow) 0 6px,#111 6px 12px)}
+.hdr h1{margin:0;font-size:16px;font-weight:700;letter-spacing:.04em;white-space:nowrap}
+.hdr .sub{font:500 12px var(--f-num);letter-spacing:.1em;opacity:.8;white-space:nowrap}
+.hdr .sp{flex:1}
+.hdr .qs{display:flex;align-items:center;gap:8px;font-size:12px}
+.seg{display:inline-flex;border:1.5px solid currentColor;border-radius:999px;overflow:hidden}
+.seg button{background:none;border:0;padding:5px 12px;min-height:30px;font-size:12.5px;font-weight:500;color:inherit}
+.seg button+button{border-left:1.5px solid currentColor}
+.seg button.on{background:#fff;color:var(--blue-d);font-weight:700}
+.hdr .seg button.on{background:#fff;color:var(--blue-d)}
+
+/* ---------- 折りたたみ式カテゴリ ---------- */
+.grp{border-bottom:1px solid var(--line2)}
+.gh{width:100%;display:flex;align-items:center;gap:8px;text-align:left;background:var(--blue-l);border:0;border-bottom:1px solid var(--line);padding:10px 14px;font-weight:700;font-size:13px;color:var(--blue-d);min-height:44px}
+.gh .n{margin-left:auto;font:600 12px var(--f-num);background:#fff;border:1px solid var(--line);border-radius:10px;padding:0 8px;color:var(--mute)}
+.gh svg.i{transition:transform .15s;color:var(--blue)}
+.grp[data-open="0"] .gh svg.i{transform:rotate(-90deg)}
+.grp[data-open="0"] .gb{display:none}
+.item{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;width:100%;text-align:left;background:var(--panel);border:0;border-bottom:1px solid var(--line2);padding:8px 14px;min-height:64px;position:relative}
+.item:hover{background:#f6f8fb}
+.item.sel{background:var(--blue-l)}
+.item img{border-radius:8px}
+.item.sel::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue)}
+.item img{width:52px;height:64px;object-fit:cover;background:#d3d8d4;border:1px solid var(--line);display:block}
+.item b{display:block;font-weight:600;font-size:13px;line-height:1.4}
+.item small{display:block;font:500 11px var(--f-num);letter-spacing:.04em;color:var(--mute);margin-top:2px}
+
+/* ---------- 3Dステージ ---------- */
+.stagewrap{position:relative;min-width:0;min-height:0;background:var(--stage);overflow:hidden}
+#gl{width:100%;height:100%;display:block;touch-action:none;cursor:grab;outline:none}
+#gl:active{cursor:grabbing}
+.ov{position:absolute;pointer-events:none}
+#title{left:16px;top:14px;right:140px;color:#10161b}
+#title .g{display:inline-block;font:600 12px var(--f-num);letter-spacing:.08em;padding:1px 10px;background:#fff;border:1.5px solid var(--blue);color:var(--blue-d);border-radius:999px}
+#title h2{margin:6px 0 0;font-size:20px;line-height:1.35;font-weight:700;text-shadow:0 1px 0 #fff8}
+#title.dark{color:#fff}#title.dark h2{text-shadow:0 1px 6px #000a}
+#nav{right:14px;top:14px;display:flex;gap:6px;pointer-events:auto}
+.sq{width:42px;height:42px;background:#fff;border:1.5px solid var(--blue);color:var(--blue);border-radius:999px;box-shadow:0 2px 6px #0003;display:grid;place-items:center}
+.sq:hover{background:var(--blue);color:#fff}
+#bar{left:12px;right:12px;bottom:12px;display:flex;gap:8px;pointer-events:auto;flex-wrap:wrap;align-items:flex-end}
+.grpbtn{display:inline-flex;background:#fff;border:1.5px solid var(--blue);border-radius:999px;overflow:hidden;box-shadow:0 2px 6px #0003}
+.grpbtn button{background:none;border:0;padding:6px 12px;min-height:38px;font-size:13px;font-weight:500;color:var(--blue-d);white-space:nowrap}
+.grpbtn button+button{border-left:1px solid var(--line)}
+.grpbtn button:hover{background:var(--blue-l)}
+.grpbtn button.on{background:var(--blue);color:#fff;font-weight:700}
+#spin{position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border:4px solid #fff8;border-top-color:var(--blue);border-radius:50%;animation:sp .8s linear infinite;pointer-events:none}
+@keyframes sp{to{transform:rotate(360deg)}}
+#loading{inset:0;display:none;place-items:center;color:#10161b;font:500 13px var(--f-body);text-align:center;padding:20px}
+#fps{left:12px;bottom:68px;font:500 11px var(--f-num);color:#fff;display:none}
+
+/* ---------- インスペクター(白い銘板) ---------- */
+.plate{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:0 0 16px;margin:12px;overflow:hidden;box-shadow:0 1px 0 #0001}
+.plate>h3{margin:0 0 12px;padding:9px 16px;font-size:12.5px;font-weight:700;letter-spacing:.08em;background:var(--blue);color:#fff;display:flex;justify-content:space-between;align-items:center}
+.plate>h3 small{font:500 11px var(--f-num);letter-spacing:.08em;opacity:.85}
+.plate>*:not(h3){margin-left:16px;margin-right:16px}
+.plate>*+*:not(h3){margin-top:12px}
+#desc{margin:0 16px;color:#2a343c;font-size:13.5px;line-height:1.8}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff}
+.fact{padding:7px 10px;min-width:0}.fact+.fact{border-left:1px solid var(--line)}
+.fact small{display:block;font-size:11px;color:var(--mute)}
+.fact b{display:block;font:700 20px var(--f-num);letter-spacing:.02em;white-space:nowrap}
+#dims{font-size:12.5px;color:var(--mute)}
+.modes{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--blue);border-radius:var(--r);overflow:hidden}
+.modes button{background:#fff;border:0;padding:8px 10px;text-align:left;min-height:52px;color:var(--ink)}
+.modes button+button{border-left:1px solid var(--line)}
+.modes button b{display:block;font-size:14px;font-weight:700;color:var(--blue-d)}
+.modes button small{display:block;font-size:11px;color:var(--mute)}
+.modes button.on{background:var(--blue)}.modes button.on b,.modes button.on small{color:#fff}
+.modes button:disabled{opacity:.4;cursor:not-allowed}
+.states{display:flex;flex-wrap:wrap;gap:6px}
+.states button{display:flex;gap:8px;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:6px 11px;min-height:40px;font-size:13px}
+.states button i{width:12px;height:12px;border-radius:50%;flex:none;background:#999;box-shadow:inset 0 0 0 1px #0004}
+.states button:hover{border-color:var(--blue)}
+.states button.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+.tl{display:flex;gap:2px;height:10px}
+.tl i{display:block;background:#d5dad6;transition:background .12s}
+.tl i.on{background:var(--blue)}
+.tlt{display:flex;justify-content:space-between;font:600 13px var(--f-num);color:var(--mute);letter-spacing:.03em}
+.row{display:flex;gap:10px;align-items:center}
+.row label{font-size:12.5px;color:var(--mute);min-width:2.4em}
+.row input{flex:1;accent-color:var(--blue)}
+.num{font:700 18px var(--f-num);min-width:3em;text-align:right}
+.lab{font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:6px;display:flex;justify-content:space-between}
+.lab small{font-weight:400;color:var(--mute)}
+.seg2{display:flex;border:1.5px solid var(--blue);border-radius:999px;overflow:hidden}
+.seg2 button{flex:1;background:#fff;border:0;padding:8px 6px;min-height:42px;color:var(--blue-d);font-size:13px;display:flex;gap:6px;align-items:center;justify-content:center}
+.seg2 button+button{border-left:1px solid var(--line)}
+.seg2 button.on{background:var(--blue);color:#fff;font-weight:700}
+.seg2 button:hover:not(.on){background:var(--blue-l)}
+.seg2.off{opacity:.4;pointer-events:none}
+.seg2.sm button{min-height:36px;font-size:12.5px}
+.opt{display:flex;flex-direction:column;gap:6px}.opt>span{font-size:12.5px;font-weight:600}
+#opts{display:flex;flex-direction:column;gap:12px}
+.sw{display:flex;align-items:center;gap:10px;min-height:40px;cursor:pointer;font-size:13.5px}
+.sw input{position:absolute;opacity:0;pointer-events:none}
+.sw i{width:42px;height:24px;border:1.5px solid var(--blue);border-radius:12px;position:relative;flex:none;background:#fff}
+.sw i::after{content:"";position:absolute;left:3px;top:3px;width:15px;height:15px;border-radius:50%;background:var(--blue);transition:transform .15s}
+.sw input:checked+i{background:var(--blue)}.sw input:checked+i::after{transform:translateX(18px);background:#fff}
+.sw input:focus-visible+i{outline:3px solid var(--yellow)}
+.sw.off{opacity:.4;pointer-events:none}
+.nostate{font-size:13px;color:var(--mute)}
+
+/* ---------- スマホ: 下から出るシート ---------- */
+@media (max-width:980px){
+  .hdr{padding:0 10px;gap:8px;min-width:0}.hdr h1{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:0 1 auto}.hdr .sub,.hdr .qs span{display:none}.hdr .mk{width:22px;height:22px}.hdr .seg button{padding:4px 10px}
+  #title{left:12px;top:10px;right:112px}#title h2{font-size:16px}
+  .sq{width:44px;height:44px}
+  .grpbtn button{min-height:42px;padding:6px 13px}
+  .modes button,.states button,.seg2 button{min-height:48px}
+  .sw{min-height:46px}
+  input[type=range]{height:38px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation-duration:.01ms!important}}
+
+/* ---------- 共通: スマホのボトムシート ---------- */
+#grab{display:none}
+@media (max-width:980px){
+  #sheet{display:flex;flex-direction:column;position:absolute;left:0;right:0;bottom:0;z-index:6;border-radius:22px 22px 0 0;height:var(--sh,46%);max-height:calc(100% - 120px);background:var(--panel);border-top:4px solid var(--blue);box-shadow:0 -6px 20px #0003;overflow:hidden}
+  #grab{display:grid;place-items:center;height:24px;flex:none;cursor:grab;touch-action:none;background:var(--blue-l)}
+  #grab i{display:block;width:44px;height:5px;border-radius:6px;background:var(--blue)}
+  #bar{bottom:calc(var(--sh,46%) + 10px);left:8px;right:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  #bar::-webkit-scrollbar{display:none}
+  #fps{bottom:calc(var(--sh,0px) + 62px)}
+}
+
+/* 親しみやすさ: 角丸・やわらかい影・触れる要素の反応 */
+.card,.item,.tn,.gh{transition:background .12s,border-color .12s,box-shadow .12s}
+.card{border-radius:16px}.card:hover{box-shadow:0 6px 16px #0b4f9e22;transform:translateY(-1px)}
+.card .ph{border-radius:0}
+.chip{border-radius:999px;padding:0 9px}
+.facts .fact b{font-size:21px}
+.modes button.on,.states button.on,.seg2 button.on,.grpbtn button.on{box-shadow:inset 0 -2px 0 #0003}
+#detail,#gmain,#rail,#ctl{scrollbar-width:thin;scrollbar-color:#9aa5b1 transparent}
+@media (max-width:980px){.plate{margin:10px}#ctl{background:var(--paper)}}

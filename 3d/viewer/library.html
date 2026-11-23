@@ -1,0 +1,130 @@
+<title>__TITLE__</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+/*__CSS__*/
+/* ライブラリ: 一覧(検索・折りたたみカテゴリ・サムネイル)から選ぶ → 詳細(3D+タブ式パネル) */
+#app{height:100%;display:grid;grid-template-rows:56px minmax(0,1fr);position:relative}
+.hdr .srch{flex:1;max-width:460px;display:flex;align-items:center;gap:8px;background:#fff;border-radius:4px;padding:0 10px;color:var(--ink)}
+.hdr .srch input{flex:1;border:0;background:none;min-height:36px;outline:none;font-size:14px;min-width:0}
+.hdr .srch svg{color:var(--blue)}
+#gallery{grid-row:2;display:grid;grid-template-columns:272px minmax(0,1fr);min-height:0}
+#tree{overflow:auto;background:var(--panel);border-right:1px solid var(--line);padding-bottom:20px}
+.tn{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line2);padding:9px 14px;min-height:44px;font-size:13.5px}
+.tn.top{background:var(--blue-l);font-weight:700;color:var(--blue-d)}
+.tn.sub{padding-left:36px}
+.tn .n{margin-left:auto;font:600 12px var(--f-num);color:var(--mute)}
+.tn.sel{background:var(--blue);color:#fff}.tn.sel .n{color:#fff}
+.tn svg.i{transition:transform .15s;color:var(--blue)}.tn.sel svg.i{color:#fff}
+.tg[data-open="0"] .tn.top svg.i{transform:rotate(-90deg)}
+.tg[data-open="0"] .tb{display:none}
+#gmain{overflow:auto;padding:16px 22px 48px;min-height:0}
+#gtools{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+#gtools h2{margin:0;font-size:18px;font-weight:700}
+#gtools .cnt{font:600 14px var(--f-num);color:var(--mute)}
+#gtools .sp{flex:1}
+#treeBtn{display:none;background:#fff;border:1.5px solid var(--blue);color:var(--blue-d);border-radius:4px;padding:6px 12px;min-height:40px;font-weight:700}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:16px}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:4px;text-align:left;padding:0;overflow:hidden;display:flex;flex-direction:column}
+.card:hover{border-color:var(--blue);box-shadow:0 2px 0 var(--blue)}
+.card .ph{aspect-ratio:216/272;background:#cfd4d0;position:relative}
+.card img{width:100%;height:100%;object-fit:cover;display:block}
+.card .tx{padding:10px 12px 12px;border-top:1px solid var(--line2)}
+.card b{display:block;font-size:13.5px;line-height:1.5;font-weight:600}
+.card .meta{margin-top:7px;display:flex;gap:5px;flex-wrap:wrap}
+.chip{font:600 12px var(--f-num);letter-spacing:.04em;border:1px solid var(--line);padding:0 7px;color:var(--mute);border-radius:2px}
+.chip.b{border-color:var(--blue);color:var(--blue-d)}
+.empty{padding:40px 0;color:var(--mute)}
+#detail{grid-row:2;display:none;min-height:0}
+#app[data-view="detail"] #gallery{display:none}
+#app[data-view="detail"] #detail{display:grid;grid-template-columns:minmax(0,1fr) 392px}
+#sheet{display:contents}
+#stage{min-height:0}
+#ctl{overflow:auto;background:var(--paper);border-left:1px solid var(--line);min-height:0}
+#tabs{display:flex;position:sticky;top:0;z-index:3;background:var(--panel);border-bottom:1px solid var(--line)}
+#tabs button{flex:1;background:none;border:0;min-height:46px;font-weight:700;color:var(--mute);font-size:14px}
+#tabs button.on{color:var(--blue-d);box-shadow:inset 0 -4px 0 var(--blue)}
+#ctl[data-tab="info"] .plate:not([data-t="info"]),#ctl[data-tab="ctrl"] .plate:not([data-t="ctrl"]),#ctl[data-tab="view"] .plate:not([data-t="view"]){display:none}
+#back{position:absolute;left:12px;top:12px;pointer-events:auto;display:flex;align-items:center;gap:6px;width:auto;padding:0 14px 0 10px;font-weight:700;font-size:13.5px;z-index:2}
+#title{left:112px!important}
+@media (max-width:980px){
+  .hdr .srch{max-width:none}
+  #gallery{grid-template-columns:minmax(0,1fr)}
+  #tree{display:none;position:absolute;left:0;top:52px;bottom:0;width:min(86%,330px);z-index:8;box-shadow:6px 0 20px #0004}
+  #app.tree-open #tree{display:block}
+  #treeBtn{display:inline-flex;align-items:center;gap:6px}
+  #gmain{padding:12px 12px 40px}
+  #grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  #gtools{gap:8px}#gtools h2{font-size:16px}#sortSeg{min-width:0!important;width:100%}
+  .hdr h1{display:none}.hdr .srch{min-width:0;flex:1 1 0}.hdr .srch input{font-size:16px}
+  #app[data-view="detail"] #detail{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);position:relative}
+  #sheet{display:flex}
+  #ctl{border:0;flex:1;min-height:0}
+  #title{left:104px!important;right:100px!important}#title h2{font-size:15px}
+  #back{padding:0 10px 0 6px}
+}
+@media (max-width:980px) and (orientation:landscape) and (max-height:560px){
+  #app[data-view="detail"] #detail{grid-template-columns:minmax(0,1fr) 340px}
+  #sheet{position:static;height:auto;display:flex;flex-direction:column;border-top:0;border-left:1px solid var(--line);box-shadow:none;overflow:auto}
+  #grab{display:none}
+}
+</style>
+<div id="app" data-view="grid">
+  <header class="hdr"><div class="mk"></div><h1 id="vtitle">__H1__</h1>
+    <label class="srch"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="search" type="search" placeholder="モデル名・ID・説明で検索" aria-label="モデルを検索"></label>
+    <span class="sp"></span>
+    <div class="qs"><span>画質</span><div class="seg" id="qSeg"><button data-q="low">低</button><button data-q="high">高</button></div></div></header>
+  <section id="gallery">
+    <aside id="tree" aria-label="カテゴリ"></aside>
+    <div id="gmain">
+      <div id="gtools"><button id="treeBtn"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h6"/></svg>カテゴリ</button><h2 id="gtitle">すべてのモデル</h2><span class="cnt" id="gcount"></span><span class="sp"></span>
+        <div class="seg2" id="sortSeg" style="min-width:210px"><button data-s="cat" class="on">分類順</button><button data-s="name">名前順</button><button data-s="tris">重い順</button></div></div>
+      <div id="grid"></div>
+    </div>
+  </section>
+  <section id="detail">
+    <main id="stage" class="stagewrap">
+      <button class="sq ov" id="back" aria-label="一覧へ戻る"><svg class="i" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>一覧</button>
+    <canvas id="gl" tabindex="0" aria-label="3Dビュー"></canvas>
+    <div class="ov" id="title"><span class="g" id="grp"></span><h2 id="mname"></h2></div>
+    <div class="ov" id="nav">
+      <button class="sq" id="prev" aria-label="前のモデル"><svg class="i" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="sq" id="next" aria-label="次のモデル"><svg class="i" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="ov" id="bar">
+      <div class="grpbtn" id="views"><button data-v="all">全体</button><button data-v="lamp">灯器</button><button data-v="front">正面</button><button data-v="side">側面</button><button data-v="back">背面</button><button data-v="top">上面</button></div>
+      <div class="grpbtn" id="disp"><button data-d="shade" class="on">通常</button><button data-d="clay">単色</button><button data-d="wire">ワイヤー</button></div>
+      <div class="grpbtn"><button id="tDims">寸法</button><button id="tSpin">回転</button></div>
+    </div>
+    <div class="ov" id="loading"></div><div id="spin" hidden></div><div class="ov" id="fps"></div>
+
+    </main>
+    <div id="sheet">
+      <div id="grab" role="separator" aria-label="パネルの高さを変える"><i></i></div>
+      <aside id="ctl" data-tab="info">
+        <div id="tabs"><button data-t="info" class="on">情報</button><button data-t="ctrl">操作</button><button data-t="view">表示</button></div>
+    <div class="plate" data-t="info"><h3>概要<small id="fid"></small></h3>
+      <p id="desc"></p>
+      <div class="facts"><div class="fact"><small>高さ</small><b id="fSize">-</b></div><div class="fact"><small>三角形</small><b id="fTris">-</b></div><div class="fact"><small>ファイル</small><b id="fBytes">-</b></div></div>
+      <div id="dims"></div>
+    </div>
+    <div class="plate" id="stateSec" data-t="ctrl"><h3>制御</h3>
+      <div class="modes" id="modes"><button data-m="auto"><b>自動</b><small>現示を循環</small></button><button data-m="manual"><b>手動</b><small>自分で選ぶ</small></button><button data-m="night"><b>夜間</b><small>点滅現示</small></button></div>
+      <div><div class="lab">現示</div><div class="states" id="states"></div></div>
+      <div class="tl" id="tl"></div><div class="tlt"><span id="tlName"></span><span id="tlRem"></span></div>
+      <div class="row"><label for="speed">速度</label><input id="speed" type="range" min="0.5" max="4" step="0.25" value="1"><span class="num" id="speedV">1.0×</span></div>
+    </div>
+    <div class="plate" id="noState" data-t="ctrl" style="display:none"><h3>制御</h3><p class="nostate">このモデルは形状のみで、点灯する現示はありません。</p></div>
+    <div class="plate" id="optSec" data-t="ctrl"><h3>オプション<small id="optHint"></small></h3><div id="opts"></div></div>
+    <div class="plate" data-t="view"><h3>背景と軌道</h3>
+      <div><div class="lab">背景</div><div class="seg2" id="envSeg"><button data-e="studio" class="on">スタジオ</button><button data-e="day">昼</button><button data-e="dusk">夕方</button><button data-e="night">夜</button></div></div>
+      <label class="sw" id="wetSw"><input type="checkbox" id="wet"><i></i>濡れた路面</label>
+      <div><div class="lab">軌道(線路)</div><div class="seg2" id="trackSeg"><button data-k="none" class="on">なし</button><button data-k="ballast">砂利</button><button data-k="slab">スラブ</button><button data-k="tram">併用</button></div></div>
+      <label class="sw" id="onTrackSw"><input type="checkbox" id="onTrack"><i></i>軌道上に設置</label>
+    </div>
+
+      </aside>
+    </div>
+  </section>
+</div>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.170.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.170.0/examples/jsm/"}}</script>
+<script type="module">/*__BUNDLE__*/</script>
