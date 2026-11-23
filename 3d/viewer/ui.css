@@ -1,7 +1,7 @@
 /* 標識ブルーと黄黒の縞を使った、白地・平面・直線的なUI。信号ビューアとライブラリで共通 */
 :root{
-  --paper:#f0efe9; --panel:#ffffff; --ink:#13181d; --mute:#58636d; --line:#c6ccc7; --line2:#dde1dc;
-  --r:8px;--r2:6px;--blue:#0a6b4a; --blue-d:#07503a; --blue-l:#e3efe8; --yellow:#f2b705; --stage:#9aa1a7;
+  --paper:#eef0ec; --panel:#ffffff; --ink:#13181d; --mute:#58636d; --line:#c6ccc7; --line2:#dde1dc;
+  --r:8px;--r2:6px;--blue:#0b4f9e; --blue-d:#083a77; --blue-l:#e4edf8; --yellow:#f2b705; --stage:#9aa1a7;
   --red:#d7261e; --amber:#f0a500; --green:#0f9a6b;
   --f-body:'Noto Sans JP',system-ui,-apple-system,sans-serif; --f-num:'Barlow Condensed','Noto Sans JP',sans-serif;
   color-scheme:light;
@@ -144,7 +144,7 @@ svg.i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke
 
 /* 親しみやすさ: 角丸・やわらかい影・触れる要素の反応 */
 .card,.item,.tn,.gh{transition:background .12s,border-color .12s,box-shadow .12s}
-.card{border-radius:10px}.card:hover{box-shadow:0 6px 16px #0a6b4a22;transform:translateY(-1px)}
+.card{border-radius:10px}.card:hover{box-shadow:0 6px 16px #0b4f9e22;transform:translateY(-1px)}
 .card .ph{border-radius:0}
 .chip{border-radius:6px;padding:0 9px}
 .facts .fact b{font-size:21px}
