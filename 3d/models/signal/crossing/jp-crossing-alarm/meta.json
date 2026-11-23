@@ -226,14 +226,14 @@
    "lit": "#ff2a18"
   }
  ],
- "tris": 43358,
+ "tris": 45214,
  "size": [
-  1.58,
+  1.6,
   4.5,
-  0.54
+  0.56
  ],
  "dir": "signal/crossing/jp-crossing-alarm",
  "file": "signal/crossing/jp-crossing-alarm/model.glb",
  "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
- "bytes": 806776
+ "bytes": 810644
 }

@@ -700,16 +700,16 @@
      "lit": "#ff2a18"
     }
    ],
-   "tris": 43358,
+   "tris": 45214,
    "size": [
-    1.58,
+    1.6,
     4.5,
-    0.54
+    0.56
    ],
    "dir": "signal/crossing/jp-crossing-alarm",
    "file": "signal/crossing/jp-crossing-alarm/model.glb",
    "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
-   "bytes": 806776
+   "bytes": 810644
   },
   {
    "id": "jp-crossing-gate",
@@ -1492,7 +1492,7 @@
    "dir": "signal/rail/jp-rail-3",
    "file": "signal/rail/jp-rail-3/model.glb",
    "thumb": "signal/rail/jp-rail-3/thumb.jpg",
-   "bytes": 923228
+   "bytes": 921940
   },
   {
    "id": "jp-rail-4",
@@ -1615,7 +1615,7 @@
    "dir": "signal/rail/jp-rail-4",
    "file": "signal/rail/jp-rail-4/model.glb",
    "thumb": "signal/rail/jp-rail-4/thumb.jpg",
-   "bytes": 938524
+   "bytes": 924596
   },
   {
    "id": "jp-rail-5",
@@ -1756,7 +1756,7 @@
    "dir": "signal/rail/jp-rail-5",
    "file": "signal/rail/jp-rail-5/model.glb",
    "thumb": "signal/rail/jp-rail-5/thumb.jpg",
-   "bytes": 937384
+   "bytes": 926336
   },
   {
    "id": "jp-rail-relay",
@@ -2739,21 +2739,6 @@
      "lit": "#00e6a2"
     },
     {
-     "key": "x-16red",
-     "color": "#ff4332",
-     "lit": "#ff2a18"
-    },
-    {
-     "key": "x-16yellow",
-     "color": "#ffbd14",
-     "lit": "#ffa800"
-    },
-    {
-     "key": "x-16green",
-     "color": "#18d9a0",
-     "lit": "#00e6a2"
-    },
-    {
      "key": "x31red",
      "color": "#ff4332",
      "lit": "#ff2a18"
@@ -2767,6 +2752,21 @@
      "key": "x31green",
      "color": "#18d9a0",
      "lit": "#00e6a2"
+    },
+    {
+     "key": "x-16red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "x-16yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "x-16green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
     }
    ],
    "tris": 114676,
@@ -2778,7 +2778,7 @@
    "dir": "signal/vehicle/jp-veh-center-pole",
    "file": "signal/vehicle/jp-veh-center-pole/model.glb",
    "thumb": "signal/vehicle/jp-veh-center-pole/thumb.jpg",
-   "bytes": 854344
+   "bytes": 846448
   },
   {
    "id": "jp-veh-flash",

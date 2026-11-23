@@ -146,21 +146,6 @@
    "lit": "#00e6a2"
   },
   {
-   "key": "x-16red",
-   "color": "#ff4332",
-   "lit": "#ff2a18"
-  },
-  {
-   "key": "x-16yellow",
-   "color": "#ffbd14",
-   "lit": "#ffa800"
-  },
-  {
-   "key": "x-16green",
-   "color": "#18d9a0",
-   "lit": "#00e6a2"
-  },
-  {
    "key": "x31red",
    "color": "#ff4332",
    "lit": "#ff2a18"
@@ -174,6 +159,21 @@
    "key": "x31green",
    "color": "#18d9a0",
    "lit": "#00e6a2"
+  },
+  {
+   "key": "x-16red",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "x-16yellow",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "x-16green",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
   }
  ],
  "tris": 114676,
@@ -185,5 +185,5 @@
  "dir": "signal/vehicle/jp-veh-center-pole",
  "file": "signal/vehicle/jp-veh-center-pole/model.glb",
  "thumb": "signal/vehicle/jp-veh-center-pole/thumb.jpg",
- "bytes": 854344
+ "bytes": 846448
 }

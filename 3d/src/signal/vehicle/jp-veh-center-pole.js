@@ -9,10 +9,10 @@ export default {id:'jp-veh-center-pole',name:'車両用 中央柱式(島の柱�
     const base=add(root,new THREE.CylinderGeometry(.7,.72,.75,64,1),bs,0,.375,0);add(root,new THREE.CylinderGeometry(.72,.72,.06,64),new THREE.MeshStandardMaterial({color:0xb8b8b2,roughness:.9}),0,.78,0);
     pole(root,5.5,.1,.082,{bands:false});
     const mk=(ang,prefix)=>{const g=new THREE.Group();g.rotation.y=ang;root.add(g);
-      vertHead(g,L,{x:.36,y:4.55,R:.125,pitch:.31,D:.125,mat:HG,hood:.3,prefix});
-      for(const y of[5.0,4.1]){rod(g,[.08,y,0],[.2,y,0],.022);add(g,new THREE.CylinderGeometry(.095,.095,.08,36),MAT.galv,0,y,0);}};
+      vertHead(g,L,{x:.24,y:4.55,R:.125,pitch:.31,D:.125,mat:HG,hood:.3,prefix});
+      for(const y of[5.0,4.1]){rod(g,[.07,y,0],[.12,y,0],.022);add(g,new THREE.CylinderGeometry(.095,.095,.08,36),MAT.galv,0,y,0);}};
     mk(0,'');                                            // 手前向きの灯器(点灯制御の対象)
-    for(const a of[Math.PI/2,-Math.PI/2,Math.PI]){const g=new THREE.Group();g.rotation.y=a;root.add(g);const hh={};vertHead(g,hh,{x:.36,y:4.55,R:.125,pitch:.31,D:.125,mat:HG,hood:.3,prefix:'x'+Math.round(a*10)});for(const k in hh){hh[k].v=hh[k].t=0;}
-      for(const y of[5.0,4.1]){rod(g,[.08,y,0],[.2,y,0],.022);add(g,new THREE.CylinderGeometry(.095,.095,.08,36),MAT.galv,0,y,0);}
+    for(const a of[Math.PI/2,Math.PI,-Math.PI/2]){const g=new THREE.Group();g.rotation.y=a;root.add(g);const hh={};vertHead(g,hh,{x:.24,y:4.55,R:.125,pitch:.31,D:.125,mat:HG,hood:.3,prefix:'x'+Math.round(a*10)});for(const k in hh){hh[k].v=hh[k].t=0;}
+      for(const y of[5.0,4.1]){rod(g,[.07,y,0],[.12,y,0],.022);add(g,new THREE.CylinderGeometry(.095,.095,.08,36),MAT.galv,0,y,0);}
       for(const k in hh)L[k]=hh[k];}
     return {root,lamps:L};}};
