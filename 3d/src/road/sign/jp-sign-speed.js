@@ -2,7 +2,7 @@ import {FONT,THREE,add,bar,canvasTex,circleShape,clamp,opt,optChoice,optToggle,p
 // 規制標識「最高速度」(円形・赤縁・白地に黒の数字)。速度は選べる。補助標識(区間・矢印)を付けられる
 const R=.3,SPEEDS=[30,40,50,60];
 const face=v=>canvasTex(512,512,(g,W,H)=>{g.fillStyle='#fff';g.fillRect(0,0,W,H);g.save();g.beginPath();g.arc(W/2,H/2,W/2,0,7);g.clip();g.fillStyle='#fff';g.fillRect(0,0,W,H);
-  g.fillStyle='#c3161c';g.beginPath();g.arc(W/2,H/2,W/2,0,7);g.arc(W/2,H/2,W/2*.7,0,7,true);g.fill();g.restore();
+  g.fillStyle='#c3161c';g.beginPath();g.arc(W/2,H/2,W/2,0,Math.PI*2);g.fill();g.fillStyle='#fff';g.beginPath();g.arc(W/2,H/2,W/2*.7,0,Math.PI*2);g.fill();g.restore();
   g.fillStyle='#111';g.textAlign='center';g.font=`700 ${W*.38}px Arial,"Helvetica",sans-serif`;g.fillText(String(v),W/2,H/2+W*.135,W*.6);});
 export default {id:'jp-sign-speed',name:'規制標識 最高速度(円形)',
   desc:'白地に赤い縁と黒い数字の円形標識。速度(30〜60)を選べる。補助標識は「区間」を示す矢印の板で、付け外しできる。',

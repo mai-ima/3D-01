@@ -6,5 +6,5 @@ export default {id:'jp-facility-rubber-pole',name:'ラバーポール',
   options:[optChoice('color','色',[['white','白'],['yellow','黄'],['red','赤']],'white')],
   build(){const root=new THREE.Group();const base=add(root,new THREE.CylinderGeometry(.15,.16,.03,64),RM.rubber,0,.015,0);add(root,new THREE.CylinderGeometry(.075,.1,.06,48),RM.rubber,0,.06,0);
     for(const [id,m] of[['white',RM.white],['yellow',RM.yellow],['red',RM.red]]){const o=opt(root,'color',id);add(o,new THREE.CylinderGeometry(.045,.05,.82,48),m,0,.5,0);add(o,new THREE.SphereGeometry(.045,32,14,0,Math.PI*2,0,Math.PI/2),m,0,.91,0);
-      for(const y of[.74,.62])add(o,new THREE.CylinderGeometry(.0465,.0465,.07,48,1,true),id==='red'?RM.reflWhite:RM.reflRed,0,y,0);}
+      for(const y of[.76,.6])add(o,new THREE.CylinderGeometry(.0515,.0515,.08,48,1,false),id==='red'?RM.reflWhite:RM.reflRed,0,y,0);}
     return {root,lamps:{}};}};

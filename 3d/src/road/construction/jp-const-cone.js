@@ -6,7 +6,7 @@ export default {id:'jp-const-cone',name:'三角コーン(カラーコーン)',
   options:[optToggle('band','反射帯','on'),optToggle('bar','コーンバー(黄黒)')],
   build(){const root=new THREE.Group();
     const mat=new THREE.MeshPhysicalMaterial({color:0xea4f12,roughness:.5,clearcoat:.4});
-    add(root,roundBox(.36,.03,.36,.03,.006),mat,0,.015,0).rotation.x=Math.PI/2;                                                // 土台(四角)
+    add(root,roundBox(.36,.36,.03,.03,.006),mat,0,.015,0).rotation.x=-Math.PI/2;                                                // 土台(四角)
     const prof=[[.0,.03],[.138,.03],[.135,.055],[.052,.66],[.034,.7],[.0,.7]].map(([r,y])=>new THREE.Vector2(r,y));
     const cone=add(root,new THREE.LatheGeometry(prof,64),mat);                                                                   // 本体の円錐
     add(root,new THREE.CylinderGeometry(.034,.036,.04,32),mat,0,.69,0);add(root,new THREE.CylinderGeometry(.141,.141,.012,48),mat,0,.045,0);

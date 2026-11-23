@@ -9,9 +9,9 @@
   0
  ],
  "view": [
-  0.2,
-  1.8,
-  1.4
+  0.3,
+  1,
+  1.8
  ],
  "options": [
   {
@@ -44,5 +44,5 @@
  "dir": "road/surface/jp-surface-tenji",
  "file": "road/surface/jp-surface-tenji/model.glb",
  "thumb": "road/surface/jp-surface-tenji/thumb.jpg",
- "bytes": 23980
+ "bytes": 23940
 }

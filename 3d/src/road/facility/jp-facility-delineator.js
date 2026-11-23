@@ -7,8 +7,8 @@ export default {id:'jp-facility-delineator',name:'視線誘導標(デリニエ�
   build(){const root=new THREE.Group();
     const lo=opt(root,'type','low'),hi=opt(root,'type','tall');
     add(lo,new THREE.CylinderGeometry(.036,.036,1.05,36),RM.white,0,.525,0);add(lo,new THREE.SphereGeometry(.0365,24,10,0,Math.PI*2,0,Math.PI/2),RM.white,0,1.05,0);add(lo,new THREE.CylinderGeometry(.07,.07,.012,32),RM.zincDull,0,.006,0);
-    const band=add(lo,new THREE.CylinderGeometry(.0375,.0375,.2,36),RM.black,0,.78,0);
-    for(const [id,m] of[['white',RM.reflWhite],['orange',RM.reflOrange]]){const o=opt(lo,'refl',id);add(o,roundBox(.1,.07,.012,.008,.002),m,0,.95,.043);}
+    const band=add(lo,new THREE.CylinderGeometry(.0375,.0375,.16,36),RM.black,0,.74,0);
+    for(const [id,m] of[['white',RM.reflWhite],['orange',RM.reflOrange]]){const o=opt(lo,'refl',id);add(o,roundBox(.16,.11,.014,.01,.003),m,0,.95,.05);add(o,roundBox(.04,.014,.04,.004,.002),RM.zinc,0,.95,.037);}
     // 矢羽根: 赤白の縞の高い支柱(雪の中で道を示す)
     const H=3.0;for(let i=0;i<10;i++)add(hi,new THREE.CylinderGeometry(.03,.03,H/10,32,1,true),i%2?RM.white:RM.red,0,H/10*(i+.5),0);add(hi,new THREE.SphereGeometry(.031,24,10,0,Math.PI*2,0,Math.PI/2),RM.red,0,H,0);
     for(const sx of[-1,1]){const w=new THREE.Shape();w.moveTo(0,0);w.lineTo(.22*sx,.08);w.lineTo(.22*sx,-.08);w.closePath();const f=new THREE.ShapeGeometry(w);add(hi,f,RM.reflRed,0,H-.2,.035);}

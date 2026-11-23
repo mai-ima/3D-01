@@ -5,13 +5,13 @@
  "dims": "幅 約0.18m・高さ 約0.15m(切下げ型は0.05m)・ブロック長 約1m(代表値)",
  "focus": [
   0,
-  0.1,
+  0.08,
   0
  ],
  "view": [
-  1.6,
-  0.9,
-  3.8
+  0.7,
+  0.5,
+  2.4
  ],
  "options": [
   {
@@ -35,7 +35,7 @@
   "surface"
  ],
  "lamps": [],
- "tris": 448,
+ "tris": 544,
  "size": [
   4,
   0.16,
@@ -44,5 +44,5 @@
  "dir": "road/surface/jp-surface-curb",
  "file": "road/surface/jp-surface-curb/model.glb",
  "thumb": "road/surface/jp-surface-curb/thumb.jpg",
- "bytes": 15188
+ "bytes": 17996
 }

@@ -50,14 +50,14 @@
   "construction"
  ],
  "lamps": [],
- "tris": 1630,
+ "tris": 1628,
  "size": [
   1.58,
-  0.88,
-  0.28
+  0.71,
+  0.36
  ],
  "dir": "road/construction/jp-const-cone",
  "file": "road/construction/jp-const-cone/model.glb",
  "thumb": "road/construction/jp-const-cone/thumb.jpg",
- "bytes": 50608
+ "bytes": 49624
 }

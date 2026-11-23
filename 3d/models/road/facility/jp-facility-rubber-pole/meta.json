@@ -39,7 +39,7 @@
   "facility"
  ],
  "lamps": [],
- "tris": 4192,
+ "tris": 4768,
  "size": [
   0.32,
   0.96,
@@ -48,5 +48,5 @@
  "dir": "road/facility/jp-facility-rubber-pole",
  "file": "road/facility/jp-facility-rubber-pole/model.glb",
  "thumb": "road/facility/jp-facility-rubber-pole/thumb.jpg",
- "bytes": 40204
+ "bytes": 40516
 }

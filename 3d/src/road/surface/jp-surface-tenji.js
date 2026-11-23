@@ -3,7 +3,7 @@ import {THREE,RM,add,opt,optChoice}from '../../kit/road-parts.js';
 const N=6,S=.3,T=.06;
 export default {id:'jp-surface-tenji',name:'点字ブロック(視覚障害者誘導用ブロック)',
   desc:'黄色いブロックの表面に、線状の突起(誘導ブロック=進む向き)または点状の突起(警告ブロック=止まって確認)が並ぶ。1枚30cm角、6枚を並べて見せる。',
-  dims:'1枚 0.30×0.30m・厚さ0.06m / 突起の高さ 約5mm(代表値)',focus:[0,0,0],view:[.2,1.8,1.4],
+  dims:'1枚 0.30×0.30m・厚さ0.06m / 突起の高さ 約5mm(代表値)',focus:[0,0,0],view:[.3,1.0,1.8],
   options:[optChoice('type','種類',[['dot','警告(点状)'],['line','誘導(線状)']],'dot')],
   build(){const root=new THREE.Group();const yel=new THREE.MeshStandardMaterial({color:0xe0b414,roughness:.7});
     const base=new THREE.BoxGeometry(S-.004,T,S-.004);
