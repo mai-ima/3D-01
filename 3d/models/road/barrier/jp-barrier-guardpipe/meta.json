@@ -1,0 +1,67 @@
+{
+ "id": "jp-barrier-guardpipe",
+ "name": "ガードパイプ(横断防止柵)",
+ "desc": "黒い逆U字の鋼管を並べた、歩行者用の柵。路肩や歩道の端で、横断を防ぐために使われる。色(黒・白・亜鉛めっき)を選べ、反射材を付けられる。",
+ "dims": "1スパン 約1.0m / 高さ 約0.9m / 鋼管φ60.5(代表値)",
+ "focus": [
+  0,
+  0.6,
+  0
+ ],
+ "view": [
+  2.4,
+  0.7,
+  5
+ ],
+ "options": [
+  {
+   "id": "color",
+   "label": "色",
+   "choices": [
+    {
+     "id": "black",
+     "label": "黒"
+    },
+    {
+     "id": "white",
+     "label": "白"
+    },
+    {
+     "id": "zinc",
+     "label": "亜鉛めっき"
+    }
+   ],
+   "default": "black"
+  },
+  {
+   "id": "reflector",
+   "label": "反射材",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  }
+ ],
+ "path": [
+  "road",
+  "barrier"
+ ],
+ "lamps": [],
+ "tris": 41628,
+ "size": [
+  4.09,
+  0.93,
+  0.09
+ ],
+ "dir": "road/barrier/jp-barrier-guardpipe",
+ "file": "road/barrier/jp-barrier-guardpipe/model.glb",
+ "thumb": "road/barrier/jp-barrier-guardpipe/thumb.jpg",
+ "bytes": 73748
+}

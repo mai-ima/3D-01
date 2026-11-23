@@ -1,0 +1,63 @@
+{
+ "id": "jp-const-cone",
+ "name": "三角コーン(カラーコーン)",
+ "desc": "赤橙色の樹脂のコーンに、白い反射帯が付く。底は四角い土台。コーンバーは、2つのコーンの間に渡す黄黒の縞の棒で、付け外しできる。",
+ "dims": "高さ 約0.7m・底面 約0.36m角(代表値)",
+ "focus": [
+  0,
+  0.4,
+  0
+ ],
+ "view": [
+  0.7,
+  0.3,
+  2.4
+ ],
+ "options": [
+  {
+   "id": "band",
+   "label": "反射帯",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  },
+  {
+   "id": "bar",
+   "label": "コーンバー(黄黒)",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
+  }
+ ],
+ "path": [
+  "road",
+  "construction"
+ ],
+ "lamps": [],
+ "tris": 1630,
+ "size": [
+  1.58,
+  0.88,
+  0.28
+ ],
+ "dir": "road/construction/jp-const-cone",
+ "file": "road/construction/jp-const-cone/model.glb",
+ "thumb": "road/construction/jp-const-cone/thumb.jpg",
+ "bytes": 50608
+}

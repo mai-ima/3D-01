@@ -6,8 +6,9 @@ const strip=s=>s.replace(/\/\*[\s\S]*?\*\//g,'').replace(/(^|[^:])\/\/.*$/gm,'$1
 const re=/(?:^|[\s;}])(?:import|export)\b[^'"`;]*?\bfrom\s*['"]([^'"]+)['"]|\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)|(?:^|[\s;])import\s*['"]([^'"]+)['"]/g;
 const rules=[
   [/^3d\/src\/kit\/index\.js$/,()=>false,'kit/index.js は他のファイルに依存しない'],
-  [/^3d\/src\/kit\/(signal|track)-parts\.js$/,t=>t==='3d/src/kit/index.js','部品ファイルは kit/index.js だけに依存する'],
+  [/^3d\/src\/kit\/(signal|track|road)-parts\.js$/,t=>t==='3d/src/kit/index.js','部品ファイルは kit/index.js だけに依存する'],
   [/^3d\/src\/signal\//,t=>t==='3d/src/kit/signal-parts.js','信号モデルは signal-parts.js だけを import する'],
+  [/^3d\/src\/road\//,t=>t==='3d/src/kit/road-parts.js','道路モデルは road-parts.js だけを import する'],
   [/^3d\/src\/track\//,t=>t==='3d/src/kit/index.js'||t==='3d/src/kit/track-parts.js','軌道モデルは kit だけを import する'],
   [/^3d\/runtime\//,()=>false,'runtime は相対 import をしない(Three.js だけに依存)'],
   [/^3d\/viewer\//,t=>t==='3d/runtime/model-runtime.js'||t==='3d/viewer/env.js','viewer は runtime と env だけを相対 import する(src は参照しない)'],

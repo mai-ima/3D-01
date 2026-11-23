@@ -96,6 +96,9 @@ function makeLamp(parent,x,y,z,R,color,map,{hood=.28,gap=1.5,round=true,hoodMat=
   glow.scale.setScalar(R*9);glow.position.z=.07;glow.userData.noShadow=true;g.add(glow);}
   const L={g,mat,glow,lens,lensB,matB,v:0,t:0,color:c,key:null};allLamps.push(L);return L;
 }
+/** オプション定義の共通ヘルパー。optToggle=付ける/外す、optChoice=複数の選択肢から1つ */
+export const optToggle=(id,label,def='off')=>({id,label,choices:[{id:'off',label:'なし'},{id:'on',label:'あり'}],default:def});
+export const optChoice=(id,label,choices,def)=>({id,label,choices:choices.map(([i,l])=>({id:i,label:l})),default:def||choices[0][0]});
 /** 任意部品グループ(ノード名 opt_<group>_<choice>)。ランタイムが可視切替する */
 export function opt(parent,group,choice){const g=new THREE.Group();g.name=`opt_${group}_${choice}`;parent.add(g);return g;}
 function housing(parent,w,h,d,r,mat,x,y,z){const m=add(parent,roundBox(w,h,d,r),mat,x,y,z);

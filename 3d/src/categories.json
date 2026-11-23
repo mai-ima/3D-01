@@ -8,5 +8,12 @@
   "signal/crossing": "踏切",
   "track": "軌道",
   "track/railway": "鉄道軌道",
-  "track/tram": "路面電車軌道"
+  "track/tram": "路面電車軌道",
+  "road": "道路",
+  "road/sign": "道路標識",
+  "road/barrier": "防護柵",
+  "road/facility": "道路付属物",
+  "road/lighting": "道路照明",
+  "road/construction": "工事・規制用品",
+  "road/surface": "路面・縁石"
 }

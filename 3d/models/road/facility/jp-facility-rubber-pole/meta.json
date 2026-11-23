@@ -1,0 +1,52 @@
+{
+ "id": "jp-facility-rubber-pole",
+ "name": "ラバーポール",
+ "desc": "道路の中央や出入口に立てる、弾力のある樹脂のポール。車が当たっても倒れて起き上がる。反射帯付きで、色(白・黄・赤)を選べる。",
+ "dims": "φ約0.09m・高さ約0.9m / 底板 φ約0.3m(代表値)",
+ "focus": [
+  0,
+  0.6,
+  0
+ ],
+ "view": [
+  0.7,
+  0.3,
+  2.6
+ ],
+ "options": [
+  {
+   "id": "color",
+   "label": "色",
+   "choices": [
+    {
+     "id": "white",
+     "label": "白"
+    },
+    {
+     "id": "yellow",
+     "label": "黄"
+    },
+    {
+     "id": "red",
+     "label": "赤"
+    }
+   ],
+   "default": "white"
+  }
+ ],
+ "path": [
+  "road",
+  "facility"
+ ],
+ "lamps": [],
+ "tris": 4192,
+ "size": [
+  0.32,
+  0.96,
+  0.32
+ ],
+ "dir": "road/facility/jp-facility-rubber-pole",
+ "file": "road/facility/jp-facility-rubber-pole/model.glb",
+ "thumb": "road/facility/jp-facility-rubber-pole/thumb.jpg",
+ "bytes": 40204
+}

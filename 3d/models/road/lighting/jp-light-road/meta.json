@@ -1,0 +1,78 @@
+{
+ "id": "jp-light-road",
+ "name": "道路照明灯(片持ち・LED)",
+ "desc": "先細りの鋼管ポールの先で、アームが車道側へ伸び、LEDの灯具が路面を照らす。夜は点灯し、昼は消灯する。アームの形(直線・曲線)を選べる。",
+ "dims": "ポール高 約9m・アーム長 約2.2m・灯具 約0.85×0.38m(代表値)",
+ "focus": [
+  1.2,
+  9,
+  0
+ ],
+ "view": [
+  2.2,
+  0.1,
+  9
+ ],
+ "night": "on",
+ "states": [
+  {
+   "id": "on",
+   "label": "点灯",
+   "on": [
+    "lamp"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "on",
+   "d": 8
+  },
+  {
+   "s": "off",
+   "d": 4
+  }
+ ],
+ "options": [
+  {
+   "id": "arm",
+   "label": "アームの形",
+   "choices": [
+    {
+     "id": "curve",
+     "label": "曲線"
+    },
+    {
+     "id": "straight",
+     "label": "直線"
+    }
+   ],
+   "default": "curve"
+  }
+ ],
+ "path": [
+  "road",
+  "lighting"
+ ],
+ "lamps": [
+  {
+   "key": "lamp",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  }
+ ],
+ "tris": 5514,
+ "size": [
+  2.92,
+  9.72,
+  0.4
+ ],
+ "dir": "road/lighting/jp-light-road",
+ "file": "road/lighting/jp-light-road/model.glb",
+ "thumb": "road/lighting/jp-light-road/thumb.jpg",
+ "bytes": 153680
+}

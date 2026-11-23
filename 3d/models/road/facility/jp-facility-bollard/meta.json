@@ -1,0 +1,63 @@
+{
+ "id": "jp-facility-bollard",
+ "name": "車止め(ボラード)",
+ "desc": "歩道の端に立つ車止め。ステンレス鋼管(反射帯付き)と、洗い出しの石の円柱を選べる。反射帯は付け外しできる。",
+ "dims": "ステンレス φ114.3・高さ0.8m / 石の円柱 φ0.5・高さ0.6m(代表値)",
+ "focus": [
+  0,
+  0.5,
+  0
+ ],
+ "view": [
+  0.9,
+  0.3,
+  2.8
+ ],
+ "options": [
+  {
+   "id": "type",
+   "label": "種類",
+   "choices": [
+    {
+     "id": "steel",
+     "label": "ステンレス鋼管"
+    },
+    {
+     "id": "stone",
+     "label": "石の円柱"
+    }
+   ],
+   "default": "steel"
+  },
+  {
+   "id": "band",
+   "label": "反射帯(ステンレス)",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  }
+ ],
+ "path": [
+  "road",
+  "facility"
+ ],
+ "lamps": [],
+ "tris": 3388,
+ "size": [
+  0.58,
+  0.86,
+  0.58
+ ],
+ "dir": "road/facility/jp-facility-bollard",
+ "file": "road/facility/jp-facility-bollard/model.glb",
+ "thumb": "road/facility/jp-facility-bollard/thumb.jpg",
+ "bytes": 82912
+}

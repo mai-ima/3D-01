@@ -1,0 +1,48 @@
+{
+ "id": "jp-facility-curve-mirror",
+ "name": "カーブミラー(丸形・2面)",
+ "desc": "見通しの悪い交差点に立つ、凸面の道路反射鏡。橙色の柱に丸い鏡を1面または2面取り付ける。鏡の縁も橙色。",
+ "dims": "鏡 φ600mm(φ800・φ1000もある) / 柱 鋼管φ76.3 / 鏡の中心高 約3.3m(代表値)",
+ "focus": [
+  0,
+  3.3,
+  0
+ ],
+ "view": [
+  1.8,
+  0.1,
+  5
+ ],
+ "options": [
+  {
+   "id": "mirrors",
+   "label": "鏡の数",
+   "choices": [
+    {
+     "id": "2",
+     "label": "2面"
+    },
+    {
+     "id": "1",
+     "label": "1面"
+    }
+   ],
+   "default": "2"
+  }
+ ],
+ "path": [
+  "road",
+  "facility"
+ ],
+ "lamps": [],
+ "tris": 38820,
+ "size": [
+  1.49,
+  3.74,
+  0.22
+ ],
+ "dir": "road/facility/jp-facility-curve-mirror",
+ "file": "road/facility/jp-facility-curve-mirror/model.glb",
+ "thumb": "road/facility/jp-facility-curve-mirror/thumb.jpg",
+ "bytes": 259484
+}

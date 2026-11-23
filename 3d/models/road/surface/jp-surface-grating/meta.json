@@ -1,0 +1,31 @@
+{
+ "id": "jp-surface-grating",
+ "name": "グレーチング(側溝蓋)",
+ "desc": "側溝の上にかぶせる鋼製の格子蓋。縦の平鋼(ベアリングバー)を細かく並べ、横の丸鋼で留める。水を通しながら、歩行者や車が上を通れる。",
+ "dims": "幅 約0.3m・長さ約1.0m・厚さ約0.04m / バー間隔 約0.03m(代表値)",
+ "focus": [
+  0,
+  0,
+  0
+ ],
+ "view": [
+  0.3,
+  1.6,
+  0.9
+ ],
+ "path": [
+  "road",
+  "surface"
+ ],
+ "lamps": [],
+ "tris": 728,
+ "size": [
+  1.37,
+  0.06,
+  1.12
+ ],
+ "dir": "road/surface/jp-surface-grating",
+ "file": "road/surface/jp-surface-grating/model.glb",
+ "thumb": "road/surface/jp-surface-grating/thumb.jpg",
+ "bytes": 11284
+}

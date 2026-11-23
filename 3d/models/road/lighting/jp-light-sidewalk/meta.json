@@ -1,0 +1,83 @@
+{
+ "id": "jp-light-sidewalk",
+ "name": "歩道用街路灯(ポール灯)",
+ "desc": "歩道の脇に立つ、低めの街路灯。笠形の灯具の中のLEDが下を照らす。夜は点灯し、昼は消灯する。灯具の形(笠・ランタン)を選べる。",
+ "dims": "ポール高 約4.2m・灯具径 約0.45m(代表値)",
+ "focus": [
+  0,
+  4,
+  0
+ ],
+ "view": [
+  1.4,
+  0.2,
+  6.2
+ ],
+ "night": "on",
+ "states": [
+  {
+   "id": "on",
+   "label": "点灯",
+   "on": [
+    "lamp"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "on",
+   "d": 8
+  },
+  {
+   "s": "off",
+   "d": 4
+  }
+ ],
+ "options": [
+  {
+   "id": "head",
+   "label": "灯具",
+   "choices": [
+    {
+     "id": "shade",
+     "label": "笠形"
+    },
+    {
+     "id": "lantern",
+     "label": "ランタン形"
+    }
+   ],
+   "default": "shade"
+  }
+ ],
+ "path": [
+  "road",
+  "lighting"
+ ],
+ "lamps": [
+  {
+   "key": "lamp",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "lamp2",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  }
+ ],
+ "tris": 4488,
+ "size": [
+  0.68,
+  4.72,
+  0.68
+ ],
+ "dir": "road/lighting/jp-light-sidewalk",
+ "file": "road/lighting/jp-light-sidewalk/model.glb",
+ "thumb": "road/lighting/jp-light-sidewalk/thumb.jpg",
+ "bytes": 94412
+}

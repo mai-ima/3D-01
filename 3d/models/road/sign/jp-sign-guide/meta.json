@@ -1,0 +1,48 @@
+{
+ "id": "jp-sign-guide",
+ "name": "案内標識(方面・距離)",
+ "desc": "方面と距離を示す案内標識。一般道の青地と高速道路の緑地を選べる。大きな板なので、鋼管φ114.3の支柱2本に、上下の横桁で取り付ける。",
+ "dims": "板 約1.8×0.62m / 支柱 鋼管φ114.3(代表値)",
+ "focus": [
+  0,
+  3.7,
+  0
+ ],
+ "view": [
+  1.5,
+  0.1,
+  6
+ ],
+ "options": [
+  {
+   "id": "type",
+   "label": "板の種類",
+   "choices": [
+    {
+     "id": "blue",
+     "label": "一般道(青)"
+    },
+    {
+     "id": "green",
+     "label": "高速道路(緑)"
+    }
+   ],
+   "default": "blue"
+  }
+ ],
+ "path": [
+  "road",
+  "sign"
+ ],
+ "lamps": [],
+ "tris": 4336,
+ "size": [
+  1.81,
+  4.46,
+  0.23
+ ],
+ "dir": "road/sign/jp-sign-guide",
+ "file": "road/sign/jp-sign-guide/model.glb",
+ "thumb": "road/sign/jp-sign-guide/thumb.jpg",
+ "bytes": 215284
+}

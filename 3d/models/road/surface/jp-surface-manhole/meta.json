@@ -1,0 +1,48 @@
+{
+ "id": "jp-surface-manhole",
+ "name": "マンホール蓋",
+ "desc": "道路にはまる鋳鉄の丸い蓋。表面は滑り止めの角が並び、中央に用途の文字が入る。下水道(おすい)と水道を選べる。",
+ "dims": "蓋 φ600mm・枠 φ約0.75m・厚さ約0.06m(代表値)",
+ "focus": [
+  0,
+  0,
+  0
+ ],
+ "view": [
+  0,
+  1.6,
+  0.6
+ ],
+ "options": [
+  {
+   "id": "use",
+   "label": "用途",
+   "choices": [
+    {
+     "id": "sewer",
+     "label": "下水道"
+    },
+    {
+     "id": "water",
+     "label": "水道"
+    }
+   ],
+   "default": "sewer"
+  }
+ ],
+ "path": [
+  "road",
+  "surface"
+ ],
+ "lamps": [],
+ "tris": 2160,
+ "size": [
+  0.74,
+  0.07,
+  0.74
+ ],
+ "dir": "road/surface/jp-surface-manhole",
+ "file": "road/surface/jp-surface-manhole/model.glb",
+ "thumb": "road/surface/jp-surface-manhole/thumb.jpg",
+ "bytes": 196636
+}

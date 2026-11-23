@@ -110,7 +110,6 @@ function tramHead(parent,L,{x=0,y=0,z=0,prefix=''}={}){const g=new THREE.Group()
   for(const sx of[-.14,.14])add(g,roundBox(.08,.05,.1,.015,.004),MAT.galv,sx,.445,0);return g;}
 export const OPT_LENS={id:"lens",label:"灯火方式",choices:[{id:"led",label:"LED式"},{id:"bulb",label:"電球式"}],default:"led"};
 export const OPT_LENS_BULB={...OPT_LENS,default:"bulb"};
-export const optToggle=(id,label,def="off")=>({id,label,choices:[{id:"off",label:"なし"},{id:"on",label:"あり"}],default:def});
 /* 共通部品(kit)を再エクスポート: モデルは信号用の部品を1か所から取り込める */
-export {COL,LED,MAT,THREE,add,allLamps,arrowTexture,bikeTexture,bolt,config,cv,domeLens,housing,lensMaterial,makeLamp,mastArm,opt,pedTexture,pole,rod,roundBox,rrShape,tex} from './index.js';
+export {optChoice,optToggle,COL,LED,MAT,THREE,add,allLamps,arrowTexture,bikeTexture,bolt,config,cv,domeLens,housing,lensMaterial,makeLamp,mastArm,opt,pedTexture,pole,rod,roundBox,rrShape,tex} from './index.js';
 export {CY3,HG,POLE_H,S3,SPED,addButton,addSpeaker,arrowStates,bentPipe,cylLamp,deg,dotLamp,dotMatrix,hanger,horizHead,hw,optBody,pedDot,pedHousing,plateTexture,railBody,reg,setBody,strap,stripePole,tramHead,vertHead,xTexture};

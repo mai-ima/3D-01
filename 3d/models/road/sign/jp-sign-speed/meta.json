@@ -1,0 +1,71 @@
+{
+ "id": "jp-sign-speed",
+ "name": "規制標識 最高速度(円形)",
+ "desc": "白地に赤い縁と黒い数字の円形標識。速度(30〜60)を選べる。補助標識は「区間」を示す矢印の板で、付け外しできる。",
+ "dims": "φ600mm(大型は800mm) / 支柱 鋼管φ60.5(代表値)",
+ "focus": [
+  0,
+  2.3,
+  0
+ ],
+ "view": [
+  0.8,
+  0.1,
+  3.4
+ ],
+ "options": [
+  {
+   "id": "speed",
+   "label": "制限速度",
+   "choices": [
+    {
+     "id": "30",
+     "label": "30 km/h"
+    },
+    {
+     "id": "40",
+     "label": "40 km/h"
+    },
+    {
+     "id": "50",
+     "label": "50 km/h"
+    },
+    {
+     "id": "60",
+     "label": "60 km/h"
+    }
+   ],
+   "default": "40"
+  },
+  {
+   "id": "aux",
+   "label": "補助標識(矢印)",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  }
+ ],
+ "path": [
+  "road",
+  "sign"
+ ],
+ "lamps": [],
+ "tris": 6906,
+ "size": [
+  0.61,
+  2.83,
+  0.11
+ ],
+ "dir": "road/sign/jp-sign-speed",
+ "file": "road/sign/jp-sign-speed/model.glb",
+ "thumb": "road/sign/jp-sign-speed/thumb.jpg",
+ "bytes": 348164
+}

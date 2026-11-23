@@ -1,0 +1,32 @@
+{
+ "id": "jp-sign-stop",
+ "name": "規制標識 一時停止(止まれ)",
+ "desc": "逆三角形の規制標識。赤い縁と白地に赤の「止まれ」「STOP」。鋼管の支柱に、バンド金具で板を留める。",
+ "dims": "一辺 約0.8m / 支柱 鋼管φ60.5 / 板の中心高 約2.1m(代表値)",
+ "focus": [
+  0,
+  2.1,
+  0
+ ],
+ "view": [
+  0.8,
+  0.1,
+  3.2
+ ],
+ "options": [],
+ "path": [
+  "road",
+  "sign"
+ ],
+ "lamps": [],
+ "tris": 4381,
+ "size": [
+  0.75,
+  2.73,
+  0.11
+ ],
+ "dir": "road/sign/jp-sign-stop",
+ "file": "road/sign/jp-sign-stop/model.glb",
+ "thumb": "road/sign/jp-sign-stop/thumb.jpg",
+ "bytes": 150908
+}

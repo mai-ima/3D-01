@@ -9,9 +9,1016 @@
   "signal/crossing": "踏切",
   "track": "軌道",
   "track/railway": "鉄道軌道",
-  "track/tram": "路面電車軌道"
+  "track/tram": "路面電車軌道",
+  "road": "道路",
+  "road/sign": "道路標識",
+  "road/barrier": "防護柵",
+  "road/facility": "道路付属物",
+  "road/lighting": "道路照明",
+  "road/construction": "工事・規制用品",
+  "road/surface": "路面・縁石"
  },
  "models": [
+  {
+   "id": "jp-barrier-guardpipe",
+   "name": "ガードパイプ(横断防止柵)",
+   "desc": "黒い逆U字の鋼管を並べた、歩行者用の柵。路肩や歩道の端で、横断を防ぐために使われる。色(黒・白・亜鉛めっき)を選べ、反射材を付けられる。",
+   "dims": "1スパン 約1.0m / 高さ 約0.9m / 鋼管φ60.5(代表値)",
+   "focus": [
+    0,
+    0.6,
+    0
+   ],
+   "view": [
+    2.4,
+    0.7,
+    5
+   ],
+   "options": [
+    {
+     "id": "color",
+     "label": "色",
+     "choices": [
+      {
+       "id": "black",
+       "label": "黒"
+      },
+      {
+       "id": "white",
+       "label": "白"
+      },
+      {
+       "id": "zinc",
+       "label": "亜鉛めっき"
+      }
+     ],
+     "default": "black"
+    },
+    {
+     "id": "reflector",
+     "label": "反射材",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    }
+   ],
+   "path": [
+    "road",
+    "barrier"
+   ],
+   "lamps": [],
+   "tris": 41628,
+   "size": [
+    4.09,
+    0.93,
+    0.09
+   ],
+   "dir": "road/barrier/jp-barrier-guardpipe",
+   "file": "road/barrier/jp-barrier-guardpipe/model.glb",
+   "thumb": "road/barrier/jp-barrier-guardpipe/thumb.jpg",
+   "bytes": 73748
+  },
+  {
+   "id": "jp-barrier-guardrail",
+   "name": "ガードレール(Gr-C型・波形ビーム)",
+   "desc": "路側に並ぶ、波形の鋼製ビームと鋼管支柱の防護柵。ビームは4mごとに重ねてボルトで継ぎ、支柱はφ114.3。反射板は付け外しできる。",
+   "dims": "ビーム 幅0.311m・厚3.2mm・長4m / 支柱 鋼管φ114.3 間隔2m / ビーム中心高 約0.5m(代表値)",
+   "focus": [
+    0,
+    0.6,
+    0
+   ],
+   "view": [
+    3,
+    0.9,
+    6.5
+   ],
+   "options": [
+    {
+     "id": "reflector",
+     "label": "反射板(オレンジ)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    }
+   ],
+   "path": [
+    "road",
+    "barrier"
+   ],
+   "lamps": [],
+   "tris": 6828,
+   "size": [
+    8.12,
+    0.94,
+    0.26
+   ],
+   "dir": "road/barrier/jp-barrier-guardrail",
+   "file": "road/barrier/jp-barrier-guardrail/model.glb",
+   "thumb": "road/barrier/jp-barrier-guardrail/thumb.jpg",
+   "bytes": 62948
+  },
+  {
+   "id": "jp-const-barricade",
+   "name": "工事用バリケード(点滅灯付き)",
+   "desc": "工事現場や車線規制で使う、2段の縞板のバリケード。黄色と黒の縞が斜めに走り、上に琥珀色の点滅灯が付く。夜間は灯が点滅する。",
+   "dims": "幅 約1.2m・高さ 約1.0m・板の高さ 約0.2m(代表値)",
+   "focus": [
+    0,
+    0.9,
+    0
+   ],
+   "view": [
+    1.1,
+    0.4,
+    3.4
+   ],
+   "night": "flash",
+   "states": [
+    {
+     "id": "off",
+     "label": "消灯"
+    },
+    {
+     "id": "flash",
+     "label": "点滅",
+     "flash": [
+      "lamp"
+     ]
+    }
+   ],
+   "cycle": [
+    {
+     "s": "flash",
+     "d": 10
+    }
+   ],
+   "path": [
+    "road",
+    "construction"
+   ],
+   "lamps": [
+    {
+     "key": "lamp",
+     "color": "#ff8a1a",
+     "lit": "#ff7a00"
+    }
+   ],
+   "tris": 3296,
+   "size": [
+    1.22,
+    1.2,
+    1.06
+   ],
+   "dir": "road/construction/jp-const-barricade",
+   "file": "road/construction/jp-const-barricade/model.glb",
+   "thumb": "road/construction/jp-const-barricade/thumb.jpg",
+   "bytes": 73060
+  },
+  {
+   "id": "jp-const-cone",
+   "name": "三角コーン(カラーコーン)",
+   "desc": "赤橙色の樹脂のコーンに、白い反射帯が付く。底は四角い土台。コーンバーは、2つのコーンの間に渡す黄黒の縞の棒で、付け外しできる。",
+   "dims": "高さ 約0.7m・底面 約0.36m角(代表値)",
+   "focus": [
+    0,
+    0.4,
+    0
+   ],
+   "view": [
+    0.7,
+    0.3,
+    2.4
+   ],
+   "options": [
+    {
+     "id": "band",
+     "label": "反射帯",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "bar",
+     "label": "コーンバー(黄黒)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    }
+   ],
+   "path": [
+    "road",
+    "construction"
+   ],
+   "lamps": [],
+   "tris": 1630,
+   "size": [
+    1.58,
+    0.88,
+    0.28
+   ],
+   "dir": "road/construction/jp-const-cone",
+   "file": "road/construction/jp-const-cone/model.glb",
+   "thumb": "road/construction/jp-const-cone/thumb.jpg",
+   "bytes": 50608
+  },
+  {
+   "id": "jp-facility-bollard",
+   "name": "車止め(ボラード)",
+   "desc": "歩道の端に立つ車止め。ステンレス鋼管(反射帯付き)と、洗い出しの石の円柱を選べる。反射帯は付け外しできる。",
+   "dims": "ステンレス φ114.3・高さ0.8m / 石の円柱 φ0.5・高さ0.6m(代表値)",
+   "focus": [
+    0,
+    0.5,
+    0
+   ],
+   "view": [
+    0.9,
+    0.3,
+    2.8
+   ],
+   "options": [
+    {
+     "id": "type",
+     "label": "種類",
+     "choices": [
+      {
+       "id": "steel",
+       "label": "ステンレス鋼管"
+      },
+      {
+       "id": "stone",
+       "label": "石の円柱"
+      }
+     ],
+     "default": "steel"
+    },
+    {
+     "id": "band",
+     "label": "反射帯(ステンレス)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    }
+   ],
+   "path": [
+    "road",
+    "facility"
+   ],
+   "lamps": [],
+   "tris": 3388,
+   "size": [
+    0.58,
+    0.86,
+    0.58
+   ],
+   "dir": "road/facility/jp-facility-bollard",
+   "file": "road/facility/jp-facility-bollard/model.glb",
+   "thumb": "road/facility/jp-facility-bollard/thumb.jpg",
+   "bytes": 82912
+  },
+  {
+   "id": "jp-facility-curve-mirror",
+   "name": "カーブミラー(丸形・2面)",
+   "desc": "見通しの悪い交差点に立つ、凸面の道路反射鏡。橙色の柱に丸い鏡を1面または2面取り付ける。鏡の縁も橙色。",
+   "dims": "鏡 φ600mm(φ800・φ1000もある) / 柱 鋼管φ76.3 / 鏡の中心高 約3.3m(代表値)",
+   "focus": [
+    0,
+    3.3,
+    0
+   ],
+   "view": [
+    1.8,
+    0.1,
+    5
+   ],
+   "options": [
+    {
+     "id": "mirrors",
+     "label": "鏡の数",
+     "choices": [
+      {
+       "id": "2",
+       "label": "2面"
+      },
+      {
+       "id": "1",
+       "label": "1面"
+      }
+     ],
+     "default": "2"
+    }
+   ],
+   "path": [
+    "road",
+    "facility"
+   ],
+   "lamps": [],
+   "tris": 38820,
+   "size": [
+    1.49,
+    3.74,
+    0.22
+   ],
+   "dir": "road/facility/jp-facility-curve-mirror",
+   "file": "road/facility/jp-facility-curve-mirror/model.glb",
+   "thumb": "road/facility/jp-facility-curve-mirror/thumb.jpg",
+   "bytes": 259484
+  },
+  {
+   "id": "jp-facility-delineator",
+   "name": "視線誘導標(デリニエータ)",
+   "desc": "路肩に立つ白い支柱の先に反射板を付けた視線誘導標。道路の線形を夜間に示す。反射板の色(白・橙)を選べ、積雪地の矢羽根(高い支柱)に切り替えられる。",
+   "dims": "支柱 φ約0.07m・高さ約1.05m / 反射板 約0.1×0.07m(代表値)",
+   "focus": [
+    0,
+    0.9,
+    0
+   ],
+   "view": [
+    0.5,
+    0.2,
+    2.4
+   ],
+   "options": [
+    {
+     "id": "type",
+     "label": "種類",
+     "choices": [
+      {
+       "id": "low",
+       "label": "通常(低い支柱)"
+      },
+      {
+       "id": "tall",
+       "label": "矢羽根(高い支柱)"
+      }
+     ],
+     "default": "low"
+    },
+    {
+     "id": "refl",
+     "label": "反射板の色",
+     "choices": [
+      {
+       "id": "white",
+       "label": "白"
+      },
+      {
+       "id": "orange",
+       "label": "橙"
+      }
+     ],
+     "default": "white"
+    }
+   ],
+   "path": [
+    "road",
+    "facility"
+   ],
+   "lamps": [],
+   "tris": 2410,
+   "size": [
+    0.44,
+    3.03,
+    0.14
+   ],
+   "dir": "road/facility/jp-facility-delineator",
+   "file": "road/facility/jp-facility-delineator/model.glb",
+   "thumb": "road/facility/jp-facility-delineator/thumb.jpg",
+   "bytes": 39920
+  },
+  {
+   "id": "jp-facility-rubber-pole",
+   "name": "ラバーポール",
+   "desc": "道路の中央や出入口に立てる、弾力のある樹脂のポール。車が当たっても倒れて起き上がる。反射帯付きで、色(白・黄・赤)を選べる。",
+   "dims": "φ約0.09m・高さ約0.9m / 底板 φ約0.3m(代表値)",
+   "focus": [
+    0,
+    0.6,
+    0
+   ],
+   "view": [
+    0.7,
+    0.3,
+    2.6
+   ],
+   "options": [
+    {
+     "id": "color",
+     "label": "色",
+     "choices": [
+      {
+       "id": "white",
+       "label": "白"
+      },
+      {
+       "id": "yellow",
+       "label": "黄"
+      },
+      {
+       "id": "red",
+       "label": "赤"
+      }
+     ],
+     "default": "white"
+    }
+   ],
+   "path": [
+    "road",
+    "facility"
+   ],
+   "lamps": [],
+   "tris": 4192,
+   "size": [
+    0.32,
+    0.96,
+    0.32
+   ],
+   "dir": "road/facility/jp-facility-rubber-pole",
+   "file": "road/facility/jp-facility-rubber-pole/model.glb",
+   "thumb": "road/facility/jp-facility-rubber-pole/thumb.jpg",
+   "bytes": 40204
+  },
+  {
+   "id": "jp-light-road",
+   "name": "道路照明灯(片持ち・LED)",
+   "desc": "先細りの鋼管ポールの先で、アームが車道側へ伸び、LEDの灯具が路面を照らす。夜は点灯し、昼は消灯する。アームの形(直線・曲線)を選べる。",
+   "dims": "ポール高 約9m・アーム長 約2.2m・灯具 約0.85×0.38m(代表値)",
+   "focus": [
+    1.2,
+    9,
+    0
+   ],
+   "view": [
+    2.2,
+    0.1,
+    9
+   ],
+   "night": "on",
+   "states": [
+    {
+     "id": "on",
+     "label": "点灯",
+     "on": [
+      "lamp"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "on",
+     "d": 8
+    },
+    {
+     "s": "off",
+     "d": 4
+    }
+   ],
+   "options": [
+    {
+     "id": "arm",
+     "label": "アームの形",
+     "choices": [
+      {
+       "id": "curve",
+       "label": "曲線"
+      },
+      {
+       "id": "straight",
+       "label": "直線"
+      }
+     ],
+     "default": "curve"
+    }
+   ],
+   "path": [
+    "road",
+    "lighting"
+   ],
+   "lamps": [
+    {
+     "key": "lamp",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    }
+   ],
+   "tris": 5514,
+   "size": [
+    2.92,
+    9.72,
+    0.4
+   ],
+   "dir": "road/lighting/jp-light-road",
+   "file": "road/lighting/jp-light-road/model.glb",
+   "thumb": "road/lighting/jp-light-road/thumb.jpg",
+   "bytes": 153680
+  },
+  {
+   "id": "jp-light-sidewalk",
+   "name": "歩道用街路灯(ポール灯)",
+   "desc": "歩道の脇に立つ、低めの街路灯。笠形の灯具の中のLEDが下を照らす。夜は点灯し、昼は消灯する。灯具の形(笠・ランタン)を選べる。",
+   "dims": "ポール高 約4.2m・灯具径 約0.45m(代表値)",
+   "focus": [
+    0,
+    4,
+    0
+   ],
+   "view": [
+    1.4,
+    0.2,
+    6.2
+   ],
+   "night": "on",
+   "states": [
+    {
+     "id": "on",
+     "label": "点灯",
+     "on": [
+      "lamp"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "on",
+     "d": 8
+    },
+    {
+     "s": "off",
+     "d": 4
+    }
+   ],
+   "options": [
+    {
+     "id": "head",
+     "label": "灯具",
+     "choices": [
+      {
+       "id": "shade",
+       "label": "笠形"
+      },
+      {
+       "id": "lantern",
+       "label": "ランタン形"
+      }
+     ],
+     "default": "shade"
+    }
+   ],
+   "path": [
+    "road",
+    "lighting"
+   ],
+   "lamps": [
+    {
+     "key": "lamp",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "lamp2",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    }
+   ],
+   "tris": 4488,
+   "size": [
+    0.68,
+    4.72,
+    0.68
+   ],
+   "dir": "road/lighting/jp-light-sidewalk",
+   "file": "road/lighting/jp-light-sidewalk/model.glb",
+   "thumb": "road/lighting/jp-light-sidewalk/thumb.jpg",
+   "bytes": 94412
+  },
+  {
+   "id": "jp-sign-guide",
+   "name": "案内標識(方面・距離)",
+   "desc": "方面と距離を示す案内標識。一般道の青地と高速道路の緑地を選べる。大きな板なので、鋼管φ114.3の支柱2本に、上下の横桁で取り付ける。",
+   "dims": "板 約1.8×0.62m / 支柱 鋼管φ114.3(代表値)",
+   "focus": [
+    0,
+    3.7,
+    0
+   ],
+   "view": [
+    1.5,
+    0.1,
+    6
+   ],
+   "options": [
+    {
+     "id": "type",
+     "label": "板の種類",
+     "choices": [
+      {
+       "id": "blue",
+       "label": "一般道(青)"
+      },
+      {
+       "id": "green",
+       "label": "高速道路(緑)"
+      }
+     ],
+     "default": "blue"
+    }
+   ],
+   "path": [
+    "road",
+    "sign"
+   ],
+   "lamps": [],
+   "tris": 4336,
+   "size": [
+    1.81,
+    4.46,
+    0.23
+   ],
+   "dir": "road/sign/jp-sign-guide",
+   "file": "road/sign/jp-sign-guide/model.glb",
+   "thumb": "road/sign/jp-sign-guide/thumb.jpg",
+   "bytes": 215284
+  },
+  {
+   "id": "jp-sign-speed",
+   "name": "規制標識 最高速度(円形)",
+   "desc": "白地に赤い縁と黒い数字の円形標識。速度(30〜60)を選べる。補助標識は「区間」を示す矢印の板で、付け外しできる。",
+   "dims": "φ600mm(大型は800mm) / 支柱 鋼管φ60.5(代表値)",
+   "focus": [
+    0,
+    2.3,
+    0
+   ],
+   "view": [
+    0.8,
+    0.1,
+    3.4
+   ],
+   "options": [
+    {
+     "id": "speed",
+     "label": "制限速度",
+     "choices": [
+      {
+       "id": "30",
+       "label": "30 km/h"
+      },
+      {
+       "id": "40",
+       "label": "40 km/h"
+      },
+      {
+       "id": "50",
+       "label": "50 km/h"
+      },
+      {
+       "id": "60",
+       "label": "60 km/h"
+      }
+     ],
+     "default": "40"
+    },
+    {
+     "id": "aux",
+     "label": "補助標識(矢印)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    }
+   ],
+   "path": [
+    "road",
+    "sign"
+   ],
+   "lamps": [],
+   "tris": 6906,
+   "size": [
+    0.61,
+    2.83,
+    0.11
+   ],
+   "dir": "road/sign/jp-sign-speed",
+   "file": "road/sign/jp-sign-speed/model.glb",
+   "thumb": "road/sign/jp-sign-speed/thumb.jpg",
+   "bytes": 348164
+  },
+  {
+   "id": "jp-sign-stop",
+   "name": "規制標識 一時停止(止まれ)",
+   "desc": "逆三角形の規制標識。赤い縁と白地に赤の「止まれ」「STOP」。鋼管の支柱に、バンド金具で板を留める。",
+   "dims": "一辺 約0.8m / 支柱 鋼管φ60.5 / 板の中心高 約2.1m(代表値)",
+   "focus": [
+    0,
+    2.1,
+    0
+   ],
+   "view": [
+    0.8,
+    0.1,
+    3.2
+   ],
+   "options": [],
+   "path": [
+    "road",
+    "sign"
+   ],
+   "lamps": [],
+   "tris": 4381,
+   "size": [
+    0.75,
+    2.73,
+    0.11
+   ],
+   "dir": "road/sign/jp-sign-stop",
+   "file": "road/sign/jp-sign-stop/model.glb",
+   "thumb": "road/sign/jp-sign-stop/thumb.jpg",
+   "bytes": 150908
+  },
+  {
+   "id": "jp-sign-warning",
+   "name": "警戒標識(ひし形)",
+   "desc": "黄色の地に黒い縁と図柄のひし形標識。「十字路」「信号機あり」「踏切あり」などの図柄を選べる。",
+   "dims": "一辺 約0.45m(代表値) / 支柱 鋼管φ60.5",
+   "focus": [
+    0,
+    2.2,
+    0
+   ],
+   "view": [
+    0.7,
+    0.1,
+    3
+   ],
+   "options": [
+    {
+     "id": "symbol",
+     "label": "図柄",
+     "choices": [
+      {
+       "id": "cross",
+       "label": "十字路"
+      },
+      {
+       "id": "signal",
+       "label": "信号機あり"
+      },
+      {
+       "id": "rail",
+       "label": "踏切あり"
+      }
+     ],
+     "default": "cross"
+    }
+   ],
+   "path": [
+    "road",
+    "sign"
+   ],
+   "lamps": [],
+   "tris": 5070,
+   "size": [
+    0.62,
+    2.73,
+    0.11
+   ],
+   "dir": "road/sign/jp-sign-warning",
+   "file": "road/sign/jp-sign-warning/model.glb",
+   "thumb": "road/sign/jp-sign-warning/thumb.jpg",
+   "bytes": 181684
+  },
+  {
+   "id": "jp-surface-curb",
+   "name": "縁石(歩車道境界ブロック)",
+   "desc": "歩道と車道の境を示すコンクリートのブロック。通常のマウンドアップ型は車道側が約15cm高い。出入口の切下げ型は、高さを低くしてある。4mのブロックを継ぎ目つきで並べる。",
+   "dims": "幅 約0.18m・高さ 約0.15m(切下げ型は0.05m)・ブロック長 約1m(代表値)",
+   "focus": [
+    0,
+    0.1,
+    0
+   ],
+   "view": [
+    1.6,
+    0.9,
+    3.8
+   ],
+   "options": [
+    {
+     "id": "type",
+     "label": "形",
+     "choices": [
+      {
+       "id": "normal",
+       "label": "マウンドアップ"
+      },
+      {
+       "id": "drop",
+       "label": "切下げ"
+      }
+     ],
+     "default": "normal"
+    }
+   ],
+   "path": [
+    "road",
+    "surface"
+   ],
+   "lamps": [],
+   "tris": 448,
+   "size": [
+    4,
+    0.16,
+    0.19
+   ],
+   "dir": "road/surface/jp-surface-curb",
+   "file": "road/surface/jp-surface-curb/model.glb",
+   "thumb": "road/surface/jp-surface-curb/thumb.jpg",
+   "bytes": 15188
+  },
+  {
+   "id": "jp-surface-grating",
+   "name": "グレーチング(側溝蓋)",
+   "desc": "側溝の上にかぶせる鋼製の格子蓋。縦の平鋼(ベアリングバー)を細かく並べ、横の丸鋼で留める。水を通しながら、歩行者や車が上を通れる。",
+   "dims": "幅 約0.3m・長さ約1.0m・厚さ約0.04m / バー間隔 約0.03m(代表値)",
+   "focus": [
+    0,
+    0,
+    0
+   ],
+   "view": [
+    0.3,
+    1.6,
+    0.9
+   ],
+   "path": [
+    "road",
+    "surface"
+   ],
+   "lamps": [],
+   "tris": 728,
+   "size": [
+    1.37,
+    0.06,
+    1.12
+   ],
+   "dir": "road/surface/jp-surface-grating",
+   "file": "road/surface/jp-surface-grating/model.glb",
+   "thumb": "road/surface/jp-surface-grating/thumb.jpg",
+   "bytes": 11284
+  },
+  {
+   "id": "jp-surface-manhole",
+   "name": "マンホール蓋",
+   "desc": "道路にはまる鋳鉄の丸い蓋。表面は滑り止めの角が並び、中央に用途の文字が入る。下水道(おすい)と水道を選べる。",
+   "dims": "蓋 φ600mm・枠 φ約0.75m・厚さ約0.06m(代表値)",
+   "focus": [
+    0,
+    0,
+    0
+   ],
+   "view": [
+    0,
+    1.6,
+    0.6
+   ],
+   "options": [
+    {
+     "id": "use",
+     "label": "用途",
+     "choices": [
+      {
+       "id": "sewer",
+       "label": "下水道"
+      },
+      {
+       "id": "water",
+       "label": "水道"
+      }
+     ],
+     "default": "sewer"
+    }
+   ],
+   "path": [
+    "road",
+    "surface"
+   ],
+   "lamps": [],
+   "tris": 2160,
+   "size": [
+    0.74,
+    0.07,
+    0.74
+   ],
+   "dir": "road/surface/jp-surface-manhole",
+   "file": "road/surface/jp-surface-manhole/model.glb",
+   "thumb": "road/surface/jp-surface-manhole/thumb.jpg",
+   "bytes": 196636
+  },
+  {
+   "id": "jp-surface-tenji",
+   "name": "点字ブロック(視覚障害者誘導用ブロック)",
+   "desc": "黄色いブロックの表面に、線状の突起(誘導ブロック=進む向き)または点状の突起(警告ブロック=止まって確認)が並ぶ。1枚30cm角、6枚を並べて見せる。",
+   "dims": "1枚 0.30×0.30m・厚さ0.06m / 突起の高さ 約5mm(代表値)",
+   "focus": [
+    0,
+    0,
+    0
+   ],
+   "view": [
+    0.2,
+    1.8,
+    1.4
+   ],
+   "options": [
+    {
+     "id": "type",
+     "label": "種類",
+     "choices": [
+      {
+       "id": "dot",
+       "label": "警告(点状)"
+      },
+      {
+       "id": "line",
+       "label": "誘導(線状)"
+      }
+     ],
+     "default": "dot"
+    }
+   ],
+   "path": [
+    "road",
+    "surface"
+   ],
+   "lamps": [],
+   "tris": 12360,
+   "size": [
+    1.8,
+    0.07,
+    0.3
+   ],
+   "dir": "road/surface/jp-surface-tenji",
+   "file": "road/surface/jp-surface-tenji/model.glb",
+   "thumb": "road/surface/jp-surface-tenji/thumb.jpg",
+   "bytes": 23980
+  },
   {
    "id": "jp-combo-arm-ped",
    "name": "車両用(アーム式)+歩行者用 一体柱",
@@ -255,7 +1262,7 @@
    "dir": "signal/combined/jp-combo-arm-ped",
    "file": "signal/combined/jp-combo-arm-ped/model.glb",
    "thumb": "signal/combined/jp-combo-arm-ped/thumb.jpg",
-   "bytes": 1275308
+   "bytes": 1276380
   },
   {
    "id": "jp-combo-vert-ped",
@@ -500,7 +1507,7 @@
    "dir": "signal/combined/jp-combo-vert-ped",
    "file": "signal/combined/jp-combo-vert-ped/model.glb",
    "thumb": "signal/combined/jp-combo-vert-ped/thumb.jpg",
-   "bytes": 1128216
+   "bytes": 1129296
   },
   {
    "id": "jp-crossing-alarm",
@@ -754,7 +1761,7 @@
    "dir": "signal/crossing/jp-crossing-alarm",
    "file": "signal/crossing/jp-crossing-alarm/model.glb",
    "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
-   "bytes": 829456
+   "bytes": 811248
   },
   {
    "id": "jp-crossing-gate",
@@ -841,7 +1848,7 @@
    "dir": "signal/crossing/jp-crossing-gate",
    "file": "signal/crossing/jp-crossing-gate/model.glb",
    "thumb": "signal/crossing/jp-crossing-gate/thumb.jpg",
-   "bytes": 132588
+   "bytes": 133924
   },
   {
    "id": "jp-bike-ped",
@@ -967,7 +1974,7 @@
    "dir": "signal/pedestrian/jp-bike-ped",
    "file": "signal/pedestrian/jp-bike-ped/model.glb",
    "thumb": "signal/pedestrian/jp-bike-ped/thumb.jpg",
-   "bytes": 369080
+   "bytes": 378976
   },
   {
    "id": "jp-ped-button",
@@ -1040,7 +2047,7 @@
    "dir": "signal/pedestrian/jp-ped-button",
    "file": "signal/pedestrian/jp-ped-button/model.glb",
    "thumb": "signal/pedestrian/jp-ped-button/thumb.jpg",
-   "bytes": 225572
+   "bytes": 231160
   },
   {
    "id": "jp-ped-count",
@@ -1370,7 +2377,7 @@
    "dir": "signal/pedestrian/jp-ped-count",
    "file": "signal/pedestrian/jp-ped-count/model.glb",
    "thumb": "signal/pedestrian/jp-ped-count/thumb.jpg",
-   "bytes": 459764
+   "bytes": 471228
   },
   {
    "id": "jp-ped-led",
@@ -1531,7 +2538,7 @@
    "dir": "signal/pedestrian/jp-ped-led",
    "file": "signal/pedestrian/jp-ped-led/model.glb",
    "thumb": "signal/pedestrian/jp-ped-led/thumb.jpg",
-   "bytes": 448052
+   "bytes": 458776
   },
   {
    "id": "jp-rail-3",
@@ -1668,7 +2675,7 @@
    "dir": "signal/rail/jp-rail-3",
    "file": "signal/rail/jp-rail-3/model.glb",
    "thumb": "signal/rail/jp-rail-3/thumb.jpg",
-   "bytes": 922620
+   "bytes": 923564
   },
   {
    "id": "jp-rail-4",
@@ -1821,7 +2828,7 @@
    "dir": "signal/rail/jp-rail-4",
    "file": "signal/rail/jp-rail-4/model.glb",
    "thumb": "signal/rail/jp-rail-4/thumb.jpg",
-   "bytes": 925276
+   "bytes": 938860
   },
   {
    "id": "jp-rail-5",
@@ -1992,7 +2999,7 @@
    "dir": "signal/rail/jp-rail-5",
    "file": "signal/rail/jp-rail-5/model.glb",
    "thumb": "signal/rail/jp-rail-5/thumb.jpg",
-   "bytes": 927016
+   "bytes": 937712
   },
   {
    "id": "jp-rail-relay",
@@ -2125,7 +3132,7 @@
    "dir": "signal/rail/jp-rail-relay",
    "file": "signal/rail/jp-rail-relay/model.glb",
    "thumb": "signal/rail/jp-rail-relay/thumb.jpg",
-   "bytes": 721872
+   "bytes": 704292
   },
   {
    "id": "jp-tram",
@@ -2265,7 +3272,7 @@
    "dir": "signal/tram/jp-tram",
    "file": "signal/tram/jp-tram/model.glb",
    "thumb": "signal/tram/jp-tram/thumb.jpg",
-   "bytes": 417512
+   "bytes": 411888
   },
   {
    "id": "jp-tram-symbol",
@@ -2396,7 +3403,7 @@
    "dir": "signal/tram/jp-tram-symbol",
    "file": "signal/tram/jp-tram-symbol/model.glb",
    "thumb": "signal/tram/jp-tram-symbol/thumb.jpg",
-   "bytes": 319704
+   "bytes": 330900
   },
   {
    "id": "jp-tram-with-vehicle",
@@ -2603,7 +3610,7 @@
    "dir": "signal/tram/jp-tram-with-vehicle",
    "file": "signal/tram/jp-tram-with-vehicle/model.glb",
    "thumb": "signal/tram/jp-tram-with-vehicle/thumb.jpg",
-   "bytes": 1209800
+   "bytes": 1175912
   },
   {
    "id": "jp-veh-arrow",
@@ -2825,7 +3832,7 @@
    "dir": "signal/vehicle/jp-veh-arrow",
    "file": "signal/vehicle/jp-veh-arrow/model.glb",
    "thumb": "signal/vehicle/jp-veh-arrow/thumb.jpg",
-   "bytes": 1115192
+   "bytes": 1099820
   },
   {
    "id": "jp-veh-center-pole",
@@ -3014,7 +4021,7 @@
    "dir": "signal/vehicle/jp-veh-center-pole",
    "file": "signal/vehicle/jp-veh-center-pole/model.glb",
    "thumb": "signal/vehicle/jp-veh-center-pole/thumb.jpg",
-   "bytes": 855344
+   "bytes": 847056
   },
   {
    "id": "jp-veh-flash",
@@ -3143,7 +4150,7 @@
    "dir": "signal/vehicle/jp-veh-flash",
    "file": "signal/vehicle/jp-veh-flash/model.glb",
    "thumb": "signal/vehicle/jp-veh-flash/thumb.jpg",
-   "bytes": 795384
+   "bytes": 784324
   },
   {
    "id": "jp-veh-h250-side",
@@ -3303,7 +4310,7 @@
    "dir": "signal/vehicle/jp-veh-h250-side",
    "file": "signal/vehicle/jp-veh-h250-side/model.glb",
    "thumb": "signal/vehicle/jp-veh-h250-side/thumb.jpg",
-   "bytes": 879708
+   "bytes": 872480
   },
   {
    "id": "jp-veh-h300-arm",
@@ -3478,7 +4485,7 @@
    "dir": "signal/vehicle/jp-veh-h300-arm",
    "file": "signal/vehicle/jp-veh-h300-arm/model.glb",
    "thumb": "signal/vehicle/jp-veh-h300-arm/thumb.jpg",
-   "bytes": 987072
+   "bytes": 975600
   },
   {
    "id": "jp-veh-hoodless",
@@ -3637,7 +4644,7 @@
    "dir": "signal/vehicle/jp-veh-hoodless",
    "file": "signal/vehicle/jp-veh-hoodless/model.glb",
    "thumb": "signal/vehicle/jp-veh-hoodless/thumb.jpg",
-   "bytes": 717172
+   "bytes": 701600
   },
   {
    "id": "jp-veh-v-snow",
@@ -3812,7 +4819,7 @@
    "dir": "signal/vehicle/jp-veh-v-snow",
    "file": "signal/vehicle/jp-veh-v-snow/model.glb",
    "thumb": "signal/vehicle/jp-veh-v-snow/thumb.jpg",
-   "bytes": 888520
+   "bytes": 879024
   },
   {
    "id": "jp-veh-v250",
@@ -3971,7 +4978,7 @@
    "dir": "signal/vehicle/jp-veh-v250",
    "file": "signal/vehicle/jp-veh-v250/model.glb",
    "thumb": "signal/vehicle/jp-veh-v250/thumb.jpg",
-   "bytes": 865984
+   "bytes": 859536
   },
   {
    "id": "jp-track-ballast",
@@ -3988,12 +4995,12 @@
    "size": [
     4.8,
     0.59,
-    12.24
+    12.2
    ],
    "dir": "track/railway/jp-track-ballast",
    "file": "track/railway/jp-track-ballast/model.glb",
    "thumb": "track/railway/jp-track-ballast/thumb.jpg",
-   "bytes": 1652048
+   "bytes": 1651424
   },
   {
    "id": "jp-track-slab",
@@ -4015,7 +5022,7 @@
    "dir": "track/railway/jp-track-slab",
    "file": "track/railway/jp-track-slab/model.glb",
    "thumb": "track/railway/jp-track-slab/thumb.jpg",
-   "bytes": 161272
+   "bytes": 162260
   },
   {
    "id": "jp-track-tram",
@@ -4037,7 +5044,7 @@
    "dir": "track/tram/jp-track-tram",
    "file": "track/tram/jp-track-tram/model.glb",
    "thumb": "track/tram/jp-track-tram/thumb.jpg",
-   "bytes": 304560
+   "bytes": 304400
   }
  ]
 }

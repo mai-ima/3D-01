@@ -1,0 +1,48 @@
+{
+ "id": "jp-surface-curb",
+ "name": "縁石(歩車道境界ブロック)",
+ "desc": "歩道と車道の境を示すコンクリートのブロック。通常のマウンドアップ型は車道側が約15cm高い。出入口の切下げ型は、高さを低くしてある。4mのブロックを継ぎ目つきで並べる。",
+ "dims": "幅 約0.18m・高さ 約0.15m(切下げ型は0.05m)・ブロック長 約1m(代表値)",
+ "focus": [
+  0,
+  0.1,
+  0
+ ],
+ "view": [
+  1.6,
+  0.9,
+  3.8
+ ],
+ "options": [
+  {
+   "id": "type",
+   "label": "形",
+   "choices": [
+    {
+     "id": "normal",
+     "label": "マウンドアップ"
+    },
+    {
+     "id": "drop",
+     "label": "切下げ"
+    }
+   ],
+   "default": "normal"
+  }
+ ],
+ "path": [
+  "road",
+  "surface"
+ ],
+ "lamps": [],
+ "tris": 448,
+ "size": [
+  4,
+  0.16,
+  0.19
+ ],
+ "dir": "road/surface/jp-surface-curb",
+ "file": "road/surface/jp-surface-curb/model.glb",
+ "thumb": "road/surface/jp-surface-curb/thumb.jpg",
+ "bytes": 15188
+}

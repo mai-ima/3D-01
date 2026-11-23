@@ -1,0 +1,57 @@
+{
+ "id": "jp-const-barricade",
+ "name": "工事用バリケード(点滅灯付き)",
+ "desc": "工事現場や車線規制で使う、2段の縞板のバリケード。黄色と黒の縞が斜めに走り、上に琥珀色の点滅灯が付く。夜間は灯が点滅する。",
+ "dims": "幅 約1.2m・高さ 約1.0m・板の高さ 約0.2m(代表値)",
+ "focus": [
+  0,
+  0.9,
+  0
+ ],
+ "view": [
+  1.1,
+  0.4,
+  3.4
+ ],
+ "night": "flash",
+ "states": [
+  {
+   "id": "off",
+   "label": "消灯"
+  },
+  {
+   "id": "flash",
+   "label": "点滅",
+   "flash": [
+    "lamp"
+   ]
+  }
+ ],
+ "cycle": [
+  {
+   "s": "flash",
+   "d": 10
+  }
+ ],
+ "path": [
+  "road",
+  "construction"
+ ],
+ "lamps": [
+  {
+   "key": "lamp",
+   "color": "#ff8a1a",
+   "lit": "#ff7a00"
+  }
+ ],
+ "tris": 3296,
+ "size": [
+  1.22,
+  1.2,
+  1.06
+ ],
+ "dir": "road/construction/jp-const-barricade",
+ "file": "road/construction/jp-const-barricade/model.glb",
+ "thumb": "road/construction/jp-const-barricade/thumb.jpg",
+ "bytes": 73060
+}

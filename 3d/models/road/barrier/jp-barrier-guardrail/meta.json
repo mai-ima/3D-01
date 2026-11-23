@@ -1,0 +1,48 @@
+{
+ "id": "jp-barrier-guardrail",
+ "name": "ガードレール(Gr-C型・波形ビーム)",
+ "desc": "路側に並ぶ、波形の鋼製ビームと鋼管支柱の防護柵。ビームは4mごとに重ねてボルトで継ぎ、支柱はφ114.3。反射板は付け外しできる。",
+ "dims": "ビーム 幅0.311m・厚3.2mm・長4m / 支柱 鋼管φ114.3 間隔2m / ビーム中心高 約0.5m(代表値)",
+ "focus": [
+  0,
+  0.6,
+  0
+ ],
+ "view": [
+  3,
+  0.9,
+  6.5
+ ],
+ "options": [
+  {
+   "id": "reflector",
+   "label": "反射板(オレンジ)",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  }
+ ],
+ "path": [
+  "road",
+  "barrier"
+ ],
+ "lamps": [],
+ "tris": 6828,
+ "size": [
+  8.12,
+  0.94,
+  0.26
+ ],
+ "dir": "road/barrier/jp-barrier-guardrail",
+ "file": "road/barrier/jp-barrier-guardrail/model.glb",
+ "thumb": "road/barrier/jp-barrier-guardrail/thumb.jpg",
+ "bytes": 62948
+}

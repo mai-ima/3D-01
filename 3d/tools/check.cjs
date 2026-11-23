@@ -13,7 +13,9 @@ for(const e of idx.models){const id=e.id;
   for(const f of[e.file,e.thumb,e.dir+'/meta.json'])if(!fs.existsSync(path.join(M,f)))E(id,`ファイルがない: ${f}`);
   for(let i=1;i<=e.path.length;i++){const k=e.path.slice(0,i).join('/');if(!cats.includes(k))E(id,`categories.json にない: ${k}`);}
   if(!fs.existsSync(path.join(M,e.file)))continue;
-  const g=glb(path.join(M,e.file));const names=new Set(g.nodes.map(n=>(n.name||'').replace(/_\d+$/,'')));
+  const g=glb(path.join(M,e.file));const raw=g.nodes.map(n=>n.name||'');
+  // 読み込み時に付く連番(_1,_2…)は、同名ノードが複数あるときだけ付く。ここでは GLB の名前そのものを見る
+  const names=new Set(raw);
   const lampKeys=new Set([...names].filter(n=>/^lamp_/.test(n)).map(n=>n.slice(5)));
   const lampB=new Set([...names].filter(n=>/^lampB_/.test(n)).map(n=>n.slice(6)));
   const meta=new Set((e.lamps||[]).map(l=>l.key));
