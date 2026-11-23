@@ -8,13 +8,16 @@ function xBoard(parent,y){const cb=new THREE.Group();cb.position.set(0,y,.1);par
   for(const s of[1,-1]){const b=new THREE.Group();b.rotation.z=s*.64;b.position.z=s>0?0:.012;cb.add(b);for(let i=0;i<n;i++)add(b,new THREE.BoxGeometry(sg,wd,.012),i%2?MAT.black:MAT.yel,(i-(n-1)/2)*sg,0,0);}  // 端が黄・中央が黒の縞
   for(const [dx,dy] of[[-.05,.03],[.05,-.03]])bolt(cb,dx,dy,.03,.012);}
 function roundLamp(parent,L,key,x,y){const g=new THREE.Group();g.position.set(x,y,.1);parent.add(g);
-  const d=add(g,new THREE.CylinderGeometry(.225,.225,.12,56),MAT.black);d.rotation.x=Math.PI/2;
-  add(g,new THREE.CylinderGeometry(.235,.235,.02,56),MAT.black,0,0,.065).rotation.x=Math.PI/2;
-  reg(L,key,makeLamp(g,0,0,.07,.15,'red',LED,{hood:.13,gap:2.7,hoodMat:MAT.black}));
-  rod(parent,[0,y,.02],[x*.9,y,.05],.022,MAT.black);const cl=add(parent,new THREE.CylinderGeometry(.095,.095,.1,28),MAT.black,0,y,0);}
+  const body=add(g,new THREE.CylinderGeometry(.2,.2,.24,56,1,true),MAT.black);body.rotation.x=Math.PI/2;body.position.z=.02;                 // 円筒のケース
+  add(g,new THREE.CircleGeometry(.2,56),MAT.black,0,0,-.1);
+  const hat=add(g,new THREE.CylinderGeometry(.27,.27,.016,56),MAT.black,0,.215,.04);                                                  // 上のひさし(帽子)
+  add(g,new THREE.CylinderGeometry(.2,.2,.03,56),MAT.black,0,.2,.04);
+  const bk=add(g,roundBox(.34,.34,.02,.04,.004),MAT.black,0,0,-.13);bk.visible=true;                                                 // 後ろの背板
+  reg(L,key,makeLamp(g,0,0,.13,.15,'red',LED,{hood:.05,gap:2.4,hoodMat:MAT.black}));
+  rod(parent,[0,y,.0],[x*.92,y,.05],.026,MAT.black);add(parent,new THREE.CylinderGeometry(.095,.095,.1,28),MAT.black,0,y,0);}
 const sign=(txt,{bg='#f2a900',fg='#111',w=.52,h=.26,font=70}={})=>{const c=cv(512,Math.round(512*h/w)),x=c.getContext('2d');x.fillStyle=bg;x.fillRect(0,0,c.width,c.height);x.strokeStyle=fg;x.lineWidth=8;x.strokeRect(4,4,c.width-8,c.height-8);x.fillStyle=fg;x.textAlign='center';x.font=`700 ${font}px "Noto Sans JP",sans-serif`;x.fillText(txt,256,c.height/2+font*.34,480);return new THREE.MeshStandardMaterial({map:tex(c),roughness:.5});};
 export default {id:'jp-crossing-alarm',name:'踏切警報機(丸形警報灯・方向指示器・×字標識)',
-  desc:'実物写真に合わせた現行形。黄黒縞の警報柱に、黄黒の×字標識、黒い丸形の赤色警報灯(左右交互に点滅)、矢印2つの列車進行方向指示器、「踏切注意」標識、ホーン、非常ボタン箱を備える。',
+  desc:'実物写真に合わせた現行形。黄黒縞の警報柱に、黄黒の×字標識、円筒ケースにひさしを載せた赤色警報灯(左右交互に点滅)、矢印2つの列車進行方向指示器、「踏切注意」標識、ホーン、非常ボタン箱を備える。',
   dims:'柱高 約3.9m / 警報灯の発光面 約φ300mm(推定)',focus:[0,2.7,.2],view:[.9,.3,6.6],night:null,
   states:[{id:'idle',label:'平常'},{id:'alarm',label:'警報(交互点滅)',flash:['l1','l3'],flash2:['l2','l4'],on:['em']},{id:'alarmL',label:'警報+左矢印',flash:['l1','l3'],flash2:['l2','l4'],on:['dirL','em']},{id:'alarmR',label:'警報+右矢印',flash:['l1','l3'],flash2:['l2','l4'],on:['dirR','em']},{id:'sp',label:'特殊信号発光機',flash:['sp']}],
   cycle:[{s:'idle',d:6},{s:'alarm',d:3},{s:'alarmL',d:8}],

@@ -94,7 +94,7 @@
      "label": "電球式"
     }
    ],
-   "default": "led"
+   "default": "bulb"
   }
  ],
  "path": [
@@ -128,14 +128,14 @@
    "lit": "#00e6a2"
   }
  ],
- "tris": 49610,
+ "tris": 40390,
  "size": [
   0.47,
   5.45,
-  0.67
+  0.59
  ],
  "dir": "signal/rail/jp-rail-5",
  "file": "signal/rail/jp-rail-5/model.glb",
  "thumb": "signal/rail/jp-rail-5/thumb.jpg",
- "bytes": 924136
+ "bytes": 896228
 }

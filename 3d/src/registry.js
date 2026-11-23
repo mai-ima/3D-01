@@ -15,14 +15,16 @@ import m12 from './signal/tram/jp-tram-symbol.js';
 import m13 from './signal/tram/jp-tram-with-vehicle.js';
 import m14 from './signal/tram/jp-tram.js';
 import m15 from './signal/vehicle/jp-veh-arrow.js';
-import m16 from './signal/vehicle/jp-veh-flash.js';
-import m17 from './signal/vehicle/jp-veh-h250-side.js';
-import m18 from './signal/vehicle/jp-veh-h300-arm.js';
-import m19 from './signal/vehicle/jp-veh-v-snow.js';
-import m20 from './signal/vehicle/jp-veh-v250.js';
-import m21 from './track/railway/jp-track-ballast.js';
-import m22 from './track/railway/jp-track-slab.js';
-import m23 from './track/tram/jp-track-tram.js';
+import m16 from './signal/vehicle/jp-veh-center-pole.js';
+import m17 from './signal/vehicle/jp-veh-flash.js';
+import m18 from './signal/vehicle/jp-veh-h250-side.js';
+import m19 from './signal/vehicle/jp-veh-h300-arm.js';
+import m20 from './signal/vehicle/jp-veh-hoodless.js';
+import m21 from './signal/vehicle/jp-veh-v-snow.js';
+import m22 from './signal/vehicle/jp-veh-v250.js';
+import m23 from './track/railway/jp-track-ballast.js';
+import m24 from './track/railway/jp-track-slab.js';
+import m25 from './track/tram/jp-track-tram.js';
 export const MODELS=[
   {path:["signal","combined"],def:m0},
   {path:["signal","combined"],def:m1},
@@ -45,7 +47,9 @@ export const MODELS=[
   {path:["signal","vehicle"],def:m18},
   {path:["signal","vehicle"],def:m19},
   {path:["signal","vehicle"],def:m20},
-  {path:["track","railway"],def:m21},
-  {path:["track","railway"],def:m22},
-  {path:["track","tram"],def:m23},
+  {path:["signal","vehicle"],def:m21},
+  {path:["signal","vehicle"],def:m22},
+  {path:["track","railway"],def:m23},
+  {path:["track","railway"],def:m24},
+  {path:["track","tram"],def:m25},
 ];

@@ -85,8 +85,9 @@ function railBody(keys,colors,{post=3.6,plate='2出'}={}){
   for(const y of[.9,post-.5])rod(lad,[.11,y,-.12],[.09,y,-.07],.01,MAT.steel,8);
   const cy=post-.15+H/2,g=new THREE.Group();g.position.set(0,cy,.2);root.add(g);
   housing(g,W-.06,H-.1,.26,.04,HG);                                                                                                  // 灯器ケース
+  add(g,roundBox(W-.02,H-.02,.05,.012,.004),MAT.black,0,0,.16);   // レンズを収める角ケース
   const sp=rrShape(W+.12,H+.12,(W+.12)/2);add(g,new THREE.ExtrudeGeometry(sp,{depth:.03,bevelEnabled:true,bevelThickness:.004,bevelSize:.004,bevelSegments:2,curveSegments:32}),MAT.black,0,0,.13);   // 長円形の背面板
-  keys.forEach((k,i)=>reg(L,k,makeLamp(g,0,(n-1)/2*pitch-i*pitch,.172,R,colors[i],LED,{hood:.1,gap:.8,hoodMat:MAT.black})));
+  keys.forEach((k,i)=>reg(L,k,makeLamp(g,0,(n-1)/2*pitch-i*pitch,.172,R,colors[i],LED,{hood:0})));
   rod(root,[0,post-.45,.09],[0,post-.45,.22],.03);rod(root,[0,post-.45,.09],[0,post-.45+.0,.0],.03);
   if(plate){const po=opt(root,'plate','on');const pm=new THREE.MeshStandardMaterial({map:plateTexture([plate],{bg:'#101010',fg:'#fff',w:200,h:260,size:92}),roughness:.5});
     add(po,roundBox(.26,.34,.02,.01,.004),MAT.black,0,cy+H/2+.28,.12);add(po,new THREE.PlaneGeometry(.24,.32),pm,0,cy+H/2+.28,.132);}
@@ -109,5 +110,6 @@ function tramHead(parent,L,{x=0,y=0,z=0,prefix=''}={}){const g=new THREE.Group()
   [['left',-.13],['straight',0],['right',.13]].forEach(([k,lx])=>reg(L,prefix+k,makeLamp(g,lx,-.22,.08,.062,'yellow',arrowTexture(k),{hood:.045,gap:1.9})));
   for(const sx of[-.14,.14])add(g,roundBox(.08,.05,.1,.015,.004),MAT.galv,sx,.445,0);return g;}
 export const OPT_LENS={id:"lens",label:"灯火方式",choices:[{id:"led",label:"LED式"},{id:"bulb",label:"電球式"}],default:"led"};
+export const OPT_LENS_BULB={...OPT_LENS,default:"bulb"};
 export const optToggle=(id,label,def="off")=>({id,label,choices:[{id:"off",label:"なし"},{id:"on",label:"あり"}],default:def});
 export {setBody,optBody,bentPipe,dotMatrix,pedDot,plateTexture,tramHead,addSpeaker,addButton,HG,HK,reg,deg,dotLamp,cylLamp,hw,hanger,strap,horizHead,vertHead,POLE_H,S3,CY3,SPED,xTexture,pedHousing,railBody,stripePole,arrowStates,THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,makeLamp,config,arrowTexture,pedTexture,bikeTexture,opt,lensMaterial,domeLens,cv,tex,allLamps};

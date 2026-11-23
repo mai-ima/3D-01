@@ -1,7 +1,7 @@
 {
  "id": "jp-crossing-alarm",
  "name": "踏切警報機(丸形警報灯・方向指示器・×字標識)",
- "desc": "実物写真に合わせた現行形。黄黒縞の警報柱に、黄黒の×字標識、黒い丸形の赤色警報灯(左右交互に点滅)、矢印2つの列車進行方向指示器、「踏切注意」標識、ホーン、非常ボタン箱を備える。",
+ "desc": "実物写真に合わせた現行形。黄黒縞の警報柱に、黄黒の×字標識、円筒ケースにひさしを載せた赤色警報灯(左右交互に点滅)、矢印2つの列車進行方向指示器、「踏切注意」標識、ホーン、非常ボタン箱を備える。",
  "dims": "柱高 約3.9m / 警報灯の発光面 約φ300mm(推定)",
  "focus": [
   0,
@@ -226,14 +226,14 @@
    "lit": "#ff2a18"
   }
  ],
- "tris": 41550,
+ "tris": 43358,
  "size": [
-  1.51,
+  1.58,
   4.5,
-  0.44
+  0.54
  ],
  "dir": "signal/crossing/jp-crossing-alarm",
  "file": "signal/crossing/jp-crossing-alarm/model.glb",
  "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
- "bytes": 767868
+ "bytes": 787968
 }

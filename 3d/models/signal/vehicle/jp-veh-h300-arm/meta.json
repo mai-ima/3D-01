@@ -124,6 +124,21 @@
     }
    ],
    "default": "off"
+  },
+  {
+   "id": "sign",
+   "label": "時差式の表示板",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
   }
  ],
  "path": [
@@ -147,7 +162,7 @@
    "lit": "#ff2a18"
   }
  ],
- "tris": 39458,
+ "tris": 39568,
  "size": [
   4.05,
   6.28,
@@ -156,5 +171,5 @@
  "dir": "signal/vehicle/jp-veh-h300-arm",
  "file": "signal/vehicle/jp-veh-h300-arm/model.glb",
  "thumb": "signal/vehicle/jp-veh-h300-arm/thumb.jpg",
- "bytes": 961228
+ "bytes": 974952
 }

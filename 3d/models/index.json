@@ -240,7 +240,7 @@
    "dir": "signal/combined/jp-combo-arm-ped",
    "file": "signal/combined/jp-combo-arm-ped/model.glb",
    "thumb": "signal/combined/jp-combo-arm-ped/thumb.jpg",
-   "bytes": 1275780
+   "bytes": 1275732
   },
   {
    "id": "jp-combo-vert-ped",
@@ -470,12 +470,12 @@
    "dir": "signal/combined/jp-combo-vert-ped",
    "file": "signal/combined/jp-combo-vert-ped/model.glb",
    "thumb": "signal/combined/jp-combo-vert-ped/thumb.jpg",
-   "bytes": 1128696
+   "bytes": 1128648
   },
   {
    "id": "jp-crossing-alarm",
    "name": "踏切警報機(丸形警報灯・方向指示器・×字標識)",
-   "desc": "実物写真に合わせた現行形。黄黒縞の警報柱に、黄黒の×字標識、黒い丸形の赤色警報灯(左右交互に点滅)、矢印2つの列車進行方向指示器、「踏切注意」標識、ホーン、非常ボタン箱を備える。",
+   "desc": "実物写真に合わせた現行形。黄黒縞の警報柱に、黄黒の×字標識、円筒ケースにひさしを載せた赤色警報灯(左右交互に点滅)、矢印2つの列車進行方向指示器、「踏切注意」標識、ホーン、非常ボタン箱を備える。",
    "dims": "柱高 約3.9m / 警報灯の発光面 約φ300mm(推定)",
    "focus": [
     0,
@@ -700,16 +700,16 @@
      "lit": "#ff2a18"
     }
    ],
-   "tris": 41550,
+   "tris": 43358,
    "size": [
-    1.51,
+    1.58,
     4.5,
-    0.44
+    0.54
    ],
    "dir": "signal/crossing/jp-crossing-alarm",
    "file": "signal/crossing/jp-crossing-alarm/model.glb",
    "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
-   "bytes": 767868
+   "bytes": 787968
   },
   {
    "id": "jp-crossing-gate",
@@ -796,7 +796,7 @@
    "dir": "signal/crossing/jp-crossing-gate",
    "file": "signal/crossing/jp-crossing-gate/model.glb",
    "thumb": "signal/crossing/jp-crossing-gate/thumb.jpg",
-   "bytes": 133324
+   "bytes": 133276
   },
   {
    "id": "jp-bike-ped",
@@ -907,7 +907,7 @@
    "dir": "signal/pedestrian/jp-bike-ped",
    "file": "signal/pedestrian/jp-bike-ped/model.glb",
    "thumb": "signal/pedestrian/jp-bike-ped/thumb.jpg",
-   "bytes": 378376
+   "bytes": 378328
   },
   {
    "id": "jp-ped-button",
@@ -980,7 +980,7 @@
    "dir": "signal/pedestrian/jp-ped-button",
    "file": "signal/pedestrian/jp-ped-button/model.glb",
    "thumb": "signal/pedestrian/jp-ped-button/thumb.jpg",
-   "bytes": 230560
+   "bytes": 230512
   },
   {
    "id": "jp-ped-count",
@@ -1239,7 +1239,7 @@
    "dir": "signal/pedestrian/jp-ped-count",
    "file": "signal/pedestrian/jp-ped-count/model.glb",
    "thumb": "signal/pedestrian/jp-ped-count/thumb.jpg",
-   "bytes": 470632
+   "bytes": 470584
   },
   {
    "id": "jp-ped-led",
@@ -1385,7 +1385,7 @@
    "dir": "signal/pedestrian/jp-ped-led",
    "file": "signal/pedestrian/jp-ped-led/model.glb",
    "thumb": "signal/pedestrian/jp-ped-led/thumb.jpg",
-   "bytes": 458176
+   "bytes": 458128
   },
   {
    "id": "jp-rail-3",
@@ -1459,7 +1459,7 @@
        "label": "電球式"
       }
      ],
-     "default": "led"
+     "default": "bulb"
     }
    ],
    "path": [
@@ -1483,16 +1483,16 @@
      "lit": "#ff2a18"
     }
    ],
-   "tris": 33428,
+   "tris": 27984,
    "size": [
     0.47,
     4.91,
-    0.67
+    0.59
    ],
    "dir": "signal/rail/jp-rail-3",
    "file": "signal/rail/jp-rail-3/model.glb",
    "thumb": "signal/rail/jp-rail-3/thumb.jpg",
-   "bytes": 915908
+   "bytes": 883732
   },
   {
    "id": "jp-rail-4",
@@ -1577,7 +1577,7 @@
        "label": "電球式"
       }
      ],
-     "default": "led"
+     "default": "bulb"
     }
    ],
    "path": [
@@ -1606,16 +1606,16 @@
      "lit": "#00e6a2"
     }
    ],
-   "tris": 41524,
+   "tris": 34192,
    "size": [
     0.47,
     5.18,
-    0.67
+    0.59
    ],
    "dir": "signal/rail/jp-rail-4",
    "file": "signal/rail/jp-rail-4/model.glb",
    "thumb": "signal/rail/jp-rail-4/thumb.jpg",
-   "bytes": 925284
+   "bytes": 898200
   },
   {
    "id": "jp-rail-5",
@@ -1713,7 +1713,7 @@
        "label": "電球式"
       }
      ],
-     "default": "led"
+     "default": "bulb"
     }
    ],
    "path": [
@@ -1747,16 +1747,16 @@
      "lit": "#00e6a2"
     }
    ],
-   "tris": 49610,
+   "tris": 40390,
    "size": [
     0.47,
     5.45,
-    0.67
+    0.59
    ],
    "dir": "signal/rail/jp-rail-5",
    "file": "signal/rail/jp-rail-5/model.glb",
    "thumb": "signal/rail/jp-rail-5/thumb.jpg",
-   "bytes": 924136
+   "bytes": 896228
   },
   {
    "id": "jp-rail-relay",
@@ -1889,7 +1889,7 @@
    "dir": "signal/rail/jp-rail-relay",
    "file": "signal/rail/jp-rail-relay/model.glb",
    "thumb": "signal/rail/jp-rail-relay/thumb.jpg",
-   "bytes": 703692
+   "bytes": 703644
   },
   {
    "id": "jp-tram",
@@ -2029,7 +2029,7 @@
    "dir": "signal/tram/jp-tram",
    "file": "signal/tram/jp-tram/model.glb",
    "thumb": "signal/tram/jp-tram/thumb.jpg",
-   "bytes": 411448
+   "bytes": 411400
   },
   {
    "id": "jp-tram-symbol",
@@ -2160,7 +2160,7 @@
    "dir": "signal/tram/jp-tram-symbol",
    "file": "signal/tram/jp-tram-symbol/model.glb",
    "thumb": "signal/tram/jp-tram-symbol/thumb.jpg",
-   "bytes": 330460
+   "bytes": 330412
   },
   {
    "id": "jp-tram-with-vehicle",
@@ -2367,7 +2367,7 @@
    "dir": "signal/tram/jp-tram-with-vehicle",
    "file": "signal/tram/jp-tram-with-vehicle/model.glb",
    "thumb": "signal/tram/jp-tram-with-vehicle/thumb.jpg",
-   "bytes": 1175476
+   "bytes": 1175428
   },
   {
    "id": "jp-veh-arrow",
@@ -2589,7 +2589,196 @@
    "dir": "signal/vehicle/jp-veh-arrow",
    "file": "signal/vehicle/jp-veh-arrow/model.glb",
    "thumb": "signal/vehicle/jp-veh-arrow/thumb.jpg",
-   "bytes": 1099344
+   "bytes": 1099296
+  },
+  {
+   "id": "jp-veh-center-pole",
+   "name": "車両用 中央柱式(島の柱に縦型3灯×2方向)",
+   "desc": "交差点の中央の島に立つ1本の柱に、縦型3灯の灯器を方向ごとに取り付けた形。基礎は黄と黒の斜め縞のコンクリート。実物写真(熊本)を参考にした形状。",
+   "dims": "柱高 約5.5m / 基礎径 約1.4m(推定)",
+   "focus": [
+    0,
+    4.4,
+    0
+   ],
+   "view": [
+    1.6,
+    0.5,
+    6.8
+   ],
+   "night": "fy",
+   "states": [
+    {
+     "id": "g",
+     "label": "青",
+     "on": [
+      "green"
+     ]
+    },
+    {
+     "id": "y",
+     "label": "黄",
+     "on": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "r",
+     "label": "赤",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "fy",
+     "label": "黄点滅",
+     "flash": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "fr",
+     "label": "赤点滅",
+     "flash": [
+      "red"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "g",
+     "d": 8
+    },
+    {
+     "s": "y",
+     "d": 3
+    },
+    {
+     "s": "r",
+     "d": 8
+    }
+   ],
+   "options": [
+    {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    }
+   ],
+   "path": [
+    "signal",
+    "vehicle"
+   ],
+   "lamps": [
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "x16red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "x16yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "x16green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "x-16red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "x-16yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "x-16green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "x31red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "x31yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "x31green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    }
+   ],
+   "tris": 114676,
+   "size": [
+    1.44,
+    5.59,
+    1.44
+   ],
+   "dir": "signal/vehicle/jp-veh-center-pole",
+   "file": "signal/vehicle/jp-veh-center-pole/model.glb",
+   "thumb": "signal/vehicle/jp-veh-center-pole/thumb.jpg",
+   "bytes": 846400
   },
   {
    "id": "jp-veh-flash",
@@ -2718,7 +2907,7 @@
    "dir": "signal/vehicle/jp-veh-flash",
    "file": "signal/vehicle/jp-veh-flash/model.glb",
    "thumb": "signal/vehicle/jp-veh-flash/thumb.jpg",
-   "bytes": 783724
+   "bytes": 783676
   },
   {
    "id": "jp-veh-h250-side",
@@ -2878,7 +3067,7 @@
    "dir": "signal/vehicle/jp-veh-h250-side",
    "file": "signal/vehicle/jp-veh-h250-side/model.glb",
    "thumb": "signal/vehicle/jp-veh-h250-side/thumb.jpg",
-   "bytes": 871880
+   "bytes": 871832
   },
   {
    "id": "jp-veh-h300-arm",
@@ -3006,6 +3195,21 @@
       }
      ],
      "default": "off"
+    },
+    {
+     "id": "sign",
+     "label": "時差式の表示板",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
     }
    ],
    "path": [
@@ -3029,7 +3233,7 @@
      "lit": "#ff2a18"
     }
    ],
-   "tris": 39458,
+   "tris": 39568,
    "size": [
     4.05,
     6.28,
@@ -3038,7 +3242,166 @@
    "dir": "signal/vehicle/jp-veh-h300-arm",
    "file": "signal/vehicle/jp-veh-h300-arm/model.glb",
    "thumb": "signal/vehicle/jp-veh-h300-arm/thumb.jpg",
-   "bytes": 961228
+   "bytes": 974952
+  },
+  {
+   "id": "jp-veh-hoodless",
+   "name": "車両用 フードレス横型3灯(白い平板形)",
+   "desc": "フードを持たない、白い薄型の平板ケースの横型3灯。レンズは本体面と同じ高さで、細かいLEDの点が見える。上下2本の鋼管で柱に取り付け、時差式の表示板が付く例が多い。",
+   "dims": "本体 約1.1×0.36×0.12m(写真からの推定)",
+   "focus": [
+    1.3,
+    4.9,
+    0
+   ],
+   "view": [
+    0.7,
+    0.3,
+    5.2
+   ],
+   "night": "fy",
+   "states": [
+    {
+     "id": "g",
+     "label": "青",
+     "on": [
+      "green"
+     ]
+    },
+    {
+     "id": "y",
+     "label": "黄",
+     "on": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "r",
+     "label": "赤",
+     "on": [
+      "red"
+     ]
+    },
+    {
+     "id": "fy",
+     "label": "黄点滅",
+     "flash": [
+      "yellow"
+     ]
+    },
+    {
+     "id": "fr",
+     "label": "赤点滅",
+     "flash": [
+      "red"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "g",
+     "d": 8
+    },
+    {
+     "s": "y",
+     "d": 3
+    },
+    {
+     "s": "r",
+     "d": 8
+    }
+   ],
+   "options": [
+    {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    },
+    {
+     "id": "sign",
+     "label": "時差式の表示板",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    }
+   ],
+   "path": [
+    "signal",
+    "vehicle"
+   ],
+   "lamps": [
+    {
+     "key": "green",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "yellow",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "red",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 24914,
+   "size": [
+    2.02,
+    5.69,
+    0.31
+   ],
+   "dir": "signal/vehicle/jp-veh-hoodless",
+   "file": "signal/vehicle/jp-veh-hoodless/model.glb",
+   "thumb": "signal/vehicle/jp-veh-hoodless/thumb.jpg",
+   "bytes": 700952
   },
   {
    "id": "jp-veh-v-snow",
@@ -3213,7 +3576,7 @@
    "dir": "signal/vehicle/jp-veh-v-snow",
    "file": "signal/vehicle/jp-veh-v-snow/model.glb",
    "thumb": "signal/vehicle/jp-veh-v-snow/thumb.jpg",
-   "bytes": 878424
+   "bytes": 878376
   },
   {
    "id": "jp-veh-v250",
@@ -3372,7 +3735,7 @@
    "dir": "signal/vehicle/jp-veh-v250",
    "file": "signal/vehicle/jp-veh-v250/model.glb",
    "thumb": "signal/vehicle/jp-veh-v250/thumb.jpg",
-   "bytes": 858936
+   "bytes": 858888
   },
   {
    "id": "jp-track-ballast",
@@ -3388,13 +3751,13 @@
    "tris": 412720,
    "size": [
     4.8,
-    0.58,
+    0.59,
     12.23
    ],
    "dir": "track/railway/jp-track-ballast",
    "file": "track/railway/jp-track-ballast/model.glb",
    "thumb": "track/railway/jp-track-ballast/thumb.jpg",
-   "bytes": 1652016
+   "bytes": 1651856
   },
   {
    "id": "jp-track-slab",
@@ -3416,7 +3779,7 @@
    "dir": "track/railway/jp-track-slab",
    "file": "track/railway/jp-track-slab/model.glb",
    "thumb": "track/railway/jp-track-slab/thumb.jpg",
-   "bytes": 162292
+   "bytes": 162172
   },
   {
    "id": "jp-track-tram",
@@ -3438,7 +3801,7 @@
    "dir": "track/tram/jp-track-tram",
    "file": "track/tram/jp-track-tram/model.glb",
    "thumb": "track/tram/jp-track-tram/thumb.jpg",
-   "bytes": 303920
+   "bytes": 303864
   }
  ]
 }
