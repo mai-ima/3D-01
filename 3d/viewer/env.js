@@ -32,7 +32,12 @@ export function createEnvironment({scene,renderer,bloom,sun}){
   const pmrem=new THREE.PMREMGenerator(renderer);let envRT=null;
   const sky=new Sky();sky.scale.setScalar(1000);const skyScene=new THREE.Scene();skyScene.add(sky);
   const roomEnv=pmrem.fromScene(new RoomEnvironment(),.04).texture;
-  let hdriDay=null;new RGBELoader().load('assets/hdri/sky_day.hdr',t=>{t.mapping=THREE.EquirectangularReflectionMapping;hdriDay=pmrem.fromEquirectangular(t).texture;t.dispose();if(cur&&cur.mode==='day')apply();},undefined,()=>{});   // 実写の空(Poly Haven・CC0)
+  let hdriDay=null;
+  (async()=>{try{let buf;
+    if(window.__VIEWER__&&window.__VIEWER__.b64){const txt=await (await fetch('assets/hdri/sky_day.hdr.b64.txt')).text();buf=Uint8Array.from(atob(txt),c=>c.charCodeAt(0)).buffer;}   // 公開版は base64 テキスト
+    else buf=await (await fetch('assets/hdri/sky_day.hdr')).arrayBuffer();
+    const data=new RGBELoader().parse(buf);const t=new THREE.DataTexture(data.data,data.width,data.height,data.format,data.type);t.mapping=THREE.EquirectangularReflectionMapping;t.minFilter=THREE.LinearFilter;t.magFilter=THREE.LinearFilter;t.needsUpdate=true;
+    hdriDay=pmrem.fromEquirectangular(t).texture;t.dispose();if(cur.mode==='day')apply();}catch(e){}})();   // 実写の空(Poly Haven・CC0)。読めなければ従来の空のまま
   // studio background gradient
   const gc=cv(4,256),gg=gc.getContext('2d'),gr=gg.createLinearGradient(0,0,0,256);gr.addColorStop(0,'#aab0b6');gr.addColorStop(1,'#80878e');gg.fillStyle=gr;gg.fillRect(0,0,4,256);
   const studioBg=new THREE.CanvasTexture(gc);studioBg.colorSpace=THREE.SRGBColorSpace;

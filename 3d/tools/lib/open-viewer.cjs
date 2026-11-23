@@ -7,7 +7,7 @@ async function openViewer(browser,{query='',w=1400,h=860,dpr=1,page:pg='signals'
   await p.route('https://unpkg.com/three@0.170.0/**',r=>r.fulfill({path:NM+r.request().url().replace('https://unpkg.com/three@0.170.0/',''),contentType:'text/javascript'}));
   await p.route('https://fonts.googleapis.com/**',r=>r.abort());
   await p.route('https://local.test/**',r=>{const u=new URL(r.request().url());let f=u.pathname.endsWith('.html')?path.join(ROOT,process.env.VIEWER_DIST||'dist',u.pathname.slice(1)):u.pathname.startsWith('/models/')?path.join(ROOT,'3d',decodeURIComponent(u.pathname)):path.join(ROOT,decodeURIComponent(u.pathname));
-    if(u.pathname.startsWith('/assets/'))f=path.join(ROOT,'3d',decodeURIComponent(u.pathname));
+    if(u.pathname.startsWith('/assets/')){f=path.join(ROOT,'3d',decodeURIComponent(u.pathname));if(!fs.existsSync(f))f=path.join(ROOT,'3d/dist/pub',decodeURIComponent(u.pathname));}
     if(!fs.existsSync(f)&&u.pathname.startsWith('/models/'))f=path.join(ROOT,'3d/dist/pub',decodeURIComponent(u.pathname));
     if(fs.existsSync(f)&&fs.statSync(f).isFile())r.fulfill({path:f,contentType:f.endsWith('.html')?'text/html; charset=utf-8':undefined});else r.fulfill({status:404,body:''});});
   await p.goto('https://local.test/'+pg+'.html'+query);await p.waitForFunction('window.__ready',{timeout:120000});return p;}
