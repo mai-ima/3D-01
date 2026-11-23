@@ -8,6 +8,7 @@ import {loadModel,cycleAt} from '../runtime/model-runtime.js';
 import {createEnvironment} from './env.js';
 
 const $=id=>document.getElementById(id);
+const q=new URLSearchParams(location.search),THUMB=q.has('thumb');
 const V=window.__VIEWER__||{root:null};
 const LIB=!V.root;   // ライブラリ(全モデル)か、信号ビューアか
 let CATS={};
@@ -34,7 +35,7 @@ const env=createEnvironment({scene,renderer,bloom,sun});
 let dprMax=Math.min(devicePixelRatio,Q().dpr),dprNow=dprMax,ema=16.7,tAdapt=0,lastTs=0;
 bloom.enabled=Q().bloom;
 let SH=0;const mqPhone=matchMedia('(max-width:980px)'),mqLand=matchMedia('(max-width:980px) and (orientation:landscape) and (max-height:560px)');
-const sheetOn=()=>mqPhone.matches&&!mqLand.matches;
+const sheetOn=()=>!THUMB&&mqPhone.matches&&!mqLand.matches;
 function coverH(){if(!sheetOn())return 0;const sh=$('sheet'),st=stage.getBoundingClientRect(),r=sh.getBoundingClientRect();return Math.max(0,Math.min(st.height,st.bottom-r.top));}   // ステージの下に重なっているシートの実高さ
 function applyView(){const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;const c=coverH();
   if(c>0){camera.setViewOffset(w,h,0,Math.round(c/2),w,h);}else camera.clearViewOffset();camera.updateProjectionMatrix();}   // 3Dモデルをシートに隠れない領域の中央へ   // 3Dモデルをシートに隠れない領域の中央へ
@@ -46,7 +47,6 @@ new ResizeObserver(resize).observe(stage);resize();
 let catalog=[],entry=null,sig=null,mode='auto',speed=1,clock=0,envName='studio',wet=false,disp='shade',showDims=false,spin=false;
 let trackType='none',onTrack=false;
 const cache=new Map(),orig=new Map();let tween=null,loadToken=0,boxInfo=null,dimGroup=null,uiSig='',trackGroup=null;
-const q=new URLSearchParams(location.search),THUMB=q.has('thumb');
 const storeGet=k=>{try{return localStorage.getItem(k);}catch{return null;}};const storeSet=(k,v)=>{try{localStorage.setItem(k,v);}catch{}};
 
 /* ---------- classification ---------- */
@@ -261,7 +261,7 @@ let ALL=[];
   if(LIB)buildLibrary();else buildRail();setEnv(q.get('env')||storeGet('env')||'studio');
   if(THUMB){for(const id of['rail','ctl','tabs','tree'])$(id)&&($(id).style.display='none');const hd=document.querySelector('.hdr');if(hd)hd.style.display='none';$('bar').style.display='none';$('nav').style.display='none';$('title').style.display='none';const bk=$('back');if(bk)bk.style.display='none';
     const gl=$('gallery');if(gl)gl.style.display='none';const dt=$('detail');if(dt){dt.style.display='block';$('sheet').style.display='none';}$('app').dataset.view='detail';
-    $('app').style.gridTemplateColumns='1fr';$('app').style.gridTemplateRows='1fr';$('stage').style.gridColumn='1';$('stage').style.gridRow='1';}
+    $('app').style.gridTemplateColumns='1fr';$('app').style.gridTemplateRows='1fr';const dt2=$('detail');if(dt2){dt2.style.gridRow='1';dt2.style.gridColumn='1';dt2.style.display='block';dt2.style.height='100%';}$('stage').style.height='100%';$('stage').style.gridColumn='1';$('stage').style.gridRow='1';}
   const want=location.hash.slice(1)||q.get('model');
   if(LIB&&!THUMB){view='grid';if(want&&catalog.some(e=>e.id===want))await openModel(want);}
   else{const start=want||storeGet('last')||catalog[0].id;if(LIB)view='detail';await select(catalog.some(e=>e.id===start)?start:catalog[0].id,true);}
