@@ -2,7 +2,8 @@
 const esbuild=require('esbuild'),fs=require('fs'),path=require('path');const ROOT=path.resolve(__dirname,'../..'),V=path.join(ROOT,'3d/viewer');
 const r=esbuild.buildSync({entryPoints:[path.join(V,'main.js')],bundle:true,format:'esm',write:false,external:['three','three/addons/*'],legalComments:'none'});
 const js=r.outputFiles[0].text.replace(/<\/script>/g,'<\\/script>');
-const css=fs.readFileSync(path.join(V,'ui.css'),'utf8');const rd=n=>fs.readFileSync(path.join(V,n),'utf8').replace('/*__CSS__*/',()=>css);
+const css=fs.readFileSync(path.join(V,'ui.css'),'utf8');const inc=s=>s.replace(/<!--@include (\S+) -->/g,(_,f)=>fs.readFileSync(path.join(V,f),'utf8').trimEnd());   // 共通マークアップを差し込む
+const rd=n=>inc(fs.readFileSync(path.join(V,n),'utf8')).replace('/*__CSS__*/',()=>css);
 const builds=[{out:'signals',tpl:'index.html',root:'signal',title:'信号灯器ライブラリ',h1:'日本の信号灯器ライブラリ'},{out:'all',tpl:'library.html',root:null,title:'3Dモデルライブラリ',h1:'3Dモデルライブラリ'}];
 const B64=!!process.env.B64,OUTDIR=B64?path.join(ROOT,'3d/dist'):path.join(ROOT,'dist');fs.mkdirSync(OUTDIR,{recursive:true});
 for(const b of builds){const html=rd(b.tpl).replace('__TITLE__',b.title).replace('__H1__',b.h1).replace('/*__BUNDLE__*/',()=>`window.__VIEWER__=${JSON.stringify({root:b.root,b64:B64})};\n`+js);

@@ -76,9 +76,9 @@ export function createEnvironment({scene,renderer,bloom,sun}){
     for(let x=-260;x<260;x+=24+rnd()*18){if(Math.abs(x)<26)continue;const w=14+rnd()*16,h=24+rnd()*70,d=22,zz=-70-rnd()*50;
       const geo=new THREE.BoxGeometry(w,h,d);const uv=geo.attributes.uv;for(let k=0;k<uv.count;k++)uv.setXY(k,uv.getX(k)*w/15,uv.getY(k)*h/24);
       const m=new THREE.MeshStandardMaterial({map:fm,emissiveMap:em,emissive:0xffffff,emissiveIntensity:0,roughness:.4,metalness:.3,color:new THREE.Color().setHSL(.58,.05,.55+rnd()*.3)});G.winMats.push(m);
-      const b=mesh(G.skyline,geo,m,x,h/2,zz);b.receiveShadow=false;}
-    for(let x=-260;x<260;x+=70)mesh(G.skyline,new THREE.CylinderGeometry(.01,.01,.01),steel,x,0,0).visible=false;}
-  for(const k of['studio','road','roadZ','rail','crossing','skyline','base']){G[k].visible=false;root.add(G[k]);}
+      const b=mesh(G.skyline,geo,m,x,h/2,zz);b.receiveShadow=false;}}
+  const SCENES=['studio','road','roadZ','rail','crossing','skyline','base'];      // シーン構成要素の一覧(表示切替の対象)
+  for(const k of SCENES){G[k].visible=false;root.add(G[k]);}
 
   /* --- state --- */
   const cur={mode:'studio',group:'road',wet:false,track:false,deck:false};
@@ -89,7 +89,7 @@ export function createEnvironment({scene,renderer,bloom,sun}){
     envRT=pmrem.fromScene(skyScene);return (skyCache[key]={ld,tex:envRT.texture});}
   function groundFor(group){return group==='rail'?'rail':group==='crossing'?'crossing':group==='roadZ'?'roadZ':'road';}
   function apply(){const {mode,group,wet}=cur,p=PRESET[mode];
-    for(const k of['studio','road','roadZ','rail','crossing','skyline','base'])G[k].visible=false;
+    for(const k of SCENES)G[k].visible=false;
     const out=mode!=='studio';
     if(!out){G.studio.visible=true;G.studio.position.y=cur.track?-.42:0;scene.environment=roomEnv;scene.background=studioBg;scene.fog=null;scene.environmentIntensity=p.env;scene.backgroundIntensity=1;
       sun.position.set(5,9,7);sun.color.set(0xfff4e6);sun.intensity=2.2;hemi.intensity=0;}

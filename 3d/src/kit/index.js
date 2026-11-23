@@ -83,10 +83,11 @@ function makeLamp(parent,x,y,z,R,color,map,{hood=.28,gap=1.5,round=true,hoodMat=
   const bez=new THREE.LatheGeometry([[R+.004,-.012],[R+.027,-.012],[R+.027,.008],[R+.014,.022],[R+.004,.022]].map(p=>new THREE.Vector2(...p)),96);bez.rotateX(Math.PI/2);add(g,bez,MAT.rubber);
   add(g,new THREE.CircleGeometry(R+.01,64),MAT.black,0,0,-.006);
   const c=COL[color];
-  const ledG=new THREE.Group();ledG.name='opt_lens_led';g.add(ledG);
+  const swappable=map===LED&&config.bulb;      // 灯火方式(LED式/電球式)を切り替えられるのは、丸いLEDレンズの灯器だけ
+  let ledG=g;if(swappable){ledG=new THREE.Group();ledG.name='opt_lens_led';g.add(ledG);}
   const mat=lensMaterial(c.dark,c.e,map);const lens=add(ledG,domeLens(R,.014),mat);
   let lensB=null,matB=null;
-  if(map===LED&&config.bulb){const bg=new THREE.Group();bg.name='opt_lens_bulb';g.add(bg);       // 電球式(フレネルレンズ)
+  if(swappable){const bg=new THREE.Group();bg.name='opt_lens_bulb';g.add(bg);                   // 電球式(フレネルレンズ)
     matB=lensMaterial(c.dark,c.e,FRES);matB.roughness=.28;lensB=add(bg,domeLens(R,.032,96),matB);}
   if(hood>0){const hg=new THREE.CylinderGeometry(R+.034,R+.034,hood,80,1,true,gap/2,Math.PI*2-gap);hg.rotateX(Math.PI/2);hg.translate(0,0,hood/2);add(g,hg,hoodMat);
     const tor=add(g,new THREE.TorusGeometry(R+.034,.0055,10,80,Math.PI*2-gap),hoodMat,0,0,hood);tor.rotation.z=gap/2-Math.PI/2;
@@ -100,16 +101,9 @@ export function opt(parent,group,choice){const g=new THREE.Group();g.name=`opt_$
 function housing(parent,w,h,d,r,mat,x,y,z){const m=add(parent,roundBox(w,h,d,r),mat,x,y,z);
   for(let i=-2;i<=2;i++)add(m,new THREE.BoxGeometry(w*.5,.012,.02),mat,0,i*h*.14,-d/2-.008); return m;}
 
-export function handTexture(){const c=cv(256,256),g=c.getContext('2d');g.fillStyle='#000';g.fillRect(0,0,256,256);g.fillStyle='#fff';g.strokeStyle='#fff';g.lineCap='round';
-  const rr=(x,y,w,h,r)=>{g.beginPath();g.roundRect(x,y,w,h,r);g.fill();};
-  rr(84,112,88,92,22);[[86,50],[110,34],[134,40],[158,62]].forEach(([x,y])=>rr(x,y,20,100,10));
-  g.lineWidth=24;g.beginPath();g.moveTo(88,176);g.lineTo(54,132);g.stroke();return tex(c);}
 export function bikeTexture(){const c=cv(256,256),g=c.getContext('2d');g.fillStyle='#000';g.fillRect(0,0,256,256);g.strokeStyle='#fff';g.fillStyle='#fff';g.lineCap='round';g.lineJoin='round';
   g.lineWidth=12;for(const x of[70,186]){g.beginPath();g.arc(x,176,38,0,7);g.stroke();}
   g.lineWidth=11;g.beginPath();g.moveTo(70,176);g.lineTo(108,110);g.lineTo(160,110);g.lineTo(186,176);g.moveTo(108,110);g.lineTo(128,176);g.lineTo(70,176);g.moveTo(160,110);g.lineTo(150,84);g.lineTo(176,84);g.moveTo(100,100);g.lineTo(118,100);g.stroke();return tex(c);}
-export function solarTexture(){const c=cv(256,128),g=c.getContext('2d');g.fillStyle='#10213d';g.fillRect(0,0,256,128);g.strokeStyle='#5f7fb3';g.lineWidth=2;for(let i=0;i<=8;i++){g.beginPath();g.moveTo(i*32,0);g.lineTo(i*32,128);g.stroke();}for(let j=0;j<=4;j++){g.beginPath();g.moveTo(0,j*32);g.lineTo(256,j*32);g.stroke();}
-  const gr=g.createLinearGradient(0,0,256,128);gr.addColorStop(0,'rgba(120,160,255,.35)');gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(0,0,256,128);return tex(c);}
-
 /* weathering: streaks + soot used as colour map on painted parts */
 export function dirtTexture(){const c=cv(512,512),g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,512,512);
   for(let i=0;i<70;i++){const x=Math.random()*512,w=2+Math.random()*9,l=80+Math.random()*380,y=Math.random()*200;const gr=g.createLinearGradient(0,y,0,y+l);const a=.04+Math.random()*.09;

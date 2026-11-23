@@ -90,6 +90,21 @@
  ],
  "options": [
   {
+   "id": "lens",
+   "label": "灯火方式",
+   "choices": [
+    {
+     "id": "led",
+     "label": "LED式"
+    },
+    {
+     "id": "bulb",
+     "label": "電球式"
+    }
+   ],
+   "default": "led"
+  },
+  {
    "id": "lamps2",
    "label": "警報灯 2段(上段を追加)",
    "choices": [
@@ -235,5 +250,5 @@
  "dir": "signal/crossing/jp-crossing-alarm",
  "file": "signal/crossing/jp-crossing-alarm/model.glb",
  "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
- "bytes": 810644
+ "bytes": 829456
 }

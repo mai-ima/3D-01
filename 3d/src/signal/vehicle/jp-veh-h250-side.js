@@ -1,4 +1,4 @@
-import {setBody,optBody,THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,makeLamp,config,arrowTexture,pedTexture,bikeTexture,opt,lensMaterial,domeLens,cv,tex,allLamps,HG,HK,reg,deg,dotLamp,cylLamp,hw,hanger,strap,horizHead,vertHead,POLE_H,S3,CY3,SPED,xTexture,pedHousing,railBody,stripePole,arrowStates,OPT_LENS,optToggle,addSpeaker,addButton,tramHead} from '../../kit/signal-parts.js';
+import {CY3,HG,MAT,OPT_LENS,POLE_H,S3,THREE,add,horizHead,optBody,optToggle,rod,roundBox,setBody} from '../../kit/signal-parts.js';
 export default {id:'jp-veh-h250-side',group:'road-vehicle',name:'車両用 横型3灯 φ250(側柱式・前傾15°)',
   desc:'2017年の警察庁仕様変更で小型化されたφ250mm。太陽光の直接反射を抑えるため本体を前へ15°傾けて取り付ける。淡灰色の灯器。',
   dims:'レンズφ250mm / 取付前傾15°(公表情報)。本体 1.05×0.37×0.125m(メーカー公表値)',focus:[1.2,5.2,0],view:[.7,.35,5.6],night:'fy',states:S3,cycle:CY3,

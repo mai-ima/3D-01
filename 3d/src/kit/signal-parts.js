@@ -3,7 +3,6 @@ import {THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,mak
   lensMaterial,domeLens,cv,tex,allLamps} from './index.js';
 /* ---------- shared bits ---------- */
 const HG=MAT.hous.clone();HG.name='body_main';HG.color.set(0xb7bcbe);HG.roughness=.5;   // 灯器の本体色(実物は淡い灰色が最も多い)。オプション『本体色』で切替
-const HK=HG;
 const setBody=(hex)=>{HG.color.set(hex);return HG;};
 const optBody=(def='gray')=>({id:'body',label:'本体色',type:'color',target:'body_main',choices:[{id:'gray',label:'灰色',color:'#b7bcbe'},{id:'green',label:'深緑',color:'#34443b'},{id:'black',label:'黒',color:'#1b1e20'}],default:def});
 const reg=(lamps,key,L)=>{L.key=key;L.mat.name='lens_'+key;L.lens.name='lamp_'+key;if(L.lensB){L.matB.name='lensB_'+key;L.lensB.name='lampB_'+key;}lamps[key]=L;return L;};
@@ -62,7 +61,7 @@ function pedHousing(root,L,{y,pr=.065,yaw=0,prefix='',withBar=false,mat=HG,picto
   if(yaw){const wr=new THREE.Group();wr.rotation.y=yaw;root.add(wr);root=wr;}   // 歩行者灯は横断方向へ向ける
   const W=withBar?.6:.4,H=.8,D=.13;const g=new THREE.Group();g.position.set(0,y,pr+gapZ);root.add(g);
   housing(g,W,H,D,.085,mat);hw(g,W,H,D);const ox=withBar?-.09:0;
-  const brim=opt(g,'hood','off');
+  const brim=opt(g,'hood','on');
   const mk=(key,col,pt,ly)=>{const c=COL[col];const geo=new THREE.ShapeGeometry(rrShape(.29,.29,.05),24);const p=geo.attributes.position,uv=geo.attributes.uv;for(let i=0;i<p.count;i++)uv.setXY(i,p.getX(i)/.29+.5,p.getY(i)/.29+.5);
     const lg=new THREE.Group();lg.position.set(ox,ly,D/2);g.add(lg);
     const fs=rrShape(.33,.33,.058);fs.holes.push(rrShape(.29,.29,.05));add(lg,new THREE.ExtrudeGeometry(fs,{depth:.016,bevelEnabled:false,curveSegments:20}),MAT.rubber);
@@ -112,4 +111,6 @@ function tramHead(parent,L,{x=0,y=0,z=0,prefix=''}={}){const g=new THREE.Group()
 export const OPT_LENS={id:"lens",label:"灯火方式",choices:[{id:"led",label:"LED式"},{id:"bulb",label:"電球式"}],default:"led"};
 export const OPT_LENS_BULB={...OPT_LENS,default:"bulb"};
 export const optToggle=(id,label,def="off")=>({id,label,choices:[{id:"off",label:"なし"},{id:"on",label:"あり"}],default:def});
-export {setBody,optBody,bentPipe,dotMatrix,pedDot,plateTexture,tramHead,addSpeaker,addButton,HG,HK,reg,deg,dotLamp,cylLamp,hw,hanger,strap,horizHead,vertHead,POLE_H,S3,CY3,SPED,xTexture,pedHousing,railBody,stripePole,arrowStates,THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,makeLamp,config,arrowTexture,pedTexture,bikeTexture,opt,lensMaterial,domeLens,cv,tex,allLamps};
+/* 共通部品(kit)を再エクスポート: モデルは信号用の部品を1か所から取り込める */
+export {COL,LED,MAT,THREE,add,allLamps,arrowTexture,bikeTexture,bolt,config,cv,domeLens,housing,lensMaterial,makeLamp,mastArm,opt,pedTexture,pole,rod,roundBox,rrShape,tex} from './index.js';
+export {CY3,HG,POLE_H,S3,SPED,addButton,addSpeaker,arrowStates,bentPipe,cylLamp,deg,dotLamp,dotMatrix,hanger,horizHead,hw,optBody,pedDot,pedHousing,plateTexture,railBody,reg,setBody,strap,stripePole,tramHead,vertHead,xTexture};

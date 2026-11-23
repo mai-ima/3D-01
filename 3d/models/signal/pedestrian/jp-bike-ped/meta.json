@@ -80,6 +80,21 @@
     }
    ],
    "default": "gray"
+  },
+  {
+   "id": "hood",
+   "label": "庇(旧型)",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
   }
  ],
  "path": [
@@ -107,5 +122,5 @@
  "dir": "signal/pedestrian/jp-bike-ped",
  "file": "signal/pedestrian/jp-bike-ped/model.glb",
  "thumb": "signal/pedestrian/jp-bike-ped/thumb.jpg",
- "bytes": 368088
+ "bytes": 369080
 }

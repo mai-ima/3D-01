@@ -82,6 +82,36 @@
     }
    ],
    "default": "bulb"
+  },
+  {
+   "id": "ladder",
+   "label": "はしご",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  },
+  {
+   "id": "plate",
+   "label": "番線札",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
   }
  ],
  "path": [
@@ -119,5 +149,5 @@
  "dir": "signal/rail/jp-rail-4",
  "file": "signal/rail/jp-rail-4/model.glb",
  "thumb": "signal/rail/jp-rail-4/thumb.jpg",
- "bytes": 924596
+ "bytes": 925276
 }

@@ -1,4 +1,4 @@
-import {setBody,optBody,THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,makeLamp,config,arrowTexture,pedTexture,bikeTexture,opt,lensMaterial,domeLens,cv,tex,allLamps,HG,HK,reg,deg,dotLamp,cylLamp,hw,hanger,strap,horizHead,vertHead,POLE_H,S3,CY3,SPED,xTexture,pedHousing,railBody,stripePole,arrowStates,OPT_LENS,optToggle,addSpeaker,addButton,tramHead} from '../../kit/signal-parts.js';
+import {HG,MAT,OPT_LENS,POLE_H,THREE,add,horizHead,optBody,rod,setBody} from '../../kit/signal-parts.js';
 export default {id:'jp-veh-flash',group:'road-vehicle',name:'点滅専用灯器(黄・赤 2灯式)',
   desc:'押ボタン式や警戒交差点で使う、黄色点滅(注意)・赤色点滅(一時停止)の2灯式。通常は黄と赤を交互または単独で点滅させる。',
   dims:'φ250・2灯(推定寸法)',focus:[.9,5.0,0],view:[.6,.3,4.6],night:'fy',

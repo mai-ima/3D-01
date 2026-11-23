@@ -1,75 +1,108 @@
-# 3D モデルライブラリ(日本の信号・軌道)
+# 日本の信号・軌道 3Dモデルライブラリ
 
-他のスレッド・プロジェクトから再利用するための **3Dモデル資産**と、その制作・確認用ツール一式。
-モデルは Three.js(コード)で作図し、**glTF 2.0 バイナリ(GLB)** として書き出します。
+日本の信号機(車両用・歩行者用・路面電車・鉄道・踏切)と軌道を、コード(Three.js)で作図し、
+**glTF 2.0 バイナリ(GLB)** として書き出すプロジェクトです。他のスレッド・プロジェクトから
+`3d/models` の GLB と `3d/runtime` をそのまま使えます。
 
-## フォルダ構成(信号 → 車両用信号 → 各3Dモデル)
+収録: 信号 23種(車両用8 / 歩行者用4 / 車両・歩行者一体2 / 路面電車3 / 鉄道4 / 踏切2)、軌道 3種。
+
+## 構成(データの流れ)
+
+```
+3d/src  ──(export)──▶  3d/models  ──(viewer / runtime)──▶  画面・他プロジェクト
+  ソース(1モデル=1ファイル)   GLB・meta.json・サムネイル・index.json
+```
 
 ```
 3d/
-├─ models/                          ← 成果物(GLB・メタ情報・サムネイル)
-│  ├─ index.json                    ← 全モデルの目録(カテゴリ名・現示・オプション・寸法など)
-│  ├─ signal/                       信号
-│  │  ├─ vehicle/                   車両用信号
-│  │  │  └─ jp-veh-h300-arm/        各3Dモデル(1モデル=1フォルダ)
-│  │  │       ├─ model.glb
-│  │  │       ├─ meta.json
-│  │  │       └─ thumb.jpg
-│  │  ├─ pedestrian/                歩行者用信号
-│  │  ├─ combined/                  車両・歩行者一体信号
-│  │  ├─ tram/                      路面電車用信号
-│  │  ├─ rail/                      鉄道信号
-│  │  └─ crossing/                  踏切
-│  └─ track/                        軌道
-│     ├─ railway/                   鉄道軌道(砂利道床・スラブ)
-│     └─ tram/                      路面電車軌道(併用軌道)
-├─ src/                             ← モデルのソース(同じ階層で1モデル=1ファイル)
-│  ├─ kit/index.js                  共通部品(灯器レンズ・ポール・材質・任意部品)
-│  ├─ kit/signal-parts.js           信号機用の部品(灯器ヘッド・取付金具・状態テーブル)
-│  ├─ kit/track-parts.js            軌道用の部品(レール断面・まくらぎ・道床・敷石)
-│  ├─ categories.json               カテゴリの日本語名
-│  ├─ registry.js                   自動生成(モデル一覧)
-│  └─ signal/…/<id>.js, track/…/<id>.js
-├─ runtime/model-runtime.js         ← 他プロジェクトにそのままコピーして使える読み込み・制御ランタイム
-├─ viewer/                          ← プレビューア(単一HTMLにビルド)
-└─ tools/                           ← 書き出し・サムネイル・ビルド・目視確認
+├─ src/                       モデルのソース。フォルダ階層 = カテゴリ階層
+│  ├─ kit/
+│  │  ├─ index.js             共通部品(材質・ポール・レンズ・ランプ・任意部品)
+│  │  ├─ signal-parts.js      信号機用の部品(灯器ヘッド・取付金具・歩行者灯・鉄道灯器・状態表)
+│  │  └─ track-parts.js       軌道用の部品(レール断面・まくらぎ・砂利・敷石)
+│  ├─ categories.json         カテゴリ名(日本語)。フォルダのパスをキーにする
+│  ├─ registry.js             自動生成(npm run registry)。手で編集しない
+│  ├─ signal/<サブ>/<id>.js   信号モデル(vehicle / pedestrian / combined / tram / rail / crossing)
+│  └─ track/<サブ>/<id>.js    軌道モデル(railway / tram)
+├─ models/                    成果物(自動生成。リポジトリに含める)
+│  ├─ index.json              全モデルの目録(状態・オプション・寸法・ランプ一覧)
+│  └─ <カテゴリ…>/<id>/{model.glb, meta.json, thumb.jpg}
+├─ runtime/model-runtime.js   GLB の読み込み・点灯制御・オプション切替(他プロジェクトにコピーして使える)
+├─ viewer/                    ブラウザのビューア
+│  ├─ main.js / env.js        画面の動作 / 背景・地面・照明
+│  ├─ ui.css                  共通スタイル
+│  ├─ index.html              信号ビューア(左=一覧 / 中央=3D / 右=操作)
+│  ├─ library.html            全モデルのライブラリ(一覧→詳細)
+│  └─ _stage.html _ctl.html   2つの画面で共有するマークアップ(ビルド時に差し込む)
+└─ tools/                     制作・検証ツール(下記)
 ```
+
+## 使い方(コマンド)
+
+`npm install` のあと、Playwright が必要です(`npm i -g playwright`。見つからなければ自動でグローバルも探します)。
+
+| コマンド | 内容 |
+|---|---|
+| `npm run build` | 書き出し → 最適化 → 整合性検査 → ビューア生成 → 動作確認を通して実行 |
+| `npm run export [id…]` | `src` から GLB と `index.json` を生成(id 指定で一部だけ) |
+| `npm run optimize` | GLB を最適化(頂点溶接+量子化。ノード名・マテリアル名は保持) |
+| `npm run check` | **整合性検査**。状態・サイクル・オプション・ランプが GLB と食い違っていないか+依存関係の規則 |
+| `npm run smoke` | ビューアの動作確認(折りたたみ・オプション・現示・検索・遮断機の動き) |
+| `npm run thumbs [id…]` | サムネイルを生成 |
+| `npm run viewer` | `dist/signals.html` と `dist/all.html` を生成(`dist/` は Git 管理外) |
+| `npm run pack` | アーティファクト公開用(GLB を base64 テキスト化)を `3d/dist/pub` に作る |
+| `npm run audit -- <出力先> [env] [id…]` | 各モデルを「全体/灯器アップ」で撮影(目視確認用) |
+
+補助: `tools/render-blender.py`(Blender で物理ベースのレンダリング)、`tools/sheet.py`(撮影画像の一覧シート)、
+`tools/shot.cjs`(ビューアの任意操作を撮影)。
 
 ## 新しいモデルを追加する
 
-1. `3d/src/<カテゴリ>/<サブカテゴリ>/<id>.js` を作る(既存ファイルを参考に `export default {id, name, desc, dims, states, cycle, options, build(){…}}`)。
-2. 新カテゴリなら `3d/src/categories.json` に日本語名を足す。
-3. `NODE_PATH=$(npm root -g) node 3d/tools/export.cjs` → GLB と `index.json` を再生成(`id` を引数に渡すと一部だけ)。
-4. `node 3d/tools/thumbs.cjs` → サムネイル、`node 3d/tools/build-viewer.cjs` → `dist/signals.html`(信号のみ) と `dist/all.html`(全モデル)。
+1. `3d/src/<カテゴリ>/<サブ>/<id>.js` を作る。既存ファイルを手本に、次の形で `export default` する。
+   ```js
+   import {…使う部品だけ…} from '../../kit/signal-parts.js';
+   export default {id, name, desc, dims, focus, view, states, cycle, night, options, build(){ … return {root, lamps}; }};
+   ```
+2. 新しいカテゴリなら `src/categories.json` に日本語名を足す。
+3. `npm run build`、続いて `npm run thumbs <id>`。
 
-## GLB の規約(他スレッドで使うときの約束)
+## GLB の規約(他のスレッドで使うときの約束)
 
-- 単位はメートル、原点は設置面(地面)の中心、**正面は +Z**、上は +Y。
-- **ランプ**: メッシュ名 `lamp_<key>`(LED式レンズ)/ `lampB_<key>`(電球式レンズ)。マテリアル名 `lens_<key>` / `lensB_<key>`。
-  GLB は**消灯状態**で出力され、点灯色は `material.userData.litColor`、輝度係数は `litIntensity` に入っている。
-- **任意部品・方式**: ノード名 `opt_<オプション>_<選択肢>`(例 `opt_lens_led` / `opt_lens_bulb` / `opt_backplate_on`)。
-  (同名ノードは読み込み時に `_1`, `_2` が付くが、ランタイムが吸収する)
-  GLB には**全バリエーションが入っている**ため、`runtime` の `setOption()` で選択中のものだけを表示する。
-  (素の glTF ビューアで開くと全バリエーションが重なって見える)
-- **アニメーション**: 遮断機など可動部は `index.json` の `anim.node`(例 `gate_arm`)を回転させる。
-- **現示(状態)**: `index.json` の `states[]`(`on` 常時点灯 / `flash` 点滅 / `flash2` 逆位相の点滅 / `arm` 可動角)と `cycle[]`(自動循環の順序と秒数)。
+- 単位はメートル、原点は設置面の中心、**正面は +Z**、上は +Y。
+- **ランプ**: メッシュ名 `lamp_<key>`(LED式)/ `lampB_<key>`(電球式)。マテリアル名 `lens_<key>` / `lensB_<key>`。
+  GLB は消灯状態で、点灯色は `material.userData.litColor`、輝度係数は `litIntensity`。
+- **任意部品**: ノード名 `opt_<オプション>_<選択肢>`。部品は常に **`on`** の名前で作り、`off` は「何も付けない」を意味する。
+  灯火方式だけは `opt_lens_led` / `opt_lens_bulb` の2択。GLB には全バリエーションが入っているので、
+  `runtime` の `setOption()` で選んだものだけを表示する(素の glTF ビューアでは重なって見える)。
+- **色オプション**: `type:'color'` のオプションは、`target` のマテリアルの色を差し替える(例: 灯器の本体色)。
+- **可動部**: `anim.node` で指すグループを、状態の `arm`(ラジアン)へ回す(遮断機)。
+- **現示**: `states[]`(`on` 点灯 / `flash` 点滅 / `flash2` 逆位相の点滅)、`cycle[]`(自動循環の順序と秒数)。
 
-## ランタイムの使い方
+## runtime の使い方
 
 ```js
 import {loadModel, cycleAt} from './runtime/model-runtime.js';
 const index = await (await fetch('models/index.json')).json();
 const entry = index.models.find(m => m.id === 'jp-combo-arm-ped');
-const m = await loadModel('models/' + entry.file, entry);   // → three.js の Group(m.root)
+const m = await loadModel('models/' + entry.file, entry);   // m.root が Three.js の Group
 scene.add(m.root);
-m.setOption('button', 'off');     // 押ボタン箱を外す
-m.setOption('lens', 'bulb');      // 電球式(フレネルレンズ)にする
-m.setState('s4');                 // 車 赤 / 歩 青
+m.setOption('button', 'off');   // 押ボタン箱を外す
+m.setOption('lens', 'bulb');    // 電球式(フレネルレンズ)にする
+m.setState('s4');               // 車 赤 / 歩 青
 // 毎フレーム: m.update(deltaSec, elapsedSec);
 ```
 
+## 依存の関係(守ること)
+
+- `kit/index.js` は他に依存しない。`signal-parts.js` と `track-parts.js` は `kit/index.js` だけに依存する。
+- モデル(`src/signal`, `src/track`)は、自分のカテゴリの部品ファイルだけを import する。モデル同士は import しない。
+- `runtime` は Three.js だけに依存する(`src` や `viewer` を参照しない)。
+- `viewer` は `runtime` と `models/index.json` だけを通してモデルを扱い、`src` を参照しない。
+
 ## 精度について
 
-- **形状・配列・色**は公開情報(警察庁仕様・各社資料・解説記事)に基づく。確認できたのは、レンズ径φ300/φ250、前傾15°(積雪地20°)、踏切全方向形警報灯の寸法、鉄道色灯式の灯数と配列、路面電車用信号の現示など。
-- **寸法の多くは代表値からの推定**(各モデルの `dims` に明記)。メーカー・年式・事業者で差がある。
-- 日本全国のすべての信号の完全再現は未達。収録範囲は `index.json` と `models/` を参照。
+- 形状・配列・色は、公開資料と Wikimedia Commons の実物写真との見比べに基づく。数値で確認できたのは、
+  レンズ径φ300/φ250、LED灯器の外形(フジ工芸社・ショージの公表値)、遮断かんの塗装と水平時の高さ0.8m(国の告示)、
+  鋼管柱の径(広島県警の設計書)、踏切全方向形警報灯の寸法など。
+- 寸法の多くは代表値からの推定で、各モデルの `dims` に明記している。メーカー・年式・事業者で差がある。
+- 日本全国の全種類の完全再現は未達。収録範囲は `models/index.json` を参照。

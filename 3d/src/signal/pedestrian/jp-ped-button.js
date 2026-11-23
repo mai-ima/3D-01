@@ -1,4 +1,4 @@
-import {THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,makeLamp,config,arrowTexture,pedTexture,bikeTexture,opt,lensMaterial,domeLens,cv,tex,allLamps,HG,HK,reg,deg,dotLamp,cylLamp,hw,hanger,strap,horizHead,vertHead,POLE_H,S3,CY3,SPED,xTexture,pedHousing,railBody,stripePole,arrowStates,OPT_LENS,optToggle,addSpeaker,addButton,tramHead} from '../../kit/signal-parts.js';
+import {POLE_H,THREE,addButton,addSpeaker} from '../../kit/signal-parts.js';
 export default {id:'jp-ped-button',group:'road-ped',name:'歩行者用押ボタン箱+音響装置',
   desc:'黄色の押ボタン箱と、視覚障がい者向けの音響用スピーカー箱。ボタンを押すと「おまちください」灯が点灯する。',
   dims:'押ボタン箱 約0.16×0.30×0.09m(推定)',focus:[0,1.25,.2],view:[.35,.15,2.2],night:null,

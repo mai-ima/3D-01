@@ -1,4 +1,4 @@
-import {setBody,optBody,tramHead,THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,makeLamp,config,arrowTexture,pedTexture,bikeTexture,opt,lensMaterial,domeLens,cv,tex,allLamps,HG,HK,reg,deg,dotLamp,cylLamp,hw,hanger,strap,horizHead,vertHead,POLE_H,S3,CY3,SPED,xTexture,pedHousing,railBody,stripePole,arrowStates,OPT_LENS,optToggle} from '../../kit/signal-parts.js';
+import {MAT,POLE_H,THREE,add,optBody,rod,setBody,tramHead} from '../../kit/signal-parts.js';
 export default {id:'jp-tram',group:'tram',name:'路面電車用信号(赤×・黄矢印)',
   desc:'道路交通法の「電車用信号」。赤×は停止、黄色矢印は矢印の方向へ進行可。自動車は従わない。広島電鉄・都電荒川線・長崎・熊本などの軌道で見られる。',
   dims:'本体 約0.40×0.82×0.20m(推定)',focus:[1.1,4.6,0],view:[.6,.25,4.6],night:null,

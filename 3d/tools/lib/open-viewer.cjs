@@ -1,5 +1,5 @@
 // Playwright でビューアを開く(unpkg の three はローカル node_modules に差し替え)
-const {chromium}=require('playwright');const fs=require('fs'),path=require('path');const ROOT=path.resolve(__dirname,'../../..'),NM=path.join(ROOT,'node_modules/three/');
+const {chromium}=require('./playwright.cjs');const fs=require('fs'),path=require('path');const ROOT=path.resolve(__dirname,'../../..'),NM=path.join(ROOT,'node_modules/three/');
 async function launch(){return chromium.launch({args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader','--ignore-gpu-blocklist']});}
 async function openViewer(browser,{query='',w=1400,h=860,dpr=1,page:pg='signals'}={}){
   const ctx=await browser.newContext({viewport:{width:w,height:h},deviceScaleFactor:dpr});const p=await ctx.newPage();

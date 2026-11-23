@@ -37,41 +37,12 @@
     <div id="tabs"><button data-t="models" class="on">モデル</button><button data-t="ctl">操作・情報</button></div>
     <nav id="rail" aria-label="モデル一覧"></nav>
     <aside id="ctl">
-    <div class="plate" data-t="info"><h3>概要<small id="fid"></small></h3>
-      <p id="desc"></p>
-      <div class="facts"><div class="fact"><small>高さ</small><b id="fSize">-</b></div><div class="fact"><small>三角形</small><b id="fTris">-</b></div><div class="fact"><small>ファイル</small><b id="fBytes">-</b></div></div>
-      <div id="dims"></div>
-    </div>
-    <div class="plate" id="stateSec" data-t="ctrl"><h3>制御</h3>
-      <div class="modes" id="modes"><button data-m="auto"><b>自動</b><small>現示を循環</small></button><button data-m="manual"><b>手動</b><small>自分で選ぶ</small></button><button data-m="night"><b>夜間</b><small>点滅現示</small></button></div>
-      <div><div class="lab">現示</div><div class="states" id="states"></div></div>
-      <div class="tl" id="tl"></div><div class="tlt"><span id="tlName"></span><span id="tlRem"></span></div>
-      <div class="row"><label for="speed">速度</label><input id="speed" type="range" min="0.5" max="4" step="0.25" value="1"><span class="num" id="speedV">1.0×</span></div>
-    </div>
-    <div class="plate" id="noState" data-t="ctrl" style="display:none"><h3>制御</h3><p class="nostate">このモデルは形状のみで、点灯する現示はありません。</p></div>
-    <div class="plate" id="optSec" data-t="ctrl"><h3>オプション<small id="optHint"></small></h3><div id="opts"></div></div>
-    <div class="plate" data-t="view"><h3>背景と軌道</h3>
-      <div><div class="lab">背景</div><div class="seg2" id="envSeg"><button data-e="studio" class="on">スタジオ</button><button data-e="day">昼</button><button data-e="dusk">夕方</button><button data-e="night">夜</button></div></div>
-      <label class="sw" id="wetSw"><input type="checkbox" id="wet"><i></i>濡れた路面</label>
-      <div><div class="lab">軌道(線路)</div><div class="seg2" id="trackSeg"><button data-k="none" class="on">なし</button><button data-k="ballast">砂利</button><button data-k="slab">スラブ</button><button data-k="tram">併用</button></div></div>
-      <label class="sw" id="onTrackSw"><input type="checkbox" id="onTrack"><i></i>軌道上に設置</label>
-    </div>
+    <!--@include _ctl.html -->
 
     </aside>
   </div>
   <main id="stage" class="stagewrap">
-    <canvas id="gl" tabindex="0" aria-label="3Dビュー"></canvas>
-    <div class="ov" id="title"><span class="g" id="grp"></span><h2 id="mname"></h2></div>
-    <div class="ov" id="nav">
-      <button class="sq" id="prev" aria-label="前のモデル"><svg class="i" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <button class="sq" id="next" aria-label="次のモデル"><svg class="i" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
-    </div>
-    <div class="ov" id="bar">
-      <div class="grpbtn" id="views"><button data-v="all">全体</button><button data-v="lamp">灯器</button><button data-v="front">正面</button><button data-v="side">側面</button><button data-v="back">背面</button><button data-v="top">上面</button></div>
-      <div class="grpbtn" id="disp"><button data-d="shade" class="on">通常</button><button data-d="clay">単色</button><button data-d="wire">ワイヤー</button></div>
-      <div class="grpbtn"><button id="tDims">寸法</button><button id="tSpin">回転</button></div>
-    </div>
-    <div class="ov" id="loading"></div><div id="spin" hidden></div><div class="ov" id="fps"></div>
+    <!--@include _stage.html -->
 
   </main>
 </div>

@@ -1,6 +1,6 @@
-// 使い方: NODE_PATH=$(npm root -g) node 3d/tools/export.cjs [id ...]
+// 使い方: node 3d/tools/export.cjs [id ...]
 //   → 3d/models/<カテゴリ>/<サブカテゴリ>/<モデルID>/{model.glb, meta.json} と 3d/models/index.json を生成
-const {chromium}=require('playwright');const esbuild=require('esbuild');const fs=require('fs');const path=require('path');const {execSync}=require('child_process');
+const {chromium}=require('./lib/playwright.cjs');const esbuild=require('esbuild');const fs=require('fs');const path=require('path');const {execSync}=require('child_process');
 const ROOT=path.resolve(__dirname,'../..'),NM=path.join(ROOT,'node_modules/three/'),OUT=path.join(ROOT,'3d/models');
 (async()=>{
   execSync('node '+path.join(__dirname,'gen-registry.cjs'),{stdio:'inherit'});

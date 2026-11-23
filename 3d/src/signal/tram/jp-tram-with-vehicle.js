@@ -1,4 +1,4 @@
-import {setBody,optBody,THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,makeLamp,config,arrowTexture,pedTexture,bikeTexture,opt,lensMaterial,domeLens,cv,tex,allLamps,HG,HK,reg,deg,dotLamp,cylLamp,hw,hanger,strap,horizHead,vertHead,POLE_H,S3,CY3,SPED,xTexture,pedHousing,railBody,stripePole,arrowStates,OPT_LENS,optToggle,addSpeaker,addButton,tramHead} from '../../kit/signal-parts.js';
+import {HG,MAT,OPT_LENS,THREE,hanger,horizHead,mastArm,optBody,optToggle,rod,setBody,tramHead} from '../../kit/signal-parts.js';
 const st=[{id:'t1',label:'車 青 / 電車 停止',on:['v_green','stop']},{id:'t2',label:'車 黄 / 電車 停止',on:['v_yellow','stop']},{id:'t3',label:'全赤(電車 停止)',on:['v_red','stop']},
   {id:'t4',label:'車 赤 / 電車 直進',on:['v_red','straight']},{id:'t5',label:'車 赤 / 電車 左+直進',on:['v_red','left','straight']},{id:'night',label:'夜間(車 黄点滅)',flash:['v_yellow'],on:['stop']},{id:'off',label:'消灯'}];
 export default {id:'jp-tram-with-vehicle',name:'路面電車用+車両用 一体(アーム式)',

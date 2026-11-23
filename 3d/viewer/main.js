@@ -111,7 +111,7 @@ function buildOptions(){const box=$('opts');box.innerHTML='';const ops=entry.opt
 function setMode(m){if(!entry.states||!entry.states.length)return;if(m==='night'&&!entry.night)return;mode=m;if(m==='night')sig.setState(entry.night);uiSig='';}
 
 /* ---------- track (線路) ---------- */
-async function getTrackModel(id){const e=catalog.find(x=>x.id===id)||ALL.find(x=>x.id===id);if(!e)return null;let m=cache.get(id);if(!m){m=await loadModel(`models/${e.file}`,e,{glow:false,b64:V.b64});cache.set(id,m);}return {m,e};}
+async function getTrackModel(id){const e=ALL.find(x=>x.id===id);if(!e)return null;let m=cache.get(id);if(!m){m=await loadModel(`models/${e.file}`,e,{glow:false,b64:V.b64});cache.set(id,m);}return {m,e};}
 async function buildTrack(){if(trackGroup){scene.remove(trackGroup);trackGroup=null;}const g=sceneGroup(entry);const fr=trackFrame(g);
   const self=isTrack(entry);let src=null;
   if(self){src={m:sig,e:entry};}else if(trackType!=='none'){src=await getTrackModel(TRACK_IDS[trackType]);}
@@ -235,7 +235,7 @@ addEventListener('hashchange',()=>{const id=location.hash.slice(1);if(!id||!cata
 const clk=new THREE.Clock(),tmp=new THREE.Vector3(),LK={studio:.7,day:.5,dusk:4,night:7};
 function frame(ts){requestAnimationFrame(frame);if(document.hidden||(LIB&&view==='grid'))return;
   if(ts-lastTs<Math.max(Q().gap,COARSE?14:0))return;lastTs=ts;                       // スマホは最大約50fpsに抑えて発熱・電池を節約
-  const raw=clk.getDelta();const dt=Math.min(raw,.1),t=clk.elapsedTime;
+  const raw=clk.getDelta();const dt=Math.min(raw,.5),t=clk.elapsedTime;   // 極端に長い停止(タブ切替など)だけ打ち切る
   ema=ema*.94+Math.min(raw*1000,100)*.06;tAdapt+=raw;
   if(tAdapt>1.2){tAdapt=0;if(ema>30&&dprNow>Q().minDpr){dprNow=Math.max(Q().minDpr,dprNow-.25);renderer.setPixelRatio(dprNow);resize();}   // 重いときは解像度を自動で下げる
     else if(ema<18&&dprNow<dprMax){dprNow=Math.min(dprMax,dprNow+.25);renderer.setPixelRatio(dprNow);resize();}

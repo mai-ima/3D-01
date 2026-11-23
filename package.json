@@ -1,29 +1,30 @@
 {
-  "name": "3d-01",
+  "name": "jp-signal-3d",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "日本の信号機・軌道の3Dモデル(Three.js で作図 → GLB 書き出し)とビューア",
   "scripts": {
-    "3d:export": "node 3d/tools/export.cjs",
-    "3d:thumbs": "node 3d/tools/thumbs.cjs",
-    "3d:viewer": "node 3d/tools/build-viewer.cjs"
+    "registry": "node 3d/tools/gen-registry.cjs",
+    "export": "node 3d/tools/export.cjs",
+    "optimize": "node 3d/tools/optimize.cjs",
+    "thumbs": "node 3d/tools/thumbs.cjs",
+    "check": "node 3d/tools/check.cjs && node 3d/tools/check-deps.cjs",
+    "viewer": "node 3d/tools/build-viewer.cjs",
+    "pack": "B64=1 node 3d/tools/build-viewer.cjs && node 3d/tools/pack-artifact.cjs",
+    "build": "npm run export && npm run optimize && npm run check && npm run viewer && npm run smoke",
+    "audit": "node 3d/tools/audit.cjs",
+    "smoke": "node 3d/tools/smoke.cjs"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mai-ima/3D-01.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mai-ima/3D-01/issues"
-  },
-  "homepage": "https://github.com/mai-ima/3D-01#readme",
+  "license": "UNLICENSED",
   "dependencies": {
     "three": "^0.170.0"
   },
   "devDependencies": {
     "@gltf-transform/cli": "^4.5.1",
     "esbuild": "^0.28.2"
-  }
+  },
+  "private": true
 }

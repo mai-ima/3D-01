@@ -1,4 +1,4 @@
-import {setBody,optBody,THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,makeLamp,config,arrowTexture,pedTexture,bikeTexture,opt,lensMaterial,domeLens,cv,tex,allLamps,HG,HK,reg,deg,dotLamp,cylLamp,hw,hanger,strap,horizHead,vertHead,POLE_H,S3,CY3,SPED,xTexture,pedHousing,railBody,stripePole,arrowStates,OPT_LENS,optToggle,addSpeaker,addButton,tramHead} from '../../kit/signal-parts.js';
+import {HG,MAT,POLE_H,THREE,add,cv,housing,hw,makeLamp,optBody,reg,rod,setBody,tex} from '../../kit/signal-parts.js';
 // 路面電車の軌道信号(記号灯): 富山ライトレール・万葉線などの実物写真を参考に、×・+・T・I の記号を灯す黒い縦型4灯
 function symTex(kind){const c=cv(256,256),g=c.getContext('2d');g.fillStyle='#000';g.fillRect(0,0,256,256);g.strokeStyle='#fff';g.lineWidth=26;g.lineCap='butt';g.beginPath();
   if(kind==='x'){g.moveTo(52,52);g.lineTo(204,204);g.moveTo(204,52);g.lineTo(52,204);}

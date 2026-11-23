@@ -193,6 +193,21 @@
       }
      ],
      "default": "on"
+    },
+    {
+     "id": "hood",
+     "label": "歩行者灯の庇(旧型)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
     }
    ],
    "path": [
@@ -240,7 +255,7 @@
    "dir": "signal/combined/jp-combo-arm-ped",
    "file": "signal/combined/jp-combo-arm-ped/model.glb",
    "thumb": "signal/combined/jp-combo-arm-ped/thumb.jpg",
-   "bytes": 1275172
+   "bytes": 1275308
   },
   {
    "id": "jp-combo-vert-ped",
@@ -423,6 +438,21 @@
       }
      ],
      "default": "on"
+    },
+    {
+     "id": "hood",
+     "label": "歩行者灯の庇(旧型)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
     }
    ],
    "path": [
@@ -470,7 +500,7 @@
    "dir": "signal/combined/jp-combo-vert-ped",
    "file": "signal/combined/jp-combo-vert-ped/model.glb",
    "thumb": "signal/combined/jp-combo-vert-ped/thumb.jpg",
-   "bytes": 1133800
+   "bytes": 1128216
   },
   {
    "id": "jp-crossing-alarm",
@@ -563,6 +593,21 @@
     }
    ],
    "options": [
+    {
+     "id": "lens",
+     "label": "灯火方式",
+     "choices": [
+      {
+       "id": "led",
+       "label": "LED式"
+      },
+      {
+       "id": "bulb",
+       "label": "電球式"
+      }
+     ],
+     "default": "led"
+    },
     {
      "id": "lamps2",
      "label": "警報灯 2段(上段を追加)",
@@ -709,7 +754,7 @@
    "dir": "signal/crossing/jp-crossing-alarm",
    "file": "signal/crossing/jp-crossing-alarm/model.glb",
    "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
-   "bytes": 810644
+   "bytes": 829456
   },
   {
    "id": "jp-crossing-gate",
@@ -796,7 +841,7 @@
    "dir": "signal/crossing/jp-crossing-gate",
    "file": "signal/crossing/jp-crossing-gate/model.glb",
    "thumb": "signal/crossing/jp-crossing-gate/thumb.jpg",
-   "bytes": 131588
+   "bytes": 132588
   },
   {
    "id": "jp-bike-ped",
@@ -880,6 +925,21 @@
       }
      ],
      "default": "gray"
+    },
+    {
+     "id": "hood",
+     "label": "庇(旧型)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
     }
    ],
    "path": [
@@ -907,7 +967,7 @@
    "dir": "signal/pedestrian/jp-bike-ped",
    "file": "signal/pedestrian/jp-bike-ped/model.glb",
    "thumb": "signal/pedestrian/jp-bike-ped/thumb.jpg",
-   "bytes": 368088
+   "bytes": 369080
   },
   {
    "id": "jp-ped-button",
@@ -980,7 +1040,7 @@
    "dir": "signal/pedestrian/jp-ped-button",
    "file": "signal/pedestrian/jp-ped-button/model.glb",
    "thumb": "signal/pedestrian/jp-ped-button/thumb.jpg",
-   "bytes": 224572
+   "bytes": 225572
   },
   {
    "id": "jp-ped-count",
@@ -1169,6 +1229,77 @@
      "d": 1
     }
    ],
+   "options": [
+    {
+     "id": "body",
+     "label": "本体色",
+     "type": "color",
+     "target": "body_main",
+     "choices": [
+      {
+       "id": "gray",
+       "label": "灰色",
+       "color": "#b7bcbe"
+      },
+      {
+       "id": "green",
+       "label": "深緑",
+       "color": "#34443b"
+      },
+      {
+       "id": "black",
+       "label": "黒",
+       "color": "#1b1e20"
+      }
+     ],
+     "default": "gray"
+    },
+    {
+     "id": "button",
+     "label": "押ボタン箱",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    },
+    {
+     "id": "sound",
+     "label": "音響装置",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    },
+    {
+     "id": "hood",
+     "label": "庇(旧型)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    }
+   ],
    "path": [
     "signal",
     "pedestrian"
@@ -1239,7 +1370,7 @@
    "dir": "signal/pedestrian/jp-ped-count",
    "file": "signal/pedestrian/jp-ped-count/model.glb",
    "thumb": "signal/pedestrian/jp-ped-count/thumb.jpg",
-   "bytes": 458772
+   "bytes": 459764
   },
   {
    "id": "jp-ped-led",
@@ -1353,6 +1484,21 @@
       }
      ],
      "default": "off"
+    },
+    {
+     "id": "hood",
+     "label": "庇(旧型)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
     }
    ],
    "path": [
@@ -1385,7 +1531,7 @@
    "dir": "signal/pedestrian/jp-ped-led",
    "file": "signal/pedestrian/jp-ped-led/model.glb",
    "thumb": "signal/pedestrian/jp-ped-led/thumb.jpg",
-   "bytes": 447064
+   "bytes": 448052
   },
   {
    "id": "jp-rail-3",
@@ -1460,6 +1606,36 @@
       }
      ],
      "default": "bulb"
+    },
+    {
+     "id": "ladder",
+     "label": "はしご",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "plate",
+     "label": "番線札",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
     }
    ],
    "path": [
@@ -1492,7 +1668,7 @@
    "dir": "signal/rail/jp-rail-3",
    "file": "signal/rail/jp-rail-3/model.glb",
    "thumb": "signal/rail/jp-rail-3/thumb.jpg",
-   "bytes": 921940
+   "bytes": 922620
   },
   {
    "id": "jp-rail-4",
@@ -1578,6 +1754,36 @@
       }
      ],
      "default": "bulb"
+    },
+    {
+     "id": "ladder",
+     "label": "はしご",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "plate",
+     "label": "番線札",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
     }
    ],
    "path": [
@@ -1615,7 +1821,7 @@
    "dir": "signal/rail/jp-rail-4",
    "file": "signal/rail/jp-rail-4/model.glb",
    "thumb": "signal/rail/jp-rail-4/thumb.jpg",
-   "bytes": 924596
+   "bytes": 925276
   },
   {
    "id": "jp-rail-5",
@@ -1714,6 +1920,36 @@
       }
      ],
      "default": "bulb"
+    },
+    {
+     "id": "ladder",
+     "label": "はしご",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "plate",
+     "label": "番線札",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
     }
    ],
    "path": [
@@ -1756,7 +1992,7 @@
    "dir": "signal/rail/jp-rail-5",
    "file": "signal/rail/jp-rail-5/model.glb",
    "thumb": "signal/rail/jp-rail-5/thumb.jpg",
-   "bytes": 926336
+   "bytes": 927016
   },
   {
    "id": "jp-rail-relay",
@@ -1889,7 +2125,7 @@
    "dir": "signal/rail/jp-rail-relay",
    "file": "signal/rail/jp-rail-relay/model.glb",
    "thumb": "signal/rail/jp-rail-relay/thumb.jpg",
-   "bytes": 720872
+   "bytes": 721872
   },
   {
    "id": "jp-tram",
@@ -2029,7 +2265,7 @@
    "dir": "signal/tram/jp-tram",
    "file": "signal/tram/jp-tram/model.glb",
    "thumb": "signal/tram/jp-tram/thumb.jpg",
-   "bytes": 416672
+   "bytes": 417512
   },
   {
    "id": "jp-tram-symbol",
@@ -2160,7 +2396,7 @@
    "dir": "signal/tram/jp-tram-symbol",
    "file": "signal/tram/jp-tram-symbol/model.glb",
    "thumb": "signal/tram/jp-tram-symbol/thumb.jpg",
-   "bytes": 318872
+   "bytes": 319704
   },
   {
    "id": "jp-tram-with-vehicle",
@@ -2367,7 +2603,7 @@
    "dir": "signal/tram/jp-tram-with-vehicle",
    "file": "signal/tram/jp-tram-with-vehicle/model.glb",
    "thumb": "signal/tram/jp-tram-with-vehicle/thumb.jpg",
-   "bytes": 1208964
+   "bytes": 1209800
   },
   {
    "id": "jp-veh-arrow",
@@ -2589,7 +2825,7 @@
    "dir": "signal/vehicle/jp-veh-arrow",
    "file": "signal/vehicle/jp-veh-arrow/model.glb",
    "thumb": "signal/vehicle/jp-veh-arrow/thumb.jpg",
-   "bytes": 1114316
+   "bytes": 1115192
   },
   {
    "id": "jp-veh-center-pole",
@@ -2778,7 +3014,7 @@
    "dir": "signal/vehicle/jp-veh-center-pole",
    "file": "signal/vehicle/jp-veh-center-pole/model.glb",
    "thumb": "signal/vehicle/jp-veh-center-pole/thumb.jpg",
-   "bytes": 846448
+   "bytes": 855344
   },
   {
    "id": "jp-veh-flash",
@@ -2907,7 +3143,7 @@
    "dir": "signal/vehicle/jp-veh-flash",
    "file": "signal/vehicle/jp-veh-flash/model.glb",
    "thumb": "signal/vehicle/jp-veh-flash/thumb.jpg",
-   "bytes": 794392
+   "bytes": 795384
   },
   {
    "id": "jp-veh-h250-side",
@@ -3067,7 +3303,7 @@
    "dir": "signal/vehicle/jp-veh-h250-side",
    "file": "signal/vehicle/jp-veh-h250-side/model.glb",
    "thumb": "signal/vehicle/jp-veh-h250-side/thumb.jpg",
-   "bytes": 878708
+   "bytes": 879708
   },
   {
    "id": "jp-veh-h300-arm",
@@ -3242,7 +3478,7 @@
    "dir": "signal/vehicle/jp-veh-h300-arm",
    "file": "signal/vehicle/jp-veh-h300-arm/model.glb",
    "thumb": "signal/vehicle/jp-veh-h300-arm/thumb.jpg",
-   "bytes": 986072
+   "bytes": 987072
   },
   {
    "id": "jp-veh-hoodless",
@@ -3401,7 +3637,7 @@
    "dir": "signal/vehicle/jp-veh-hoodless",
    "file": "signal/vehicle/jp-veh-hoodless/model.glb",
    "thumb": "signal/vehicle/jp-veh-hoodless/thumb.jpg",
-   "bytes": 716180
+   "bytes": 717172
   },
   {
    "id": "jp-veh-v-snow",
@@ -3576,7 +3812,7 @@
    "dir": "signal/vehicle/jp-veh-v-snow",
    "file": "signal/vehicle/jp-veh-v-snow/model.glb",
    "thumb": "signal/vehicle/jp-veh-v-snow/thumb.jpg",
-   "bytes": 887528
+   "bytes": 888520
   },
   {
    "id": "jp-veh-v250",
@@ -3735,7 +3971,7 @@
    "dir": "signal/vehicle/jp-veh-v250",
    "file": "signal/vehicle/jp-veh-v250/model.glb",
    "thumb": "signal/vehicle/jp-veh-v250/thumb.jpg",
-   "bytes": 864992
+   "bytes": 865984
   },
   {
    "id": "jp-track-ballast",
@@ -3752,12 +3988,12 @@
    "size": [
     4.8,
     0.59,
-    12.23
+    12.24
    ],
    "dir": "track/railway/jp-track-ballast",
    "file": "track/railway/jp-track-ballast/model.glb",
    "thumb": "track/railway/jp-track-ballast/thumb.jpg",
-   "bytes": 1651856
+   "bytes": 1652048
   },
   {
    "id": "jp-track-slab",
@@ -3779,7 +4015,7 @@
    "dir": "track/railway/jp-track-slab",
    "file": "track/railway/jp-track-slab/model.glb",
    "thumb": "track/railway/jp-track-slab/thumb.jpg",
-   "bytes": 161320
+   "bytes": 161272
   },
   {
    "id": "jp-track-tram",
@@ -3801,7 +4037,7 @@
    "dir": "track/tram/jp-track-tram",
    "file": "track/tram/jp-track-tram/model.glb",
    "thumb": "track/tram/jp-track-tram/thumb.jpg",
-   "bytes": 303480
+   "bytes": 304560
   }
  ]
 }

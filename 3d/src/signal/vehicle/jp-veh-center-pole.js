@@ -1,4 +1,4 @@
-import {setBody,optBody,OPT_LENS_BULB,THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,makeLamp,config,arrowTexture,pedTexture,bikeTexture,opt,lensMaterial,domeLens,cv,tex,allLamps,HG,HK,reg,deg,dotLamp,cylLamp,hw,hanger,strap,horizHead,vertHead,POLE_H,S3,CY3,SPED,xTexture,pedHousing,railBody,stripePole,arrowStates,OPT_LENS,optToggle,addSpeaker,addButton,tramHead} from '../../kit/signal-parts.js';
+import {CY3,HG,MAT,OPT_LENS,S3,THREE,add,cv,optBody,pole,rod,setBody,tex,vertHead} from '../../kit/signal-parts.js';
 // 中央柱式(熊本の交差点などの実物写真): 交差点の島に立つ1本の柱に、縦型3灯の灯器を各方向に取り付ける。基礎は黄黒の斜め縞のコンクリート
 function stripeTex(){const c=cv(512,128),g=c.getContext('2d');g.fillStyle='#f0c010';g.fillRect(0,0,512,128);g.fillStyle='#16130a';for(let x=-128;x<640;x+=80){g.beginPath();g.moveTo(x,128);g.lineTo(x+40,128);g.lineTo(x+40+128,0);g.lineTo(x+128,0);g.closePath();g.fill();}const t=tex(c);t.wrapS=THREE.RepeatWrapping;return t;}
 export default {id:'jp-veh-center-pole',name:'車両用 中央柱式(島の柱に縦型3灯×2方向)',

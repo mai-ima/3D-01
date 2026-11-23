@@ -1,4 +1,4 @@
-import {setBody,optBody,OPT_LENS_BULB,THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,makeLamp,config,arrowTexture,pedTexture,bikeTexture,opt,lensMaterial,domeLens,cv,tex,allLamps,HG,HK,reg,deg,dotLamp,cylLamp,hw,hanger,strap,horizHead,vertHead,POLE_H,S3,CY3,SPED,xTexture,pedHousing,railBody,stripePole,arrowStates,OPT_LENS,optToggle,addSpeaker,addButton,tramHead} from '../../kit/signal-parts.js';
+import {CY3,HG,LED,MAT,OPT_LENS,POLE_H,S3,THREE,add,cv,housing,hw,makeLamp,opt,optBody,optToggle,reg,rod,setBody,tex} from '../../kit/signal-parts.js';
 // フードレス灯器(熊谷市の時差式信号の実物写真): 白い薄型の平板ケースに、フードなしの丸いLEDレンズ3つ
 export default {id:'jp-veh-hoodless',name:'車両用 フードレス横型3灯(白い平板形)',
   desc:'フードを持たない、白い薄型の平板ケースの横型3灯。レンズは本体面と同じ高さで、細かいLEDの点が見える。上下2本の鋼管で柱に取り付け、時差式の表示板が付く例が多い。',

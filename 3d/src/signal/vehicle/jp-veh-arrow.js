@@ -1,4 +1,4 @@
-import {setBody,optBody,THREE,MAT,COL,LED,add,rod,bolt,pole,mastArm,roundBox,rrShape,housing,makeLamp,config,arrowTexture,pedTexture,bikeTexture,opt,lensMaterial,domeLens,cv,tex,allLamps,HG,HK,reg,deg,dotLamp,cylLamp,hw,hanger,strap,horizHead,vertHead,POLE_H,S3,CY3,SPED,xTexture,pedHousing,railBody,stripePole,arrowStates,OPT_LENS,optToggle,addSpeaker,addButton,tramHead} from '../../kit/signal-parts.js';
+import {HG,OPT_LENS,THREE,arrowStates,arrowTexture,hanger,horizHead,housing,hw,makeLamp,mastArm,optBody,optToggle,reg,setBody} from '../../kit/signal-parts.js';
 export default {id:'jp-veh-arrow',group:'road-vehicle',name:'車両用 横型3灯+矢印灯(左・直進・右)',
   desc:'主灯の下に青色矢印の補助灯(左折・直進・右折)を備える。右折専用現示や分離信号の交差点で使われる。',
   dims:'主灯φ250 + 矢印灯φ230(推定)',focus:[1.5,5.3,0],view:[.8,.3,6],night:'fy',states:arrowStates,

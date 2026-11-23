@@ -59,7 +59,9 @@ export class Model{
     if(snap){for(const L of Object.values(this.lamps))L.v=L.t=this._target(L.key,true);if(this.armNode&&st.arm!=null)this.armNode.rotation[this.axis]=st.arm;}}
   _target(key,bl){const s=this.state;if(!s)return 0;return (s.on&&s.on.includes(key))||(s.flash&&s.flash.includes(key)&&bl)||(s.flash2&&s.flash2.includes(key)&&!bl)?1:0;}
   /** dt: 経過秒, t: 通算秒(点滅の位相。1Hz) */
-  update(dt,t){if(!this.state)return;const bl=(t%1)<.5,k=1-Math.exp(-dt*38);
+  update(dt,t){if(!this.state)return;                                   // dt が長い(描画が遅い)ときも、実時間どおりに進むよう小刻みに分けて処理する
+    const n=Math.max(1,Math.ceil(dt/.05)),h=dt/n;for(let i=0;i<n;i++)this._step(h,t-dt+h*(i+1));}
+  _step(dt,t){const bl=(t%1)<.5,k=1-Math.exp(-dt*38);
     for(const L of Object.values(this.lamps)){L.t=this._target(L.key,bl);L.v+=(L.t-L.v)*k;for(const m of L.mats){m.emissive.copy(L.lit);m.emissiveIntensity=L.v*L.k;}if(L.glow)L.glow.material.opacity=L.v*this.glowK;}
     if(this.armNode&&this.state.arm!=null){const a=this.armNode.rotation[this.axis];this.armNode.rotation[this.axis]=a+(this.state.arm-a)*(1-Math.exp(-dt*2.6));}}
   /** 最も明るく点灯しているランプ(点光源の位置決め用) */

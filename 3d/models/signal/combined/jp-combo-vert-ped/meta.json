@@ -179,6 +179,21 @@
     }
    ],
    "default": "on"
+  },
+  {
+   "id": "hood",
+   "label": "歩行者灯の庇(旧型)",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
   }
  ],
  "path": [
@@ -226,5 +241,5 @@
  "dir": "signal/combined/jp-combo-vert-ped",
  "file": "signal/combined/jp-combo-vert-ped/model.glb",
  "thumb": "signal/combined/jp-combo-vert-ped/thumb.jpg",
- "bytes": 1133800
+ "bytes": 1128216
 }
