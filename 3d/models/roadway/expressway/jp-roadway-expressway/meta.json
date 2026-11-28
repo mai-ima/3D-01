@@ -62,7 +62,7 @@
   "expressway"
  ],
  "lamps": [],
- "tris": 1544,
+ "tris": 3936,
  "size": [
   27.97,
   1.4,
@@ -71,5 +71,5 @@
  "dir": "roadway/expressway/jp-roadway-expressway",
  "file": "roadway/expressway/jp-roadway-expressway/model.glb",
  "thumb": "roadway/expressway/jp-roadway-expressway/thumb.jpg",
- "bytes": 130060
+ "bytes": 260812
 }

@@ -54,14 +54,14 @@
   "barrier"
  ],
  "lamps": [],
- "tris": 588,
+ "tris": 27168,
  "size": [
-  0.54,
+  0.61,
   3.27,
-  10.3
+  10.4
  ],
  "dir": "expressway/barrier/jp-exp-noise-wall",
  "file": "expressway/barrier/jp-exp-noise-wall/model.glb",
  "thumb": "expressway/barrier/jp-exp-noise-wall/thumb.jpg",
- "bytes": 21188
+ "bytes": 100868
 }

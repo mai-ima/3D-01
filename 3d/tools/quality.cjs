@@ -4,7 +4,7 @@
 const fs=require('fs'),path=require('path');
 const ROOT=path.resolve(__dirname,'../..'),M=path.join(ROOT,'3d/models'),showAll=process.argv.includes('--all');
 // カテゴリごとの下限(三角形数)。小さな部品が主役のモデルは緩く、大型の構造物は高めにする
-const MIN_TRIS=[[/^signal\//,8000],[/^track\//,2500],[/^road\/(sign|lighting)/,1500],[/^road\//,700],[/^expressway\/(tollgate|sign|info|lighting)/,2500],[/^expressway\//,500]];
+const MIN_TRIS=[[/^signal\//,8000],[/^track\//,2500],[/^roadway\//,2500],[/^road\/surface/,2000],[/^road\//,5000],[/^expressway\//,8000]];   // 初期モデル(信号)の水準に合わせた下限
 (async()=>{const {NodeIO}=await import('@gltf-transform/core');const {ALL_EXTENSIONS}=await import('@gltf-transform/extensions');
   const io=new NodeIO().registerExtensions(ALL_EXTENSIONS);const idx=JSON.parse(fs.readFileSync(path.join(M,'index.json')));let warn=0;const rows=[];
   for(const e of idx.models){const doc=await io.read(path.join(M,e.file));const root=doc.getRoot();const w=[];

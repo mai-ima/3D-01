@@ -1,6 +1,6 @@
 // ビューアを単一HTMLにビルド: dist/signals.html(信号のみ) と dist/all.html(全3Dモデル)
 const esbuild=require('esbuild'),fs=require('fs'),path=require('path');const ROOT=path.resolve(__dirname,'../..'),V=path.join(ROOT,'3d/viewer');
-const r=esbuild.buildSync({entryPoints:[path.join(V,'main.js')],bundle:true,format:'esm',write:false,external:['three','three/addons/*'],legalComments:'none'});
+const r=esbuild.buildSync({entryPoints:[path.join(V,'main.js')],bundle:true,format:'esm',write:false,external:['three','three/addons/*','n8ao','postprocessing'],legalComments:'none'});
 const js=r.outputFiles[0].text.replace(/<\/script>/g,'<\\/script>');
 const css=fs.readFileSync(path.join(V,'ui.css'),'utf8');const inc=s=>s.replace(/<!--@include (\S+) -->/g,(_,f)=>fs.readFileSync(path.join(V,f),'utf8').trimEnd());   // 共通マークアップを差し込む
 const rd=n=>inc(fs.readFileSync(path.join(V,n),'utf8')).replace('/*__CSS__*/',()=>css);

@@ -24,7 +24,29 @@ export const RM={
 // 反射シートの面。つやを強くしすぎると、空の映り込みで白い膜がかかり、白と緑の差が弱く見える
 export const faceMat=map=>new THREE.MeshPhysicalMaterial({map,roughness:.55,clearcoat:.12,clearcoatRoughness:.4});
 /** 洗い出し・コンクリート系の材質 */
-export function concreteMat(base='#b9b8b2',n=26000,rep=[1,1]){const c=noiseCanvas(512,base,n,235);const t=tex(c,{rep});t.userData.mimeType='image/jpeg';return new THREE.MeshStandardMaterial({map:t,roughness:.92});}
+/** 高さ(0〜1)の格子から、法線マップ(canvas)を作る。strength=凹凸の強さ */
+function heightToNormal(h,n,strength){const c=cv(n,n),g=c.getContext('2d'),im=g.createImageData(n,n),d=im.data;
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++){const l=h[y*n+(x+n-1)%n],r=h[y*n+(x+1)%n],u=h[((y+n-1)%n)*n+x],dn=h[((y+1)%n)*n+x];
+    let nx=(l-r)*strength,ny=(u-dn)*strength,nz=1;const k=1/Math.hypot(nx,ny,nz);nx*=k;ny*=k;nz*=k;const o=(y*n+x)*4;d[o]=(nx*.5+.5)*255;d[o+1]=(ny*.5+.5)*255;d[o+2]=(nz*.5+.5)*255;d[o+3]=255;}
+  g.putImageData(im,0,0);return c;}
+/** 値のむらを重ねた格子(フラクタルノイズ)。n×n・繰り返しても継ぎ目が出ない */
+function fbm(n,oct=5,seed=7){let s=seed;const rnd=()=>(s=(s*16807)%2147483647)/2147483647;const out=new Float32Array(n*n);let amp=1,tot=0;
+  for(let o=0;o<oct;o++){const g=4<<o,grid=new Float32Array(g*g);for(let i=0;i<g*g;i++)grid[i]=rnd();
+    for(let y=0;y<n;y++){const fy=y/n*g,y0=Math.floor(fy),ty=fy-y0,sy=ty*ty*(3-2*ty);for(let x=0;x<n;x++){const fx=x/n*g,x0=Math.floor(fx),tx=fx-x0,sx=tx*tx*(3-2*tx);
+      const a=grid[(y0%g)*g+(x0%g)],b=grid[(y0%g)*g+((x0+1)%g)],c=grid[((y0+1)%g)*g+(x0%g)],d=grid[((y0+1)%g)*g+((x0+1)%g)];
+      out[y*n+x]+=amp*(a+(b-a)*sx+(c-a)*sy+(a-b-c+d)*sx*sy);}}tot+=amp;amp*=.5;}
+  for(let i=0;i<out.length;i++)out[i]/=tot;return out;}
+/** 打放しコンクリート: 色むら・小さな気泡・型枠の継ぎ目・セパレーター穴(Pコンの穴)・凹凸(法線マップ)つき。新品の状態(汚れ・経年劣化は描かない) */
+export function concreteMat(base='#b9b8b2',n=26000,rep=[1,1],{formwork=true}={}){const N=512,h=fbm(N,5,11),tint=fbm(N,3,29);
+  const c=cv(N,N),g=c.getContext('2d'),im=g.createImageData(N,N),d=im.data;const b=new THREE.Color(base);
+  for(let i=0;i<N*N;i++){const v=.86+tint[i]*.22+(h[i]-.5)*.16;d[i*4]=Math.min(255,b.r*255*v);d[i*4+1]=Math.min(255,b.g*255*v);d[i*4+2]=Math.min(255,b.b*255*v);d[i*4+3]=255;}
+  g.putImageData(im,0,0);
+  for(let i=0;i<n/12;i++){const x=Math.random()*N,y=Math.random()*N,r=Math.random()*1.4+.3;g.fillStyle=`rgba(40,40,38,${Math.random()*.28+.06})`;g.beginPath();g.arc(x,y,r,0,7);g.fill();h[(y|0)*N+(x|0)]-=.25;}   // 気泡(小さな穴)
+  if(formwork){g.fillStyle='rgba(60,60,58,.22)';for(let y=0;y<N;y+=128)g.fillRect(0,y,N,2);for(let x=0;x<N;x+=256)g.fillRect(x,0,1.5,N);        // 型枠(合板)の継ぎ目
+    for(let y=64;y<N;y+=128)for(let x=64;x<N;x+=256){g.fillStyle='rgba(30,30,30,.55)';g.beginPath();g.arc(x,y,5,0,7);g.fill();g.fillStyle='rgba(120,120,116,.7)';g.beginPath();g.arc(x,y,2.4,0,7);g.fill();}}      // セパレーターの穴
+  const t=tex(c,{rep});t.userData.mimeType='image/jpeg';const nm=tex(heightToNormal(h,N,2.2),{rep,srgb:false});nm.userData.mimeType='image/jpeg';
+  return new THREE.MeshStandardMaterial({map:t,normalMap:nm,normalScale:new THREE.Vector2(.8,.8),roughness:.9});}
+export {fbm,heightToNormal};
 
 /* ---------- 画像 ---------- */
 export function canvasTex(w,h,draw,{jpeg=false}={}){const c=cv(w,h),g=c.getContext('2d');draw(g,w,h);const t=tex(c);if(jpeg)t.userData.mimeType='image/jpeg';return t;}

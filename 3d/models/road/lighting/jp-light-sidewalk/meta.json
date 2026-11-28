@@ -70,7 +70,7 @@
    "lit": "#f4f8ff"
   }
  ],
- "tris": 4488,
+ "tris": 7472,
  "size": [
   0.68,
   4.72,
@@ -79,5 +79,5 @@
  "dir": "road/lighting/jp-light-sidewalk",
  "file": "road/lighting/jp-light-sidewalk/model.glb",
  "thumb": "road/lighting/jp-light-sidewalk/thumb.jpg",
- "bytes": 94140
+ "bytes": 138616
 }

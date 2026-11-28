@@ -7,7 +7,7 @@ DIRT.userData.mimeType='image/jpeg';
 const b64=buf=>{let s='';const u=new Uint8Array(buf);for(let i=0;i<u.length;i+=0x8000)s+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(s);};
 window.listIds=()=>MODELS.map(m=>m.def.id);
 window.exportOne=async(id)=>{
-  const {path,def}=MODELS.find(m=>m.def.id===id);config.sprites=false;
+  const {path,def}=MODELS.find(m=>m.def.id===id);config.sprites=false;config.boost=['expressway','road','roadway'].includes(path[0])&&def.boost!==false;   // def.boost=false で個別に外せる(小さな突起を大量に並べるモデルなど)
   const {root,lamps}=def.build();root.name=id;
   // 消灯状態で出力。点灯色は userData.litColor に保持(ランタイム側で復元)
   for(const [k,L] of Object.entries(lamps)){for(const m of[L.mat,L.matB]){if(!m)continue;m.userData={lamp:k,litColor:'#'+L.color.e.toString(16).padStart(6,'0'),litIntensity:3.4};m.emissive.set(0x000000);m.emissiveIntensity=1;}}
@@ -20,7 +20,7 @@ window.exportOne=async(id)=>{
       for(let i=0;i<n;i+=3){const a=ix?ix.getX(i):i,b=ix?ix.getX(i+1):i+1,c=ix?ix.getX(i+2):i+2;A.fromBufferAttribute(pos,a).applyMatrix4(o.matrixWorld);B.fromBufferAttribute(pos,b).applyMatrix4(o.matrixWorld);C.fromBufferAttribute(pos,c).applyMatrix4(o.matrixWorld);
         if(Math.abs(A.y)<.0015&&Math.abs(B.y)<.0015&&Math.abs(C.y)<.0015){e1.subVectors(B,A);e2.subVectors(C,A);const nrm=e1.cross(e2);if(nrm.y>0)floorArea+=nrm.length()/2;}}});}
   const scene=new THREE.Scene();scene.add(root);
-  const buf=await new Promise((res,rej)=>new GLTFExporter().parse(scene,res,rej,{binary:true,onlyVisible:false,maxTextureSize:1024}));
+  const buf=await new Promise((res,rej)=>new GLTFExporter().parse(scene,res,rej,{binary:true,onlyVisible:false,maxTextureSize:config.boost?2048:1024}));
   const {build,...meta}=def;
   const lampInfo=Object.entries(lamps).map(([k,L])=>({key:k,color:L.color.hex,lit:'#'+L.color.e.toString(16).padStart(6,'0')}));
   return {path,floorArea,meta:{...meta,path,lamps:lampInfo,tris:Math.round(tris),size:bb.getSize(new THREE.Vector3()).toArray().map(v=>+v.toFixed(2))},b64:b64(buf)};

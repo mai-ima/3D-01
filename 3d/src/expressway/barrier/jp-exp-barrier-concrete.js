@@ -1,4 +1,4 @@
-import {THREE,RM,add,opt,optChoice,canvasTex}from '../../kit/expressway-parts.js';
+import {THREE,RM,add,opt,optChoice,canvasTex,concreteMat}from '../../kit/expressway-parts.js';
 // 中央分離帯のコンクリート壁(剛性防護柵)。断面の型(F型・単スロープ・フロリダ型・直壁)と、上部の付属物(防眩板・金網)を選べる
 const P={f:[[-.3,0],[.3,0],[.3,.08],[.26,.33],[.1,.81],[-.1,.81],[-.26,.33],[-.3,.08]],
   single:[[-.25,0],[.25,0],[.11,1.1],[-.11,1.1]],
@@ -11,11 +11,16 @@ export default {id:'jp-exp-barrier-concrete',name:'コンクリート壁(中央�
   dims:'長さ 3mのブロック×3・高さ 0.8〜1.1m・底幅 0.4〜0.62m(代表値。型ごとの高さは国の資料に数値がなく推定)',focus:[0,.9,0],view:[3.4,.3,7.5],
   options:[optChoice('profile','断面の型',[['f','F型'],['single','単スロープ型'],['florida','フロリダ型'],['vertical','直壁型']],'f'),
     optChoice('top','上部の付属物',[['off','なし'],['glare','防眩板'],['mesh','金網(落下防止)']],'off')],
-  build(){const root=new THREE.Group();const conc=new THREE.MeshStandardMaterial({color:0xb7b5ad,roughness:.93});
+  build(){const root=new THREE.Group();const conc=concreteMat('#b7b5ad',0,[1,1]);
     const green=new THREE.MeshStandardMaterial({color:0x2f5d45,roughness:.6});const meshM=new THREE.MeshStandardMaterial({map:meshTex(),transparent:true,side:THREE.DoubleSide,roughness:.6,alphaTest:.2});
     for(const k of Object.keys(P)){const o=opt(root,'profile',k);const sh=new THREE.Shape(P[k].map(([x,y])=>new THREE.Vector2(x,y)));
       for(let i=0;i<3;i++){const g=new THREE.ExtrudeGeometry(sh,{depth:2.98,bevelEnabled:false});g.translate(0,0,-1.49);add(o,g,conc,0,0,(i-1)*3);}
-      add(o,new THREE.BoxGeometry(.1,.012,.2),RM.reflOrange,0,TOP[k]+.006,-3.05+.0).visible=true;                       // 天端の橙の反射体
+      // 天端の橙の反射体(各ブロックに1個)・ブロック継ぎ目の目地(黒い充填材)・吊り上げ用のソケット穴・脚部の水抜き切欠き
+      const dark=new THREE.MeshStandardMaterial({color:0x1d1e20,roughness:.95});
+      for(let i=0;i<3;i++){const z=(i-1)*3;const r=add(o,new THREE.CylinderGeometry(.045,.045,.012,28),RM.reflOrange,0,TOP[k]+.006,z);
+        for(const dz of[-1.1,1.1])add(o,new THREE.CylinderGeometry(.03,.03,.014,20),dark,.0,TOP[k]+.002,z+dz);
+        if(i>0)add(o,new THREE.BoxGeometry(.5,.006,.014),dark,0,TOP[k]+.002,z-1.5);
+        for(const sx of[-1,1])add(o,new THREE.BoxGeometry(.05,.05,.35),dark,sx*(P[k][1][0]+.0),.03,z);}
       const h=TOP[k];const gl=opt(o,'top','glare');for(let z=-4.2;z<=4.2;z+=.5){const p=add(gl,new THREE.BoxGeometry(.02,.7,.4),green,0,h+.35,z);p.rotation.y=.5;}
       add(gl,new THREE.BoxGeometry(.05,.05,9),RM.zinc,0,h+.04,0);
       const me=opt(o,'top','mesh');add(me,new THREE.PlaneGeometry(9,1.3),meshM,0,h+.65,0).rotation.y=Math.PI/2;

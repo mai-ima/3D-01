@@ -17,7 +17,9 @@
     "lint": "eslint .",
     "validate": "node 3d/tools/check-gltf.cjs",
     "quality": "node 3d/tools/quality.cjs",
-    "check:ao": "node 3d/tools/check-ao.cjs"
+    "check:ao": "node 3d/tools/check-ao.cjs",
+    "audit:mobile": "node 3d/tools/audit-mobile.cjs",
+    "check:ao-all": "node 3d/tools/check-ao-all.cjs"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,8 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
+    "n8ao": "^2.1.0",
+    "postprocessing": "^6.39.6",
     "three": "^0.170.0"
   },
   "devDependencies": {

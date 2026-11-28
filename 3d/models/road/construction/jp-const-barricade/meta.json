@@ -44,7 +44,7 @@
    "lit": "#ff7a00"
   }
  ],
- "tris": 3296,
+ "tris": 8088,
  "size": [
   1.22,
   1.2,
@@ -53,5 +53,5 @@
  "dir": "road/construction/jp-const-barricade",
  "file": "road/construction/jp-const-barricade/model.glb",
  "thumb": "road/construction/jp-const-barricade/thumb.jpg",
- "bytes": 71164
+ "bytes": 178716
 }

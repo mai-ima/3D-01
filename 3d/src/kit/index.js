@@ -1,4 +1,17 @@
-import * as THREE from 'three';
+import * as THREE0 from 'three';
+import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
+/** 書き出しの設定。boost=true のカテゴリは、円柱・球・押し出し・箱を細かく(丸く)作る(道路・高速道路・車道は、部品が小さくても滑らかに見えるように) */
+export const config={sprites:true,bulb:true,boost:false};
+/* 形状クラスの差し替え: boost のときは分割数を増やし、角の立った箱は小さな面取りつきの箱(UV は箱のまま)にする */
+const THREE={...THREE0};
+THREE.CylinderGeometry=class extends THREE0.CylinderGeometry{constructor(rt,rb,h,rs=8,hs=1,oe,ts,tl){super(rt,rb,h,config.boost?Math.max(rs,32):rs,hs,oe,ts,tl);}};
+THREE.SphereGeometry=class extends THREE0.SphereGeometry{constructor(r,ws=32,hs=16,...a){super(r,config.boost?Math.max(ws,48):ws,config.boost?Math.max(hs,24):hs,...a);}};
+THREE.TorusGeometry=class extends THREE0.TorusGeometry{constructor(r,t,rs=12,ts=48,arc){super(r,t,config.boost?Math.max(rs,10):rs,config.boost?Math.max(ts,48):ts,arc);}};
+THREE.CircleGeometry=class extends THREE0.CircleGeometry{constructor(r,seg=32,...a){super(r,config.boost?Math.max(seg,64):seg,...a);}};
+THREE.ExtrudeGeometry=class extends THREE0.ExtrudeGeometry{constructor(sh,o={}){super(sh,config.boost?{...o,curveSegments:Math.max(o.curveSegments||12,16),bevelSegments:Math.max(o.bevelSegments||3,3)}:o);}};
+THREE.BoxGeometry=function BoxGeometry(w=1,h=1,d=1,ws=1,hs=1,ds=1){
+  if(config.boost&&ws===1&&hs===1&&ds===1&&Math.min(w,h,d)>=.05)return new RoundedBoxGeometry(w,h,d,2,Math.min(.012,Math.min(w,h,d)*.16));
+  return new THREE0.BoxGeometry(w,h,d,ws,hs,ds);};
 /* ---------- textures ---------- */
 const cv=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;};
 const tex=(c,{rep,srgb=true,aniso=16}={})=>{const t=new THREE.CanvasTexture(c);t.anisotropy=aniso;if(srgb)t.colorSpace=THREE.SRGBColorSpace;if(rep){t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rep[0],rep[1]);}return t;};
@@ -71,7 +84,6 @@ function mastArm(parent,H,armY,armL){
 function domeLens(R,depth,seg=96){const pts=[];for(let i=0;i<=14;i++){const r=R*i/14;pts.push(new THREE.Vector2(r,depth*(1-(r/R)**2)));}
   const g=new THREE.LatheGeometry(pts,seg);g.rotateX(Math.PI/2);const p=g.attributes.position,uv=g.attributes.uv;for(let i=0;i<p.count;i++)uv.setXY(i,p.getX(i)/(2*R)+.5,p.getY(i)/(2*R)+.5);return g;}
 function lensMaterial(dark,emissive,map){return new THREE.MeshPhysicalMaterial({color:dark,roughness:.16,clearcoat:1,clearcoatRoughness:.05,emissive,emissiveMap:map,emissiveIntensity:0,side:THREE.DoubleSide});}
-export const config={sprites:true,bulb:true};
 const COL={orange:{dark:0x2e1a02,e:0xff7a00,hex:'#ff8a1a'},white:{dark:0x1c1f22,e:0xf4f8ff,hex:'#f4f8ff'},red:{dark:0x2a0606,e:0xff2a18,hex:'#ff4332'},yellow:{dark:0x2e1f02,e:0xffa800,hex:'#ffbd14'},green:{dark:0x02221a,e:0x00e6a2,hex:'#18d9a0'},blue:{dark:0x021c2e,e:0x1f9bff,hex:'#2aa6ff'},purple:{dark:0x14062e,e:0x9a5cff,hex:'#a574ff'}};
 const allLamps=[];
 function fresnelTexture(){const c=cv(512,512),g=c.getContext('2d');g.fillStyle='#000';g.fillRect(0,0,512,512);

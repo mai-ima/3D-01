@@ -58,7 +58,7 @@
   "national"
  ],
  "lamps": [],
- "tris": 1516,
+ "tris": 3500,
  "size": [
   10.32,
   1.55,
@@ -67,5 +67,5 @@
  "dir": "roadway/national/jp-roadway-national",
  "file": "roadway/national/jp-roadway-national/model.glb",
  "thumb": "roadway/national/jp-roadway-national/thumb.jpg",
- "bytes": 118728
+ "bytes": 240960
 }

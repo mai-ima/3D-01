@@ -71,14 +71,14 @@
    "lit": "#f4f8ff"
   }
  ],
- "tris": 3204,
+ "tris": 24186,
  "size": [
   4.9,
-  10.44,
+  10.48,
   0.48
  ],
  "dir": "expressway/lighting/jp-exp-light-pole",
  "file": "expressway/lighting/jp-exp-light-pole/model.glb",
  "thumb": "expressway/lighting/jp-exp-light-pole/thumb.jpg",
- "bytes": 57720
+ "bytes": 505392
 }

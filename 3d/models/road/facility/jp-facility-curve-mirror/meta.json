@@ -35,7 +35,7 @@
   "facility"
  ],
  "lamps": [],
- "tris": 38820,
+ "tris": 43340,
  "size": [
   1.49,
   3.74,
@@ -44,5 +44,5 @@
  "dir": "road/facility/jp-facility-curve-mirror",
  "file": "road/facility/jp-facility-curve-mirror/model.glb",
  "thumb": "road/facility/jp-facility-curve-mirror/thumb.jpg",
- "bytes": 259280
+ "bytes": 390468
 }

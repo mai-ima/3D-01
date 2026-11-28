@@ -19,7 +19,7 @@
   "sign"
  ],
  "lamps": [],
- "tris": 4381,
+ "tris": 10741,
  "size": [
   0.75,
   2.73,
@@ -28,5 +28,5 @@
  "dir": "road/sign/jp-sign-stop",
  "file": "road/sign/jp-sign-stop/model.glb",
  "thumb": "road/sign/jp-sign-stop/thumb.jpg",
- "bytes": 149576
+ "bytes": 277664
 }

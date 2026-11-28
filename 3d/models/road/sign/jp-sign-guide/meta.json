@@ -35,7 +35,7 @@
   "sign"
  ],
  "lamps": [],
- "tris": 4336,
+ "tris": 10448,
  "size": [
   1.81,
   4.46,
@@ -44,5 +44,5 @@
  "dir": "road/sign/jp-sign-guide",
  "file": "road/sign/jp-sign-guide/model.glb",
  "thumb": "road/sign/jp-sign-guide/thumb.jpg",
- "bytes": 201088
+ "bytes": 209780
 }

@@ -39,14 +39,14 @@
   "barrier"
  ],
  "lamps": [],
- "tris": 12800,
+ "tris": 84160,
  "size": [
   1.99,
-  0.82,
+  0.84,
   1.87
  ],
  "dir": "expressway/barrier/jp-exp-cushion-drum",
  "file": "expressway/barrier/jp-exp-cushion-drum/model.glb",
  "thumb": "expressway/barrier/jp-exp-cushion-drum/thumb.jpg",
- "bytes": 37744
+ "bytes": 102620
 }

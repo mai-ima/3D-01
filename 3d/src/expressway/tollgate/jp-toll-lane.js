@@ -1,4 +1,4 @@
-import {THREE,RM,EXM,EXC,add,bolt,roundBox,lightPanel,opt,optChoice,optToggle,prism,laneBoardTex,speedTex,nameTex,blueZoneTex,canvasTex,redWhite,deg}from '../../kit/expressway-parts.js';
+import {THREE,RM,EXM,EXC,add,bolt,roundBox,lightPanel,opt,optChoice,optToggle,prism,laneBoardTex,speedTex,nameTex,blueZoneTex,canvasTex,redWhite,deg,concreteMat}from '../../kit/expressway-parts.js';
 // 料金所の1レーン(NEXCOなど): キャノピー・レーン種別表示板・通行信号・開閉バー・ブース島・島端
 // 差分(オプション): キャノピーの型(門型/アーチ型)・表示板の種別・島端の型・速度表示・ETCアンテナ・地名板・路面の青い標示
 const ALL=['b_etc','b_etcPlain','b_mix','b_gen','spd'];
@@ -15,7 +15,7 @@ export default {id:'jp-toll-lane',name:'料金所レーン(ETC・一般)',
     optChoice('antenna','ETCアンテナ',[['canopy','屋根下'],['island','島の支柱'],['off','なし']],'canopy'),
     optToggle('speed','速度表示(20km/h以下)','on'),optToggle('name','地名板','on'),optToggle('blue','路面の青い標示','on')],
   build(){const root=new THREE.Group(),L={};const hw=1.6;
-    const conc=new THREE.MeshStandardMaterial({color:0xb8b6ae,roughness:.9});
+    const conc=concreteMat('#b7b5ad',0,[1,1]);
     /* 路面(料金所はコンクリート舗装) */
     /* ブース島(左右) */
     for(const sx of[-1,1]){const x=sx*(hw+.5);add(root,new THREE.BoxGeometry(1,.22,6),conc,x,.11,0);

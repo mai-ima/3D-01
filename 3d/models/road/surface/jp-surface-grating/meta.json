@@ -35,7 +35,7 @@
   "surface"
  ],
  "lamps": [],
- "tris": 960,
+ "tris": 1832,
  "size": [
   0.6,
   0.3,
@@ -44,5 +44,5 @@
  "dir": "road/surface/jp-surface-grating",
  "file": "road/surface/jp-surface-grating/model.glb",
  "thumb": "road/surface/jp-surface-grating/thumb.jpg",
- "bytes": 22040
+ "bytes": 28948
 }

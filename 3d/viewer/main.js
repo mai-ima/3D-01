@@ -4,7 +4,9 @@ import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
 import {RenderPass} from 'three/addons/postprocessing/RenderPass.js';
 import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
 import {OutputPass} from 'three/addons/postprocessing/OutputPass.js';
+import {SMAAPass} from 'three/addons/postprocessing/SMAAPass.js';
 import {GTAOPass} from 'three/addons/postprocessing/GTAOPass.js';
+import {N8AOPass} from 'n8ao';        // 外部の高品質AO(MIT)。既定。?aoeng=gtao で three 標準の GTAO に戻せる
 import {loadModel,cycleAt} from '../runtime/model-runtime.js';
 import {createEnvironment} from './env.js';
 
@@ -28,18 +30,24 @@ renderer.setPixelRatio(Math.min(devicePixelRatio,Q().dpr));renderer.shadowMap.en
 const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(34,1,.05,800);camera.position.set(5,3,9);
 const controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.07;controls.minDistance=.35;controls.maxDistance=60;controls.maxPolarAngle=Math.PI/2-.01;controls.autoRotateSpeed=1.4;
 const composer=new EffectComposer(renderer,new THREE.WebGLRenderTarget(4,4,{type:THREE.HalfFloatType,samples:Q().samples}));
-composer.addPass(new RenderPass(scene,camera));
+const rpass=new RenderPass(scene,camera);composer.addPass(rpass);
 const gtao=new GTAOPass(scene,camera,256,256);gtao.output=GTAOPass.OUTPUT[q.get('aoout')||'Default']||GTAOPass.OUTPUT.Default;gtao.updateGtaoMaterial({radius:.9,distanceExponent:1.2,thickness:2.5,scale:2.2,samples:16,distanceFallOff:1,screenSpaceRadius:false});gtao.updatePdMaterial({lumaPhi:10,depthPhi:2,normalPhi:3,radius:6,rings:2,samples:12});
 // AO の下準備(法線・深度の描画)に、背景テクスチャと寸法表示の板・線が混ざると、画面に黒い四角が出る。AO の計算中だけ外す
-{const _r=gtao.render.bind(gtao);gtao.render=function(...a){const bg=scene.background,dg=typeof dimGroup!=='undefined'?dimGroup:null;scene.background=null;if(dg)dg.visible=false;try{_r(...a);}finally{scene.background=bg;if(dg)dg.visible=true;}};}
-composer.addPass(gtao);                                         // 接触の陰影(アンビエントオクルージョン): 接合部・地面との接地・くぼみに自然な影を出す
+{const _r=gtao.render.bind(gtao);gtao.render=function(...a){const bg=scene.background,dg=typeof dimGroup!=='undefined'?dimGroup:null,hid=[];scene.background=null;if(dg)dg.visible=false;scene.traverse(o=>{if((o.isSprite||o.isLine||o.isPoints)&&o.visible){o.visible=false;hid.push(o);}});try{_r(...a);}finally{scene.background=bg;if(dg)dg.visible=true;for(const o of hid)o.visible=true;}};}
+composer.addPass(gtao);
+const AOENG=q.get('aoeng')||'n8';
+const n8=new N8AOPass(scene,camera,256,256);Object.assign(n8.configuration,{aoRadius:.9,distanceFalloff:.5,intensity:2.4,aoSamples:16,denoiseSamples:8,denoiseRadius:10,halfRes:false,screenSpaceRadius:false,gammaCorrection:false,transparencyAware:true});
+composer.addPass(n8);
+/** AO の切り替え。N8AO は景色の描画も自分で行うので、そのとき通常の描画パスは止める */
+function setAO(on){smaa.enabled=!!on;const useN=AOENG==='n8';rpass.enabled=!(on&&useN);n8.enabled=!!(on&&useN);gtao.enabled=!!(on&&!useN);}                                         // 接触の陰影(アンビエントオクルージョン): 接合部・地面との接地・くぼみに自然な影を出す
 const bloom=new UnrealBloomPass(new THREE.Vector2(256,256),.25,.55,1.3);composer.addPass(bloom);composer.addPass(new OutputPass());
+const smaa=new SMAAPass(256,256);composer.addPass(smaa);   // 輪郭のギザギザを抑える(画質「高」のみ。AO の描画は多重標本化(MSAA)が効かないため)
 const sun=new THREE.DirectionalLight(0xffffff,2);sun.castShadow=true;sun.shadow.mapSize.set(Q().shadow,Q().shadow);Object.assign(sun.shadow.camera,{left:-14,right:14,top:14,bottom:-7,near:1,far:140});sun.shadow.bias=-.0003;sun.shadow.normalBias=.02;sun.shadow.radius=3;
 scene.add(sun,sun.target);
 const plight=new THREE.PointLight(0xffffff,0,9,2);scene.add(plight);
 const env=createEnvironment({scene,renderer,bloom,sun});
 let dprMax=Math.min(devicePixelRatio,Q().dpr),dprNow=dprMax,ema=16.7,tAdapt=0,lastTs=0;
-bloom.enabled=Q().bloom;gtao.enabled=Q().ao&&(!THUMB||q.has('ao'));
+bloom.enabled=Q().bloom;setAO(Q().ao&&(!THUMB||q.has('ao')));
 let SH=0;const mqPhone=matchMedia('(max-width:980px)'),mqLand=matchMedia('(max-width:980px) and (orientation:landscape) and (max-height:560px)');
 const sheetOn=()=>!THUMB&&mqPhone.matches&&!mqLand.matches;
 function coverH(){if(!sheetOn())return 0;const sh=$('sheet'),st=stage.getBoundingClientRect(),r=sh.getBoundingClientRect();return Math.max(0,Math.min(st.height,st.bottom-r.top));}   // ステージの下に重なっているシートの実高さ
@@ -178,7 +186,7 @@ function applyQuality(q,save=true){if(!QUAL[q])return;quality=q;const c=Q();if(s
   dprMax=Math.min(devicePixelRatio,c.dpr);dprNow=dprMax;renderer.setPixelRatio(dprNow);
   sun.shadow.mapSize.set(c.shadow,c.shadow);if(sun.shadow.map){sun.shadow.map.dispose();sun.shadow.map=null;}
   for(const rt of[composer.renderTarget1,composer.renderTarget2]){rt.samples=c.samples;rt.dispose();}
-  bloom.enabled=c.bloom;gtao.enabled=c.ao;resize();document.querySelectorAll('#qSeg button').forEach(b=>b.classList.toggle('on',b.dataset.q===q));}
+  bloom.enabled=c.bloom;setAO(c.ao);resize();document.querySelectorAll('#qSeg button').forEach(b=>b.classList.toggle('on',b.dataset.q===q));}
 document.querySelectorAll('#qSeg button').forEach(b=>b.addEventListener('click',()=>applyQuality(b.dataset.q)));
 let curView='all';
 function flyTo(name,instant){curView=name;const p=viewPose(name);document.querySelectorAll('#views button').forEach(b=>b.classList.toggle('on',b.dataset.v===name));
@@ -226,7 +234,8 @@ document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',
 /* ---------- bottom sheet (phone) ---------- */
 const vh=()=>(window.visualViewport&&window.visualViewport.height)||innerHeight;
 const peekH=()=>78,snaps=()=>[peekH(),Math.round((vh()-56)*.44),Math.round((vh()-56)*.82)];
-function setSheet(h){userMoved=false;const prev=SH;SH=Math.max(peekH(),Math.min(h,snaps()[2]));const sh=$('sheet');document.documentElement.style.setProperty('--sh',SH+'px');if(sheetOn())sh.style.height=SH+'px';else sh.style.height='';applyView();storeSet('sheet',String(SH/Math.max(1,vh())));if(entry)requestAnimationFrame(()=>flyTo(curView||'all',true));}
+function setSheet(h){userMoved=false;const prev=SH;SH=Math.max(peekH(),Math.min(h,snaps()[2]));$('app').classList.toggle('sheetfull',SH>snaps()[1]+20);   // シートを大きく開いたときは、3D画面が小さいので視点ボタン列を隠す(重なり防止)
+  const sh=$('sheet');document.documentElement.style.setProperty('--sh',SH+'px');if(sheetOn())sh.style.height=SH+'px';else sh.style.height='';applyView();storeSet('sheet',String(SH/Math.max(1,vh())));if(entry)requestAnimationFrame(()=>flyTo(curView||'all',true));}
 (()=>{const g=$('grab');let y0=0,h0=0,drag=false,t0=0;
   g.addEventListener('pointerdown',e=>{drag=true;y0=e.clientY;h0=SH;t0=performance.now();g.setPointerCapture(e.pointerId);$('sheet').style.transition='none';});
   g.addEventListener('pointermove',e=>{if(!drag)return;SH=Math.max(peekH(),Math.min(h0+(y0-e.clientY),snaps()[2]));$('sheet').style.height=SH+'px';document.documentElement.style.setProperty('--sh',SH+'px');applyView();});

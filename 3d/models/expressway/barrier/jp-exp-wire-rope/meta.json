@@ -39,14 +39,14 @@
   "barrier"
  ],
  "lamps": [],
- "tris": 2904,
+ "tris": 65240,
  "size": [
   0.7,
-  1.21,
+  1.56,
   17.4
  ],
  "dir": "expressway/barrier/jp-exp-wire-rope",
  "file": "expressway/barrier/jp-exp-wire-rope/model.glb",
  "thumb": "expressway/barrier/jp-exp-wire-rope/thumb.jpg",
- "bytes": 35104
+ "bytes": 304192
 }

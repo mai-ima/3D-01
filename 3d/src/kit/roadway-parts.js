@@ -1,20 +1,22 @@
 // 道路(車道そのもの)の部品。長さ20mの1区画を、ビューアが前後に並べて長い道路にする。road-parts.js だけに依存する
 // 座標: 原点=舗装の外側の端(路肩の外縁)、+X=車道の側、Z=進行方向(区画は z=-10〜+10)、舗装面が y=0
-import {THREE,RM,add,canvasTex,tex,noiseCanvas,concreteMat,opt,optChoice,optToggle}from './road-parts.js';
+import {THREE,RM,add,canvasTex,tex,noiseCanvas,concreteMat,fbm,heightToNormal,opt,optChoice,optToggle}from './road-parts.js';
 export {THREE,RM,add,opt,optChoice,optToggle,concreteMat};
 export const TILE=20;
 
 /* ---------- 材質 ---------- */
-let _asph=null;
+let _asph=null,_asphN=null;
 /** アスファルト舗装(骨材の粒つき)。幅 w[m] × 区画長 の面に 2m 四方で貼る */
 export function asphaltMat(w){if(!_asph){const c=noiseCanvas(512,'#3d3f43',60000,235);const g=c.getContext('2d');
     for(let i=0;i<5200;i++){const v=110+Math.random()*100|0;g.fillStyle=`rgba(${v},${v},${v+4},.55)`;g.beginPath();g.arc(Math.random()*512,Math.random()*512,Math.random()*1.7+.5,0,7);g.fill();}
     for(let i=0;i<7;i++){g.strokeStyle='rgba(20,20,22,.35)';g.lineWidth=1.2;g.beginPath();let x=Math.random()*512,y=Math.random()*512;g.moveTo(x,y);for(let k=0;k<14;k++){x+=(Math.random()-.5)*50;y+=(Math.random()-.5)*50;g.lineTo(x,y);}g.stroke();}
     _asph=c;}
-  const t=tex(_asph,{rep:[w/2,TILE/2]});t.userData.mimeType='image/jpeg';return new THREE.MeshStandardMaterial({map:t,roughness:.9});}
+  if(!_asphN){const N=512,h=fbm(N,5,3);for(let i=0;i<N*N;i++)h[i]=h[i]*.6+Math.random()*.4;_asphN=heightToNormal(h,N,3.2);}   // 骨材の粒の凹凸(法線マップ)
+  const t=tex(_asph,{rep:[w/2,TILE/2]});t.userData.mimeType='image/jpeg';const nm=tex(_asphN,{rep:[w/2,TILE/2],srgb:false});nm.userData.mimeType='image/jpeg';
+  return new THREE.MeshStandardMaterial({map:t,normalMap:nm,normalScale:new THREE.Vector2(.9,.9),roughness:.9});}
 const paintMat=c=>new THREE.MeshStandardMaterial({color:c,roughness:.65,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
 export const PAINT={white:paintMat(0xf2f2ec),yellow:paintMat(0xe8b415),blue:paintMat(0x2f86c4)};
-const conc=new THREE.MeshStandardMaterial({color:0xb7b5ad,roughness:.93});
+const conc=concreteMat('#b7b5ad',0,[1,1]);
 const grass=()=>{const c=noiseCanvas(256,'#55683a',9000,160);const t=tex(c,{rep:[1,TILE/1.5]});t.userData.mimeType='image/jpeg';return new THREE.MeshStandardMaterial({map:t,roughness:1});};
 
 /* ---------- 面と区画線 ---------- */

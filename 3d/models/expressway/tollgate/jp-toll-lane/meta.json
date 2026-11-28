@@ -251,7 +251,7 @@
    "lit": "#ff2a18"
   }
  ],
- "tris": 11278,
+ "tris": 41534,
  "size": [
   6.4,
   5.9,
@@ -260,5 +260,5 @@
  "dir": "expressway/tollgate/jp-toll-lane",
  "file": "expressway/tollgate/jp-toll-lane/model.glb",
  "thumb": "expressway/tollgate/jp-toll-lane/thumb.jpg",
- "bytes": 421176
+ "bytes": 971644
 }

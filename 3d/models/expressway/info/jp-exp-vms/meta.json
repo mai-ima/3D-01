@@ -538,7 +538,7 @@
    "lit": "#ffa800"
   }
  ],
- "tris": 8704,
+ "tris": 20764,
  "size": [
   15.04,
   7.86,
@@ -547,5 +547,5 @@
  "dir": "expressway/info/jp-exp-vms",
  "file": "expressway/info/jp-exp-vms/model.glb",
  "thumb": "expressway/info/jp-exp-vms/thumb.jpg",
- "bytes": 1189228
+ "bytes": 896328
 }

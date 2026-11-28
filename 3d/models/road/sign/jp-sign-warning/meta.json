@@ -39,7 +39,7 @@
   "sign"
  ],
  "lamps": [],
- "tris": 5070,
+ "tris": 11562,
  "size": [
   0.62,
   2.73,
@@ -48,5 +48,5 @@
  "dir": "road/sign/jp-sign-warning",
  "file": "road/sign/jp-sign-warning/model.glb",
  "thumb": "road/sign/jp-sign-warning/thumb.jpg",
- "bytes": 172752
+ "bytes": 305224
 }

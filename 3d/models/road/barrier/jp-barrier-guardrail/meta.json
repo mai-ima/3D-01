@@ -35,7 +35,7 @@
   "barrier"
  ],
  "lamps": [],
- "tris": 6828,
+ "tris": 28352,
  "size": [
   8.12,
   0.94,
@@ -44,5 +44,5 @@
  "dir": "road/barrier/jp-barrier-guardrail",
  "file": "road/barrier/jp-barrier-guardrail/model.glb",
  "thumb": "road/barrier/jp-barrier-guardrail/thumb.jpg",
- "bytes": 61468
+ "bytes": 286212
 }

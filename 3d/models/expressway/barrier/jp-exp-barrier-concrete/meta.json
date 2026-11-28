@@ -62,14 +62,14 @@
   "barrier"
  ],
  "lamps": [],
- "tris": 1848,
+ "tris": 16264,
  "size": [
-  0.62,
+  0.67,
   2.42,
   9.06
  ],
  "dir": "expressway/barrier/jp-exp-barrier-concrete",
  "file": "expressway/barrier/jp-exp-barrier-concrete/model.glb",
  "thumb": "expressway/barrier/jp-exp-barrier-concrete/thumb.jpg",
- "bytes": 61144
+ "bytes": 81544
 }

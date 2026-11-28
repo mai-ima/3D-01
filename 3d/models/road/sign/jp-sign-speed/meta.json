@@ -58,7 +58,7 @@
   "sign"
  ],
  "lamps": [],
- "tris": 6906,
+ "tris": 15834,
  "size": [
   0.61,
   2.83,
@@ -67,5 +67,5 @@
  "dir": "road/sign/jp-sign-speed",
  "file": "road/sign/jp-sign-speed/model.glb",
  "thumb": "road/sign/jp-sign-speed/thumb.jpg",
- "bytes": 329136
+ "bytes": 469816
 }

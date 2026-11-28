@@ -54,7 +54,7 @@
   "surface"
  ],
  "lamps": [],
- "tris": 2624,
+ "tris": 4208,
  "size": [
   4,
   0.26,
@@ -63,5 +63,5 @@
  "dir": "road/surface/jp-surface-curb",
  "file": "road/surface/jp-surface-curb/model.glb",
  "thumb": "road/surface/jp-surface-curb/thumb.jpg",
- "bytes": 40688
+ "bytes": 88220
 }

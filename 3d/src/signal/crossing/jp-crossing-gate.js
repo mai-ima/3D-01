@@ -12,4 +12,14 @@ export default {id:'jp-crossing-gate',group:'rail',name:'踏切遮断機(遮断�
     add(arm,roundBox(.2,.1,.09,.02,.004),MAT.galv,2.2,0,0);add(arm,new THREE.CylinderGeometry(.03,.03,.11,20),MAT.steel,2.2,0,0).rotation.x=Math.PI/2;   // 屈折式の継ぎ目(折損防止)
     add(arm,roundBox(.5,.28,.2,.03,.006),HG,-.3,0,0);
     reg(L,'a1',dotLamp(arm,1.5,.0,.04,.05,'red'));reg(L,'a2',dotLamp(arm,3.1,.0,.04,.05,'red'));
-    add(root,new THREE.CylinderGeometry(.03,.03,.5,16),MAT.galv,.05,1.25,.2);return {root,lamps:L};}};
+    add(root,new THREE.CylinderGeometry(.03,.03,.5,16),MAT.galv,.05,1.25,.2);
+    // 細部: 基礎のアンカーボルト、本体の扉(継ぎ目・取っ手・ビス)、雨よけの帽子、遮断かんの先端キャップ・補強バンド・おもり、警報灯のひさし
+    for(const sx of[-1,1])for(const sz of[-1,1]){add(root,new THREE.CylinderGeometry(.012,.012,.1,12),MAT.steel,sx*.28,.29,sz*.2);add(root,new THREE.CylinderGeometry(.02,.02,.014,6),MAT.steel,sx*.28,.245,sz*.2);}
+    add(root,roundBox(.30,.9,.01,.01,.003),MAT.galv,0,.74,.156);add(root,roundBox(.03,.14,.02,.006,.002),MAT.steel,.1,.74,.168);
+    for(const sx of[-.12,.12])for(const sy of[.35,1.1])add(root,new THREE.CylinderGeometry(.008,.008,.01,10),MAT.steel,sx,sy,.162).rotation.x=Math.PI/2;
+    add(root,new THREE.CylinderGeometry(.2,.17,.05,32),MAT.white,0,1.27,0);add(root,new THREE.CylinderGeometry(.16,.2,.04,32),MAT.white,0,1.31,0);
+    add(arm,new THREE.CylinderGeometry(.04,.034,.03,24),MAT.black,4.34,0,0).rotation.z=Math.PI/2;
+    for(const x of[1.0,2.0,3.0])add(arm,new THREE.TorusGeometry(.036,.004,8,36),MAT.steel,x,0,0).rotation.y=Math.PI/2;
+    for(const x of[-.55,-.7,-.85])add(arm,new THREE.CylinderGeometry(.09,.09,.04,32),MAT.galv,x,0,0).rotation.z=Math.PI/2;
+    for(const x of[1.5,3.1]){const v=add(arm,new THREE.CylinderGeometry(.075,.075,.06,24,1,true,0,Math.PI),MAT.black,x,.0,.045);v.rotation.set(Math.PI/2,0,0);}
+    return {root,lamps:L};}};

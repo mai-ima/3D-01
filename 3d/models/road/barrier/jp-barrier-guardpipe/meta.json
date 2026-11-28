@@ -54,7 +54,7 @@
   "barrier"
  ],
  "lamps": [],
- "tris": 41628,
+ "tris": 44220,
  "size": [
   4.09,
   0.93,
@@ -63,5 +63,5 @@
  "dir": "road/barrier/jp-barrier-guardpipe",
  "file": "road/barrier/jp-barrier-guardpipe/model.glb",
  "thumb": "road/barrier/jp-barrier-guardpipe/thumb.jpg",
- "bytes": 73692
+ "bytes": 79848
 }

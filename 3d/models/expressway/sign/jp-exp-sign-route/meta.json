@@ -51,7 +51,7 @@
   "sign"
  ],
  "lamps": [],
- "tris": 13360,
+ "tris": 22492,
  "size": [
   0.76,
   2.84,
@@ -60,5 +60,5 @@
  "dir": "expressway/sign/jp-exp-sign-route",
  "file": "expressway/sign/jp-exp-sign-route/model.glb",
  "thumb": "expressway/sign/jp-exp-sign-route/thumb.jpg",
- "bytes": 190480
+ "bytes": 320800
 }

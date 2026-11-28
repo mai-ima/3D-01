@@ -1,7 +1,7 @@
 import {THREE,RM,add,opt,optChoice,roundBox}from '../../kit/road-parts.js';
 // 点字ブロック(視覚障害者誘導用ブロック)。形状はJIS T 9251(2014)の値に基づく: 1枚300×300mm・突起の高さ5mm・点状は5×5個(間隔55〜60mm)・線状は4本(間隔75mm)
 const N=6,S=.3,T=.06;
-export default {id:'jp-surface-tenji',name:'点字ブロック(視覚障害者誘導用ブロック)',
+export default {id:'jp-surface-tenji',boost:false,name:'点字ブロック(視覚障害者誘導用ブロック)',
   desc:'黄色いブロックの表面に、線状の突起(誘導ブロック=進む向き)または点状の突起(警告ブロック=止まって確認)が並ぶ。1枚30cm角、6枚を並べて見せる。色は黄色(標準)・灰色を選べる。角は面取りしてあり、継ぎ目に目地がある。',
   dims:'1枚 0.30×0.30m・厚さ0.06m / 突起の高さ 5mm・点の間隔 約60mm・線状は4本で間隔75mm(JIS T 9251の値を元にした代表値)',focus:[0,0,0],view:[.3,1.0,1.8],
   options:[optChoice('type','種類',[['dot','警告(点状)'],['line','誘導(線状)']],'dot'),optChoice('color','色',[['yellow','黄色'],['gray','灰色']],'yellow')],
