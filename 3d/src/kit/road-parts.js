@@ -22,7 +22,7 @@ export const RM={
 };
 /** 反射シートの貼られた標識面 */
 // 反射シートの面。つやを強くしすぎると、空の映り込みで白い膜がかかり、白と緑の差が弱く見える
-export const faceMat=map=>new THREE.MeshPhysicalMaterial({map,roughness:.55,clearcoat:.12,clearcoatRoughness:.4});
+export const faceMat=map=>new THREE.MeshPhysicalMaterial({map,roughness:.55,clearcoat:.12,clearcoatRoughness:.4,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});   // 板の本体の前面と近いので、重なって乱れないよう手前に寄せる
 /** 洗い出し・コンクリート系の材質 */
 /** 高さ(0〜1)の格子から、法線マップ(canvas)を作る。strength=凹凸の強さ */
 function heightToNormal(h,n,strength){const c=cv(n,n),g=c.getContext('2d'),im=g.createImageData(n,n),d=im.data;
@@ -70,7 +70,7 @@ export function polyShape(pts,r){const s=new THREE.Shape(),n=pts.length;
 export function plateBody(parent,shape,t=.004){const geo=new THREE.ExtrudeGeometry(shape,{depth:t,bevelEnabled:true,bevelThickness:.002,bevelSize:.003,bevelSegments:2,curveSegments:32});geo.translate(0,0,-t/2);return add(parent,geo,RM.alu);}
 /** 板の表面(反射シートの画像)。w,h=画像が張られる範囲、cx,cy=その中心 */
 export function plateFace(parent,shape,w,h,map,{t=.004,cx=0,cy=0}={}){const fg=new THREE.ShapeGeometry(shape,32),p=fg.attributes.position,uv=fg.attributes.uv;
-  for(let i=0;i<p.count;i++)uv.setXY(i,(p.getX(i)-cx)/w+.5,(p.getY(i)-cy)/h+.5);return add(parent,fg,faceMat(map),0,0,t/2+.0035);}
+  for(let i=0;i<p.count;i++)uv.setXY(i,(p.getX(i)-cx)/w+.5,(p.getY(i)-cy)/h+.5);return add(parent,fg,faceMat(map),0,0,t/2+.006);}
 export const plate=(parent,shape,w,h,map,o={})=>{plateBody(parent,shape,o.t);return plateFace(parent,shape,w,h,map,o);};
 
 /* ---------- 支柱・金具 ---------- */

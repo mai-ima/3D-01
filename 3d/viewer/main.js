@@ -129,10 +129,11 @@ function setMode(m){if(!entry.states||!entry.states.length)return;if(m==='night'
 
 /* ---------- track (線路) ---------- */
 async function getTrackModel(id){const e=ALL.find(x=>x.id===id);if(!e)return null;let m=cache.get(id);if(!m){m=await loadModel(`models/${e.file}`,e,{glow:false,b64:V.b64});cache.set(id,m);}return {m,e};}
-async function buildTrack(){if(trackGroup){scene.remove(trackGroup);trackGroup=null;}const g=sceneGroup(entry);const fr=trackFrame(g);
+let trackGen=0,roadGen=0;   // 読み込み中にモデルを切り替えたとき、古い軌道・道路の敷き込みが後から追加されて残る不具合を防ぐ世代番号
+async function buildTrack(){const gen=++trackGen;if(trackGroup){scene.remove(trackGroup);trackGroup=null;}const g=sceneGroup(entry);const fr=trackFrame(g);
   const self=isTrack(entry);let src=null;
   if(self){src={m:sig,e:entry};}else if(trackType!=='none'){src=await getTrackModel(TRACK_IDS[trackType]);}
-  if(!src)return;const len=src.e.size[2];const n=Math.ceil(70/len/2);trackGroup=new THREE.Group();trackGroup.position.set(fr.x,fr.y,fr.z);trackGroup.rotation.y=fr.rot;scene.add(trackGroup);
+  if(gen!==trackGen||!src)return;const len=src.e.size[2];const n=Math.ceil(70/len/2);trackGroup=new THREE.Group();trackGroup.position.set(fr.x,fr.y,fr.z);trackGroup.rotation.y=fr.rot;scene.add(trackGroup);
   for(let i=-n;i<=n;i++){if(self&&i===0)continue;const c=src.m.root.clone(true);c.position.z=i*len;c.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});trackGroup.add(c);}}
 function placeModel(){const g=sceneGroup(entry),fr=trackFrame(g);const r=sig.root;
   if(isTrack(entry)){r.rotation.y=fr.rot;r.position.set(fr.x,fr.y,fr.z);}
@@ -142,9 +143,9 @@ function placeModel(){const g=sceneGroup(entry),fr=trackFrame(g);const r=sig.roo
       if(sp)r.position.set(sp[0],sp[1],sp[2]);else r.position.set(g==='rail'&&has?-2.9:g==='crossing'?-3.7:0,0,0);}}
   r.updateMatrixWorld(true);}
 /* ---------- road (道路): 軌道と同じ要領で、長さ20mの区画を前後に並べる。原点は舗装の外側の端(路側) ---------- */
-async function buildRoad(){if(roadGroup){scene.remove(roadGroup);roadGroup=null;}const self=isRoadway(entry);let src=null;
+async function buildRoad(){const gen=++roadGen;if(roadGroup){scene.remove(roadGroup);roadGroup=null;}const self=isRoadway(entry);let src=null;
   if(self)src={m:sig,e:entry};else if(roadType!=='none')src=await getTrackModel(ROAD_IDS[roadType]);
-  if(!src)return;roadGroup=new THREE.Group();scene.add(roadGroup);
+  if(gen!==roadGen||!src)return;roadGroup=new THREE.Group();scene.add(roadGroup);
   for(let i=-3;i<=3;i++){if(self&&i===0)continue;const c=src.m.root.clone(true);c.position.z=i*20;c.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});roadGroup.add(c);}}
 async function refreshTrack(){const tracked=isTrack(entry)||trackType!=='none';env.set({track:tracked,deck:trackType==='ballast'&&!isTrack(entry),group:sceneGroup(entry),road:roadType!=='none'||isRoadway(entry)});placeModel();await buildTrack();await buildRoad();measure();if(showDims)buildDims();}
 
@@ -275,7 +276,10 @@ function frame(ts){requestAnimationFrame(frame);if(document.hidden||(LIB&&view==
       else{for(const s of segs)s.classList.remove('on');$('tlName').textContent=(mode==='night'?'夜間: ':'手動: ')+(st?st.label:'');$('tlRem').textContent='';}}
     else{plight.intensity=0;}}
   if(tween){tween.t=Math.min(1,tween.t+dt/.9);const e=ease(tween.t);camera.position.lerpVectors(tween.fp,tween.tp,e);controls.target.lerpVectors(tween.ft,tween.tt,e);if(tween.t>=1)tween=null;}
-  controls.update();composer.render();}
+  controls.update();
+  {const dist=camera.position.distanceTo(controls.target),near=Math.min(Math.max(dist*.02,.05),1),far=Math.max(400,dist*40);   // 奥行きの精度: 近いほど近面を寄せ、遠いほど遠面を伸ばす(スマホの低精度の深度でも、重なった面が乱れない)
+    if(Math.abs(near-camera.near)>camera.near*.15||Math.abs(far-camera.far)>camera.far*.15){camera.near=near;camera.far=far;camera.updateProjectionMatrix();}}
+  composer.render();}
 
 /* ---------- boot ---------- */
 let ALL=[];
