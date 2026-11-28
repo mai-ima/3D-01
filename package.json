@@ -15,7 +15,8 @@
     "smoke": "node 3d/tools/smoke.cjs",
     "assets": "node 3d/tools/fetch-assets.cjs",
     "lint": "eslint .",
-    "validate": "node 3d/tools/check-gltf.cjs"
+    "validate": "node 3d/tools/check-gltf.cjs",
+    "quality": "node 3d/tools/quality.cjs"
   },
   "repository": {
     "type": "git",

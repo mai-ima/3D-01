@@ -1,0 +1,264 @@
+{
+ "id": "jp-toll-lane",
+ "name": "料金所レーン(ETC・一般)",
+ "desc": "高速道路の料金所の1レーン。屋根(キャノピー)・レーン種別表示板・通行信号・開閉バー・ブース島を備える。屋根の型(門型/アーチ型)、表示板(ETC専用・ETC・ETC/一般・一般)、島端(クッション・曲面・ドラム)、速度表示などを選べる。",
+ "dims": "レーン幅 3.2m(島の内側)・島の長さ 6m・屋根の下端 約4.0m・開閉バー長 約3.1m(代表値。実物は料金所ごとに異なる)",
+ "focus": [
+  0,
+  2.4,
+  1
+ ],
+ "view": [
+  4.2,
+  0.2,
+  10.5
+ ],
+ "night": "go_p",
+ "states": [
+  {
+   "id": "go_p",
+   "label": "ETC 通行可(紫)",
+   "on": [
+    "b_etc",
+    "b_etcPlain",
+    "b_mix",
+    "b_gen",
+    "spd",
+    "sig_p"
+   ],
+   "arm": 1.45
+  },
+  {
+   "id": "go_g",
+   "label": "一般 通行可(緑)",
+   "on": [
+    "b_etc",
+    "b_etcPlain",
+    "b_mix",
+    "b_gen",
+    "spd",
+    "sig_g"
+   ],
+   "arm": 1.45
+  },
+  {
+   "id": "stop",
+   "label": "閉鎖(赤)",
+   "on": [
+    "b_etc",
+    "b_etcPlain",
+    "b_mix",
+    "b_gen",
+    "spd",
+    "sig_r"
+   ],
+   "arm": 0
+  },
+  {
+   "id": "off",
+   "label": "消灯(休止)",
+   "arm": 0
+  }
+ ],
+ "cycle": [
+  {
+   "s": "go_p",
+   "d": 5
+  },
+  {
+   "s": "stop",
+   "d": 3
+  },
+  {
+   "s": "go_g",
+   "d": 5
+  },
+  {
+   "s": "stop",
+   "d": 3
+  }
+ ],
+ "anim": {
+  "node": "toll_bar",
+  "axis": "z"
+ },
+ "options": [
+  {
+   "id": "canopy",
+   "label": "屋根の型",
+   "choices": [
+    {
+     "id": "flat",
+     "label": "門型(平屋根)"
+    },
+    {
+     "id": "arch",
+     "label": "アーチ型(白い脚)"
+    }
+   ],
+   "default": "flat"
+  },
+  {
+   "id": "lane",
+   "label": "表示板の種別",
+   "choices": [
+    {
+     "id": "etc",
+     "label": "ETC専用"
+    },
+    {
+     "id": "etcPlain",
+     "label": "ETC(英字のみ)"
+    },
+    {
+     "id": "mix",
+     "label": "ETC・一般"
+    },
+    {
+     "id": "gen",
+     "label": "一般"
+    }
+   ],
+   "default": "etc"
+  },
+  {
+   "id": "head",
+   "label": "島端の型",
+   "choices": [
+    {
+     "id": "cushion",
+     "label": "クッション(赤白)"
+    },
+    {
+     "id": "fiber",
+     "label": "曲面(クリーム色)"
+    },
+    {
+     "id": "drum",
+     "label": "クッションドラム"
+    }
+   ],
+   "default": "cushion"
+  },
+  {
+   "id": "antenna",
+   "label": "ETCアンテナ",
+   "choices": [
+    {
+     "id": "canopy",
+     "label": "屋根下"
+    },
+    {
+     "id": "island",
+     "label": "島の支柱"
+    },
+    {
+     "id": "off",
+     "label": "なし"
+    }
+   ],
+   "default": "canopy"
+  },
+  {
+   "id": "speed",
+   "label": "速度表示(20km/h以下)",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  },
+  {
+   "id": "name",
+   "label": "地名板",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  },
+  {
+   "id": "blue",
+   "label": "路面の青い標示",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "on"
+  }
+ ],
+ "path": [
+  "expressway",
+  "tollgate"
+ ],
+ "lamps": [
+  {
+   "key": "b_etc",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "b_etcPlain",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "b_mix",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "b_gen",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "sig_p",
+   "color": "#a574ff",
+   "lit": "#9a5cff"
+  },
+  {
+   "key": "sig_g",
+   "color": "#18d9a0",
+   "lit": "#00e6a2"
+  },
+  {
+   "key": "sig_r",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "spd",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  }
+ ],
+ "tris": 11278,
+ "size": [
+  6.4,
+  5.9,
+  11.53
+ ],
+ "dir": "expressway/tollgate/jp-toll-lane",
+ "file": "expressway/tollgate/jp-toll-lane/model.glb",
+ "thumb": "expressway/tollgate/jp-toll-lane/thumb.jpg",
+ "bytes": 470928
+}

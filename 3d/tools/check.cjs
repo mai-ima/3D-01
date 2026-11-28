@@ -30,7 +30,7 @@ for(const e of idx.models){const id=e.id;
   if(e.night&&!stIds.has(e.night))E(id,`night が未知の状態 ${e.night}`);
   if((e.states||[]).length&&!(e.cycle||[]).length)W(id,'状態があるのに cycle(自動)がない');
   if(e.anim&&!names.has(e.anim.node))E(id,`anim.node ${e.anim.node} が GLB にない`);
-  const optNodes={};for(const n of names){const m=/^opt_([^_]+)_([^_]+)$/.exec(n);if(m)(optNodes[m[1]]=optNodes[m[1]]||new Set()).add(m[2]);}
+  const optNodes={};for(const n of names){const m=/^opt_([^_]+)_(.+)$/.exec(n);if(m)(optNodes[m[1]]=optNodes[m[1]]||new Set()).add(m[2]);}
   const optIds=new Set();
   for(const o of e.options||[]){optIds.add(o.id);const ids=o.choices.map(c=>c.id);
     if(!ids.includes(o.default))E(id,`オプション ${o.id} の default ${o.default} が選択肢にない`);

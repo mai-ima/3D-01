@@ -1,0 +1,52 @@
+{
+ "id": "jp-exp-cushion-drum",
+ "name": "クッションドラム",
+ "desc": "分岐部や島の先端に置く衝撃吸収施設。黄色の円柱に赤白の反射帯がある。1基、3基(逆V字)、5〜6基(くさび形)の並べ方を選べる。",
+ "dims": "φ0.6m×高さ 0.8m(1基あたり。国内の製品の代表値)",
+ "focus": [
+  0,
+  0.5,
+  0.5
+ ],
+ "view": [
+  1.8,
+  0.3,
+  3.8
+ ],
+ "options": [
+  {
+   "id": "layout",
+   "label": "並べ方",
+   "choices": [
+    {
+     "id": "single",
+     "label": "1基"
+    },
+    {
+     "id": "v3",
+     "label": "3基(逆V字)"
+    },
+    {
+     "id": "wedge5",
+     "label": "6基(くさび形)"
+    }
+   ],
+   "default": "v3"
+  }
+ ],
+ "path": [
+  "expressway",
+  "barrier"
+ ],
+ "lamps": [],
+ "tris": 12800,
+ "size": [
+  1.99,
+  0.82,
+  1.87
+ ],
+ "dir": "expressway/barrier/jp-exp-cushion-drum",
+ "file": "expressway/barrier/jp-exp-cushion-drum/model.glb",
+ "thumb": "expressway/barrier/jp-exp-cushion-drum/thumb.jpg",
+ "bytes": 37744
+}

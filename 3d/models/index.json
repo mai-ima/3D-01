@@ -16,9 +16,906 @@
   "road/facility": "道路付属物",
   "road/lighting": "道路照明",
   "road/construction": "工事・規制用品",
-  "road/surface": "路面・縁石"
+  "road/surface": "路面・縁石",
+  "expressway": "高速道路",
+  "expressway/tollgate": "料金所",
+  "expressway/sign": "高速道路の標識",
+  "expressway/info": "情報設備",
+  "expressway/barrier": "防護柵・分離帯",
+  "expressway/lighting": "照明"
  },
  "models": [
+  {
+   "id": "jp-exp-barrier-concrete",
+   "name": "コンクリート壁(中央分離帯)",
+   "desc": "高速道路の中央分離帯などに連続して立つコンクリートの防護壁。断面の型(F型・単スロープ・フロリダ型・直壁)と、上部に付ける防眩板・金網を選べる。",
+   "dims": "長さ 3mのブロック×3・高さ 0.8〜1.1m・底幅 0.4〜0.62m(代表値。型ごとの高さは国の資料に数値がなく推定)",
+   "focus": [
+    0,
+    0.9,
+    0
+   ],
+   "view": [
+    3.4,
+    0.3,
+    7.5
+   ],
+   "options": [
+    {
+     "id": "profile",
+     "label": "断面の型",
+     "choices": [
+      {
+       "id": "f",
+       "label": "F型"
+      },
+      {
+       "id": "single",
+       "label": "単スロープ型"
+      },
+      {
+       "id": "florida",
+       "label": "フロリダ型"
+      },
+      {
+       "id": "vertical",
+       "label": "直壁型"
+      }
+     ],
+     "default": "f"
+    },
+    {
+     "id": "top",
+     "label": "上部の付属物",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "glare",
+       "label": "防眩板"
+      },
+      {
+       "id": "mesh",
+       "label": "金網(落下防止)"
+      }
+     ],
+     "default": "off"
+    }
+   ],
+   "path": [
+    "expressway",
+    "barrier"
+   ],
+   "lamps": [],
+   "tris": 1848,
+   "size": [
+    0.62,
+    2.42,
+    9.06
+   ],
+   "dir": "expressway/barrier/jp-exp-barrier-concrete",
+   "file": "expressway/barrier/jp-exp-barrier-concrete/model.glb",
+   "thumb": "expressway/barrier/jp-exp-barrier-concrete/thumb.jpg",
+   "bytes": 61184
+  },
+  {
+   "id": "jp-exp-cushion-drum",
+   "name": "クッションドラム",
+   "desc": "分岐部や島の先端に置く衝撃吸収施設。黄色の円柱に赤白の反射帯がある。1基、3基(逆V字)、5〜6基(くさび形)の並べ方を選べる。",
+   "dims": "φ0.6m×高さ 0.8m(1基あたり。国内の製品の代表値)",
+   "focus": [
+    0,
+    0.5,
+    0.5
+   ],
+   "view": [
+    1.8,
+    0.3,
+    3.8
+   ],
+   "options": [
+    {
+     "id": "layout",
+     "label": "並べ方",
+     "choices": [
+      {
+       "id": "single",
+       "label": "1基"
+      },
+      {
+       "id": "v3",
+       "label": "3基(逆V字)"
+      },
+      {
+       "id": "wedge5",
+       "label": "6基(くさび形)"
+      }
+     ],
+     "default": "v3"
+    }
+   ],
+   "path": [
+    "expressway",
+    "barrier"
+   ],
+   "lamps": [],
+   "tris": 12800,
+   "size": [
+    1.99,
+    0.82,
+    1.87
+   ],
+   "dir": "expressway/barrier/jp-exp-cushion-drum",
+   "file": "expressway/barrier/jp-exp-cushion-drum/model.glb",
+   "thumb": "expressway/barrier/jp-exp-cushion-drum/thumb.jpg",
+   "bytes": 37744
+  },
+  {
+   "id": "jp-exp-noise-wall",
+   "name": "遮音壁",
+   "desc": "高速道路の脇に連続して立つ防音の壁。金属の吸音板、透明板(日照と眺望を保つ)、下部がコンクリートで上部が透明の組み合わせ、の3種を選べる。上端を内側に曲げた形も付けられる。",
+   "dims": "高さ 3m・支柱間隔 2m・H形鋼 200×200mm(代表値。実際の高さは騒音の予測で個別に決まる)",
+   "focus": [
+    0,
+    1.7,
+    0
+   ],
+   "view": [
+    4,
+    0.25,
+    10
+   ],
+   "options": [
+    {
+     "id": "panel",
+     "label": "遮音板",
+     "choices": [
+      {
+       "id": "metal",
+       "label": "金属(吸音)"
+      },
+      {
+       "id": "clear",
+       "label": "透明板"
+      },
+      {
+       "id": "mix",
+       "label": "下部コンクリート+上部透明"
+      }
+     ],
+     "default": "metal"
+    },
+    {
+     "id": "cap",
+     "label": "上端の曲がり(先端改良型)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
+    }
+   ],
+   "path": [
+    "expressway",
+    "barrier"
+   ],
+   "lamps": [],
+   "tris": 588,
+   "size": [
+    0.54,
+    3.27,
+    10.3
+   ],
+   "dir": "expressway/barrier/jp-exp-noise-wall",
+   "file": "expressway/barrier/jp-exp-noise-wall/model.glb",
+   "thumb": "expressway/barrier/jp-exp-noise-wall/thumb.jpg",
+   "bytes": 21188
+  },
+  {
+   "id": "jp-exp-wire-rope",
+   "name": "ワイヤロープ式防護柵",
+   "desc": "暫定2車線の高速道路の中央に立つ、ロープを張った防護柵。対向車線への飛び出しを防ぐ。ロープの本数(3・4・5本)を選べる。",
+   "dims": "ロープ φ18mm・最上段 約1.0m・支柱 φ89.1mm・間隔 3.0m・端末は基礎ブロック(資料の数値を元にした代表値)",
+   "focus": [
+    0,
+    0.6,
+    0
+   ],
+   "view": [
+    3,
+    0.2,
+    7.5
+   ],
+   "options": [
+    {
+     "id": "ropes",
+     "label": "ロープの本数",
+     "choices": [
+      {
+       "id": "3",
+       "label": "3本"
+      },
+      {
+       "id": "4",
+       "label": "4本"
+      },
+      {
+       "id": "5",
+       "label": "5本"
+      }
+     ],
+     "default": "3"
+    }
+   ],
+   "path": [
+    "expressway",
+    "barrier"
+   ],
+   "lamps": [],
+   "tris": 2904,
+   "size": [
+    0.7,
+    1.21,
+    17.4
+   ],
+   "dir": "expressway/barrier/jp-exp-wire-rope",
+   "file": "expressway/barrier/jp-exp-wire-rope/model.glb",
+   "thumb": "expressway/barrier/jp-exp-wire-rope/thumb.jpg",
+   "bytes": 35104
+  },
+  {
+   "id": "jp-exp-vms",
+   "name": "道路情報板(可変情報板)",
+   "desc": "渋滞や事故・規制を知らせる電光の情報板。文字式(橙のLEDで2段)と図形式(フルカラーの図記号と文字)を選べる。支柱は門型と片持ち。",
+   "dims": "板 約4.5×1.4m・下端 5.0m・門型の柱間 約13m(代表値。実物は設置場所の型(A〜K型)で寸法が違う)",
+   "focus": [
+    0,
+    5.6,
+    0
+   ],
+   "view": [
+    4,
+    0.1,
+    21
+   ],
+   "night": "on",
+   "states": [
+    {
+     "id": "on",
+     "label": "表示",
+     "on": [
+      "disp_t",
+      "disp_g"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "on",
+     "d": 8
+    },
+    {
+     "s": "off",
+     "d": 3
+    }
+   ],
+   "options": [
+    {
+     "id": "type",
+     "label": "表示の形式",
+     "choices": [
+      {
+       "id": "text",
+       "label": "文字式(橙のLED)"
+      },
+      {
+       "id": "graphic",
+       "label": "図形式(フルカラー)"
+      }
+     ],
+     "default": "text"
+    },
+    {
+     "id": "support",
+     "label": "支持の形",
+     "choices": [
+      {
+       "id": "gantry",
+       "label": "門型"
+      },
+      {
+       "id": "cantilever",
+       "label": "片持ち"
+      }
+     ],
+     "default": "gantry"
+    }
+   ],
+   "path": [
+    "expressway",
+    "info"
+   ],
+   "lamps": [
+    {
+     "key": "disp_t",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_g",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    }
+   ],
+   "tris": 4436,
+   "size": [
+    13.6,
+    7.25,
+    0.68
+   ],
+   "dir": "expressway/info/jp-exp-vms",
+   "file": "expressway/info/jp-exp-vms/model.glb",
+   "thumb": "expressway/info/jp-exp-vms/thumb.jpg",
+   "bytes": 173708
+  },
+  {
+   "id": "jp-exp-light-pole",
+   "name": "道路照明ポール(高速道路)",
+   "desc": "高速道路のIC・料金所・分離帯に立つ照明ポール。路側用の1灯(片持ち)と、中央分離帯用の2灯(双頭)を選べる。夜は点灯する。",
+   "dims": "ポール高 約10m・アーム長 約2.0m・灯具 約0.9×0.4m(代表値)",
+   "focus": [
+    0,
+    9,
+    0
+   ],
+   "view": [
+    4,
+    0.1,
+    14
+   ],
+   "night": "on",
+   "states": [
+    {
+     "id": "on",
+     "label": "点灯",
+     "on": [
+      "lampA",
+      "lampB"
+     ]
+    },
+    {
+     "id": "off",
+     "label": "消灯"
+    }
+   ],
+   "cycle": [
+    {
+     "s": "on",
+     "d": 8
+    },
+    {
+     "s": "off",
+     "d": 4
+    }
+   ],
+   "options": [
+    {
+     "id": "type",
+     "label": "形式",
+     "choices": [
+      {
+       "id": "single",
+       "label": "片持ち(1灯)"
+      },
+      {
+       "id": "double",
+       "label": "双頭(2灯)"
+      }
+     ],
+     "default": "single"
+    }
+   ],
+   "path": [
+    "expressway",
+    "lighting"
+   ],
+   "lamps": [
+    {
+     "key": "lampA",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "lampB",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    }
+   ],
+   "tris": 3204,
+   "size": [
+    4.9,
+    10.44,
+    0.48
+   ],
+   "dir": "expressway/lighting/jp-exp-light-pole",
+   "file": "expressway/lighting/jp-exp-light-pole/model.glb",
+   "thumb": "expressway/lighting/jp-exp-light-pole/thumb.jpg",
+   "bytes": 57720
+  },
+  {
+   "id": "jp-exp-kilopost",
+   "name": "距離標(キロポスト)",
+   "desc": "路線の起点からの距離を示す小さな標識。100mごとは白地に緑字(数字は小数点以下1桁)、1kmごとは緑地に白字。支柱に立てる形と、壁・防護柵に取り付ける形を選べる。",
+   "dims": "板 約0.2×0.28m・高さ 約1.1m(板寸法は代表値)",
+   "focus": [
+    0,
+    0.95,
+    0
+   ],
+   "view": [
+    0.9,
+    0.1,
+    2.2
+   ],
+   "options": [
+    {
+     "id": "kind",
+     "label": "種類",
+     "choices": [
+      {
+       "id": "k100",
+       "label": "100m標(白地)"
+      },
+      {
+       "id": "k1000",
+       "label": "1km標(緑地)"
+      }
+     ],
+     "default": "k100"
+    },
+    {
+     "id": "mount",
+     "label": "取付",
+     "choices": [
+      {
+       "id": "post",
+       "label": "支柱"
+      },
+      {
+       "id": "wall",
+       "label": "コンクリート壁"
+      }
+     ],
+     "default": "post"
+    }
+   ],
+   "path": [
+    "expressway",
+    "sign"
+   ],
+   "lamps": [],
+   "tris": 6956,
+   "size": [
+    0.9,
+    1.08,
+    0.47
+   ],
+   "dir": "expressway/sign/jp-exp-kilopost",
+   "file": "expressway/sign/jp-exp-kilopost/model.glb",
+   "thumb": "expressway/sign/jp-exp-kilopost/thumb.jpg",
+   "bytes": 120708
+  },
+  {
+   "id": "jp-exp-sign-gantry",
+   "name": "案内標識(門型・片持ち)",
+   "desc": "高速道路の大きな案内標識。支持の形(門型・片持ち)と、板の種類(出口予告・方面と車線・JCT予告・料金所予告)を選べる。標識板の下端は路面から約5.0m。",
+   "dims": "板の下端 5.0m・門型の柱間 約13m・片持ちの腕 約7m・板 約4〜5×2〜2.4m(代表値。実物は地名の字数で決まる)",
+   "focus": [
+    0,
+    5.8,
+    0
+   ],
+   "view": [
+    5,
+    0.12,
+    21
+   ],
+   "options": [
+    {
+     "id": "support",
+     "label": "支持の形",
+     "choices": [
+      {
+       "id": "gantry",
+       "label": "門型(オーバーヘッド)"
+      },
+      {
+       "id": "cantilever",
+       "label": "片持ち(オーバーハング)"
+      }
+     ],
+     "default": "gantry"
+    },
+    {
+     "id": "board",
+     "label": "板の種類",
+     "choices": [
+      {
+       "id": "exit",
+       "label": "出口予告"
+      },
+      {
+       "id": "branch",
+       "label": "方面と車線"
+      },
+      {
+       "id": "jct",
+       "label": "JCT予告"
+      },
+      {
+       "id": "toll",
+       "label": "料金所予告"
+      }
+     ],
+     "default": "exit"
+    }
+   ],
+   "path": [
+    "expressway",
+    "sign"
+   ],
+   "lamps": [],
+   "tris": 11256,
+   "size": [
+    13.6,
+    7.42,
+    0.68
+   ],
+   "dir": "expressway/sign/jp-exp-sign-gantry",
+   "file": "expressway/sign/jp-exp-sign-gantry/model.glb",
+   "thumb": "expressway/sign/jp-exp-sign-gantry/thumb.jpg",
+   "bytes": 540164
+  },
+  {
+   "id": "jp-exp-sign-route",
+   "name": "路線番号標識(高速道路ナンバリング)",
+   "desc": "「E1」「C4」のような高速道路の路線番号の標識。緑地に白字。頭のEは高速道路、Cは環状道路を表す。NEXCOの路線(東名・東北道・中央道・圏央道)と、首都高(都心環状線・湾岸線)の標識を選べる。",
+   "dims": "板 約0.75×0.75m・支柱 鋼管φ76.3・板の下端 約1.8m(標識の設置基準。拡大して使う場合の代表値)",
+   "focus": [
+    0,
+    2.1,
+    0
+   ],
+   "view": [
+    1.6,
+    0.1,
+    4.2
+   ],
+   "options": [
+    {
+     "id": "route",
+     "label": "路線",
+     "choices": [
+      {
+       "id": "e1",
+       "label": "E1 東名"
+      },
+      {
+       "id": "e4",
+       "label": "E4 東北道"
+      },
+      {
+       "id": "e20",
+       "label": "E20 中央道"
+      },
+      {
+       "id": "c4",
+       "label": "C4 圏央道"
+      },
+      {
+       "id": "shuto_c1",
+       "label": "C1 首都高 都心環状線"
+      },
+      {
+       "id": "shuto_b",
+       "label": "B 首都高 湾岸線"
+      }
+     ],
+     "default": "e1"
+    }
+   ],
+   "path": [
+    "expressway",
+    "sign"
+   ],
+   "lamps": [],
+   "tris": 13360,
+   "size": [
+    0.76,
+    2.84,
+    0.12
+   ],
+   "dir": "expressway/sign/jp-exp-sign-route",
+   "file": "expressway/sign/jp-exp-sign-route/model.glb",
+   "thumb": "expressway/sign/jp-exp-sign-route/thumb.jpg",
+   "bytes": 190484
+  },
+  {
+   "id": "jp-toll-lane",
+   "name": "料金所レーン(ETC・一般)",
+   "desc": "高速道路の料金所の1レーン。屋根(キャノピー)・レーン種別表示板・通行信号・開閉バー・ブース島を備える。屋根の型(門型/アーチ型)、表示板(ETC専用・ETC・ETC/一般・一般)、島端(クッション・曲面・ドラム)、速度表示などを選べる。",
+   "dims": "レーン幅 3.2m(島の内側)・島の長さ 6m・屋根の下端 約4.0m・開閉バー長 約3.1m(代表値。実物は料金所ごとに異なる)",
+   "focus": [
+    0,
+    2.4,
+    1
+   ],
+   "view": [
+    4.2,
+    0.2,
+    10.5
+   ],
+   "night": "go_p",
+   "states": [
+    {
+     "id": "go_p",
+     "label": "ETC 通行可(紫)",
+     "on": [
+      "b_etc",
+      "b_etcPlain",
+      "b_mix",
+      "b_gen",
+      "spd",
+      "sig_p"
+     ],
+     "arm": 1.45
+    },
+    {
+     "id": "go_g",
+     "label": "一般 通行可(緑)",
+     "on": [
+      "b_etc",
+      "b_etcPlain",
+      "b_mix",
+      "b_gen",
+      "spd",
+      "sig_g"
+     ],
+     "arm": 1.45
+    },
+    {
+     "id": "stop",
+     "label": "閉鎖(赤)",
+     "on": [
+      "b_etc",
+      "b_etcPlain",
+      "b_mix",
+      "b_gen",
+      "spd",
+      "sig_r"
+     ],
+     "arm": 0
+    },
+    {
+     "id": "off",
+     "label": "消灯(休止)",
+     "arm": 0
+    }
+   ],
+   "cycle": [
+    {
+     "s": "go_p",
+     "d": 5
+    },
+    {
+     "s": "stop",
+     "d": 3
+    },
+    {
+     "s": "go_g",
+     "d": 5
+    },
+    {
+     "s": "stop",
+     "d": 3
+    }
+   ],
+   "anim": {
+    "node": "toll_bar",
+    "axis": "z"
+   },
+   "options": [
+    {
+     "id": "canopy",
+     "label": "屋根の型",
+     "choices": [
+      {
+       "id": "flat",
+       "label": "門型(平屋根)"
+      },
+      {
+       "id": "arch",
+       "label": "アーチ型(白い脚)"
+      }
+     ],
+     "default": "flat"
+    },
+    {
+     "id": "lane",
+     "label": "表示板の種別",
+     "choices": [
+      {
+       "id": "etc",
+       "label": "ETC専用"
+      },
+      {
+       "id": "etcPlain",
+       "label": "ETC(英字のみ)"
+      },
+      {
+       "id": "mix",
+       "label": "ETC・一般"
+      },
+      {
+       "id": "gen",
+       "label": "一般"
+      }
+     ],
+     "default": "etc"
+    },
+    {
+     "id": "head",
+     "label": "島端の型",
+     "choices": [
+      {
+       "id": "cushion",
+       "label": "クッション(赤白)"
+      },
+      {
+       "id": "fiber",
+       "label": "曲面(クリーム色)"
+      },
+      {
+       "id": "drum",
+       "label": "クッションドラム"
+      }
+     ],
+     "default": "cushion"
+    },
+    {
+     "id": "antenna",
+     "label": "ETCアンテナ",
+     "choices": [
+      {
+       "id": "canopy",
+       "label": "屋根下"
+      },
+      {
+       "id": "island",
+       "label": "島の支柱"
+      },
+      {
+       "id": "off",
+       "label": "なし"
+      }
+     ],
+     "default": "canopy"
+    },
+    {
+     "id": "speed",
+     "label": "速度表示(20km/h以下)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "name",
+     "label": "地名板",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    },
+    {
+     "id": "blue",
+     "label": "路面の青い標示",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "on"
+    }
+   ],
+   "path": [
+    "expressway",
+    "tollgate"
+   ],
+   "lamps": [
+    {
+     "key": "b_etc",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "b_etcPlain",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "b_mix",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "b_gen",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "sig_p",
+     "color": "#a574ff",
+     "lit": "#9a5cff"
+    },
+    {
+     "key": "sig_g",
+     "color": "#18d9a0",
+     "lit": "#00e6a2"
+    },
+    {
+     "key": "sig_r",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "spd",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    }
+   ],
+   "tris": 11278,
+   "size": [
+    6.4,
+    5.9,
+    11.53
+   ],
+   "dir": "expressway/tollgate/jp-toll-lane",
+   "file": "expressway/tollgate/jp-toll-lane/model.glb",
+   "thumb": "expressway/tollgate/jp-toll-lane/thumb.jpg",
+   "bytes": 470928
+  },
   {
    "id": "jp-barrier-guardpipe",
    "name": "ガードパイプ(横断防止柵)",
@@ -315,7 +1212,7 @@
    "dir": "road/facility/jp-facility-bollard",
    "file": "road/facility/jp-facility-bollard/model.glb",
    "thumb": "road/facility/jp-facility-bollard/thumb.jpg",
-   "bytes": 82368
+   "bytes": 82312
   },
   {
    "id": "jp-facility-curve-mirror",
@@ -639,7 +1536,7 @@
    "dir": "road/lighting/jp-light-sidewalk",
    "file": "road/lighting/jp-light-sidewalk/model.glb",
    "thumb": "road/lighting/jp-light-sidewalk/thumb.jpg",
-   "bytes": 94144
+   "bytes": 94140
   },
   {
    "id": "jp-sign-guide",
@@ -890,7 +1787,7 @@
    "dir": "road/surface/jp-surface-curb",
    "file": "road/surface/jp-surface-curb/model.glb",
    "thumb": "road/surface/jp-surface-curb/thumb.jpg",
-   "bytes": 17996
+   "bytes": 16180
   },
   {
    "id": "jp-surface-grating",
@@ -1262,7 +2159,7 @@
    "dir": "signal/combined/jp-combo-arm-ped",
    "file": "signal/combined/jp-combo-arm-ped/model.glb",
    "thumb": "signal/combined/jp-combo-arm-ped/thumb.jpg",
-   "bytes": 1275820
+   "bytes": 1275716
   },
   {
    "id": "jp-combo-vert-ped",
@@ -1507,7 +2404,7 @@
    "dir": "signal/combined/jp-combo-vert-ped",
    "file": "signal/combined/jp-combo-vert-ped/model.glb",
    "thumb": "signal/combined/jp-combo-vert-ped/thumb.jpg",
-   "bytes": 1134448
+   "bytes": 1134352
   },
   {
    "id": "jp-crossing-alarm",
@@ -1761,7 +2658,7 @@
    "dir": "signal/crossing/jp-crossing-alarm",
    "file": "signal/crossing/jp-crossing-alarm/model.glb",
    "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
-   "bytes": 829112
+   "bytes": 829008
   },
   {
    "id": "jp-crossing-gate",
@@ -1848,7 +2745,7 @@
    "dir": "signal/crossing/jp-crossing-gate",
    "file": "signal/crossing/jp-crossing-gate/model.glb",
    "thumb": "signal/crossing/jp-crossing-gate/thumb.jpg",
-   "bytes": 132236
+   "bytes": 132140
   },
   {
    "id": "jp-bike-ped",
@@ -1974,7 +2871,7 @@
    "dir": "signal/pedestrian/jp-bike-ped",
    "file": "signal/pedestrian/jp-bike-ped/model.glb",
    "thumb": "signal/pedestrian/jp-bike-ped/thumb.jpg",
-   "bytes": 368736
+   "bytes": 368632
   },
   {
    "id": "jp-ped-button",
@@ -2047,7 +2944,7 @@
    "dir": "signal/pedestrian/jp-ped-button",
    "file": "signal/pedestrian/jp-ped-button/model.glb",
    "thumb": "signal/pedestrian/jp-ped-button/thumb.jpg",
-   "bytes": 225220
+   "bytes": 225124
   },
   {
    "id": "jp-ped-count",
@@ -2377,7 +3274,7 @@
    "dir": "signal/pedestrian/jp-ped-count",
    "file": "signal/pedestrian/jp-ped-count/model.glb",
    "thumb": "signal/pedestrian/jp-ped-count/thumb.jpg",
-   "bytes": 459420
+   "bytes": 459316
   },
   {
    "id": "jp-ped-led",
@@ -2538,7 +3435,7 @@
    "dir": "signal/pedestrian/jp-ped-led",
    "file": "signal/pedestrian/jp-ped-led/model.glb",
    "thumb": "signal/pedestrian/jp-ped-led/thumb.jpg",
-   "bytes": 447708
+   "bytes": 447604
   },
   {
    "id": "jp-rail-3",
@@ -2675,7 +3572,7 @@
    "dir": "signal/rail/jp-rail-3",
    "file": "signal/rail/jp-rail-3/model.glb",
    "thumb": "signal/rail/jp-rail-3/thumb.jpg",
-   "bytes": 922284
+   "bytes": 922172
   },
   {
    "id": "jp-rail-4",
@@ -2828,7 +3725,7 @@
    "dir": "signal/rail/jp-rail-4",
    "file": "signal/rail/jp-rail-4/model.glb",
    "thumb": "signal/rail/jp-rail-4/thumb.jpg",
-   "bytes": 924944
+   "bytes": 924828
   },
   {
    "id": "jp-rail-5",
@@ -2999,7 +3896,7 @@
    "dir": "signal/rail/jp-rail-5",
    "file": "signal/rail/jp-rail-5/model.glb",
    "thumb": "signal/rail/jp-rail-5/thumb.jpg",
-   "bytes": 926676
+   "bytes": 926568
   },
   {
    "id": "jp-rail-relay",
@@ -3132,7 +4029,7 @@
    "dir": "signal/rail/jp-rail-relay",
    "file": "signal/rail/jp-rail-relay/model.glb",
    "thumb": "signal/rail/jp-rail-relay/thumb.jpg",
-   "bytes": 721520
+   "bytes": 721424
   },
   {
    "id": "jp-tram",
@@ -3272,7 +4169,7 @@
    "dir": "signal/tram/jp-tram",
    "file": "signal/tram/jp-tram/model.glb",
    "thumb": "signal/tram/jp-tram/thumb.jpg",
-   "bytes": 417160
+   "bytes": 417064
   },
   {
    "id": "jp-tram-symbol",
@@ -3403,7 +4300,7 @@
    "dir": "signal/tram/jp-tram-symbol",
    "file": "signal/tram/jp-tram-symbol/model.glb",
    "thumb": "signal/tram/jp-tram-symbol/thumb.jpg",
-   "bytes": 319360
+   "bytes": 319256
   },
   {
    "id": "jp-tram-with-vehicle",
@@ -3610,7 +4507,7 @@
    "dir": "signal/tram/jp-tram-with-vehicle",
    "file": "signal/tram/jp-tram-with-vehicle/model.glb",
    "thumb": "signal/tram/jp-tram-with-vehicle/thumb.jpg",
-   "bytes": 1209448
+   "bytes": 1209352
   },
   {
    "id": "jp-veh-arrow",
@@ -3832,7 +4729,7 @@
    "dir": "signal/vehicle/jp-veh-arrow",
    "file": "signal/vehicle/jp-veh-arrow/model.glb",
    "thumb": "signal/vehicle/jp-veh-arrow/thumb.jpg",
-   "bytes": 1114840
+   "bytes": 1114744
   },
   {
    "id": "jp-veh-center-pole",
@@ -4021,7 +4918,7 @@
    "dir": "signal/vehicle/jp-veh-center-pole",
    "file": "signal/vehicle/jp-veh-center-pole/model.glb",
    "thumb": "signal/vehicle/jp-veh-center-pole/thumb.jpg",
-   "bytes": 855000
+   "bytes": 854896
   },
   {
    "id": "jp-veh-flash",
@@ -4150,7 +5047,7 @@
    "dir": "signal/vehicle/jp-veh-flash",
    "file": "signal/vehicle/jp-veh-flash/model.glb",
    "thumb": "signal/vehicle/jp-veh-flash/thumb.jpg",
-   "bytes": 795040
+   "bytes": 794936
   },
   {
    "id": "jp-veh-h250-side",
@@ -4310,7 +5207,7 @@
    "dir": "signal/vehicle/jp-veh-h250-side",
    "file": "signal/vehicle/jp-veh-h250-side/model.glb",
    "thumb": "signal/vehicle/jp-veh-h250-side/thumb.jpg",
-   "bytes": 879356
+   "bytes": 879260
   },
   {
    "id": "jp-veh-h300-arm",
@@ -4485,7 +5382,7 @@
    "dir": "signal/vehicle/jp-veh-h300-arm",
    "file": "signal/vehicle/jp-veh-h300-arm/model.glb",
    "thumb": "signal/vehicle/jp-veh-h300-arm/thumb.jpg",
-   "bytes": 986720
+   "bytes": 986624
   },
   {
    "id": "jp-veh-hoodless",
@@ -4644,7 +5541,7 @@
    "dir": "signal/vehicle/jp-veh-hoodless",
    "file": "signal/vehicle/jp-veh-hoodless/model.glb",
    "thumb": "signal/vehicle/jp-veh-hoodless/thumb.jpg",
-   "bytes": 716828
+   "bytes": 716724
   },
   {
    "id": "jp-veh-v-snow",
@@ -4819,7 +5716,7 @@
    "dir": "signal/vehicle/jp-veh-v-snow",
    "file": "signal/vehicle/jp-veh-v-snow/model.glb",
    "thumb": "signal/vehicle/jp-veh-v-snow/thumb.jpg",
-   "bytes": 888176
+   "bytes": 888072
   },
   {
    "id": "jp-veh-v250",
@@ -4978,7 +5875,7 @@
    "dir": "signal/vehicle/jp-veh-v250",
    "file": "signal/vehicle/jp-veh-v250/model.glb",
    "thumb": "signal/vehicle/jp-veh-v250/thumb.jpg",
-   "bytes": 865640
+   "bytes": 865536
   },
   {
    "id": "jp-track-ballast",
@@ -4994,13 +5891,13 @@
    "tris": 412720,
    "size": [
     4.8,
-    0.59,
-    12.2
+    0.58,
+    12.23
    ],
    "dir": "track/railway/jp-track-ballast",
    "file": "track/railway/jp-track-ballast/model.glb",
    "thumb": "track/railway/jp-track-ballast/thumb.jpg",
-   "bytes": 1651424
+   "bytes": 1652616
   },
   {
    "id": "jp-track-slab",
@@ -5022,7 +5919,7 @@
    "dir": "track/railway/jp-track-slab",
    "file": "track/railway/jp-track-slab/model.glb",
    "thumb": "track/railway/jp-track-slab/thumb.jpg",
-   "bytes": 161408
+   "bytes": 161064
   },
   {
    "id": "jp-track-tram",
@@ -5044,7 +5941,7 @@
    "dir": "track/tram/jp-track-tram",
    "file": "track/tram/jp-track-tram/model.glb",
    "thumb": "track/tram/jp-track-tram/thumb.jpg",
-   "bytes": 304016
+   "bytes": 304232
   }
  ]
 }

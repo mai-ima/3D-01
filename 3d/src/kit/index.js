@@ -72,7 +72,7 @@ function domeLens(R,depth,seg=96){const pts=[];for(let i=0;i<=14;i++){const r=R*
   const g=new THREE.LatheGeometry(pts,seg);g.rotateX(Math.PI/2);const p=g.attributes.position,uv=g.attributes.uv;for(let i=0;i<p.count;i++)uv.setXY(i,p.getX(i)/(2*R)+.5,p.getY(i)/(2*R)+.5);return g;}
 function lensMaterial(dark,emissive,map){return new THREE.MeshPhysicalMaterial({color:dark,roughness:.16,clearcoat:1,clearcoatRoughness:.05,emissive,emissiveMap:map,emissiveIntensity:0,side:THREE.DoubleSide});}
 export const config={sprites:true,bulb:true};
-const COL={orange:{dark:0x2e1a02,e:0xff7a00,hex:'#ff8a1a'},white:{dark:0x1c1f22,e:0xf4f8ff,hex:'#f4f8ff'},red:{dark:0x2a0606,e:0xff2a18,hex:'#ff4332'},yellow:{dark:0x2e1f02,e:0xffa800,hex:'#ffbd14'},green:{dark:0x02221a,e:0x00e6a2,hex:'#18d9a0'},blue:{dark:0x021c2e,e:0x1f9bff,hex:'#2aa6ff'}};
+const COL={orange:{dark:0x2e1a02,e:0xff7a00,hex:'#ff8a1a'},white:{dark:0x1c1f22,e:0xf4f8ff,hex:'#f4f8ff'},red:{dark:0x2a0606,e:0xff2a18,hex:'#ff4332'},yellow:{dark:0x2e1f02,e:0xffa800,hex:'#ffbd14'},green:{dark:0x02221a,e:0x00e6a2,hex:'#18d9a0'},blue:{dark:0x021c2e,e:0x1f9bff,hex:'#2aa6ff'},purple:{dark:0x14062e,e:0x9a5cff,hex:'#a574ff'}};
 const allLamps=[];
 function fresnelTexture(){const c=cv(512,512),g=c.getContext('2d');g.fillStyle='#000';g.fillRect(0,0,512,512);
   for(let i=0;i<22;i++){const r=250-i*11;const gr=g.createRadialGradient(256,256,r-9,256,256,r);gr.addColorStop(0,'rgba(255,255,255,.35)');gr.addColorStop(.6,'rgba(255,255,255,.95)');gr.addColorStop(1,'rgba(255,255,255,.15)');g.strokeStyle=gr;g.lineWidth=9;g.beginPath();g.arc(256,256,r-4.5,0,7);g.stroke();}

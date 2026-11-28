@@ -5,7 +5,8 @@
 `3d/models` の GLB と `3d/runtime` をそのまま使えます。
 
 収録: 信号 23種(車両用8 / 歩行者用4 / 車両・歩行者一体2 / 路面電車3 / 鉄道4 / 踏切2)、軌道 3種、
-道路関係 18種(標識4 / 防護柵2 / 道路付属物4 / 道路照明2 / 工事用品2 / 路面4)。
+道路関係 18種(標識4 / 防護柵2 / 道路付属物4 / 道路照明2 / 工事用品2 / 路面4)、
+高速道路 10種(料金所1 / 標識3 / 情報板1 / 防護柵・分離帯4 / 照明1)。
 
 ## 構成(データの流れ)
 
@@ -21,12 +22,14 @@
 │  │  ├─ index.js             共通部品(材質・ポール・レンズ・ランプ・任意部品)
 │  │  ├─ signal-parts.js      信号機用の部品(灯器ヘッド・取付金具・歩行者灯・鉄道灯器・状態表)
 │  │  ├─ track-parts.js       軌道用の部品(レール断面・まくらぎ・砂利・敷石)
-│  │  └─ road-parts.js        道路用の部品(標識板・支柱・金具・反射材・発光面)
+│  │  ├─ road-parts.js        道路用の部品(標識板・支柱・金具・反射材・発光面)
+│  │  └─ expressway-parts.js  高速道路用の部品(緑地の案内板・トラス・料金所の表示板・断面の押し出し)
 │  ├─ categories.json         カテゴリ名(日本語)。フォルダのパスをキーにする
 │  ├─ registry.js             自動生成(npm run registry)。手で編集しない
 │  ├─ signal/<サブ>/<id>.js   信号モデル(vehicle / pedestrian / combined / tram / rail / crossing)
 │  ├─ track/<サブ>/<id>.js    軌道モデル(railway / tram)
-│  └─ road/<サブ>/<id>.js     道路モデル(sign / barrier / facility / lighting / construction / surface)
+│  ├─ road/<サブ>/<id>.js     道路モデル(sign / barrier / facility / lighting / construction / surface)
+│  └─ expressway/<サブ>/<id>.js 高速道路モデル(tollgate / sign / info / barrier / lighting)
 ├─ models/                    成果物(自動生成。リポジトリに含める)
 │  ├─ index.json              全モデルの目録(状態・オプション・寸法・ランプ一覧)
 │  └─ <カテゴリ…>/<id>/{model.glb, meta.json, thumb.jpg}
@@ -50,6 +53,7 @@
 | `npm run export [id…]` | `src` から GLB と `index.json` を生成(id 指定で一部だけ) |
 | `npm run optimize` | GLB を最適化(頂点溶接+量子化。ノード名・マテリアル名は保持) |
 | `npm run check` | **整合性検査**。状態・サイクル・オプション・ランプが GLB と食い違っていないか+依存関係の規則 |
+| `npm run quality` | **品質監査(数値)**。三角形数・材質数・寸法・オプションの実在などを見て、現実品質に足りない疑いを報告(汚れ・経年劣化は評価しない) |
 | `npm run smoke` | ビューアの動作確認(折りたたみ・オプション・現示・検索・遮断機の動き) |
 | `npm run thumbs [id…]` | サムネイルを生成 |
 | `npm run viewer` | `dist/signals.html` と `dist/all.html` を生成(`dist/` は Git 管理外) |
@@ -98,7 +102,8 @@ m.setState('s4');               // 車 赤 / 歩 青
 ## 依存の関係(守ること)
 
 - `kit/index.js` は他に依存しない。`signal-parts.js`・`track-parts.js`・`road-parts.js` は `kit/index.js` だけに依存する。
-- モデル(`src/signal`, `src/track`)は、自分のカテゴリの部品ファイルだけを import する。モデル同士は import しない。
+- `expressway-parts.js` は `road-parts.js` だけに依存する(高速道路は道路の部品を土台にする)。
+- モデル(`src/signal`, `src/track`, `src/road`, `src/expressway`)は、自分のカテゴリの部品ファイルだけを import する。モデル同士は import しない。
 - `runtime` は Three.js だけに依存する(`src` や `viewer` を参照しない)。
 - `viewer` は `runtime` と `models/index.json` だけを通してモデルを扱い、`src` を参照しない。
 

@@ -8,6 +8,8 @@ const rules=[
   [/^3d\/src\/kit\/index\.js$/,()=>false,'kit/index.js は他のファイルに依存しない'],
   [/^3d\/src\/kit\/(signal|track|road)-parts\.js$/,t=>t==='3d/src/kit/index.js','部品ファイルは kit/index.js だけに依存する'],
   [/^3d\/src\/signal\//,t=>t==='3d/src/kit/signal-parts.js','信号モデルは signal-parts.js だけを import する'],
+  [/^3d\/src\/kit\/expressway-parts\.js$/,t=>t==='3d/src/kit/road-parts.js','高速道路の部品は road-parts.js だけに依存する'],
+  [/^3d\/src\/expressway\//,t=>t==='3d/src/kit/expressway-parts.js','高速道路モデルは expressway-parts.js だけを import する'],
   [/^3d\/src\/road\//,t=>t==='3d/src/kit/road-parts.js','道路モデルは road-parts.js だけを import する'],
   [/^3d\/src\/track\//,t=>t==='3d/src/kit/index.js'||t==='3d/src/kit/track-parts.js','軌道モデルは kit だけを import する'],
   [/^3d\/runtime\//,()=>false,'runtime は相対 import をしない(Three.js だけに依存)'],

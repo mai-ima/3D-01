@@ -1,0 +1,64 @@
+{
+ "id": "jp-exp-sign-route",
+ "name": "路線番号標識(高速道路ナンバリング)",
+ "desc": "「E1」「C4」のような高速道路の路線番号の標識。緑地に白字。頭のEは高速道路、Cは環状道路を表す。NEXCOの路線(東名・東北道・中央道・圏央道)と、首都高(都心環状線・湾岸線)の標識を選べる。",
+ "dims": "板 約0.75×0.75m・支柱 鋼管φ76.3・板の下端 約1.8m(標識の設置基準。拡大して使う場合の代表値)",
+ "focus": [
+  0,
+  2.1,
+  0
+ ],
+ "view": [
+  1.6,
+  0.1,
+  4.2
+ ],
+ "options": [
+  {
+   "id": "route",
+   "label": "路線",
+   "choices": [
+    {
+     "id": "e1",
+     "label": "E1 東名"
+    },
+    {
+     "id": "e4",
+     "label": "E4 東北道"
+    },
+    {
+     "id": "e20",
+     "label": "E20 中央道"
+    },
+    {
+     "id": "c4",
+     "label": "C4 圏央道"
+    },
+    {
+     "id": "shuto_c1",
+     "label": "C1 首都高 都心環状線"
+    },
+    {
+     "id": "shuto_b",
+     "label": "B 首都高 湾岸線"
+    }
+   ],
+   "default": "e1"
+  }
+ ],
+ "path": [
+  "expressway",
+  "sign"
+ ],
+ "lamps": [],
+ "tris": 13360,
+ "size": [
+  0.76,
+  2.84,
+  0.12
+ ],
+ "dir": "expressway/sign/jp-exp-sign-route",
+ "file": "expressway/sign/jp-exp-sign-route/model.glb",
+ "thumb": "expressway/sign/jp-exp-sign-route/thumb.jpg",
+ "bytes": 190484
+}

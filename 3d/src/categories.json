@@ -15,5 +15,11 @@
   "road/facility": "道路付属物",
   "road/lighting": "道路照明",
   "road/construction": "工事・規制用品",
-  "road/surface": "路面・縁石"
+  "road/surface": "路面・縁石",
+  "expressway": "高速道路",
+  "expressway/tollgate": "料金所",
+  "expressway/sign": "高速道路の標識",
+  "expressway/info": "情報設備",
+  "expressway/barrier": "防護柵・分離帯",
+  "expressway/lighting": "照明"
 }

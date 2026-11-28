@@ -1,0 +1,67 @@
+{
+ "id": "jp-exp-noise-wall",
+ "name": "遮音壁",
+ "desc": "高速道路の脇に連続して立つ防音の壁。金属の吸音板、透明板(日照と眺望を保つ)、下部がコンクリートで上部が透明の組み合わせ、の3種を選べる。上端を内側に曲げた形も付けられる。",
+ "dims": "高さ 3m・支柱間隔 2m・H形鋼 200×200mm(代表値。実際の高さは騒音の予測で個別に決まる)",
+ "focus": [
+  0,
+  1.7,
+  0
+ ],
+ "view": [
+  4,
+  0.25,
+  10
+ ],
+ "options": [
+  {
+   "id": "panel",
+   "label": "遮音板",
+   "choices": [
+    {
+     "id": "metal",
+     "label": "金属(吸音)"
+    },
+    {
+     "id": "clear",
+     "label": "透明板"
+    },
+    {
+     "id": "mix",
+     "label": "下部コンクリート+上部透明"
+    }
+   ],
+   "default": "metal"
+  },
+  {
+   "id": "cap",
+   "label": "上端の曲がり(先端改良型)",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
+  }
+ ],
+ "path": [
+  "expressway",
+  "barrier"
+ ],
+ "lamps": [],
+ "tris": 588,
+ "size": [
+  0.54,
+  3.27,
+  10.3
+ ],
+ "dir": "expressway/barrier/jp-exp-noise-wall",
+ "file": "expressway/barrier/jp-exp-noise-wall/model.glb",
+ "thumb": "expressway/barrier/jp-exp-noise-wall/thumb.jpg",
+ "bytes": 21188
+}

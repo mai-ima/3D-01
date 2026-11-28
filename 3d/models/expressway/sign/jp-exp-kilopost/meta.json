@@ -1,0 +1,63 @@
+{
+ "id": "jp-exp-kilopost",
+ "name": "距離標(キロポスト)",
+ "desc": "路線の起点からの距離を示す小さな標識。100mごとは白地に緑字(数字は小数点以下1桁)、1kmごとは緑地に白字。支柱に立てる形と、壁・防護柵に取り付ける形を選べる。",
+ "dims": "板 約0.2×0.28m・高さ 約1.1m(板寸法は代表値)",
+ "focus": [
+  0,
+  0.95,
+  0
+ ],
+ "view": [
+  0.9,
+  0.1,
+  2.2
+ ],
+ "options": [
+  {
+   "id": "kind",
+   "label": "種類",
+   "choices": [
+    {
+     "id": "k100",
+     "label": "100m標(白地)"
+    },
+    {
+     "id": "k1000",
+     "label": "1km標(緑地)"
+    }
+   ],
+   "default": "k100"
+  },
+  {
+   "id": "mount",
+   "label": "取付",
+   "choices": [
+    {
+     "id": "post",
+     "label": "支柱"
+    },
+    {
+     "id": "wall",
+     "label": "コンクリート壁"
+    }
+   ],
+   "default": "post"
+  }
+ ],
+ "path": [
+  "expressway",
+  "sign"
+ ],
+ "lamps": [],
+ "tris": 6956,
+ "size": [
+  0.9,
+  1.08,
+  0.47
+ ],
+ "dir": "expressway/sign/jp-exp-kilopost",
+ "file": "expressway/sign/jp-exp-kilopost/model.glb",
+ "thumb": "expressway/sign/jp-exp-kilopost/thumb.jpg",
+ "bytes": 120708
+}

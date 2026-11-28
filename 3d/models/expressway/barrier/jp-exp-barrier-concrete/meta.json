@@ -1,0 +1,75 @@
+{
+ "id": "jp-exp-barrier-concrete",
+ "name": "コンクリート壁(中央分離帯)",
+ "desc": "高速道路の中央分離帯などに連続して立つコンクリートの防護壁。断面の型(F型・単スロープ・フロリダ型・直壁)と、上部に付ける防眩板・金網を選べる。",
+ "dims": "長さ 3mのブロック×3・高さ 0.8〜1.1m・底幅 0.4〜0.62m(代表値。型ごとの高さは国の資料に数値がなく推定)",
+ "focus": [
+  0,
+  0.9,
+  0
+ ],
+ "view": [
+  3.4,
+  0.3,
+  7.5
+ ],
+ "options": [
+  {
+   "id": "profile",
+   "label": "断面の型",
+   "choices": [
+    {
+     "id": "f",
+     "label": "F型"
+    },
+    {
+     "id": "single",
+     "label": "単スロープ型"
+    },
+    {
+     "id": "florida",
+     "label": "フロリダ型"
+    },
+    {
+     "id": "vertical",
+     "label": "直壁型"
+    }
+   ],
+   "default": "f"
+  },
+  {
+   "id": "top",
+   "label": "上部の付属物",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "glare",
+     "label": "防眩板"
+    },
+    {
+     "id": "mesh",
+     "label": "金網(落下防止)"
+    }
+   ],
+   "default": "off"
+  }
+ ],
+ "path": [
+  "expressway",
+  "barrier"
+ ],
+ "lamps": [],
+ "tris": 1848,
+ "size": [
+  0.62,
+  2.42,
+  9.06
+ ],
+ "dir": "expressway/barrier/jp-exp-barrier-concrete",
+ "file": "expressway/barrier/jp-exp-barrier-concrete/model.glb",
+ "thumb": "expressway/barrier/jp-exp-barrier-concrete/thumb.jpg",
+ "bytes": 61184
+}

@@ -1,0 +1,52 @@
+{
+ "id": "jp-exp-wire-rope",
+ "name": "ワイヤロープ式防護柵",
+ "desc": "暫定2車線の高速道路の中央に立つ、ロープを張った防護柵。対向車線への飛び出しを防ぐ。ロープの本数(3・4・5本)を選べる。",
+ "dims": "ロープ φ18mm・最上段 約1.0m・支柱 φ89.1mm・間隔 3.0m・端末は基礎ブロック(資料の数値を元にした代表値)",
+ "focus": [
+  0,
+  0.6,
+  0
+ ],
+ "view": [
+  3,
+  0.2,
+  7.5
+ ],
+ "options": [
+  {
+   "id": "ropes",
+   "label": "ロープの本数",
+   "choices": [
+    {
+     "id": "3",
+     "label": "3本"
+    },
+    {
+     "id": "4",
+     "label": "4本"
+    },
+    {
+     "id": "5",
+     "label": "5本"
+    }
+   ],
+   "default": "3"
+  }
+ ],
+ "path": [
+  "expressway",
+  "barrier"
+ ],
+ "lamps": [],
+ "tris": 2904,
+ "size": [
+  0.7,
+  1.21,
+  17.4
+ ],
+ "dir": "expressway/barrier/jp-exp-wire-rope",
+ "file": "expressway/barrier/jp-exp-wire-rope/model.glb",
+ "thumb": "expressway/barrier/jp-exp-wire-rope/thumb.jpg",
+ "bytes": 35104
+}

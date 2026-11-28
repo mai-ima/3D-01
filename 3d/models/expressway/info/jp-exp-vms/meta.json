@@ -1,0 +1,99 @@
+{
+ "id": "jp-exp-vms",
+ "name": "道路情報板(可変情報板)",
+ "desc": "渋滞や事故・規制を知らせる電光の情報板。文字式(橙のLEDで2段)と図形式(フルカラーの図記号と文字)を選べる。支柱は門型と片持ち。",
+ "dims": "板 約4.5×1.4m・下端 5.0m・門型の柱間 約13m(代表値。実物は設置場所の型(A〜K型)で寸法が違う)",
+ "focus": [
+  0,
+  5.6,
+  0
+ ],
+ "view": [
+  4,
+  0.1,
+  21
+ ],
+ "night": "on",
+ "states": [
+  {
+   "id": "on",
+   "label": "表示",
+   "on": [
+    "disp_t",
+    "disp_g"
+   ]
+  },
+  {
+   "id": "off",
+   "label": "消灯"
+  }
+ ],
+ "cycle": [
+  {
+   "s": "on",
+   "d": 8
+  },
+  {
+   "s": "off",
+   "d": 3
+  }
+ ],
+ "options": [
+  {
+   "id": "type",
+   "label": "表示の形式",
+   "choices": [
+    {
+     "id": "text",
+     "label": "文字式(橙のLED)"
+    },
+    {
+     "id": "graphic",
+     "label": "図形式(フルカラー)"
+    }
+   ],
+   "default": "text"
+  },
+  {
+   "id": "support",
+   "label": "支持の形",
+   "choices": [
+    {
+     "id": "gantry",
+     "label": "門型"
+    },
+    {
+     "id": "cantilever",
+     "label": "片持ち"
+    }
+   ],
+   "default": "gantry"
+  }
+ ],
+ "path": [
+  "expressway",
+  "info"
+ ],
+ "lamps": [
+  {
+   "key": "disp_t",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_g",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  }
+ ],
+ "tris": 4436,
+ "size": [
+  13.6,
+  7.25,
+  0.68
+ ],
+ "dir": "expressway/info/jp-exp-vms",
+ "file": "expressway/info/jp-exp-vms/model.glb",
+ "thumb": "expressway/info/jp-exp-vms/thumb.jpg",
+ "bytes": 173708
+}
