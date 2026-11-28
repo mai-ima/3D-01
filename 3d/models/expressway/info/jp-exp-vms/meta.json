@@ -1,8 +1,8 @@
 {
  "id": "jp-exp-vms",
  "name": "道路情報板(可変情報板)",
- "desc": "渋滞・事故・規制を知らせる電光の情報板。NEXCOの広域情報板(K型)の仕様に基づき、文字高450mm・LED 10mmピッチ・18字×2段。名称部(緑地)と、上の黄色い点滅灯2灯を備える。文字式(事故渋滞・雪・通行止め・ETC専用入口)と図形式を選べる。",
- "dims": "K型: 表示面 約8.64×1.08m(縦108×横864ドット・10mmピッチ)・名称部 2.2×0.4m・板の下端 5.0m。文字式12字は約5.76m(推)。大きさは仕様書の値",
+ "desc": "渋滞・事故・規制を知らせる電光の情報板。NEXCOの標準仕様書の型式(A/F・B・D・J・K・C1)ごとに、外形・字数・段数・名称部(緑地)・点滅灯(黄1灯または赤2灯の交互点滅)を再現。文字式は実際の書き方(区間は最後尾ー先頭・事故は赤・渋滞は橙・単位はkm・㌔・分)で、事故渋滞・工事渋滞・雨や雪の規制・霧・スリップ・災害通行止・安全運転の呼びかけを選べる。図形式(フリーパターン)も選べる。",
+ "dims": "LED 10mmピッチ・1字 縦450×横390mm。外形: A/F 4.02×1.75m・B/J 4.02×1.95m・D 3.54×1.95m・K 8.82×1.95m・C1 9.3×1.8m・厚さ0.3m。名称部 2.2×0.4m(D型は2.0m)。板の下端 5.0m(仕様書の値)",
  "focus": [
   0,
   5.8,
@@ -19,22 +19,75 @@
    "id": "on",
    "label": "表示(点滅灯 交互)",
    "on": [
-    "disp_accident_k",
-    "disp_snow_k",
-    "disp_closed_k",
-    "disp_etc_k",
-    "disp_graphic_k",
     "disp_accident_a",
+    "disp_works_a",
+    "disp_rain_a",
     "disp_snow_a",
+    "disp_fog_a",
+    "disp_slip_a",
     "disp_closed_a",
-    "disp_etc_a",
-    "disp_graphic_a"
+    "disp_safe_a",
+    "disp_graphic_a",
+    "disp_accident_b",
+    "disp_works_b",
+    "disp_rain_b",
+    "disp_snow_b",
+    "disp_fog_b",
+    "disp_slip_b",
+    "disp_closed_b",
+    "disp_safe_b",
+    "disp_graphic_b",
+    "disp_accident_d",
+    "disp_works_d",
+    "disp_rain_d",
+    "disp_snow_d",
+    "disp_fog_d",
+    "disp_slip_d",
+    "disp_closed_d",
+    "disp_safe_d",
+    "disp_graphic_d",
+    "disp_accident_j",
+    "disp_works_j",
+    "disp_rain_j",
+    "disp_snow_j",
+    "disp_fog_j",
+    "disp_slip_j",
+    "disp_closed_j",
+    "disp_safe_j",
+    "disp_graphic_j",
+    "disp_accident_k",
+    "disp_works_k",
+    "disp_rain_k",
+    "disp_snow_k",
+    "disp_fog_k",
+    "disp_slip_k",
+    "disp_closed_k",
+    "disp_safe_k",
+    "disp_graphic_k",
+    "disp_accident_c",
+    "disp_works_c",
+    "disp_rain_c",
+    "disp_snow_c",
+    "disp_fog_c",
+    "disp_slip_c",
+    "disp_closed_c",
+    "disp_safe_c",
+    "disp_graphic_c"
    ],
    "flash": [
-    "fl1"
+    "fl1_a",
+    "fl1_b",
+    "fl1_d",
+    "fl1_j",
+    "fl1_k",
+    "fl1_c"
    ],
    "flash2": [
-    "fl2"
+    "fl2_a",
+    "fl2_d",
+    "fl2_j",
+    "fl2_k",
+    "fl2_c"
    ]
   },
   {
@@ -55,15 +108,31 @@
  "options": [
   {
    "id": "size",
-   "label": "大きさ",
+   "label": "型式",
    "choices": [
     {
-     "id": "k",
-     "label": "K型(広域)18字×2段"
+     "id": "a",
+     "label": "A/F型(流出部・8字×2段)"
     },
     {
-     "id": "a",
-     "label": "文字式 12字×2段"
+     "id": "b",
+     "label": "B型(インター入口・8字×2段)"
+    },
+    {
+     "id": "d",
+     "label": "D型(トンネル入口・7字×2段)"
+    },
+    {
+     "id": "j",
+     "label": "J型(JCT・8字×2段)"
+    },
+    {
+     "id": "k",
+     "label": "K型(広域・18字×2段)"
+    },
+    {
+     "id": "c",
+     "label": "C1型(料金所・19字×3段)"
     }
    ],
    "default": "k"
@@ -74,11 +143,11 @@
    "choices": [
     {
      "id": "text",
-     "label": "文字式(橙・赤のLED)"
+     "label": "文字式(橙・赤・緑・白のLED)"
     },
     {
      "id": "graphic",
-     "label": "図形式(フルカラー)"
+     "label": "図形式(フリーパターン)"
     }
    ],
    "default": "text"
@@ -92,16 +161,32 @@
      "label": "事故渋滞"
     },
     {
+     "id": "works",
+     "label": "工事渋滞"
+    },
+    {
+     "id": "rain",
+     "label": "雨・速度規制"
+    },
+    {
      "id": "snow",
      "label": "雪・チェーン規制"
     },
     {
-     "id": "closed",
-     "label": "通行止め"
+     "id": "fog",
+     "label": "霧"
     },
     {
-     "id": "etc",
-     "label": "ETC専用入口"
+     "id": "slip",
+     "label": "スリップ注意"
+    },
+    {
+     "id": "closed",
+     "label": "災害通行止"
+    },
+    {
+     "id": "safe",
+     "label": "安全運転の呼びかけ"
     }
    ],
    "default": "accident"
@@ -128,42 +213,17 @@
  ],
  "lamps": [
   {
-   "key": "disp_accident_k",
-   "color": "#f4f8ff",
-   "lit": "#f4f8ff"
-  },
-  {
-   "key": "disp_snow_k",
-   "color": "#f4f8ff",
-   "lit": "#f4f8ff"
-  },
-  {
-   "key": "disp_closed_k",
-   "color": "#f4f8ff",
-   "lit": "#f4f8ff"
-  },
-  {
-   "key": "disp_etc_k",
-   "color": "#f4f8ff",
-   "lit": "#f4f8ff"
-  },
-  {
-   "key": "disp_graphic_k",
-   "color": "#f4f8ff",
-   "lit": "#f4f8ff"
-  },
-  {
-   "key": "fl1",
-   "color": "#ffbd14",
-   "lit": "#ffa800"
-  },
-  {
-   "key": "fl2",
-   "color": "#ffbd14",
-   "lit": "#ffa800"
-  },
-  {
    "key": "disp_accident_a",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_works_a",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_rain_a",
    "color": "#f4f8ff",
    "lit": "#f4f8ff"
   },
@@ -173,12 +233,22 @@
    "lit": "#f4f8ff"
   },
   {
+   "key": "disp_fog_a",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_slip_a",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
    "key": "disp_closed_a",
    "color": "#f4f8ff",
    "lit": "#f4f8ff"
   },
   {
-   "key": "disp_etc_a",
+   "key": "disp_safe_a",
    "color": "#f4f8ff",
    "lit": "#f4f8ff"
   },
@@ -186,16 +256,296 @@
    "key": "disp_graphic_a",
    "color": "#f4f8ff",
    "lit": "#f4f8ff"
+  },
+  {
+   "key": "fl1_a",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "fl2_a",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "disp_accident_b",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_works_b",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_rain_b",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_snow_b",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_fog_b",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_slip_b",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_closed_b",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_safe_b",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_graphic_b",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "fl1_b",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "disp_accident_d",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_works_d",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_rain_d",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_snow_d",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_fog_d",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_slip_d",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_closed_d",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_safe_d",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_graphic_d",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "fl1_d",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "fl2_d",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "disp_accident_j",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_works_j",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_rain_j",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_snow_j",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_fog_j",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_slip_j",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_closed_j",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_safe_j",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_graphic_j",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "fl1_j",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "fl2_j",
+   "color": "#ff4332",
+   "lit": "#ff2a18"
+  },
+  {
+   "key": "disp_accident_k",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_works_k",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_rain_k",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_snow_k",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_fog_k",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_slip_k",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_closed_k",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_safe_k",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_graphic_k",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "fl1_k",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "fl2_k",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "disp_accident_c",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_works_c",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_rain_c",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_snow_c",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_fog_c",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_slip_c",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_closed_c",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_safe_c",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "disp_graphic_c",
+   "color": "#f4f8ff",
+   "lit": "#f4f8ff"
+  },
+  {
+   "key": "fl1_c",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
+  },
+  {
+   "key": "fl2_c",
+   "color": "#ffbd14",
+   "lit": "#ffa800"
   }
  ],
- "tris": 5488,
+ "tris": 8704,
  "size": [
   15.04,
-  7.76,
+  7.86,
   0.72
  ],
  "dir": "expressway/info/jp-exp-vms",
  "file": "expressway/info/jp-exp-vms/model.glb",
  "thumb": "expressway/info/jp-exp-vms/thumb.jpg",
- "bytes": 303268
+ "bytes": 1189228
 }

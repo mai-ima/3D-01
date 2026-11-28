@@ -103,7 +103,7 @@
    "dir": "expressway/barrier/jp-exp-barrier-concrete",
    "file": "expressway/barrier/jp-exp-barrier-concrete/model.glb",
    "thumb": "expressway/barrier/jp-exp-barrier-concrete/thumb.jpg",
-   "bytes": 61184
+   "bytes": 61144
   },
   {
    "id": "jp-exp-cushion-drum",
@@ -155,7 +155,7 @@
    "dir": "expressway/barrier/jp-exp-cushion-drum",
    "file": "expressway/barrier/jp-exp-cushion-drum/model.glb",
    "thumb": "expressway/barrier/jp-exp-cushion-drum/thumb.jpg",
-   "bytes": 37832
+   "bytes": 37744
   },
   {
    "id": "jp-exp-noise-wall",
@@ -274,13 +274,13 @@
    "dir": "expressway/barrier/jp-exp-wire-rope",
    "file": "expressway/barrier/jp-exp-wire-rope/model.glb",
    "thumb": "expressway/barrier/jp-exp-wire-rope/thumb.jpg",
-   "bytes": 35216
+   "bytes": 35104
   },
   {
    "id": "jp-exp-vms",
    "name": "道路情報板(可変情報板)",
-   "desc": "渋滞・事故・規制を知らせる電光の情報板。NEXCOの広域情報板(K型)の仕様に基づき、文字高450mm・LED 10mmピッチ・18字×2段。名称部(緑地)と、上の黄色い点滅灯2灯を備える。文字式(事故渋滞・雪・通行止め・ETC専用入口)と図形式を選べる。",
-   "dims": "K型: 表示面 約8.64×1.08m(縦108×横864ドット・10mmピッチ)・名称部 2.2×0.4m・板の下端 5.0m。文字式12字は約5.76m(推)。大きさは仕様書の値",
+   "desc": "渋滞・事故・規制を知らせる電光の情報板。NEXCOの標準仕様書の型式(A/F・B・D・J・K・C1)ごとに、外形・字数・段数・名称部(緑地)・点滅灯(黄1灯または赤2灯の交互点滅)を再現。文字式は実際の書き方(区間は最後尾ー先頭・事故は赤・渋滞は橙・単位はkm・㌔・分)で、事故渋滞・工事渋滞・雨や雪の規制・霧・スリップ・災害通行止・安全運転の呼びかけを選べる。図形式(フリーパターン)も選べる。",
+   "dims": "LED 10mmピッチ・1字 縦450×横390mm。外形: A/F 4.02×1.75m・B/J 4.02×1.95m・D 3.54×1.95m・K 8.82×1.95m・C1 9.3×1.8m・厚さ0.3m。名称部 2.2×0.4m(D型は2.0m)。板の下端 5.0m(仕様書の値)",
    "focus": [
     0,
     5.8,
@@ -297,22 +297,75 @@
      "id": "on",
      "label": "表示(点滅灯 交互)",
      "on": [
-      "disp_accident_k",
-      "disp_snow_k",
-      "disp_closed_k",
-      "disp_etc_k",
-      "disp_graphic_k",
       "disp_accident_a",
+      "disp_works_a",
+      "disp_rain_a",
       "disp_snow_a",
+      "disp_fog_a",
+      "disp_slip_a",
       "disp_closed_a",
-      "disp_etc_a",
-      "disp_graphic_a"
+      "disp_safe_a",
+      "disp_graphic_a",
+      "disp_accident_b",
+      "disp_works_b",
+      "disp_rain_b",
+      "disp_snow_b",
+      "disp_fog_b",
+      "disp_slip_b",
+      "disp_closed_b",
+      "disp_safe_b",
+      "disp_graphic_b",
+      "disp_accident_d",
+      "disp_works_d",
+      "disp_rain_d",
+      "disp_snow_d",
+      "disp_fog_d",
+      "disp_slip_d",
+      "disp_closed_d",
+      "disp_safe_d",
+      "disp_graphic_d",
+      "disp_accident_j",
+      "disp_works_j",
+      "disp_rain_j",
+      "disp_snow_j",
+      "disp_fog_j",
+      "disp_slip_j",
+      "disp_closed_j",
+      "disp_safe_j",
+      "disp_graphic_j",
+      "disp_accident_k",
+      "disp_works_k",
+      "disp_rain_k",
+      "disp_snow_k",
+      "disp_fog_k",
+      "disp_slip_k",
+      "disp_closed_k",
+      "disp_safe_k",
+      "disp_graphic_k",
+      "disp_accident_c",
+      "disp_works_c",
+      "disp_rain_c",
+      "disp_snow_c",
+      "disp_fog_c",
+      "disp_slip_c",
+      "disp_closed_c",
+      "disp_safe_c",
+      "disp_graphic_c"
      ],
      "flash": [
-      "fl1"
+      "fl1_a",
+      "fl1_b",
+      "fl1_d",
+      "fl1_j",
+      "fl1_k",
+      "fl1_c"
      ],
      "flash2": [
-      "fl2"
+      "fl2_a",
+      "fl2_d",
+      "fl2_j",
+      "fl2_k",
+      "fl2_c"
      ]
     },
     {
@@ -333,15 +386,31 @@
    "options": [
     {
      "id": "size",
-     "label": "大きさ",
+     "label": "型式",
      "choices": [
       {
-       "id": "k",
-       "label": "K型(広域)18字×2段"
+       "id": "a",
+       "label": "A/F型(流出部・8字×2段)"
       },
       {
-       "id": "a",
-       "label": "文字式 12字×2段"
+       "id": "b",
+       "label": "B型(インター入口・8字×2段)"
+      },
+      {
+       "id": "d",
+       "label": "D型(トンネル入口・7字×2段)"
+      },
+      {
+       "id": "j",
+       "label": "J型(JCT・8字×2段)"
+      },
+      {
+       "id": "k",
+       "label": "K型(広域・18字×2段)"
+      },
+      {
+       "id": "c",
+       "label": "C1型(料金所・19字×3段)"
       }
      ],
      "default": "k"
@@ -352,11 +421,11 @@
      "choices": [
       {
        "id": "text",
-       "label": "文字式(橙・赤のLED)"
+       "label": "文字式(橙・赤・緑・白のLED)"
       },
       {
        "id": "graphic",
-       "label": "図形式(フルカラー)"
+       "label": "図形式(フリーパターン)"
       }
      ],
      "default": "text"
@@ -370,16 +439,32 @@
        "label": "事故渋滞"
       },
       {
+       "id": "works",
+       "label": "工事渋滞"
+      },
+      {
+       "id": "rain",
+       "label": "雨・速度規制"
+      },
+      {
        "id": "snow",
        "label": "雪・チェーン規制"
       },
       {
-       "id": "closed",
-       "label": "通行止め"
+       "id": "fog",
+       "label": "霧"
       },
       {
-       "id": "etc",
-       "label": "ETC専用入口"
+       "id": "slip",
+       "label": "スリップ注意"
+      },
+      {
+       "id": "closed",
+       "label": "災害通行止"
+      },
+      {
+       "id": "safe",
+       "label": "安全運転の呼びかけ"
       }
      ],
      "default": "accident"
@@ -406,42 +491,17 @@
    ],
    "lamps": [
     {
-     "key": "disp_accident_k",
-     "color": "#f4f8ff",
-     "lit": "#f4f8ff"
-    },
-    {
-     "key": "disp_snow_k",
-     "color": "#f4f8ff",
-     "lit": "#f4f8ff"
-    },
-    {
-     "key": "disp_closed_k",
-     "color": "#f4f8ff",
-     "lit": "#f4f8ff"
-    },
-    {
-     "key": "disp_etc_k",
-     "color": "#f4f8ff",
-     "lit": "#f4f8ff"
-    },
-    {
-     "key": "disp_graphic_k",
-     "color": "#f4f8ff",
-     "lit": "#f4f8ff"
-    },
-    {
-     "key": "fl1",
-     "color": "#ffbd14",
-     "lit": "#ffa800"
-    },
-    {
-     "key": "fl2",
-     "color": "#ffbd14",
-     "lit": "#ffa800"
-    },
-    {
      "key": "disp_accident_a",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_works_a",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_rain_a",
      "color": "#f4f8ff",
      "lit": "#f4f8ff"
     },
@@ -451,12 +511,22 @@
      "lit": "#f4f8ff"
     },
     {
+     "key": "disp_fog_a",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_slip_a",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
      "key": "disp_closed_a",
      "color": "#f4f8ff",
      "lit": "#f4f8ff"
     },
     {
-     "key": "disp_etc_a",
+     "key": "disp_safe_a",
      "color": "#f4f8ff",
      "lit": "#f4f8ff"
     },
@@ -464,18 +534,298 @@
      "key": "disp_graphic_a",
      "color": "#f4f8ff",
      "lit": "#f4f8ff"
+    },
+    {
+     "key": "fl1_a",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "fl2_a",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "disp_accident_b",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_works_b",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_rain_b",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_snow_b",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_fog_b",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_slip_b",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_closed_b",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_safe_b",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_graphic_b",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "fl1_b",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "disp_accident_d",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_works_d",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_rain_d",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_snow_d",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_fog_d",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_slip_d",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_closed_d",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_safe_d",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_graphic_d",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "fl1_d",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "fl2_d",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "disp_accident_j",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_works_j",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_rain_j",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_snow_j",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_fog_j",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_slip_j",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_closed_j",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_safe_j",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_graphic_j",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "fl1_j",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "fl2_j",
+     "color": "#ff4332",
+     "lit": "#ff2a18"
+    },
+    {
+     "key": "disp_accident_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_works_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_rain_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_snow_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_fog_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_slip_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_closed_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_safe_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_graphic_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "fl1_k",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "fl2_k",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "disp_accident_c",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_works_c",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_rain_c",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_snow_c",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_fog_c",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_slip_c",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_closed_c",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_safe_c",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_graphic_c",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "fl1_c",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "fl2_c",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
     }
    ],
-   "tris": 5488,
+   "tris": 8704,
    "size": [
     15.04,
-    7.76,
+    7.86,
     0.72
    ],
    "dir": "expressway/info/jp-exp-vms",
    "file": "expressway/info/jp-exp-vms/model.glb",
    "thumb": "expressway/info/jp-exp-vms/thumb.jpg",
-   "bytes": 303268
+   "bytes": 1189228
   },
   {
    "id": "jp-exp-light-pole",
@@ -559,7 +909,7 @@
    "dir": "expressway/lighting/jp-exp-light-pole",
    "file": "expressway/lighting/jp-exp-light-pole/model.glb",
    "thumb": "expressway/lighting/jp-exp-light-pole/thumb.jpg",
-   "bytes": 59800
+   "bytes": 57720
   },
   {
    "id": "jp-exp-kilopost",
@@ -622,7 +972,7 @@
    "dir": "expressway/sign/jp-exp-kilopost",
    "file": "expressway/sign/jp-exp-kilopost/model.glb",
    "thumb": "expressway/sign/jp-exp-kilopost/thumb.jpg",
-   "bytes": 129004
+   "bytes": 120708
   },
   {
    "id": "jp-exp-sign-gantry",
@@ -749,7 +1099,7 @@
    "dir": "expressway/sign/jp-exp-sign-gantry",
    "file": "expressway/sign/jp-exp-sign-gantry/model.glb",
    "thumb": "expressway/sign/jp-exp-sign-gantry/thumb.jpg",
-   "bytes": 2919580
+   "bytes": 2343964
   },
   {
    "id": "jp-exp-sign-route",
@@ -813,7 +1163,7 @@
    "dir": "expressway/sign/jp-exp-sign-route",
    "file": "expressway/sign/jp-exp-sign-route/model.glb",
    "thumb": "expressway/sign/jp-exp-sign-route/thumb.jpg",
-   "bytes": 203060
+   "bytes": 190480
   },
   {
    "id": "jp-toll-lane",
@@ -1077,7 +1427,7 @@
    "dir": "expressway/tollgate/jp-toll-lane",
    "file": "expressway/tollgate/jp-toll-lane/model.glb",
    "thumb": "expressway/tollgate/jp-toll-lane/thumb.jpg",
-   "bytes": 470936
+   "bytes": 421176
   },
   {
    "id": "jp-barrier-guardpipe",
@@ -1144,7 +1494,7 @@
    "dir": "road/barrier/jp-barrier-guardpipe",
    "file": "road/barrier/jp-barrier-guardpipe/model.glb",
    "thumb": "road/barrier/jp-barrier-guardpipe/thumb.jpg",
-   "bytes": 73748
+   "bytes": 73692
   },
   {
    "id": "jp-barrier-guardrail",
@@ -1192,7 +1542,7 @@
    "dir": "road/barrier/jp-barrier-guardrail",
    "file": "road/barrier/jp-barrier-guardrail/model.glb",
    "thumb": "road/barrier/jp-barrier-guardrail/thumb.jpg",
-   "bytes": 62948
+   "bytes": 61468
   },
   {
    "id": "jp-const-barricade",
@@ -1249,7 +1599,7 @@
    "dir": "road/construction/jp-const-barricade",
    "file": "road/construction/jp-const-barricade/model.glb",
    "thumb": "road/construction/jp-const-barricade/thumb.jpg",
-   "bytes": 73060
+   "bytes": 71164
   },
   {
    "id": "jp-const-cone",
@@ -1312,7 +1662,7 @@
    "dir": "road/construction/jp-const-cone",
    "file": "road/construction/jp-const-cone/model.glb",
    "thumb": "road/construction/jp-const-cone/thumb.jpg",
-   "bytes": 50160
+   "bytes": 49624
   },
   {
    "id": "jp-facility-bollard",
@@ -1375,7 +1725,7 @@
    "dir": "road/facility/jp-facility-bollard",
    "file": "road/facility/jp-facility-bollard/model.glb",
    "thumb": "road/facility/jp-facility-bollard/thumb.jpg",
-   "bytes": 82456
+   "bytes": 81736
   },
   {
    "id": "jp-facility-curve-mirror",
@@ -1423,7 +1773,7 @@
    "dir": "road/facility/jp-facility-curve-mirror",
    "file": "road/facility/jp-facility-curve-mirror/model.glb",
    "thumb": "road/facility/jp-facility-curve-mirror/thumb.jpg",
-   "bytes": 259484
+   "bytes": 259280
   },
   {
    "id": "jp-facility-delineator",
@@ -1486,7 +1836,7 @@
    "dir": "road/facility/jp-facility-delineator",
    "file": "road/facility/jp-facility-delineator/model.glb",
    "thumb": "road/facility/jp-facility-delineator/thumb.jpg",
-   "bytes": 52700
+   "bytes": 51836
   },
   {
    "id": "jp-facility-rubber-pole",
@@ -1538,7 +1888,7 @@
    "dir": "road/facility/jp-facility-rubber-pole",
    "file": "road/facility/jp-facility-rubber-pole/model.glb",
    "thumb": "road/facility/jp-facility-rubber-pole/thumb.jpg",
-   "bytes": 40660
+   "bytes": 40516
   },
   {
    "id": "jp-light-road",
@@ -1616,7 +1966,7 @@
    "dir": "road/lighting/jp-light-road",
    "file": "road/lighting/jp-light-road/model.glb",
    "thumb": "road/lighting/jp-light-road/thumb.jpg",
-   "bytes": 153680
+   "bytes": 150028
   },
   {
    "id": "jp-light-sidewalk",
@@ -1699,7 +2049,7 @@
    "dir": "road/lighting/jp-light-sidewalk",
    "file": "road/lighting/jp-light-sidewalk/model.glb",
    "thumb": "road/lighting/jp-light-sidewalk/thumb.jpg",
-   "bytes": 94412
+   "bytes": 94140
   },
   {
    "id": "jp-sign-guide",
@@ -1747,7 +2097,7 @@
    "dir": "road/sign/jp-sign-guide",
    "file": "road/sign/jp-sign-guide/model.glb",
    "thumb": "road/sign/jp-sign-guide/thumb.jpg",
-   "bytes": 215284
+   "bytes": 201088
   },
   {
    "id": "jp-sign-speed",
@@ -1818,7 +2168,7 @@
    "dir": "road/sign/jp-sign-speed",
    "file": "road/sign/jp-sign-speed/model.glb",
    "thumb": "road/sign/jp-sign-speed/thumb.jpg",
-   "bytes": 344428
+   "bytes": 329136
   },
   {
    "id": "jp-sign-stop",
@@ -1850,7 +2200,7 @@
    "dir": "road/sign/jp-sign-stop",
    "file": "road/sign/jp-sign-stop/model.glb",
    "thumb": "road/sign/jp-sign-stop/thumb.jpg",
-   "bytes": 157692
+   "bytes": 149576
   },
   {
    "id": "jp-sign-warning",
@@ -1902,7 +2252,7 @@
    "dir": "road/sign/jp-sign-warning",
    "file": "road/sign/jp-sign-warning/model.glb",
    "thumb": "road/sign/jp-sign-warning/thumb.jpg",
-   "bytes": 181684
+   "bytes": 172752
   },
   {
    "id": "jp-surface-curb",
@@ -1963,13 +2313,13 @@
    "tris": 2624,
    "size": [
     4,
-    0.25,
+    0.26,
     0.8
    ],
    "dir": "road/surface/jp-surface-curb",
    "file": "road/surface/jp-surface-curb/model.glb",
    "thumb": "road/surface/jp-surface-curb/thumb.jpg",
-   "bytes": 50724
+   "bytes": 40688
   },
   {
    "id": "jp-surface-grating",
@@ -2017,7 +2367,7 @@
    "dir": "road/surface/jp-surface-grating",
    "file": "road/surface/jp-surface-grating/model.glb",
    "thumb": "road/surface/jp-surface-grating/thumb.jpg",
-   "bytes": 22120
+   "bytes": 22040
   },
   {
    "id": "jp-surface-manhole",
@@ -2065,7 +2415,7 @@
    "dir": "road/surface/jp-surface-manhole",
    "file": "road/surface/jp-surface-manhole/model.glb",
    "thumb": "road/surface/jp-surface-manhole/thumb.jpg",
-   "bytes": 110684
+   "bytes": 110628
   },
   {
    "id": "jp-surface-tenji",
@@ -2128,7 +2478,7 @@
    "dir": "road/surface/jp-surface-tenji",
    "file": "road/surface/jp-surface-tenji/model.glb",
    "thumb": "road/surface/jp-surface-tenji/thumb.jpg",
-   "bytes": 71928
+   "bytes": 71504
   },
   {
    "id": "jp-roadway-arterial",
@@ -2191,7 +2541,7 @@
    "dir": "roadway/arterial/jp-roadway-arterial",
    "file": "roadway/arterial/jp-roadway-arterial/model.glb",
    "thumb": "roadway/arterial/jp-roadway-arterial/thumb.jpg",
-   "bytes": 134352
+   "bytes": 133848
   },
   {
    "id": "jp-roadway-expressway",
@@ -2266,7 +2616,7 @@
    "dir": "roadway/expressway/jp-roadway-expressway",
    "file": "roadway/expressway/jp-roadway-expressway/model.glb",
    "thumb": "roadway/expressway/jp-roadway-expressway/thumb.jpg",
-   "bytes": 129556
+   "bytes": 130060
   },
   {
    "id": "jp-roadway-national",
@@ -2337,7 +2687,7 @@
    "dir": "roadway/national/jp-roadway-national",
    "file": "roadway/national/jp-roadway-national/model.glb",
    "thumb": "roadway/national/jp-roadway-national/thumb.jpg",
-   "bytes": 118192
+   "bytes": 118728
   },
   {
    "id": "jp-roadway-regional",
@@ -2404,7 +2754,7 @@
    "dir": "roadway/regional/jp-roadway-regional",
    "file": "roadway/regional/jp-roadway-regional/model.glb",
    "thumb": "roadway/regional/jp-roadway-regional/thumb.jpg",
-   "bytes": 110172
+   "bytes": 110804
   },
   {
    "id": "jp-combo-arm-ped",
@@ -2649,7 +2999,7 @@
    "dir": "signal/combined/jp-combo-arm-ped",
    "file": "signal/combined/jp-combo-arm-ped/model.glb",
    "thumb": "signal/combined/jp-combo-arm-ped/thumb.jpg",
-   "bytes": 1275716
+   "bytes": 1275404
   },
   {
    "id": "jp-combo-vert-ped",
@@ -2894,7 +3244,7 @@
    "dir": "signal/combined/jp-combo-vert-ped",
    "file": "signal/combined/jp-combo-vert-ped/model.glb",
    "thumb": "signal/combined/jp-combo-vert-ped/thumb.jpg",
-   "bytes": 1134352
+   "bytes": 1134032
   },
   {
    "id": "jp-crossing-alarm",
@@ -3148,7 +3498,7 @@
    "dir": "signal/crossing/jp-crossing-alarm",
    "file": "signal/crossing/jp-crossing-alarm/model.glb",
    "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
-   "bytes": 829012
+   "bytes": 828716
   },
   {
    "id": "jp-crossing-gate",
@@ -3235,7 +3585,7 @@
    "dir": "signal/crossing/jp-crossing-gate",
    "file": "signal/crossing/jp-crossing-gate/model.glb",
    "thumb": "signal/crossing/jp-crossing-gate/thumb.jpg",
-   "bytes": 132140
+   "bytes": 131820
   },
   {
    "id": "jp-bike-ped",
@@ -3361,7 +3711,7 @@
    "dir": "signal/pedestrian/jp-bike-ped",
    "file": "signal/pedestrian/jp-bike-ped/model.glb",
    "thumb": "signal/pedestrian/jp-bike-ped/thumb.jpg",
-   "bytes": 368632
+   "bytes": 368320
   },
   {
    "id": "jp-ped-button",
@@ -3434,7 +3784,7 @@
    "dir": "signal/pedestrian/jp-ped-button",
    "file": "signal/pedestrian/jp-ped-button/model.glb",
    "thumb": "signal/pedestrian/jp-ped-button/thumb.jpg",
-   "bytes": 225124
+   "bytes": 224804
   },
   {
    "id": "jp-ped-count",
@@ -3764,7 +4114,7 @@
    "dir": "signal/pedestrian/jp-ped-count",
    "file": "signal/pedestrian/jp-ped-count/model.glb",
    "thumb": "signal/pedestrian/jp-ped-count/thumb.jpg",
-   "bytes": 459316
+   "bytes": 459004
   },
   {
    "id": "jp-ped-led",
@@ -3925,7 +4275,7 @@
    "dir": "signal/pedestrian/jp-ped-led",
    "file": "signal/pedestrian/jp-ped-led/model.glb",
    "thumb": "signal/pedestrian/jp-ped-led/thumb.jpg",
-   "bytes": 447604
+   "bytes": 447292
   },
   {
    "id": "jp-rail-3",
@@ -4062,7 +4412,7 @@
    "dir": "signal/rail/jp-rail-3",
    "file": "signal/rail/jp-rail-3/model.glb",
    "thumb": "signal/rail/jp-rail-3/thumb.jpg",
-   "bytes": 922180
+   "bytes": 921864
   },
   {
    "id": "jp-rail-4",
@@ -4215,7 +4565,7 @@
    "dir": "signal/rail/jp-rail-4",
    "file": "signal/rail/jp-rail-4/model.glb",
    "thumb": "signal/rail/jp-rail-4/thumb.jpg",
-   "bytes": 924840
+   "bytes": 924520
   },
   {
    "id": "jp-rail-5",
@@ -4386,7 +4736,7 @@
    "dir": "signal/rail/jp-rail-5",
    "file": "signal/rail/jp-rail-5/model.glb",
    "thumb": "signal/rail/jp-rail-5/thumb.jpg",
-   "bytes": 926580
+   "bytes": 926252
   },
   {
    "id": "jp-rail-relay",
@@ -4519,7 +4869,7 @@
    "dir": "signal/rail/jp-rail-relay",
    "file": "signal/rail/jp-rail-relay/model.glb",
    "thumb": "signal/rail/jp-rail-relay/thumb.jpg",
-   "bytes": 721424
+   "bytes": 721104
   },
   {
    "id": "jp-tram",
@@ -4659,7 +5009,7 @@
    "dir": "signal/tram/jp-tram",
    "file": "signal/tram/jp-tram/model.glb",
    "thumb": "signal/tram/jp-tram/thumb.jpg",
-   "bytes": 417064
+   "bytes": 416744
   },
   {
    "id": "jp-tram-symbol",
@@ -4790,7 +5140,7 @@
    "dir": "signal/tram/jp-tram-symbol",
    "file": "signal/tram/jp-tram-symbol/model.glb",
    "thumb": "signal/tram/jp-tram-symbol/thumb.jpg",
-   "bytes": 319256
+   "bytes": 318944
   },
   {
    "id": "jp-tram-with-vehicle",
@@ -4997,7 +5347,7 @@
    "dir": "signal/tram/jp-tram-with-vehicle",
    "file": "signal/tram/jp-tram-with-vehicle/model.glb",
    "thumb": "signal/tram/jp-tram-with-vehicle/thumb.jpg",
-   "bytes": 1209352
+   "bytes": 1209032
   },
   {
    "id": "jp-veh-arrow",
@@ -5219,7 +5569,7 @@
    "dir": "signal/vehicle/jp-veh-arrow",
    "file": "signal/vehicle/jp-veh-arrow/model.glb",
    "thumb": "signal/vehicle/jp-veh-arrow/thumb.jpg",
-   "bytes": 1114744
+   "bytes": 1114424
   },
   {
    "id": "jp-veh-center-pole",
@@ -5408,7 +5758,7 @@
    "dir": "signal/vehicle/jp-veh-center-pole",
    "file": "signal/vehicle/jp-veh-center-pole/model.glb",
    "thumb": "signal/vehicle/jp-veh-center-pole/thumb.jpg",
-   "bytes": 854896
+   "bytes": 854584
   },
   {
    "id": "jp-veh-flash",
@@ -5537,7 +5887,7 @@
    "dir": "signal/vehicle/jp-veh-flash",
    "file": "signal/vehicle/jp-veh-flash/model.glb",
    "thumb": "signal/vehicle/jp-veh-flash/thumb.jpg",
-   "bytes": 794936
+   "bytes": 794624
   },
   {
    "id": "jp-veh-h250-side",
@@ -5697,7 +6047,7 @@
    "dir": "signal/vehicle/jp-veh-h250-side",
    "file": "signal/vehicle/jp-veh-h250-side/model.glb",
    "thumb": "signal/vehicle/jp-veh-h250-side/thumb.jpg",
-   "bytes": 879260
+   "bytes": 878940
   },
   {
    "id": "jp-veh-h300-arm",
@@ -5872,7 +6222,7 @@
    "dir": "signal/vehicle/jp-veh-h300-arm",
    "file": "signal/vehicle/jp-veh-h300-arm/model.glb",
    "thumb": "signal/vehicle/jp-veh-h300-arm/thumb.jpg",
-   "bytes": 986624
+   "bytes": 986304
   },
   {
    "id": "jp-veh-hoodless",
@@ -6031,7 +6381,7 @@
    "dir": "signal/vehicle/jp-veh-hoodless",
    "file": "signal/vehicle/jp-veh-hoodless/model.glb",
    "thumb": "signal/vehicle/jp-veh-hoodless/thumb.jpg",
-   "bytes": 716724
+   "bytes": 716412
   },
   {
    "id": "jp-veh-v-snow",
@@ -6206,7 +6556,7 @@
    "dir": "signal/vehicle/jp-veh-v-snow",
    "file": "signal/vehicle/jp-veh-v-snow/model.glb",
    "thumb": "signal/vehicle/jp-veh-v-snow/thumb.jpg",
-   "bytes": 888072
+   "bytes": 887760
   },
   {
    "id": "jp-veh-v250",
@@ -6365,7 +6715,7 @@
    "dir": "signal/vehicle/jp-veh-v250",
    "file": "signal/vehicle/jp-veh-v250/model.glb",
    "thumb": "signal/vehicle/jp-veh-v250/thumb.jpg",
-   "bytes": 865536
+   "bytes": 865224
   },
   {
    "id": "jp-track-ballast",
@@ -6381,13 +6731,13 @@
    "tris": 412720,
    "size": [
     4.8,
-    0.58,
-    12.23
+    0.59,
+    12.22
    ],
    "dir": "track/railway/jp-track-ballast",
    "file": "track/railway/jp-track-ballast/model.glb",
    "thumb": "track/railway/jp-track-ballast/thumb.jpg",
-   "bytes": 1652616
+   "bytes": 1652224
   },
   {
    "id": "jp-track-slab",
@@ -6409,7 +6759,7 @@
    "dir": "track/railway/jp-track-slab",
    "file": "track/railway/jp-track-slab/model.glb",
    "thumb": "track/railway/jp-track-slab/thumb.jpg",
-   "bytes": 161064
+   "bytes": 161424
   },
   {
    "id": "jp-track-tram",
@@ -6431,7 +6781,7 @@
    "dir": "track/tram/jp-track-tram",
    "file": "track/tram/jp-track-tram/model.glb",
    "thumb": "track/tram/jp-track-tram/thumb.jpg",
-   "bytes": 304232
+   "bytes": 304328
   }
  ]
 }

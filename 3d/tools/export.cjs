@@ -14,7 +14,7 @@ const ROOT=path.resolve(__dirname,'../..'),NM=path.join(ROOT,'node_modules/three
   // 文字の干渉の検出: 画像を作る fillText の外接枠を記録し、同じ画像の中で重なっているものを書き出し時に報告する(矢印や図形との重なりは目視)
   await p.addInitScript(()=>{const F=CanvasRenderingContext2D.prototype.fillText;window.__tb=new Map();
     CanvasRenderingContext2D.prototype.fillText=function(t,x,y,mw){try{const m=this.measureText(t);let w=m.width;if(mw&&w>mw)w=mw;const px=parseFloat((this.font.match(/(\d+(?:\.\d+)?)px/)||[0,12])[1]);const asc=m.actualBoundingBoxAscent||px*.8,dsc=m.actualBoundingBoxDescent||px*.2;
-      const al=this.textAlign;let x0=al==='center'?x-w/2:(al==='right'||al==='end')?x-w:x;const y0=this.textBaseline==='middle'?y-(asc+dsc)/2:y-asc;let a=window.__tb.get(this.canvas);if(!a){a=[];window.__tb.set(this.canvas,a);}a.push({t,x:x0,y:y0,w,h:asc+dsc});}catch(e){}return F.call(this,t,x,y,mw);};});
+      const al=this.textAlign;let x0=al==='center'?x-w/2:(al==='right'||al==='end')?x-w:x;const y0=this.textBaseline==='middle'?y-(asc+dsc)/2:y-asc;let a=window.__tb.get(this.canvas);if(!a){a=[];window.__tb.set(this.canvas,a);}const T=this.getTransform();a.push({t,x:x0*T.a+T.e,y:y0*T.d+T.f,w:w*T.a,h:(asc+dsc)*T.d});}catch(e){}return F.call(this,t,x,y,mw);};});
   await p.goto('https://local.test/');await p.waitForFunction('window.__ready',{timeout:60000});
   const all=await p.evaluate('listIds()');const want=process.argv.slice(2);const ids=want.length?all.filter(i=>want.includes(i)):all;
   const idxPath=path.join(OUT,'index.json');let index=fs.existsSync(idxPath)?JSON.parse(fs.readFileSync(idxPath)):{categories:{},models:[]};

@@ -21,7 +21,8 @@ export const RM={
   reflRed:new THREE.MeshStandardMaterial({color:0xd12a20,roughness:.3,metalness:.1,emissive:0x400a05,emissiveIntensity:.6}),
 };
 /** 反射シートの貼られた標識面 */
-export const faceMat=map=>new THREE.MeshPhysicalMaterial({map,roughness:.34,clearcoat:.45,clearcoatRoughness:.22});
+// 反射シートの面。つやを強くしすぎると、空の映り込みで白い膜がかかり、白と緑の差が弱く見える
+export const faceMat=map=>new THREE.MeshPhysicalMaterial({map,roughness:.55,clearcoat:.12,clearcoatRoughness:.4});
 /** 洗い出し・コンクリート系の材質 */
 export function concreteMat(base='#b9b8b2',n=26000,rep=[1,1]){const c=noiseCanvas(512,base,n,235);const t=tex(c,{rep});t.userData.mimeType='image/jpeg';return new THREE.MeshStandardMaterial({map:t,roughness:.92});}
 

@@ -10,7 +10,7 @@ const ROOT=path.resolve(__dirname,'../..');
     const opts=(e.options||[]).filter(o=>o.type!=='color'&&o.choices);
     const jobs=[[null,null]];for(const o of opts)for(const c of o.choices)if(c.id!==o.default)jobs.push([o.id,c.id]);
     await p.evaluate(async id=>{await __api.select(id,true);},e.id);await p.waitForTimeout(1200);
-    for(const [oid,cid] of jobs){await p.evaluate(([id,o,c,st])=>{__api.openModel&&0;if(o)__api.sig.setOption(o,c);if(st){__api.setMode('manual');__api.sig.setState(st,true);}__api.flyTo('all',true);},[e.id,oid,cid,e.cycle?e.cycle[0].s:(e.states&&e.states[0]&&e.states[0].id)]);
+    for(const [oid,cid] of jobs){await p.evaluate(([id,o,c,st])=>{__api.openModel&&0;if(o){__api.sig.setOption(o,c);}if(st){__api.setMode('manual');__api.sig.setState(st,true);}__api.refreshTrack&&__api.refreshTrack();__api.flyTo('all',true);},[e.id,oid,cid,e.cycle?e.cycle[0].s:(e.states&&e.states[0]&&e.states[0].id)]);
       await p.waitForTimeout(700);const f=`${String(++n).padStart(4,'0')}__${e.id}__${oid||'default'}-${cid||''}.png`;await p.screenshot({path:path.join(out,f)});
       if(oid)await p.evaluate(([o,d])=>__api.sig.setOption(o,d),[oid,opts.find(x=>x.id===oid).default]);}
     console.log('audit',e.id,jobs.length);}

@@ -115,7 +115,7 @@ function buildStates(){const box=$('states');box.innerHTML='';const has=entry.st
 function buildOptions(){const box=$('opts');box.innerHTML='';const ops=entry.options||[];$('optSec').style.display=ops.length?'':'none';
   for(const op of ops){const w=document.createElement('div');w.className='opt';w.innerHTML=`<span>${op.label}</span>`;const seg=document.createElement('div');seg.className='seg sm';
     for(const c of op.choices){const b=document.createElement('button');b.textContent=c.label;b.dataset.c=c.id;if(c.id===sig.options[op.id])b.classList.add('on');
-      b.addEventListener('click',()=>{sig.setOption(op.id,c.id);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));applyDisplay();});seg.appendChild(b);}
+      b.addEventListener('click',()=>{sig.setOption(op.id,c.id);seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));applyDisplay();if(isRoadway(entry))buildRoad();else if(isTrack(entry))buildTrack();});seg.appendChild(b);}
     w.appendChild(seg);box.appendChild(w);}}
 function setMode(m){if(!entry.states||!entry.states.length)return;if(m==='night'&&!entry.night)return;mode=m;if(m==='night')sig.setState(entry.night);uiSig='';}
 
@@ -197,8 +197,8 @@ function label(text){const c=document.createElement('canvas');c.width=256;c.heig
   const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,depthTest:false,transparent:true}));s.renderOrder=10;return s;}
 function buildDims(){clearDims();const b=new THREE.Box3().setFromObject(sig.root),size=b.getSize(new THREE.Vector3()),center=b.getCenter(new THREE.Vector3());
   dimGroup=new THREE.Group();const h=new THREE.Box3Helper(b,0x0b4f9e);h.material.depthTest=false;h.renderOrder=9;dimGroup.add(h);
-  const u=Math.max(size.x,size.y,size.z)*.09;const mk=(t,x,y,z)=>{const s=label(t);s.scale.set(u*4,u,1);s.position.set(x,y,z);dimGroup.add(s);};
-  mk(`H ${size.y.toFixed(2)} m`,b.max.x+u*1.5,center.y,b.max.z);mk(`W ${size.x.toFixed(2)} m`,center.x,b.min.y-u*.2,b.max.z+u*.4);mk(`D ${size.z.toFixed(2)} m`,b.max.x+u*1.5,b.min.y+u*.3,center.z);scene.add(dimGroup);}
+  const u=Math.max(size.x,size.y,size.z)*.065;const mk=(t,x,y,z)=>{const s=label(t);s.scale.set(u*4,u,1);s.position.set(x,y,z);dimGroup.add(s);};
+  mk(`H ${size.y.toFixed(2)} m`,b.max.x+u*2.4,center.y+size.y*.18,b.max.z);mk(`W ${size.x.toFixed(2)} m`,center.x,b.min.y-u*.9,b.max.z+u*.4);mk(`D ${size.z.toFixed(2)} m`,b.max.x+u*2.4,b.min.y+size.y*.06-u*.2,center.z+size.z*.15);scene.add(dimGroup);}
 function clearDims(){if(dimGroup){scene.remove(dimGroup);dimGroup=null;}}
 
 /* ---------- controls wiring ---------- */

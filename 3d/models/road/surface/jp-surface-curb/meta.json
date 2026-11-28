@@ -57,11 +57,11 @@
  "tris": 2624,
  "size": [
   4,
-  0.25,
+  0.26,
   0.8
  ],
  "dir": "road/surface/jp-surface-curb",
  "file": "road/surface/jp-surface-curb/model.glb",
  "thumb": "road/surface/jp-surface-curb/thumb.jpg",
- "bytes": 50724
+ "bytes": 40688
 }

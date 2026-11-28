@@ -15,5 +15,5 @@ export default {id:'jp-surface-curb',name:'縁石(歩車道境界ブロック)',
       add(o,new THREE.BoxGeometry(L,.02,W+.04),joint,0,.001,0);}
     // L型側溝: 縁石の車道側(-Z)に敷く
     const gu=opt(root,'gutter','on');for(let i=0;i<L/Bk;i++){const s=new THREE.Shape();s.moveTo(0,0);s.lineTo(.3,0);s.lineTo(.3,.05);s.lineTo(.06,.05);s.lineTo(.04,.1);s.lineTo(0,.1);s.closePath();
-      const g=new THREE.ExtrudeGeometry(s,{depth:Bk-.012,bevelEnabled:false});g.translate(0,0,-(Bk-.012)/2);g.rotateY(Math.PI/2);const m=add(gu,g,cm,-L/2+Bk/2+i*Bk,-.1,-W/2-.3);m.castShadow=true;m.receiveShadow=true;}
+      const g=new THREE.ExtrudeGeometry(s,{depth:Bk-.012,bevelEnabled:false});g.translate(0,0,-(Bk-.012)/2);g.rotateY(Math.PI/2);const m=add(gu,g,cm,-L/2+Bk/2+i*Bk,-.103,-W/2-.3);m.castShadow=true;m.receiveShadow=true;}
     return {root,lamps:{}};}};
