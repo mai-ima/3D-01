@@ -68,10 +68,10 @@ export function createEnvironment({scene,renderer,bloom,sun}){
   /* --- grounds --- */
   const G={};
   G.studio=new THREE.Group();{const rc=cv(256,256),rg=rc.getContext('2d'),gr2=rg.createRadialGradient(128,128,20,128,128,128);gr2.addColorStop(0,'#fff');gr2.addColorStop(.45,'#fff');gr2.addColorStop(1,'#000');rg.fillStyle=gr2;rg.fillRect(0,0,256,256);
-    const am=new THREE.CanvasTexture(rc);const f=mesh(G.studio,new THREE.CircleGeometry(16,96),new THREE.MeshStandardMaterial({color:0x8a9097,roughness:.8,transparent:true,alphaMap:am,depthWrite:false}),0,0,0);f.rotation.x=-Math.PI/2;f.renderOrder=-1;}
+    const am=new THREE.CanvasTexture(rc);const f=mesh(G.studio,new THREE.CircleGeometry(16,96),new THREE.MeshStandardMaterial({color:0x8a9097,roughness:.8,transparent:true,alphaMap:am,depthWrite:false}),0,-.004,0);f.rotation.x=-Math.PI/2;f.renderOrder=-1;}
   // 道路: 歩道(縁石・点字ブロック)+車道+横断歩道+車線。cwx=横断歩道の位置
   function makeRoad(cwx){const g=new THREE.Group();
-    mesh(g,new THREE.BoxGeometry(120,.15,10),walkMat,0,-.075,-2.7);mesh(g,new THREE.BoxGeometry(120,.17,.26),concrete,0,-.065,2.33);
+    mesh(g,new THREE.BoxGeometry(120,.15,10),walkMat,0,-.079,-2.7);mesh(g,new THREE.BoxGeometry(120,.17,.26),concrete,0,-.065,2.33);
     plane(g,120,.3,tenMat,0,.004,1.9);const rd=plane(g,120,60,roadMat,0,-.15,32.4);G.roadMat=roadMat;
     const mk=new THREE.Group();g.add(mk);g.userData.mk=mk;   // 軌道を敷くときは隠す路面標示
     for(let i=0;i<10;i++)plane(mk,3.6,.45,paint,cwx,-.146,3.4+i*.9);          // 横断歩道(車道を横切る向き)

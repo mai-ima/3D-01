@@ -48,7 +48,7 @@ export default {id:'jp-toll-lane',name:'料金所レーン(ETC・一般)',
     /* 表示板(レーン種別)。背面から光る */
     const bd=new THREE.BoxGeometry(1.72,.64,.1);
     for(const k of['etc','etcPlain','mix','gen']){const o=opt(root,'lane',k);add(o,roundBox(1.82,.74,.12,.03,.008),EXM.canopyDark,0,4.5,.74);
-      const p=lightPanel(L,'b_'+k,o,new THREE.PlaneGeometry(1.7,.62),'white',0,4.5,.8,laneBoardTex(k));}
+      const p=lightPanel(L,'b_'+k,o,new THREE.PlaneGeometry(1.7,.62),'white',0,4.5,.808,laneBoardTex(k));}
     /* 通行信号(紫・緑・赤の3灯) */
     const sg=add(root,roundBox(1.0,.4,.2,.04,.008),EXM.canopyDark,0,3.55,.74);
     const lampG=new THREE.CircleGeometry(.14,32);

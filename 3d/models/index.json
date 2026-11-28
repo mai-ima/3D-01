@@ -103,7 +103,7 @@
    "dir": "expressway/barrier/jp-exp-barrier-concrete",
    "file": "expressway/barrier/jp-exp-barrier-concrete/model.glb",
    "thumb": "expressway/barrier/jp-exp-barrier-concrete/thumb.jpg",
-   "bytes": 61144
+   "bytes": 61184
   },
   {
    "id": "jp-exp-cushion-drum",
@@ -155,7 +155,7 @@
    "dir": "expressway/barrier/jp-exp-cushion-drum",
    "file": "expressway/barrier/jp-exp-cushion-drum/model.glb",
    "thumb": "expressway/barrier/jp-exp-cushion-drum/thumb.jpg",
-   "bytes": 37744
+   "bytes": 37832
   },
   {
    "id": "jp-exp-noise-wall",
@@ -274,7 +274,7 @@
    "dir": "expressway/barrier/jp-exp-wire-rope",
    "file": "expressway/barrier/jp-exp-wire-rope/model.glb",
    "thumb": "expressway/barrier/jp-exp-wire-rope/thumb.jpg",
-   "bytes": 35104
+   "bytes": 35216
   },
   {
    "id": "jp-exp-vms",
@@ -475,7 +475,7 @@
    "dir": "expressway/info/jp-exp-vms",
    "file": "expressway/info/jp-exp-vms/model.glb",
    "thumb": "expressway/info/jp-exp-vms/thumb.jpg",
-   "bytes": 263000
+   "bytes": 303268
   },
   {
    "id": "jp-exp-light-pole",
@@ -559,7 +559,7 @@
    "dir": "expressway/lighting/jp-exp-light-pole",
    "file": "expressway/lighting/jp-exp-light-pole/model.glb",
    "thumb": "expressway/lighting/jp-exp-light-pole/thumb.jpg",
-   "bytes": 57720
+   "bytes": 59800
   },
   {
    "id": "jp-exp-kilopost",
@@ -622,7 +622,7 @@
    "dir": "expressway/sign/jp-exp-kilopost",
    "file": "expressway/sign/jp-exp-kilopost/model.glb",
    "thumb": "expressway/sign/jp-exp-kilopost/thumb.jpg",
-   "bytes": 120708
+   "bytes": 129004
   },
   {
    "id": "jp-exp-sign-gantry",
@@ -692,6 +692,38 @@
        "label": "SA・PAの予告(施設の記号つき)"
       },
       {
+       "id": "exit112",
+       "label": "出口(方面+出口の2段・112型)"
+      },
+      {
+       "id": "pa2",
+       "label": "IC・PAの予告(3段・施設記号)"
+      },
+      {
+       "id": "jct2",
+       "label": "JCT予告(2枚並び・中央にJCT名)"
+      },
+      {
+       "id": "toll2",
+       "label": "料金所予告(白い見出し+2分割)"
+      },
+      {
+       "id": "choice",
+       "label": "ルート選択案内(所要時間つき)"
+      },
+      {
+       "id": "shutoNew",
+       "label": "都市高速の入口(白い見出し+入口番号)"
+      },
+      {
+       "id": "hanshin",
+       "label": "阪神高速の出口(路線-ランプ番号)"
+      },
+      {
+       "id": "nagoya",
+       "label": "名古屋高速の出口(R番号+青い目的地板)"
+      },
+      {
        "id": "toll",
        "label": "料金所予告"
       },
@@ -708,7 +740,7 @@
     "sign"
    ],
    "lamps": [],
-   "tris": 25530,
+   "tris": 42282,
    "size": [
     13.6,
     7.7,
@@ -717,7 +749,7 @@
    "dir": "expressway/sign/jp-exp-sign-gantry",
    "file": "expressway/sign/jp-exp-sign-gantry/model.glb",
    "thumb": "expressway/sign/jp-exp-sign-gantry/thumb.jpg",
-   "bytes": 1574244
+   "bytes": 2919580
   },
   {
    "id": "jp-exp-sign-route",
@@ -781,7 +813,7 @@
    "dir": "expressway/sign/jp-exp-sign-route",
    "file": "expressway/sign/jp-exp-sign-route/model.glb",
    "thumb": "expressway/sign/jp-exp-sign-route/thumb.jpg",
-   "bytes": 190484
+   "bytes": 203060
   },
   {
    "id": "jp-toll-lane",
@@ -1045,7 +1077,7 @@
    "dir": "expressway/tollgate/jp-toll-lane",
    "file": "expressway/tollgate/jp-toll-lane/model.glb",
    "thumb": "expressway/tollgate/jp-toll-lane/thumb.jpg",
-   "bytes": 421168
+   "bytes": 470936
   },
   {
    "id": "jp-barrier-guardpipe",
@@ -1112,7 +1144,7 @@
    "dir": "road/barrier/jp-barrier-guardpipe",
    "file": "road/barrier/jp-barrier-guardpipe/model.glb",
    "thumb": "road/barrier/jp-barrier-guardpipe/thumb.jpg",
-   "bytes": 73692
+   "bytes": 73748
   },
   {
    "id": "jp-barrier-guardrail",
@@ -1160,7 +1192,7 @@
    "dir": "road/barrier/jp-barrier-guardrail",
    "file": "road/barrier/jp-barrier-guardrail/model.glb",
    "thumb": "road/barrier/jp-barrier-guardrail/thumb.jpg",
-   "bytes": 61468
+   "bytes": 62948
   },
   {
    "id": "jp-const-barricade",
@@ -1217,7 +1249,7 @@
    "dir": "road/construction/jp-const-barricade",
    "file": "road/construction/jp-const-barricade/model.glb",
    "thumb": "road/construction/jp-const-barricade/thumb.jpg",
-   "bytes": 71164
+   "bytes": 73060
   },
   {
    "id": "jp-const-cone",
@@ -1280,7 +1312,7 @@
    "dir": "road/construction/jp-const-cone",
    "file": "road/construction/jp-const-cone/model.glb",
    "thumb": "road/construction/jp-const-cone/thumb.jpg",
-   "bytes": 49624
+   "bytes": 50160
   },
   {
    "id": "jp-facility-bollard",
@@ -1343,7 +1375,7 @@
    "dir": "road/facility/jp-facility-bollard",
    "file": "road/facility/jp-facility-bollard/model.glb",
    "thumb": "road/facility/jp-facility-bollard/thumb.jpg",
-   "bytes": 82312
+   "bytes": 82456
   },
   {
    "id": "jp-facility-curve-mirror",
@@ -1391,7 +1423,7 @@
    "dir": "road/facility/jp-facility-curve-mirror",
    "file": "road/facility/jp-facility-curve-mirror/model.glb",
    "thumb": "road/facility/jp-facility-curve-mirror/thumb.jpg",
-   "bytes": 259280
+   "bytes": 259484
   },
   {
    "id": "jp-facility-delineator",
@@ -1454,7 +1486,7 @@
    "dir": "road/facility/jp-facility-delineator",
    "file": "road/facility/jp-facility-delineator/model.glb",
    "thumb": "road/facility/jp-facility-delineator/thumb.jpg",
-   "bytes": 51836
+   "bytes": 52700
   },
   {
    "id": "jp-facility-rubber-pole",
@@ -1506,7 +1538,7 @@
    "dir": "road/facility/jp-facility-rubber-pole",
    "file": "road/facility/jp-facility-rubber-pole/model.glb",
    "thumb": "road/facility/jp-facility-rubber-pole/thumb.jpg",
-   "bytes": 40516
+   "bytes": 40660
   },
   {
    "id": "jp-light-road",
@@ -1584,7 +1616,7 @@
    "dir": "road/lighting/jp-light-road",
    "file": "road/lighting/jp-light-road/model.glb",
    "thumb": "road/lighting/jp-light-road/thumb.jpg",
-   "bytes": 150028
+   "bytes": 153680
   },
   {
    "id": "jp-light-sidewalk",
@@ -1667,7 +1699,7 @@
    "dir": "road/lighting/jp-light-sidewalk",
    "file": "road/lighting/jp-light-sidewalk/model.glb",
    "thumb": "road/lighting/jp-light-sidewalk/thumb.jpg",
-   "bytes": 94144
+   "bytes": 94412
   },
   {
    "id": "jp-sign-guide",
@@ -1715,7 +1747,7 @@
    "dir": "road/sign/jp-sign-guide",
    "file": "road/sign/jp-sign-guide/model.glb",
    "thumb": "road/sign/jp-sign-guide/thumb.jpg",
-   "bytes": 201088
+   "bytes": 215284
   },
   {
    "id": "jp-sign-speed",
@@ -1786,7 +1818,7 @@
    "dir": "road/sign/jp-sign-speed",
    "file": "road/sign/jp-sign-speed/model.glb",
    "thumb": "road/sign/jp-sign-speed/thumb.jpg",
-   "bytes": 329140
+   "bytes": 344428
   },
   {
    "id": "jp-sign-stop",
@@ -1818,7 +1850,7 @@
    "dir": "road/sign/jp-sign-stop",
    "file": "road/sign/jp-sign-stop/model.glb",
    "thumb": "road/sign/jp-sign-stop/thumb.jpg",
-   "bytes": 149576
+   "bytes": 157692
   },
   {
    "id": "jp-sign-warning",
@@ -1870,7 +1902,7 @@
    "dir": "road/sign/jp-sign-warning",
    "file": "road/sign/jp-sign-warning/model.glb",
    "thumb": "road/sign/jp-sign-warning/thumb.jpg",
-   "bytes": 172752
+   "bytes": 181684
   },
   {
    "id": "jp-surface-curb",
@@ -1937,7 +1969,7 @@
    "dir": "road/surface/jp-surface-curb",
    "file": "road/surface/jp-surface-curb/model.glb",
    "thumb": "road/surface/jp-surface-curb/thumb.jpg",
-   "bytes": 41064
+   "bytes": 50724
   },
   {
    "id": "jp-surface-grating",
@@ -1985,7 +2017,7 @@
    "dir": "road/surface/jp-surface-grating",
    "file": "road/surface/jp-surface-grating/model.glb",
    "thumb": "road/surface/jp-surface-grating/thumb.jpg",
-   "bytes": 22040
+   "bytes": 22120
   },
   {
    "id": "jp-surface-manhole",
@@ -2033,7 +2065,7 @@
    "dir": "road/surface/jp-surface-manhole",
    "file": "road/surface/jp-surface-manhole/model.glb",
    "thumb": "road/surface/jp-surface-manhole/thumb.jpg",
-   "bytes": 110624
+   "bytes": 110684
   },
   {
    "id": "jp-surface-tenji",
@@ -2096,7 +2128,7 @@
    "dir": "road/surface/jp-surface-tenji",
    "file": "road/surface/jp-surface-tenji/model.glb",
    "thumb": "road/surface/jp-surface-tenji/thumb.jpg",
-   "bytes": 71564
+   "bytes": 71928
   },
   {
    "id": "jp-roadway-arterial",
@@ -3116,7 +3148,7 @@
    "dir": "signal/crossing/jp-crossing-alarm",
    "file": "signal/crossing/jp-crossing-alarm/model.glb",
    "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
-   "bytes": 829008
+   "bytes": 829012
   },
   {
    "id": "jp-crossing-gate",

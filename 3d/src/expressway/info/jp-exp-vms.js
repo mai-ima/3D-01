@@ -13,7 +13,7 @@ function ledTex(cols,rows,lines){return canvasTex(cols*2,rows*2,(g,W,H)=>{g.fill
 function graphTex(cols,rows){return canvasTex(cols*2,rows*2,(g,W,H)=>{g.fillStyle='#000';g.fillRect(0,0,W,H);
   const d=(x,y,c)=>{g.fillStyle=c;g.beginPath();g.arc(x*2+1,y*2+1,.92,0,7);g.fill();};
   const o=document.createElement('canvas');o.width=cols;o.height=rows;const og=o.getContext('2d',{willReadFrequently:true});
-  const paint=(fn,col)=>{og.clearRect(0,0,cols,rows);fn(og);const dd=og.getImageData(0,0,cols,rows).data;for(let y=0;y<rows;y++)for(let x=0;x<cols;x++)if(dd[(y*cols+x)*4+3]>110)d(x,y,col);};
+  const paint=(fn,col)=>{og.globalCompositeOperation='source-over';og.clearRect(0,0,cols,rows);fn(og);const dd=og.getImageData(0,0,cols,rows).data;for(let y=0;y<rows;y++)for(let x=0;x<cols;x++)if(dd[(y*cols+x)*4+3]>110)d(x,y,col);};
   paint(c=>{c.fillStyle='#fff';c.beginPath();c.moveTo(60,8);c.lineTo(112,96);c.lineTo(8,96);c.closePath();c.fill();c.globalCompositeOperation='destination-out';c.fillRect(56,36,8,34);c.fillRect(56,76,8,10);},'#ff3b2f');
   paint(c=>{c.fillStyle='#fff';c.fillRect(150,50,cols*.55,10);c.beginPath();c.moveTo(150+cols*.55,30);c.lineTo(150+cols*.55+30,55);c.lineTo(150+cols*.55,80);c.fill();},'#ffc01c');
   paint(c=>{c.fillStyle='#fff';c.font=`700 36px ${FONT}`;c.textBaseline='middle';c.fillText('渋滞 3km',150,24);},'#33e07a');

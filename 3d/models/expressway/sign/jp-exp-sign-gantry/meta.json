@@ -66,6 +66,38 @@
      "label": "SA・PAの予告(施設の記号つき)"
     },
     {
+     "id": "exit112",
+     "label": "出口(方面+出口の2段・112型)"
+    },
+    {
+     "id": "pa2",
+     "label": "IC・PAの予告(3段・施設記号)"
+    },
+    {
+     "id": "jct2",
+     "label": "JCT予告(2枚並び・中央にJCT名)"
+    },
+    {
+     "id": "toll2",
+     "label": "料金所予告(白い見出し+2分割)"
+    },
+    {
+     "id": "choice",
+     "label": "ルート選択案内(所要時間つき)"
+    },
+    {
+     "id": "shutoNew",
+     "label": "都市高速の入口(白い見出し+入口番号)"
+    },
+    {
+     "id": "hanshin",
+     "label": "阪神高速の出口(路線-ランプ番号)"
+    },
+    {
+     "id": "nagoya",
+     "label": "名古屋高速の出口(R番号+青い目的地板)"
+    },
+    {
      "id": "toll",
      "label": "料金所予告"
     },
@@ -82,7 +114,7 @@
   "sign"
  ],
  "lamps": [],
- "tris": 25530,
+ "tris": 42282,
  "size": [
   13.6,
   7.7,
@@ -91,5 +123,5 @@
  "dir": "expressway/sign/jp-exp-sign-gantry",
  "file": "expressway/sign/jp-exp-sign-gantry/model.glb",
  "thumb": "expressway/sign/jp-exp-sign-gantry/thumb.jpg",
- "bytes": 1574244
+ "bytes": 2919580
 }

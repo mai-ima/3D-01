@@ -9,10 +9,10 @@ export default {id:'jp-surface-tenji',name:'点字ブロック(視覚障害者�
     const mats={yellow:new THREE.MeshStandardMaterial({color:0xe4b712,roughness:.72}),gray:new THREE.MeshStandardMaterial({color:0x9a9b9c,roughness:.8})};
     const dotG=new THREE.CylinderGeometry(.006,.0095,.005,24);
     for(const [ck,mat] of Object.entries(mats)){const c=opt(root,'color',ck);
-      for(let i=0;i<N;i++)add(c,roundBox(S-.006,T,S-.006,.004,.002),mat,(i-(N-1)/2)*S,-T/2+.0005,0);      // 1枚ずつの板。角は面取り
+      for(let i=0;i<N;i++)add(c,roundBox(S-.006,T,S-.006,.004,.002),mat,(i-(N-1)/2)*S,-T/2+.003,0);      // 1枚ずつの板。角は面取り
       const dot=opt(c,'type','dot'),line=opt(c,'type','line');
       const dots=new THREE.InstancedMesh(dotG,mat,N*25),m4=new THREE.Matrix4();let k=0;
-      for(let i=0;i<N;i++)for(let a=0;a<5;a++)for(let b=0;b<5;b++){m4.makeTranslation((i-(N-1)/2)*S+(a-2)*.06,.0025+.0005,(b-2)*.06);dots.setMatrixAt(k++,m4);}dots.castShadow=true;dots.receiveShadow=true;dot.add(dots);
-      for(let i=0;i<N;i++)for(let a=0;a<4;a++){const g=roundBox(.017,.005,.27,.0022,.001);add(line,g,mat,(i-(N-1)/2)*S+(a-1.5)*.075,.0025+.0005,0);}}
-    add(root,new THREE.BoxGeometry(N*S+.1,.002,S+.1),new THREE.MeshStandardMaterial({color:0x4f5052,roughness:.95}),0,-.001,0);      // 目地(板の下の暗い面)
+      for(let i=0;i<N;i++)for(let a=0;a<5;a++)for(let b=0;b<5;b++){m4.makeTranslation((i-(N-1)/2)*S+(a-2)*.06,.0025+.003,(b-2)*.06);dots.setMatrixAt(k++,m4);}dots.castShadow=true;dots.receiveShadow=true;dot.add(dots);
+      for(let i=0;i<N;i++)for(let a=0;a<4;a++){const g=roundBox(.017,.005,.27,.0022,.001);add(line,g,mat,(i-(N-1)/2)*S+(a-1.5)*.075,.0025+.003,0);}}
+    add(root,new THREE.BoxGeometry(N*S+.1,.002,S+.1),new THREE.MeshStandardMaterial({color:0x4f5052,roughness:.95}),0,-.003,0);      // 目地(板の下の暗い面)
     return {root,lamps:{}};}};

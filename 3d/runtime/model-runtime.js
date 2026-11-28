@@ -40,10 +40,13 @@ export class Model{
       if(o.isMesh&&(o.name.startsWith('lamp_')||o.name.startsWith('lampB_'))){const key=o.name.replace(/^lamp[B]?_/,'');let L=this.lamps[key];
         if(!L){L=this.lamps[key]={key,meshes:[],mats:[],lit:new THREE.Color((o.material.userData||{}).litColor||'#ffffff'),k:(o.material.userData||{}).litIntensity||3.4,v:0,t:0,glow:null};}
         L.meshes.push(o);L.mats.push(o.material);
-        if(glow&&!L.glow&&o.name.startsWith('lamp_')){o.geometry.computeBoundingSphere();const r=o.geometry.boundingSphere.radius;
+        if(glow&&!L.glow&&o.name.startsWith('lamp_')){o.geometry.computeBoundingSphere();const r=o.geometry.boundingSphere.radius;if(r<.45){
           const s=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTexture(),color:L.lit,blending:THREE.AdditiveBlending,transparent:true,depthWrite:false,opacity:0}));
-          s.scale.setScalar(Math.min(Math.max(r*3.2,.2),.7));s.position.set(0,0,.06);s.userData.noShadow=true;(o.parent.name.startsWith('opt_')?o.parent.parent:o.parent).add(s);L.glow=s;}}
-      const m=/^opt_([^_]+)_([^_]+?)(?:_\d+)?$/.exec(o.name);if(m){(this._optNodes[m[1]]||(this._optNodes[m[1]]=[])).push({node:o,choice:m[2]});}   // 同名ノードは GLTFLoader が _1,_2… を付けるので除去
+          s.scale.setScalar(Math.min(Math.max(r*3.2,.2),.7));
+          // 光の広がりは灯のメッシュの位置に置く(親の原点ではない)。大きな板(表示板・電光掲示板)は面全体が光るので広がりは付けない
+          const par=o.parent.name.startsWith('opt_')?o.parent.parent:o.parent;const off=o.position.clone();if(par!==o.parent)off.add(o.parent.position);
+          s.position.set(off.x,off.y,off.z+.06);s.userData.noShadow=true;par.add(s);L.glow=s;}}}
+      const m=/^opt_([^_]+)_(.+?)(?:_\d+)?$/.exec(o.name);if(m){(this._optNodes[m[1]]||(this._optNodes[m[1]]=[])).push({node:o,choice:m[2]});}   // 同名ノードは GLTFLoader が _1,_2… を付けるので除去
     });
     if(entry.anim){this.armNode=root.getObjectByName(entry.anim.node);this.axis=entry.anim.axis||'z';}
     root.traverse(o=>{if(o.isMesh&&!o.userData.noShadow){o.castShadow=true;o.receiveShadow=true;}});

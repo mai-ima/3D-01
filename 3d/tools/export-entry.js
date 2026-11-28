@@ -14,10 +14,15 @@ window.exportOne=async(id)=>{
   let tris=0;root.traverse(o=>{if(o.isMesh){if(!o.geometry.index)o.geometry=mergeVertices(o.geometry,1e-5);const g=o.geometry;tris+=((g.index?g.index.count:g.attributes.position.count)/3)*(o.isInstancedMesh?o.count:1);
     for(const m of[].concat(o.material))m.bumpMap=null;}});
   root.updateMatrixWorld(true);const bb=new THREE.Box3().setFromObject(root);
+  // 地面と同じ高さ(y=0±1.5mm)で上を向いた面は、ビューアの地面と重なって乱れる(z-fighting)。面積を数えて報告する
+  let floorArea=0;{const A=new THREE.Vector3(),B=new THREE.Vector3(),C=new THREE.Vector3(),e1=new THREE.Vector3(),e2=new THREE.Vector3();
+    root.traverse(o=>{if(!o.isMesh||o.isInstancedMesh||!o.visible)return;const g=o.geometry,pos=g.attributes.position,ix=g.index;const n=ix?ix.count:pos.count;
+      for(let i=0;i<n;i+=3){const a=ix?ix.getX(i):i,b=ix?ix.getX(i+1):i+1,c=ix?ix.getX(i+2):i+2;A.fromBufferAttribute(pos,a).applyMatrix4(o.matrixWorld);B.fromBufferAttribute(pos,b).applyMatrix4(o.matrixWorld);C.fromBufferAttribute(pos,c).applyMatrix4(o.matrixWorld);
+        if(Math.abs(A.y)<.0015&&Math.abs(B.y)<.0015&&Math.abs(C.y)<.0015){e1.subVectors(B,A);e2.subVectors(C,A);const nrm=e1.cross(e2);if(nrm.y>0)floorArea+=nrm.length()/2;}}});}
   const scene=new THREE.Scene();scene.add(root);
   const buf=await new Promise((res,rej)=>new GLTFExporter().parse(scene,res,rej,{binary:true,onlyVisible:false,maxTextureSize:1024}));
   const {build,...meta}=def;
   const lampInfo=Object.entries(lamps).map(([k,L])=>({key:k,color:L.color.hex,lit:'#'+L.color.e.toString(16).padStart(6,'0')}));
-  return {path,meta:{...meta,path,lamps:lampInfo,tris:Math.round(tris),size:bb.getSize(new THREE.Vector3()).toArray().map(v=>+v.toFixed(2))},b64:b64(buf)};
+  return {path,floorArea,meta:{...meta,path,lamps:lampInfo,tris:Math.round(tris),size:bb.getSize(new THREE.Vector3()).toArray().map(v=>+v.toFixed(2))},b64:b64(buf)};
 };
 window.__ready=true;
