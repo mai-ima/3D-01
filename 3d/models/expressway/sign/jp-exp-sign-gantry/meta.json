@@ -1,8 +1,8 @@
 {
  "id": "jp-exp-sign-gantry",
  "name": "案内標識(門型・片持ち)",
- "desc": "高速道路の大きな案内標識。支持の形(門型・片持ち)と、板の種類(出口予告・方面と車線・JCT予告・料金所予告)を選べる。標識板の下端は路面から約5.0m。",
- "dims": "板の下端 5.0m・門型の柱間 約13m・片持ちの腕 約7m・板 約4〜5×2〜2.4m(代表値。実物は地名の字数で決まる)",
+ "desc": "高速道路の大きな案内標識。支持の形(門型・片持ち)と、板の書き方を選べる。出口の予告(2km・1km・500m)、出口(行動点)、ETC専用つき、国道番号つき(青い盾)、方面と車線、JCT予告(路線番号つき)、SA・PAの予告、料金所予告、都市高速の出口。標識板の下端は路面から約5.0m。",
+ "dims": "板の下端 5.0m・門型の柱間 約13m・片持ちの腕 約7m・板 約3.6〜5.2×1.7〜2.5m・文字高 和文30cmの系列・ローマ字は1/2(標識令の値。板の寸法は地名の字数で決まる)",
  "focus": [
   0,
   5.8,
@@ -31,11 +31,27 @@
   },
   {
    "id": "board",
-   "label": "板の種類",
+   "label": "板の書き方",
    "choices": [
     {
-     "id": "exit",
-     "label": "出口予告"
+     "id": "exit2",
+     "label": "出口の予告 2km"
+    },
+    {
+     "id": "exit1",
+     "label": "出口の予告 1km"
+    },
+    {
+     "id": "exit500",
+     "label": "出口の予告 500m(国道番号つき)"
+    },
+    {
+     "id": "exitEtc",
+     "label": "出口(ETC専用)"
+    },
+    {
+     "id": "action",
+     "label": "出口(行動点・方面別の青)"
     },
     {
      "id": "branch",
@@ -43,14 +59,22 @@
     },
     {
      "id": "jct",
-     "label": "JCT予告"
+     "label": "JCT予告(路線番号つき)"
+    },
+    {
+     "id": "pa",
+     "label": "SA・PAの予告(施設の記号つき)"
     },
     {
      "id": "toll",
      "label": "料金所予告"
+    },
+    {
+     "id": "shuto",
+     "label": "都市高速の出口(3桁の番号)"
     }
    ],
-   "default": "exit"
+   "default": "exit1"
   }
  ],
  "path": [
@@ -58,14 +82,14 @@
   "sign"
  ],
  "lamps": [],
- "tris": 11256,
+ "tris": 25530,
  "size": [
   13.6,
-  7.42,
+  7.7,
   0.68
  ],
  "dir": "expressway/sign/jp-exp-sign-gantry",
  "file": "expressway/sign/jp-exp-sign-gantry/model.glb",
  "thumb": "expressway/sign/jp-exp-sign-gantry/thumb.jpg",
- "bytes": 540160
+ "bytes": 1574244
 }
