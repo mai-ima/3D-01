@@ -269,31 +269,45 @@
    "dir": "expressway/barrier/jp-exp-wire-rope",
    "file": "expressway/barrier/jp-exp-wire-rope/model.glb",
    "thumb": "expressway/barrier/jp-exp-wire-rope/thumb.jpg",
-   "bytes": 35216
+   "bytes": 35104
   },
   {
    "id": "jp-exp-vms",
    "name": "道路情報板(可変情報板)",
-   "desc": "渋滞や事故・規制を知らせる電光の情報板。文字式(橙のLEDで2段)と図形式(フルカラーの図記号と文字)を選べる。支柱は門型と片持ち。",
-   "dims": "板 約4.5×1.4m・下端 5.0m・門型の柱間 約13m(代表値。実物は設置場所の型(A〜K型)で寸法が違う)",
+   "desc": "渋滞・事故・規制を知らせる電光の情報板。NEXCOの広域情報板(K型)の仕様に基づき、文字高450mm・LED 10mmピッチ・18字×2段。名称部(緑地)と、上の黄色い点滅灯2灯を備える。文字式(事故渋滞・雪・通行止め・ETC専用入口)と図形式を選べる。",
+   "dims": "K型: 表示面 約8.64×1.08m(縦108×横864ドット・10mmピッチ)・名称部 2.2×0.4m・板の下端 5.0m。文字式12字は約5.76m(推)。大きさは仕様書の値",
    "focus": [
     0,
-    5.6,
+    5.8,
     0
    ],
    "view": [
-    4,
+    5,
     0.1,
-    21
+    22
    ],
    "night": "on",
    "states": [
     {
      "id": "on",
-     "label": "表示",
+     "label": "表示(点滅灯 交互)",
      "on": [
-      "disp_t",
-      "disp_g"
+      "disp_accident_k",
+      "disp_snow_k",
+      "disp_closed_k",
+      "disp_etc_k",
+      "disp_graphic_k",
+      "disp_accident_a",
+      "disp_snow_a",
+      "disp_closed_a",
+      "disp_etc_a",
+      "disp_graphic_a"
+     ],
+     "flash": [
+      "fl1"
+     ],
+     "flash2": [
+      "fl2"
      ]
     },
     {
@@ -313,12 +327,27 @@
    ],
    "options": [
     {
+     "id": "size",
+     "label": "大きさ",
+     "choices": [
+      {
+       "id": "k",
+       "label": "K型(広域)18字×2段"
+      },
+      {
+       "id": "a",
+       "label": "文字式 12字×2段"
+      }
+     ],
+     "default": "k"
+    },
+    {
      "id": "type",
      "label": "表示の形式",
      "choices": [
       {
        "id": "text",
-       "label": "文字式(橙のLED)"
+       "label": "文字式(橙・赤のLED)"
       },
       {
        "id": "graphic",
@@ -326,6 +355,29 @@
       }
      ],
      "default": "text"
+    },
+    {
+     "id": "msg",
+     "label": "文字式の内容",
+     "choices": [
+      {
+       "id": "accident",
+       "label": "事故渋滞"
+      },
+      {
+       "id": "snow",
+       "label": "雪・チェーン規制"
+      },
+      {
+       "id": "closed",
+       "label": "通行止め"
+      },
+      {
+       "id": "etc",
+       "label": "ETC専用入口"
+      }
+     ],
+     "default": "accident"
     },
     {
      "id": "support",
@@ -349,26 +401,76 @@
    ],
    "lamps": [
     {
-     "key": "disp_t",
+     "key": "disp_accident_k",
      "color": "#f4f8ff",
      "lit": "#f4f8ff"
     },
     {
-     "key": "disp_g",
+     "key": "disp_snow_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_closed_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_etc_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_graphic_k",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "fl1",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "fl2",
+     "color": "#ffbd14",
+     "lit": "#ffa800"
+    },
+    {
+     "key": "disp_accident_a",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_snow_a",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_closed_a",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_etc_a",
+     "color": "#f4f8ff",
+     "lit": "#f4f8ff"
+    },
+    {
+     "key": "disp_graphic_a",
      "color": "#f4f8ff",
      "lit": "#f4f8ff"
     }
    ],
-   "tris": 4436,
+   "tris": 5488,
    "size": [
-    13.6,
-    7.25,
-    0.68
+    15.04,
+    7.76,
+    0.72
    ],
    "dir": "expressway/info/jp-exp-vms",
    "file": "expressway/info/jp-exp-vms/model.glb",
    "thumb": "expressway/info/jp-exp-vms/thumb.jpg",
-   "bytes": 173708
+   "bytes": 292056
   },
   {
    "id": "jp-exp-light-pole",
@@ -1536,7 +1638,7 @@
    "dir": "road/lighting/jp-light-sidewalk",
    "file": "road/lighting/jp-light-sidewalk/model.glb",
    "thumb": "road/lighting/jp-light-sidewalk/thumb.jpg",
-   "bytes": 94144
+   "bytes": 94140
   },
   {
    "id": "jp-sign-guide",
@@ -2658,7 +2760,7 @@
    "dir": "signal/crossing/jp-crossing-alarm",
    "file": "signal/crossing/jp-crossing-alarm/model.glb",
    "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
-   "bytes": 828920
+   "bytes": 829024
   },
   {
    "id": "jp-crossing-gate",
@@ -3572,7 +3674,7 @@
    "dir": "signal/rail/jp-rail-3",
    "file": "signal/rail/jp-rail-3/model.glb",
    "thumb": "signal/rail/jp-rail-3/thumb.jpg",
-   "bytes": 922172
+   "bytes": 922184
   },
   {
    "id": "jp-rail-4",
@@ -3725,7 +3827,7 @@
    "dir": "signal/rail/jp-rail-4",
    "file": "signal/rail/jp-rail-4/model.glb",
    "thumb": "signal/rail/jp-rail-4/thumb.jpg",
-   "bytes": 924828
+   "bytes": 924840
   },
   {
    "id": "jp-rail-5",
@@ -3896,7 +3998,7 @@
    "dir": "signal/rail/jp-rail-5",
    "file": "signal/rail/jp-rail-5/model.glb",
    "thumb": "signal/rail/jp-rail-5/thumb.jpg",
-   "bytes": 926564
+   "bytes": 926584
   },
   {
    "id": "jp-rail-relay",
