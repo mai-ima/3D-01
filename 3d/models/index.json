@@ -22,7 +22,12 @@
   "expressway/sign": "高速道路の標識",
   "expressway/info": "情報設備",
   "expressway/barrier": "防護柵・分離帯",
-  "expressway/lighting": "照明"
+  "expressway/lighting": "照明",
+  "roadway": "道路",
+  "roadway/national": "一般国道",
+  "roadway/regional": "主要地方道",
+  "roadway/arterial": "高規格幹線道路",
+  "roadway/expressway": "高速自動車国道"
  },
  "models": [
   {
@@ -470,7 +475,7 @@
    "dir": "expressway/info/jp-exp-vms",
    "file": "expressway/info/jp-exp-vms/model.glb",
    "thumb": "expressway/info/jp-exp-vms/thumb.jpg",
-   "bytes": 292056
+   "bytes": 263000
   },
   {
    "id": "jp-exp-light-pole",
@@ -1362,7 +1367,7 @@
    "dir": "road/facility/jp-facility-curve-mirror",
    "file": "road/facility/jp-facility-curve-mirror/model.glb",
    "thumb": "road/facility/jp-facility-curve-mirror/thumb.jpg",
-   "bytes": 259280
+   "bytes": 259320
   },
   {
    "id": "jp-facility-delineator",
@@ -1638,7 +1643,7 @@
    "dir": "road/lighting/jp-light-sidewalk",
    "file": "road/lighting/jp-light-sidewalk/model.glb",
    "thumb": "road/lighting/jp-light-sidewalk/thumb.jpg",
-   "bytes": 94140
+   "bytes": 94144
   },
   {
    "id": "jp-sign-guide",
@@ -1846,8 +1851,8 @@
   {
    "id": "jp-surface-curb",
    "name": "縁石(歩車道境界ブロック)",
-   "desc": "歩道と車道の境を示すコンクリートのブロック。通常のマウンドアップ型は車道側が約15cm高い。出入口の切下げ型は、高さを低くしてある。4mのブロックを継ぎ目つきで並べる。",
-   "dims": "幅 約0.18m・高さ 約0.15m(切下げ型は0.05m)・ブロック長 約1m(代表値)",
+   "desc": "歩道と車道の境を示すコンクリートのブロック。A型(標準)、B型(角が丸い)、C型(出入口の切下げ)を選べる。1mのブロックを目地つきで並べ、車道側にL型側溝を付けることもできる。",
+   "dims": "幅 0.18m・高さ 0.15m(C型は0.05m)・ブロック長 1m・L型側溝 幅0.3m(代表値)",
    "focus": [
     0,
     0.08,
@@ -1864,15 +1869,34 @@
      "label": "形",
      "choices": [
       {
-       "id": "normal",
-       "label": "マウンドアップ"
+       "id": "a",
+       "label": "A型(標準・高さ15cm)"
       },
       {
-       "id": "drop",
-       "label": "切下げ"
+       "id": "b",
+       "label": "B型(角が丸い)"
+      },
+      {
+       "id": "c",
+       "label": "C型(切下げ・高さ5cm)"
       }
      ],
-     "default": "normal"
+     "default": "a"
+    },
+    {
+     "id": "gutter",
+     "label": "L型側溝(車道側)",
+     "choices": [
+      {
+       "id": "off",
+       "label": "なし"
+      },
+      {
+       "id": "on",
+       "label": "あり"
+      }
+     ],
+     "default": "off"
     }
    ],
    "path": [
@@ -1880,16 +1904,16 @@
     "surface"
    ],
    "lamps": [],
-   "tris": 544,
+   "tris": 2624,
    "size": [
     4,
-    0.16,
-    0.19
+    0.25,
+    0.8
    ],
    "dir": "road/surface/jp-surface-curb",
    "file": "road/surface/jp-surface-curb/model.glb",
    "thumb": "road/surface/jp-surface-curb/thumb.jpg",
-   "bytes": 16180
+   "bytes": 51028
   },
   {
    "id": "jp-surface-grating",
@@ -1906,21 +1930,38 @@
     0.8,
     1.3
    ],
+   "options": [
+    {
+     "id": "type",
+     "label": "蓋の種類",
+     "choices": [
+      {
+       "id": "bar",
+       "label": "鋼製グレーチング"
+      },
+      {
+       "id": "slit",
+       "label": "コンクリートのスリット蓋"
+      }
+     ],
+     "default": "bar"
+    }
+   ],
    "path": [
     "road",
     "surface"
    ],
    "lamps": [],
-   "tris": 528,
+   "tris": 960,
    "size": [
     0.6,
-    0.08,
+    0.3,
     1.2
    ],
    "dir": "road/surface/jp-surface-grating",
    "file": "road/surface/jp-surface-grating/model.glb",
    "thumb": "road/surface/jp-surface-grating/thumb.jpg",
-   "bytes": 11712
+   "bytes": 22040
   },
   {
    "id": "jp-surface-manhole",
@@ -1973,8 +2014,8 @@
   {
    "id": "jp-surface-tenji",
    "name": "点字ブロック(視覚障害者誘導用ブロック)",
-   "desc": "黄色いブロックの表面に、線状の突起(誘導ブロック=進む向き)または点状の突起(警告ブロック=止まって確認)が並ぶ。1枚30cm角、6枚を並べて見せる。",
-   "dims": "1枚 0.30×0.30m・厚さ0.06m / 突起の高さ 約5mm(代表値)",
+   "desc": "黄色いブロックの表面に、線状の突起(誘導ブロック=進む向き)または点状の突起(警告ブロック=止まって確認)が並ぶ。1枚30cm角、6枚を並べて見せる。色は黄色(標準)・灰色を選べる。角は面取りしてあり、継ぎ目に目地がある。",
+   "dims": "1枚 0.30×0.30m・厚さ0.06m / 突起の高さ 5mm・点の間隔 約60mm・線状は4本で間隔75mm(JIS T 9251の値を元にした代表値)",
    "focus": [
     0,
     0,
@@ -2000,6 +2041,21 @@
       }
      ],
      "default": "dot"
+    },
+    {
+     "id": "color",
+     "label": "色",
+     "choices": [
+      {
+       "id": "yellow",
+       "label": "黄色"
+      },
+      {
+       "id": "gray",
+       "label": "灰色"
+      }
+     ],
+     "default": "yellow"
     }
    ],
    "path": [
@@ -2007,16 +2063,292 @@
     "surface"
    ],
    "lamps": [],
-   "tris": 12360,
+   "tris": 43164,
    "size": [
-    1.8,
+    1.9,
     0.07,
-    0.3
+    0.4
    ],
    "dir": "road/surface/jp-surface-tenji",
    "file": "road/surface/jp-surface-tenji/model.glb",
    "thumb": "road/surface/jp-surface-tenji/thumb.jpg",
-   "bytes": 23940
+   "bytes": 71564
+  },
+  {
+   "id": "jp-roadway-arterial",
+   "name": "高規格幹線道路(自動車専用道路)",
+   "desc": "高規格幹線道路(一般国道の自動車専用道路や地域高規格道路)の車道。中央にワイヤロープなどを置く暫定2車線と、コンクリート壁の分離帯を持つ4車線を選べる。車線3.5m・路肩1.25m。",
+   "dims": "暫定2車線: 幅 9.5m(車線3.5m×2+路肩1.25m×2)/ 4車線: 幅 約19m(分離帯3.0m)・区画長20m(代表値。設計速度80km/h級を想定)",
+   "focus": [
+    5,
+    0,
+    0
+   ],
+   "view": [
+    12,
+    4,
+    18
+   ],
+   "options": [
+    {
+     "id": "section",
+     "label": "断面",
+     "choices": [
+      {
+       "id": "two",
+       "label": "暫定2車線"
+      },
+      {
+       "id": "four",
+       "label": "4車線(分離帯付き)"
+      }
+     ],
+     "default": "two"
+    },
+    {
+     "id": "median",
+     "label": "暫定2車線の中央",
+     "choices": [
+      {
+       "id": "wire",
+       "label": "ワイヤロープ"
+      },
+      {
+       "id": "line",
+       "label": "白の実線のみ"
+      }
+     ],
+     "default": "wire"
+    }
+   ],
+   "path": [
+    "roadway",
+    "arterial"
+   ],
+   "lamps": [],
+   "tris": 1760,
+   "size": [
+    24.47,
+    1.55,
+    20
+   ],
+   "dir": "roadway/arterial/jp-roadway-arterial",
+   "file": "roadway/arterial/jp-roadway-arterial/model.glb",
+   "thumb": "roadway/arterial/jp-roadway-arterial/thumb.jpg",
+   "bytes": 134352
+  },
+  {
+   "id": "jp-roadway-expressway",
+   "name": "高速自動車国道(上下線)",
+   "desc": "高速自動車国道の本線(上下線)。車線3.5m・左路肩2.5m・右路肩1.25m・中央帯。車線境界線は白破線(8m+12m)、外側線は白実線。中央分離帯の形(コンクリート壁F型・単スロープ・ワイヤロープ・植栽)と、路側の形(舗装のみ・ガードレール・壁高欄)を選べる。",
+   "dims": "片側 車線3.5m×2・路肩 左2.5m/右1.25m・中央帯 約4.5m・全幅 約24.5m・区画長20m(道路構造令と警察の設置基準の値)",
+   "focus": [
+    12,
+    0,
+    0
+   ],
+   "view": [
+    26,
+    6,
+    30
+   ],
+   "options": [
+    {
+     "id": "median",
+     "label": "中央分離帯",
+     "choices": [
+      {
+       "id": "wall",
+       "label": "コンクリート壁(F型)"
+      },
+      {
+       "id": "single",
+       "label": "コンクリート壁(単スロープ)"
+      },
+      {
+       "id": "wire",
+       "label": "ワイヤロープ"
+      },
+      {
+       "id": "green",
+       "label": "植栽帯"
+      }
+     ],
+     "default": "wall"
+    },
+    {
+     "id": "side",
+     "label": "路側の形",
+     "choices": [
+      {
+       "id": "off",
+       "label": "舗装のみ"
+      },
+      {
+       "id": "guard",
+       "label": "ガードレール"
+      },
+      {
+       "id": "wallr",
+       "label": "壁高欄"
+      }
+     ],
+     "default": "guard"
+    }
+   ],
+   "path": [
+    "roadway",
+    "expressway"
+   ],
+   "lamps": [],
+   "tris": 1544,
+   "size": [
+    27.97,
+    1.4,
+    20
+   ],
+   "dir": "roadway/expressway/jp-roadway-expressway",
+   "file": "roadway/expressway/jp-roadway-expressway/model.glb",
+   "thumb": "roadway/expressway/jp-roadway-expressway/thumb.jpg",
+   "bytes": 129556
+  },
+  {
+   "id": "jp-roadway-national",
+   "name": "一般国道(2車線)",
+   "desc": "一般国道の2車線の車道。車線3.25m・路肩0.75m。中央線は白の破線・黄色の実線(追越し禁止)・黄色の二重線を選べる。路側は舗装のみ・縁石と側溝・ガードレールの3種。",
+   "dims": "幅 8m(車線3.25m×2+路肩0.75m×2)・区画長20m・外側線 白実線0.15m・中央線 白破線5m+5m(代表値)",
+   "focus": [
+    4,
+    0,
+    0
+   ],
+   "view": [
+    10,
+    4,
+    16
+   ],
+   "options": [
+    {
+     "id": "center",
+     "label": "中央線",
+     "choices": [
+      {
+       "id": "dash",
+       "label": "白の破線(追越し可)"
+      },
+      {
+       "id": "yellow",
+       "label": "黄色の実線(追越し禁止)"
+      },
+      {
+       "id": "double",
+       "label": "黄色の二重線"
+      }
+     ],
+     "default": "dash"
+    },
+    {
+     "id": "side",
+     "label": "路側の形",
+     "choices": [
+      {
+       "id": "off",
+       "label": "舗装のみ"
+      },
+      {
+       "id": "curb",
+       "label": "縁石と側溝"
+      },
+      {
+       "id": "guard",
+       "label": "ガードレール"
+      }
+     ],
+     "default": "off"
+    }
+   ],
+   "path": [
+    "roadway",
+    "national"
+   ],
+   "lamps": [],
+   "tris": 1516,
+   "size": [
+    10.32,
+    1.55,
+    20
+   ],
+   "dir": "roadway/national/jp-roadway-national",
+   "file": "roadway/national/jp-roadway-national/model.glb",
+   "thumb": "roadway/national/jp-roadway-national/thumb.jpg",
+   "bytes": 118192
+  },
+  {
+   "id": "jp-roadway-regional",
+   "name": "主要地方道(2車線)",
+   "desc": "主要地方道の2車線の車道。車線3.0m・路肩0.5m。中央線は白の破線か黄色の実線。路側は舗装のみ・縁石と側溝・ガードパイプ風のガードレールから選べる。",
+   "dims": "幅 7m(車線3.0m×2+路肩0.5m×2)・区画長20m・外側線 白実線0.15m・中央線 白破線5m+5m(代表値)",
+   "focus": [
+    3.5,
+    0,
+    0
+   ],
+   "view": [
+    9,
+    4,
+    14
+   ],
+   "options": [
+    {
+     "id": "center",
+     "label": "中央線",
+     "choices": [
+      {
+       "id": "dash",
+       "label": "白の破線"
+      },
+      {
+       "id": "yellow",
+       "label": "黄色の実線(追越し禁止)"
+      }
+     ],
+     "default": "dash"
+    },
+    {
+     "id": "side",
+     "label": "路側の形",
+     "choices": [
+      {
+       "id": "off",
+       "label": "舗装のみ"
+      },
+      {
+       "id": "curb",
+       "label": "縁石と側溝"
+      },
+      {
+       "id": "guard",
+       "label": "ガードレール"
+      }
+     ],
+     "default": "curb"
+    }
+   ],
+   "path": [
+    "roadway",
+    "regional"
+   ],
+   "lamps": [],
+   "tris": 948,
+   "size": [
+    9.32,
+    1.12,
+    20
+   ],
+   "dir": "roadway/regional/jp-roadway-regional",
+   "file": "roadway/regional/jp-roadway-regional/model.glb",
+   "thumb": "roadway/regional/jp-roadway-regional/thumb.jpg",
+   "bytes": 110172
   },
   {
    "id": "jp-combo-arm-ped",
@@ -3674,7 +4006,7 @@
    "dir": "signal/rail/jp-rail-3",
    "file": "signal/rail/jp-rail-3/model.glb",
    "thumb": "signal/rail/jp-rail-3/thumb.jpg",
-   "bytes": 922184
+   "bytes": 922180
   },
   {
    "id": "jp-rail-4",
@@ -3998,7 +4330,7 @@
    "dir": "signal/rail/jp-rail-5",
    "file": "signal/rail/jp-rail-5/model.glb",
    "thumb": "signal/rail/jp-rail-5/thumb.jpg",
-   "bytes": 926584
+   "bytes": 926580
   },
   {
    "id": "jp-rail-relay",

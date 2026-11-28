@@ -51,14 +51,17 @@ new ResizeObserver(resize).observe(stage);resize();
 
 /* ---------- state ---------- */
 let catalog=[],entry=null,sig=null,mode='auto',speed=1,clock=0,envName='studio',wet=false,disp='shade',showDims=false,spin=false;
-let trackType='none',onTrack=false;
+let trackType='none',onTrack=false,roadType='none',roadGroup=null;
+const ROAD_IDS={national:'jp-roadway-national',regional:'jp-roadway-regional',arterial:'jp-roadway-arterial',expressway:'jp-roadway-expressway'};
+const isRoadway=e=>e.path[0]==='roadway';
+const SURF_POS={'jp-surface-manhole':[4.65,-.15,0],'jp-surface-grating':[2.62,-.146,0]};   // 路面の高さに合わせる(車道は y=-0.15)
 const cache=new Map(),orig=new Map();let tween=null,loadToken=0,boxInfo=null,dimGroup=null,uiSig='',trackGroup=null;
 const storeGet=k=>{try{return localStorage.getItem(k);}catch{return null;}};const storeSet=(k,v)=>{try{localStorage.setItem(k,v);}catch{}};
 
 /* ---------- classification ---------- */
 const isTrack=e=>e.path[0]==='track';
 function sceneGroup(e){const [a,b]=e.path;if(a==='track')return b==='tram'?'roadZ':'rail';if(b==='rail')return 'rail';if(b==='crossing')return 'crossing';if(b==='pedestrian')return 'road';return 'roadZ';}
-function defaultTrack(e){const [a,b]=e.path;if(a==='track')return 'none';if(b==='tram')return 'tram';if(b==='rail'||b==='crossing')return 'ballast';return 'none';}
+function defaultTrack(e){return 'none';}   // 軌道は既定で「なし」(利用者が選んだときだけ敷く)
 const trackFrame=g=>g==='rail'?{rot:0,x:0,y:0,z:0}:g==='crossing'?{rot:Math.PI/2,x:0,y:trackType==='tram'?.006:0,z:-6.2}:g==='roadZ'?{rot:0,x:8.5,y:-.14,z:0}:{rot:Math.PI/2,x:0,y:-.14,z:19.5};   // 道路上の軌道は路面(-0.15)に合わせる
 const pathKey=e=>e.path.join('/');
 const catName=k=>CATS[k]||k.split('/').pop();
@@ -127,12 +130,18 @@ function placeModel(){const g=sceneGroup(entry),fr=trackFrame(g);const r=sig.roo
   if(isTrack(entry)){r.rotation.y=fr.rot;r.position.set(fr.x,fr.y,fr.z);}
   else{r.rotation.y=0;const has=trackType!=='none';
     if(onTrack&&has){r.position.set(fr.x,fr.y,g==='rail'?0:fr.z);}
-    else r.position.set(g==='rail'&&has?-2.9:g==='crossing'?-3.7:0,0,0);}
+    else{const sp=roadType==='none'&&!has?SURF_POS[entry.id]:null;            // マンホールと側溝蓋は車道の高さ(路面と同じ高さ)に置く
+      if(sp)r.position.set(sp[0],sp[1],sp[2]);else r.position.set(g==='rail'&&has?-2.9:g==='crossing'?-3.7:0,0,0);}}
   r.updateMatrixWorld(true);}
-async function refreshTrack(){const tracked=isTrack(entry)||trackType!=='none';env.set({track:tracked,deck:trackType==='ballast'&&!isTrack(entry),group:sceneGroup(entry)});placeModel();await buildTrack();measure();if(showDims)buildDims();}
+/* ---------- road (道路): 軌道と同じ要領で、長さ20mの区画を前後に並べる。原点は舗装の外側の端(路側) ---------- */
+async function buildRoad(){if(roadGroup){scene.remove(roadGroup);roadGroup=null;}const self=isRoadway(entry);let src=null;
+  if(self)src={m:sig,e:entry};else if(roadType!=='none')src=await getTrackModel(ROAD_IDS[roadType]);
+  if(!src)return;roadGroup=new THREE.Group();scene.add(roadGroup);
+  for(let i=-3;i<=3;i++){if(self&&i===0)continue;const c=src.m.root.clone(true);c.position.z=i*20;c.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true;}});roadGroup.add(c);}}
+async function refreshTrack(){const tracked=isTrack(entry)||trackType!=='none';env.set({track:tracked,deck:trackType==='ballast'&&!isTrack(entry),group:sceneGroup(entry),road:roadType!=='none'||isRoadway(entry)});placeModel();await buildTrack();await buildRoad();measure();if(showDims)buildDims();}
 
 /* ---------- memory: 読み込み済みモデルは最大6件(iPhoneのメモリ対策) ---------- */
-const isTrackId=id=>Object.values(TRACK_IDS).includes(id);
+const isTrackId=id=>Object.values(TRACK_IDS).includes(id)||Object.values(ROAD_IDS).includes(id);
 function trimCache(keep){const ids=[...cache.keys()].filter(id=>id!==keep&&!isTrackId(id));while(ids.length>5){const id=ids.shift(),m=cache.get(id);if(m&&m!==sig){m.dispose();cache.delete(id);}}
   const order=[...cache.keys()].filter(id=>id!==keep);}
 /* ---------- loading / selecting ---------- */
@@ -142,7 +151,7 @@ async function select(id,instant=false){const e=catalog.find(x=>x.id===id)||cata
     if(token!==loadToken)return;
     if(sig)scene.remove(sig.root);
     entry=e;sig=s;sig.glowK=env.glow;scene.add(sig.root);
-    trackType=defaultTrack(e);onTrack=false;$('onTrack').checked=false;
+    trackType=defaultTrack(e);roadType='none';onTrack=false;$('onTrack').checked=false;document.querySelectorAll('#roadSeg button').forEach(b=>b.classList.toggle('on',b.dataset.k==='none'));$('roadSeg').classList.toggle('off',isRoadway(e));
     const self=isTrack(e);document.querySelectorAll('#trackSeg button').forEach(b=>b.classList.toggle('on',b.dataset.k===trackType));$('trackSeg').classList.toggle('off',self);$('onTrackSw').classList.toggle('off',self);
     clock=0;mode=entry.cycle?'auto':'manual';buildStates();buildOptions();
     if(entry.states&&entry.states.length){if(mode==='manual')sig.setState(entry.states[0].id,true);else sig.setState(cycleAt(entry.cycle,0).s,true);}
@@ -161,7 +170,7 @@ function viewPose(name){const {center:c,size:s}=boxInfo;const tf=Math.tan(THREE.
   const vFit=(s.y*.62)/tf*k*1.08,hFit=(Math.hypot(s.x,s.z)*.55)/(tf*camera.aspect);
   let dist=Math.max(vFit,hFit,.8);
   const dirs={all:[.55,.22,1],front:[0,.04,1],side:[1,.04,0],back:[0,.04,-1],top:[0,1,.001]};
-  if(name==='lamp'&&entry.focus){const f=entry.focus,v=entry.view,r=sig.root.position;const tgt=new THREE.Vector3(r.x+f[0],f[1]+.1,r.z+f[2]);const k=camera.aspect<1?1.9:1;return {pos:tgt.clone().add(new THREE.Vector3(v[0]*k,v[1]*k,v[2]*k)),tgt};}
+  if(name==='lamp'&&entry.focus){const f=entry.focus,v=entry.view,r=sig.root.position;const tgt=new THREE.Vector3(r.x+f[0],r.y+f[1]+.1,r.z+f[2]);const k=camera.aspect<1?1.9:1;return {pos:tgt.clone().add(new THREE.Vector3(v[0]*k,v[1]*k,v[2]*k)),tgt};}
   const dir=new THREE.Vector3(...(dirs[name]||dirs.all)).normalize();const tgt=c.clone();if(name==='all')tgt.y=Math.min(c.y,s.y*.5);
   if(isTrack(entry)){dist=Math.max(s.y*3,3.2)*1.4*Math.max(1,1.2/camera.aspect);tgt.copy(c);tgt.x=entry.path[1]==='tram'?c.x:c.x;}
   return {pos:tgt.clone().add(dir.multiplyScalar(dist)),tgt};}
@@ -206,6 +215,7 @@ function setEnv(n){envName=n;storeSet('env',n);document.querySelectorAll('#envSe
 document.querySelectorAll('#envSeg button').forEach(b=>b.addEventListener('click',()=>setEnv(b.dataset.e)));
 $('wet').addEventListener('change',e=>{wet=e.target.checked;env.set({wet});});
 document.querySelectorAll('#trackSeg button').forEach(b=>b.addEventListener('click',async()=>{trackType=b.dataset.k;document.querySelectorAll('#trackSeg button').forEach(x=>x.classList.toggle('on',x===b));await refreshTrack();flyTo('all');}));
+document.querySelectorAll('#roadSeg button').forEach(b=>b.addEventListener('click',async()=>{roadType=b.dataset.k;document.querySelectorAll('#roadSeg button').forEach(x=>x.classList.toggle('on',x===b));await refreshTrack();flyTo('all');}));
 $('onTrack').addEventListener('change',async e=>{onTrack=e.target.checked;await refreshTrack();flyTo('all');});
 $('speed').addEventListener('input',e=>{speed=+e.target.value;$('speedV').textContent=speed.toFixed(1)+'×';});
 const idx=()=>catalog.findIndex(e=>e.id===entry.id);

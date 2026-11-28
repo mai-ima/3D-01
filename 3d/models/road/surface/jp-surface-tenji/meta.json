@@ -1,8 +1,8 @@
 {
  "id": "jp-surface-tenji",
  "name": "点字ブロック(視覚障害者誘導用ブロック)",
- "desc": "黄色いブロックの表面に、線状の突起(誘導ブロック=進む向き)または点状の突起(警告ブロック=止まって確認)が並ぶ。1枚30cm角、6枚を並べて見せる。",
- "dims": "1枚 0.30×0.30m・厚さ0.06m / 突起の高さ 約5mm(代表値)",
+ "desc": "黄色いブロックの表面に、線状の突起(誘導ブロック=進む向き)または点状の突起(警告ブロック=止まって確認)が並ぶ。1枚30cm角、6枚を並べて見せる。色は黄色(標準)・灰色を選べる。角は面取りしてあり、継ぎ目に目地がある。",
+ "dims": "1枚 0.30×0.30m・厚さ0.06m / 突起の高さ 5mm・点の間隔 約60mm・線状は4本で間隔75mm(JIS T 9251の値を元にした代表値)",
  "focus": [
   0,
   0,
@@ -28,6 +28,21 @@
     }
    ],
    "default": "dot"
+  },
+  {
+   "id": "color",
+   "label": "色",
+   "choices": [
+    {
+     "id": "yellow",
+     "label": "黄色"
+    },
+    {
+     "id": "gray",
+     "label": "灰色"
+    }
+   ],
+   "default": "yellow"
   }
  ],
  "path": [
@@ -35,14 +50,14 @@
   "surface"
  ],
  "lamps": [],
- "tris": 12360,
+ "tris": 43164,
  "size": [
-  1.8,
+  1.9,
   0.07,
-  0.3
+  0.4
  ],
  "dir": "road/surface/jp-surface-tenji",
  "file": "road/surface/jp-surface-tenji/model.glb",
  "thumb": "road/surface/jp-surface-tenji/thumb.jpg",
- "bytes": 23940
+ "bytes": 71564
 }

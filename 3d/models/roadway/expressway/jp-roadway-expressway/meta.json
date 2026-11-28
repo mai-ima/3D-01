@@ -1,0 +1,75 @@
+{
+ "id": "jp-roadway-expressway",
+ "name": "高速自動車国道(上下線)",
+ "desc": "高速自動車国道の本線(上下線)。車線3.5m・左路肩2.5m・右路肩1.25m・中央帯。車線境界線は白破線(8m+12m)、外側線は白実線。中央分離帯の形(コンクリート壁F型・単スロープ・ワイヤロープ・植栽)と、路側の形(舗装のみ・ガードレール・壁高欄)を選べる。",
+ "dims": "片側 車線3.5m×2・路肩 左2.5m/右1.25m・中央帯 約4.5m・全幅 約24.5m・区画長20m(道路構造令と警察の設置基準の値)",
+ "focus": [
+  12,
+  0,
+  0
+ ],
+ "view": [
+  26,
+  6,
+  30
+ ],
+ "options": [
+  {
+   "id": "median",
+   "label": "中央分離帯",
+   "choices": [
+    {
+     "id": "wall",
+     "label": "コンクリート壁(F型)"
+    },
+    {
+     "id": "single",
+     "label": "コンクリート壁(単スロープ)"
+    },
+    {
+     "id": "wire",
+     "label": "ワイヤロープ"
+    },
+    {
+     "id": "green",
+     "label": "植栽帯"
+    }
+   ],
+   "default": "wall"
+  },
+  {
+   "id": "side",
+   "label": "路側の形",
+   "choices": [
+    {
+     "id": "off",
+     "label": "舗装のみ"
+    },
+    {
+     "id": "guard",
+     "label": "ガードレール"
+    },
+    {
+     "id": "wallr",
+     "label": "壁高欄"
+    }
+   ],
+   "default": "guard"
+  }
+ ],
+ "path": [
+  "roadway",
+  "expressway"
+ ],
+ "lamps": [],
+ "tris": 1544,
+ "size": [
+  27.97,
+  1.4,
+  20
+ ],
+ "dir": "roadway/expressway/jp-roadway-expressway",
+ "file": "roadway/expressway/jp-roadway-expressway/model.glb",
+ "thumb": "roadway/expressway/jp-roadway-expressway/thumb.jpg",
+ "bytes": 129556
+}

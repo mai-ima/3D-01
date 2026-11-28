@@ -66,4 +66,4 @@ export const bar=(parent,a,b,r=.02,mat=RM.zinc)=>rod(parent,a,b,r,mat,24);
 export function lightPanel(lamps,key,parent,geo,color,x=0,y=0,z=0,map=null){const c=COL[color];const mat=lensMaterial(c.dark,c.e,map);mat.name='lens_'+key;mat.roughness=.3;if(map){mat.map=map;mat.color.set(0xffffff);}
   const lens=add(parent,geo,mat,x,y,z);lens.name='lamp_'+key;const L={g:lens,mat,glow:null,lens,v:0,t:0,color:c,key};allLamps.push(L);lamps[key]=L;return L;}
 
-export {THREE,MAT,COL,add,rod,bolt,roundBox,rrShape,cv,tex,opt,optToggle,optChoice};
+export {THREE,MAT,COL,add,rod,bolt,roundBox,rrShape,cv,tex,noiseCanvas,opt,optToggle,optChoice};

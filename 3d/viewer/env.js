@@ -28,7 +28,7 @@ export function applyPBR(mat,dir,rep,{normal=1,rough=true,ao=true,color=true}={}
 export function createEnvironment({scene,renderer,bloom,sun}){
   const root=new THREE.Group();scene.add(root);
   const hemi=new THREE.HemisphereLight(0x6f86c4,0x2a2622,0);scene.add(hemi);
-  const cur={mode:'studio',group:'road',wet:false,track:false,deck:false};
+  const cur={mode:'studio',group:'road',wet:false,track:false,deck:false,road:false};
   const pmrem=new THREE.PMREMGenerator(renderer);let envRT=null;
   const sky=new Sky();sky.scale.setScalar(1000);const skyScene=new THREE.Scene();skyScene.add(sky);
   const roomEnv=pmrem.fromScene(new RoomEnvironment(),.04).texture;
@@ -80,7 +80,8 @@ export function createEnvironment({scene,renderer,bloom,sun}){
     return g;}
   G.road=makeRoad(8);                       // 車道がX方向(歩行者用の確認用: 灯器は車道側=+Zを向く)
   G.roadZ=makeRoad(-8);G.roadZ.rotation.y=Math.PI/2;   // 車道がZ方向(車両用: 車は+Zから来て灯器は+Zを向く。アームは+X=車道上へ伸びる)
-  G.rail=new THREE.Group();{const g=G.rail;plane(g,1400,1400,grassMat,0,-.42,0);plane(g,2.4,160,ballastMat,-3.9,-.4,0);plane(g,2.4,160,ballastMat,3.9,-.4,0);}
+  G.rail=new THREE.Group();{plane(G.rail,1400,1400,grassMat,0,-.42,0);}   // 線路の砂利は軌道モデルが持つ(軌道を「なし」にしたら何も敷かない)
+  G.verge=new THREE.Group();{plane(G.verge,1400,1400,grassMat,0,-.03,0);}   // 道路モデルを敷くときの地面(草地)
   G.crossing=new THREE.Group();{const g=G.crossing;plane(g,1400,1400,grassMat,0,-.42,0);
     const rm=roadMat;G.crossMat=rm;
     plane(g,7.2,153,rm,0,0,8.5);
@@ -97,7 +98,7 @@ export function createEnvironment({scene,renderer,bloom,sun}){
       const geo=new THREE.BoxGeometry(w,h,d);const uv=geo.attributes.uv;for(let k=0;k<uv.count;k++)uv.setXY(k,uv.getX(k)*w/15,uv.getY(k)*h/24);
       const m=new THREE.MeshStandardMaterial({map:fm,emissiveMap:em,emissive:0xffffff,emissiveIntensity:0,roughness:.4,metalness:.3,color:new THREE.Color().setHSL(.58,.05,.55+rnd()*.3)});G.winMats.push(m);
       const b=mesh(G.skyline,geo,m,x,h/2,zz);b.receiveShadow=false;}}
-  const SCENES=['studio','road','roadZ','rail','crossing','skyline','base'];      // シーン構成要素の一覧(表示切替の対象)
+  const SCENES=['studio','road','roadZ','rail','crossing','skyline','base','verge'];      // シーン構成要素の一覧(表示切替の対象)
   for(const k of SCENES){G[k].visible=false;root.add(G[k]);}
 
   /* --- state --- */
@@ -110,12 +111,12 @@ export function createEnvironment({scene,renderer,bloom,sun}){
   function apply(){const {mode,group,wet}=cur,p=PRESET[mode];
     for(const k of SCENES)G[k].visible=false;
     const out=mode!=='studio';
-    if(!out){G.studio.visible=true;G.studio.position.y=cur.track?-.42:0;scene.environment=roomEnv;scene.background=studioBg;scene.fog=null;scene.environmentIntensity=p.env;scene.backgroundIntensity=1;
+    if(!out){G.studio.visible=true;G.studio.position.y=cur.track?-.42:cur.road?-.05:0;scene.environment=roomEnv;scene.background=studioBg;scene.fog=null;scene.environmentIntensity=p.env;scene.backgroundIntensity=1;
       sun.position.set(5,9,7);sun.color.set(0xfff4e6);sun.intensity=2.2;hemi.intensity=0;}
     else{const e=skyEnv(p,mode);scene.environment=(mode==='day'&&hdriDay)?hdriDay:e.tex;scene.background=e.tex;scene.environmentIntensity=p.env;scene.backgroundIntensity=mode==='night'?.8:1;
       scene.fog=new THREE.Fog(p.fog,70,420);
       sun.position.copy(e.ld).multiplyScalar(40);sun.color.set(p.sunC);sun.intensity=p.sunI;hemi.intensity=p.hemi;
-      G[groundFor(group)].visible=true;G.skyline.visible=true;G.base.visible=true;G.roadZ.userData.mk.visible=!(cur.track&&group==='roadZ');for(const m of G.winMats)m.emissiveIntensity=p.win;
+      if(cur.road)G.verge.visible=true;else G[groundFor(group)].visible=true;G.skyline.visible=true;G.base.visible=true;G.roadZ.userData.mk.visible=!(cur.track&&group==='roadZ');for(const m of G.winMats)m.emissiveIntensity=p.win;
       G.deck.visible=cur.deck&&group==='crossing';const w=wet;
       for(const m of[G.roadMat,G.crossMat]){if(!m)continue;
         if(m.roughnessMap){m.roughness=w?.35:1;m.color.set(w?0x9a9aa0:0xffffff);}                   // 実写の粗さマップに倍率をかける(濡れると小さく)

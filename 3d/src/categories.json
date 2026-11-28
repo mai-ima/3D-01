@@ -21,5 +21,10 @@
   "expressway/sign": "高速道路の標識",
   "expressway/info": "情報設備",
   "expressway/barrier": "防護柵・分離帯",
-  "expressway/lighting": "照明"
+  "expressway/lighting": "照明",
+  "roadway": "道路",
+  "roadway/national": "一般国道",
+  "roadway/regional": "主要地方道",
+  "roadway/arterial": "高規格幹線道路",
+  "roadway/expressway": "高速自動車国道"
 }

@@ -27,32 +27,36 @@ import m24 from './road/surface/jp-surface-curb.js';
 import m25 from './road/surface/jp-surface-grating.js';
 import m26 from './road/surface/jp-surface-manhole.js';
 import m27 from './road/surface/jp-surface-tenji.js';
-import m28 from './signal/combined/jp-combo-arm-ped.js';
-import m29 from './signal/combined/jp-combo-vert-ped.js';
-import m30 from './signal/crossing/jp-crossing-alarm.js';
-import m31 from './signal/crossing/jp-crossing-gate.js';
-import m32 from './signal/pedestrian/jp-bike-ped.js';
-import m33 from './signal/pedestrian/jp-ped-button.js';
-import m34 from './signal/pedestrian/jp-ped-count.js';
-import m35 from './signal/pedestrian/jp-ped-led.js';
-import m36 from './signal/rail/jp-rail-3.js';
-import m37 from './signal/rail/jp-rail-4.js';
-import m38 from './signal/rail/jp-rail-5.js';
-import m39 from './signal/rail/jp-rail-relay.js';
-import m40 from './signal/tram/jp-tram-symbol.js';
-import m41 from './signal/tram/jp-tram-with-vehicle.js';
-import m42 from './signal/tram/jp-tram.js';
-import m43 from './signal/vehicle/jp-veh-arrow.js';
-import m44 from './signal/vehicle/jp-veh-center-pole.js';
-import m45 from './signal/vehicle/jp-veh-flash.js';
-import m46 from './signal/vehicle/jp-veh-h250-side.js';
-import m47 from './signal/vehicle/jp-veh-h300-arm.js';
-import m48 from './signal/vehicle/jp-veh-hoodless.js';
-import m49 from './signal/vehicle/jp-veh-v-snow.js';
-import m50 from './signal/vehicle/jp-veh-v250.js';
-import m51 from './track/railway/jp-track-ballast.js';
-import m52 from './track/railway/jp-track-slab.js';
-import m53 from './track/tram/jp-track-tram.js';
+import m28 from './roadway/arterial/jp-roadway-arterial.js';
+import m29 from './roadway/expressway/jp-roadway-expressway.js';
+import m30 from './roadway/national/jp-roadway-national.js';
+import m31 from './roadway/regional/jp-roadway-regional.js';
+import m32 from './signal/combined/jp-combo-arm-ped.js';
+import m33 from './signal/combined/jp-combo-vert-ped.js';
+import m34 from './signal/crossing/jp-crossing-alarm.js';
+import m35 from './signal/crossing/jp-crossing-gate.js';
+import m36 from './signal/pedestrian/jp-bike-ped.js';
+import m37 from './signal/pedestrian/jp-ped-button.js';
+import m38 from './signal/pedestrian/jp-ped-count.js';
+import m39 from './signal/pedestrian/jp-ped-led.js';
+import m40 from './signal/rail/jp-rail-3.js';
+import m41 from './signal/rail/jp-rail-4.js';
+import m42 from './signal/rail/jp-rail-5.js';
+import m43 from './signal/rail/jp-rail-relay.js';
+import m44 from './signal/tram/jp-tram-symbol.js';
+import m45 from './signal/tram/jp-tram-with-vehicle.js';
+import m46 from './signal/tram/jp-tram.js';
+import m47 from './signal/vehicle/jp-veh-arrow.js';
+import m48 from './signal/vehicle/jp-veh-center-pole.js';
+import m49 from './signal/vehicle/jp-veh-flash.js';
+import m50 from './signal/vehicle/jp-veh-h250-side.js';
+import m51 from './signal/vehicle/jp-veh-h300-arm.js';
+import m52 from './signal/vehicle/jp-veh-hoodless.js';
+import m53 from './signal/vehicle/jp-veh-v-snow.js';
+import m54 from './signal/vehicle/jp-veh-v250.js';
+import m55 from './track/railway/jp-track-ballast.js';
+import m56 from './track/railway/jp-track-slab.js';
+import m57 from './track/tram/jp-track-tram.js';
 export const MODELS=[
   {path:["expressway","barrier"],def:m0},
   {path:["expressway","barrier"],def:m1},
@@ -82,30 +86,34 @@ export const MODELS=[
   {path:["road","surface"],def:m25},
   {path:["road","surface"],def:m26},
   {path:["road","surface"],def:m27},
-  {path:["signal","combined"],def:m28},
-  {path:["signal","combined"],def:m29},
-  {path:["signal","crossing"],def:m30},
-  {path:["signal","crossing"],def:m31},
-  {path:["signal","pedestrian"],def:m32},
-  {path:["signal","pedestrian"],def:m33},
-  {path:["signal","pedestrian"],def:m34},
-  {path:["signal","pedestrian"],def:m35},
-  {path:["signal","rail"],def:m36},
-  {path:["signal","rail"],def:m37},
-  {path:["signal","rail"],def:m38},
-  {path:["signal","rail"],def:m39},
-  {path:["signal","tram"],def:m40},
-  {path:["signal","tram"],def:m41},
-  {path:["signal","tram"],def:m42},
-  {path:["signal","vehicle"],def:m43},
-  {path:["signal","vehicle"],def:m44},
-  {path:["signal","vehicle"],def:m45},
-  {path:["signal","vehicle"],def:m46},
+  {path:["roadway","arterial"],def:m28},
+  {path:["roadway","expressway"],def:m29},
+  {path:["roadway","national"],def:m30},
+  {path:["roadway","regional"],def:m31},
+  {path:["signal","combined"],def:m32},
+  {path:["signal","combined"],def:m33},
+  {path:["signal","crossing"],def:m34},
+  {path:["signal","crossing"],def:m35},
+  {path:["signal","pedestrian"],def:m36},
+  {path:["signal","pedestrian"],def:m37},
+  {path:["signal","pedestrian"],def:m38},
+  {path:["signal","pedestrian"],def:m39},
+  {path:["signal","rail"],def:m40},
+  {path:["signal","rail"],def:m41},
+  {path:["signal","rail"],def:m42},
+  {path:["signal","rail"],def:m43},
+  {path:["signal","tram"],def:m44},
+  {path:["signal","tram"],def:m45},
+  {path:["signal","tram"],def:m46},
   {path:["signal","vehicle"],def:m47},
   {path:["signal","vehicle"],def:m48},
   {path:["signal","vehicle"],def:m49},
   {path:["signal","vehicle"],def:m50},
-  {path:["track","railway"],def:m51},
-  {path:["track","railway"],def:m52},
-  {path:["track","tram"],def:m53},
+  {path:["signal","vehicle"],def:m51},
+  {path:["signal","vehicle"],def:m52},
+  {path:["signal","vehicle"],def:m53},
+  {path:["signal","vehicle"],def:m54},
+  {path:["track","railway"],def:m55},
+  {path:["track","railway"],def:m56},
+  {path:["track","tram"],def:m57},
 ];

@@ -1,0 +1,67 @@
+{
+ "id": "jp-roadway-regional",
+ "name": "主要地方道(2車線)",
+ "desc": "主要地方道の2車線の車道。車線3.0m・路肩0.5m。中央線は白の破線か黄色の実線。路側は舗装のみ・縁石と側溝・ガードパイプ風のガードレールから選べる。",
+ "dims": "幅 7m(車線3.0m×2+路肩0.5m×2)・区画長20m・外側線 白実線0.15m・中央線 白破線5m+5m(代表値)",
+ "focus": [
+  3.5,
+  0,
+  0
+ ],
+ "view": [
+  9,
+  4,
+  14
+ ],
+ "options": [
+  {
+   "id": "center",
+   "label": "中央線",
+   "choices": [
+    {
+     "id": "dash",
+     "label": "白の破線"
+    },
+    {
+     "id": "yellow",
+     "label": "黄色の実線(追越し禁止)"
+    }
+   ],
+   "default": "dash"
+  },
+  {
+   "id": "side",
+   "label": "路側の形",
+   "choices": [
+    {
+     "id": "off",
+     "label": "舗装のみ"
+    },
+    {
+     "id": "curb",
+     "label": "縁石と側溝"
+    },
+    {
+     "id": "guard",
+     "label": "ガードレール"
+    }
+   ],
+   "default": "curb"
+  }
+ ],
+ "path": [
+  "roadway",
+  "regional"
+ ],
+ "lamps": [],
+ "tris": 948,
+ "size": [
+  9.32,
+  1.12,
+  20
+ ],
+ "dir": "roadway/regional/jp-roadway-regional",
+ "file": "roadway/regional/jp-roadway-regional/model.glb",
+ "thumb": "roadway/regional/jp-roadway-regional/thumb.jpg",
+ "bytes": 110172
+}

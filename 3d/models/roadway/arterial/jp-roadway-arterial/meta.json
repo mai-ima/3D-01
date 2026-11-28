@@ -1,0 +1,63 @@
+{
+ "id": "jp-roadway-arterial",
+ "name": "高規格幹線道路(自動車専用道路)",
+ "desc": "高規格幹線道路(一般国道の自動車専用道路や地域高規格道路)の車道。中央にワイヤロープなどを置く暫定2車線と、コンクリート壁の分離帯を持つ4車線を選べる。車線3.5m・路肩1.25m。",
+ "dims": "暫定2車線: 幅 9.5m(車線3.5m×2+路肩1.25m×2)/ 4車線: 幅 約19m(分離帯3.0m)・区画長20m(代表値。設計速度80km/h級を想定)",
+ "focus": [
+  5,
+  0,
+  0
+ ],
+ "view": [
+  12,
+  4,
+  18
+ ],
+ "options": [
+  {
+   "id": "section",
+   "label": "断面",
+   "choices": [
+    {
+     "id": "two",
+     "label": "暫定2車線"
+    },
+    {
+     "id": "four",
+     "label": "4車線(分離帯付き)"
+    }
+   ],
+   "default": "two"
+  },
+  {
+   "id": "median",
+   "label": "暫定2車線の中央",
+   "choices": [
+    {
+     "id": "wire",
+     "label": "ワイヤロープ"
+    },
+    {
+     "id": "line",
+     "label": "白の実線のみ"
+    }
+   ],
+   "default": "wire"
+  }
+ ],
+ "path": [
+  "roadway",
+  "arterial"
+ ],
+ "lamps": [],
+ "tris": 1760,
+ "size": [
+  24.47,
+  1.55,
+  20
+ ],
+ "dir": "roadway/arterial/jp-roadway-arterial",
+ "file": "roadway/arterial/jp-roadway-arterial/model.glb",
+ "thumb": "roadway/arterial/jp-roadway-arterial/thumb.jpg",
+ "bytes": 134352
+}

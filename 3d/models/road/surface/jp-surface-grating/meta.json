@@ -13,19 +13,36 @@
   0.8,
   1.3
  ],
+ "options": [
+  {
+   "id": "type",
+   "label": "蓋の種類",
+   "choices": [
+    {
+     "id": "bar",
+     "label": "鋼製グレーチング"
+    },
+    {
+     "id": "slit",
+     "label": "コンクリートのスリット蓋"
+    }
+   ],
+   "default": "bar"
+  }
+ ],
  "path": [
   "road",
   "surface"
  ],
  "lamps": [],
- "tris": 528,
+ "tris": 960,
  "size": [
   0.6,
-  0.08,
+  0.3,
   1.2
  ],
  "dir": "road/surface/jp-surface-grating",
  "file": "road/surface/jp-surface-grating/model.glb",
  "thumb": "road/surface/jp-surface-grating/thumb.jpg",
- "bytes": 11712
+ "bytes": 22040
 }

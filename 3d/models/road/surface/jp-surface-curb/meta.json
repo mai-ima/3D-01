@@ -1,8 +1,8 @@
 {
  "id": "jp-surface-curb",
  "name": "縁石(歩車道境界ブロック)",
- "desc": "歩道と車道の境を示すコンクリートのブロック。通常のマウンドアップ型は車道側が約15cm高い。出入口の切下げ型は、高さを低くしてある。4mのブロックを継ぎ目つきで並べる。",
- "dims": "幅 約0.18m・高さ 約0.15m(切下げ型は0.05m)・ブロック長 約1m(代表値)",
+ "desc": "歩道と車道の境を示すコンクリートのブロック。A型(標準)、B型(角が丸い)、C型(出入口の切下げ)を選べる。1mのブロックを目地つきで並べ、車道側にL型側溝を付けることもできる。",
+ "dims": "幅 0.18m・高さ 0.15m(C型は0.05m)・ブロック長 1m・L型側溝 幅0.3m(代表値)",
  "focus": [
   0,
   0.08,
@@ -19,15 +19,34 @@
    "label": "形",
    "choices": [
     {
-     "id": "normal",
-     "label": "マウンドアップ"
+     "id": "a",
+     "label": "A型(標準・高さ15cm)"
     },
     {
-     "id": "drop",
-     "label": "切下げ"
+     "id": "b",
+     "label": "B型(角が丸い)"
+    },
+    {
+     "id": "c",
+     "label": "C型(切下げ・高さ5cm)"
     }
    ],
-   "default": "normal"
+   "default": "a"
+  },
+  {
+   "id": "gutter",
+   "label": "L型側溝(車道側)",
+   "choices": [
+    {
+     "id": "off",
+     "label": "なし"
+    },
+    {
+     "id": "on",
+     "label": "あり"
+    }
+   ],
+   "default": "off"
   }
  ],
  "path": [
@@ -35,14 +54,14 @@
   "surface"
  ],
  "lamps": [],
- "tris": 544,
+ "tris": 2624,
  "size": [
   4,
-  0.16,
-  0.19
+  0.25,
+  0.8
  ],
  "dir": "road/surface/jp-surface-curb",
  "file": "road/surface/jp-surface-curb/model.glb",
  "thumb": "road/surface/jp-surface-curb/thumb.jpg",
- "bytes": 16180
+ "bytes": 51028
 }
