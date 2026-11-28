@@ -98,7 +98,7 @@
    "dir": "expressway/barrier/jp-exp-barrier-concrete",
    "file": "expressway/barrier/jp-exp-barrier-concrete/model.glb",
    "thumb": "expressway/barrier/jp-exp-barrier-concrete/thumb.jpg",
-   "bytes": 61184
+   "bytes": 61144
   },
   {
    "id": "jp-exp-cushion-drum",
@@ -269,7 +269,7 @@
    "dir": "expressway/barrier/jp-exp-wire-rope",
    "file": "expressway/barrier/jp-exp-wire-rope/model.glb",
    "thumb": "expressway/barrier/jp-exp-wire-rope/thumb.jpg",
-   "bytes": 35104
+   "bytes": 35216
   },
   {
    "id": "jp-exp-vms",
@@ -586,7 +586,7 @@
    "dir": "expressway/sign/jp-exp-sign-gantry",
    "file": "expressway/sign/jp-exp-sign-gantry/model.glb",
    "thumb": "expressway/sign/jp-exp-sign-gantry/thumb.jpg",
-   "bytes": 540164
+   "bytes": 540160
   },
   {
    "id": "jp-exp-sign-route",
@@ -914,7 +914,7 @@
    "dir": "expressway/tollgate/jp-toll-lane",
    "file": "expressway/tollgate/jp-toll-lane/model.glb",
    "thumb": "expressway/tollgate/jp-toll-lane/thumb.jpg",
-   "bytes": 470928
+   "bytes": 421168
   },
   {
    "id": "jp-barrier-guardpipe",
@@ -1536,7 +1536,7 @@
    "dir": "road/lighting/jp-light-sidewalk",
    "file": "road/lighting/jp-light-sidewalk/model.glb",
    "thumb": "road/lighting/jp-light-sidewalk/thumb.jpg",
-   "bytes": 94140
+   "bytes": 94144
   },
   {
    "id": "jp-sign-guide",
@@ -2658,7 +2658,7 @@
    "dir": "signal/crossing/jp-crossing-alarm",
    "file": "signal/crossing/jp-crossing-alarm/model.glb",
    "thumb": "signal/crossing/jp-crossing-alarm/thumb.jpg",
-   "bytes": 829008
+   "bytes": 828920
   },
   {
    "id": "jp-crossing-gate",
@@ -3896,7 +3896,7 @@
    "dir": "signal/rail/jp-rail-5",
    "file": "signal/rail/jp-rail-5/model.glb",
    "thumb": "signal/rail/jp-rail-5/thumb.jpg",
-   "bytes": 926568
+   "bytes": 926564
   },
   {
    "id": "jp-rail-relay",

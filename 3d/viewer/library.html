@@ -55,7 +55,7 @@
   #gmain{padding:12px 12px 40px}
   #grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   #gtools{gap:8px}#gtools h2{font-size:16px}#sortSeg{min-width:0!important;width:100%}
-  .hdr h1{display:none}.hdr .srch{min-width:0;flex:1 1 0}.hdr .srch input{font-size:16px}
+  .hdr h1{display:none}.hdr .sp{display:none}.hdr .srch input::-webkit-search-cancel-button{-webkit-appearance:none}.hdr .srch{min-width:0;flex:1 1 0}.hdr .srch input{font-size:16px}
   #app[data-view="detail"] #detail{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);position:relative}
   #sheet{display:flex}
   #ctl{border:0;flex:1;min-height:0}
@@ -70,7 +70,7 @@
 </style>
 <div id="app" data-view="grid">
   <header class="hdr"><div class="mk"></div><h1 id="vtitle">__H1__</h1>
-    <label class="srch"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="search" type="search" placeholder="モデル名・ID・説明で検索" aria-label="モデルを検索"></label>
+    <label class="srch"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="search" type="search" placeholder="モデルを検索" aria-label="モデルを検索"></label>
     <span class="sp"></span>
     <div class="qs"><span>画質</span><div class="seg" id="qSeg"><button data-q="low">低</button><button data-q="high">高</button></div></div></header>
   <section id="gallery">

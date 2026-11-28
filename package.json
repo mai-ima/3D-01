@@ -16,7 +16,8 @@
     "assets": "node 3d/tools/fetch-assets.cjs",
     "lint": "eslint .",
     "validate": "node 3d/tools/check-gltf.cjs",
-    "quality": "node 3d/tools/quality.cjs"
+    "quality": "node 3d/tools/quality.cjs",
+    "check:ao": "node 3d/tools/check-ao.cjs"
   },
   "repository": {
     "type": "git",

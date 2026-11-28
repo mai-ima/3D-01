@@ -29,7 +29,9 @@ const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(34,1,.05,
 const controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.dampingFactor=.07;controls.minDistance=.35;controls.maxDistance=60;controls.maxPolarAngle=Math.PI/2-.01;controls.autoRotateSpeed=1.4;
 const composer=new EffectComposer(renderer,new THREE.WebGLRenderTarget(4,4,{type:THREE.HalfFloatType,samples:Q().samples}));
 composer.addPass(new RenderPass(scene,camera));
-const gtao=new GTAOPass(scene,camera,256,256);gtao.output=GTAOPass.OUTPUT.Default;gtao.updateGtaoMaterial({radius:.9,distanceExponent:1.2,thickness:2.5,scale:2.2,samples:16,distanceFallOff:1,screenSpaceRadius:false});gtao.updatePdMaterial({lumaPhi:10,depthPhi:2,normalPhi:3,radius:6,rings:2,samples:12});
+const gtao=new GTAOPass(scene,camera,256,256);gtao.output=GTAOPass.OUTPUT[q.get('aoout')||'Default']||GTAOPass.OUTPUT.Default;gtao.updateGtaoMaterial({radius:.9,distanceExponent:1.2,thickness:2.5,scale:2.2,samples:16,distanceFallOff:1,screenSpaceRadius:false});gtao.updatePdMaterial({lumaPhi:10,depthPhi:2,normalPhi:3,radius:6,rings:2,samples:12});
+// AO の下準備(法線・深度の描画)に、背景テクスチャと寸法表示の板・線が混ざると、画面に黒い四角が出る。AO の計算中だけ外す
+{const _r=gtao.render.bind(gtao);gtao.render=function(...a){const bg=scene.background,dg=typeof dimGroup!=='undefined'?dimGroup:null;scene.background=null;if(dg)dg.visible=false;try{_r(...a);}finally{scene.background=bg;if(dg)dg.visible=true;}};}
 composer.addPass(gtao);                                         // 接触の陰影(アンビエントオクルージョン): 接合部・地面との接地・くぼみに自然な影を出す
 const bloom=new UnrealBloomPass(new THREE.Vector2(256,256),.25,.55,1.3);composer.addPass(bloom);composer.addPass(new OutputPass());
 const sun=new THREE.DirectionalLight(0xffffff,2);sun.castShadow=true;sun.shadow.mapSize.set(Q().shadow,Q().shadow);Object.assign(sun.shadow.camera,{left:-14,right:14,top:14,bottom:-7,near:1,far:140});sun.shadow.bias=-.0003;sun.shadow.normalBias=.02;sun.shadow.radius=3;
@@ -92,7 +94,7 @@ function renderTree(){const t=$('tree');t.innerHTML='';const mkBtn=(cls,html,key
     wrap.appendChild(body);t.appendChild(wrap);}}
 function renderGrid(){const l=libList(),g=$('grid');g.innerHTML='';$('gtitle').textContent=filterKey?catName(filterKey):'すべてのモデル';$('gcount').textContent=`${l.length}件`;
   if(!l.length){g.innerHTML='<div class="empty">条件に合うモデルがありません。</div>';return;}
-  for(const e of l){const b=document.createElement('button');b.className='card';b.innerHTML=`<div class="ph"><img loading="lazy" alt="" src="models/${e.thumb}"></div><div class="tx"><b>${e.name}</b><div class="meta"><span class="chip b">${catName(pathKey(e))}</span><span class="chip">${(e.tris/1000).toFixed(e.tris>99999?0:1)}k 三角形</span><span class="chip">${(e.bytes/1048576).toFixed(1)}MB</span></div></div>`;
+  for(const e of l){const b=document.createElement('button');b.className='card';b.innerHTML=`<div class="ph"><img loading="lazy" alt="" src="models/${e.thumb}"></div><div class="tx"><b>${e.name}</b><div class="meta"><span class="chip b">${catName(pathKey(e))}</span><span class="chip">${(e.tris/1000).toFixed(e.tris>99999?0:1)}k 三角形</span><span class="chip">${e.bytes<1048576*.95?Math.max(1,Math.round(e.bytes/1024))+'KB':(e.bytes/1048576).toFixed(1)+'MB'}</span></div></div>`;
     b.addEventListener('click',()=>openModel(e.id));g.appendChild(b);}}
 function showView(v){view=v;$('app').dataset.view=v;if(v==='grid'){try{history.replaceState(null,'',location.pathname+location.search);}catch{}controls.autoRotate=false;spin=false;toggleOn('tSpin',false);}}
 async function openModel(id){showView('detail');await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));resize();await select(id,true);setTab('info');}
@@ -145,8 +147,8 @@ async function select(id,instant=false){const e=catalog.find(x=>x.id===id)||cata
     clock=0;mode=entry.cycle?'auto':'manual';buildStates();buildOptions();
     if(entry.states&&entry.states.length){if(mode==='manual')sig.setState(entry.states[0].id,true);else sig.setState(cycleAt(entry.cycle,0).s,true);}
     applyDisplay();await refreshTrack();
-    $('grp').textContent=e.path.map(catName).join(' / ');$('mname').textContent=e.name;$('desc').textContent=e.desc;$('dims').textContent=e.dims||'';$('fid').textContent=e.dir;
-    $('fSize').textContent=`${e.size[1].toFixed(2)} m`;$('fTris').textContent=`${(e.tris/1000).toFixed(e.tris>99999?0:1)}k`;$('fBytes').textContent=`${(e.bytes/1048576).toFixed(1)} MB`;
+    $('grp').textContent=e.path.map((_,i)=>catName(e.path.slice(0,i+1).join('/'))).join(' / ');$('mname').textContent=e.name;$('desc').textContent=e.desc;$('dims').textContent=e.dims||'';$('fid').textContent=e.dir;
+    $('fSize').textContent=`${e.size[1].toFixed(2)} m`;$('fTris').textContent=`${(e.tris/1000).toFixed(e.tris>99999?0:1)}k`;$('fBytes').textContent=e.bytes<1048576*.95?`${Math.max(1,Math.round(e.bytes/1024))} KB`:`${(e.bytes/1048576).toFixed(1)} MB`;
     document.querySelectorAll('.item').forEach(b=>b.classList.toggle('sel',b.dataset.id===e.id));if(!LIB){openGroupOf(e);const it=document.querySelector(`.item[data-id="${e.id}"]`);if(it&&!THUMB)it.scrollIntoView({block:'nearest'});}
     storeSet('last',e.id);if(!THUMB&&location.hash.slice(1)!==e.id)history.replaceState(null,'','#'+e.id);
     userMoved=false;flyTo(q.get('view')||'all',instant||THUMB);uiSig='';$('spin').hidden=true;trimCache(e.id);
